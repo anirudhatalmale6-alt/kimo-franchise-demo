@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KIMO — reseau de micro-creches decentralisees</title>
+<meta name="description" content="KIMO ouvre de petites creches de quartier tenues par des responsables independants, avec une methode commune.">
+<meta name="robots" content="noindex">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:#fbf7f0;color:#16211d;
+  font:400 17px/1.65 ui-sans-serif,system-ui,"Segoe UI",Roboto,Helvetica,Arial,
+  sans-serif;-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto;display:block}
+a{color:#2f6b52}
+h1,h2,h3{line-height:1.15;margin:0;font-weight:650;letter-spacing:-.015em}
+h1{font-size:clamp(32px,5.2vw,58px)}
+h2{font-size:clamp(25px,3.4vw,38px)}
+h3{font-size:19px}
+p{margin:0}
+.enveloppe{max-width:1120px;margin:0 auto;padding:0 22px}
+
+/* ------------------------------------------------------------- en-tete --- */
+.haut{position:sticky;top:0;z-index:40;background:rgba(251,247,240,.94);
+  backdrop-filter:blur(9px);border-bottom:1px solid #e6ddcd}
+.haut-in{max-width:1120px;margin:0 auto;padding:12px 22px;display:flex;
+  align-items:center;gap:20px}
+.marque{display:flex;align-items:center;gap:9px;text-decoration:none;
+  color:#16211d;font-weight:700;font-size:21px;letter-spacing:.02em}
+.marque .mot{white-space:nowrap}
+.diamant{width:20px;height:20px;flex:none;fill:none;stroke:#2f6b52;
+  stroke-width:1.35;stroke-linejoin:round}
+.nav{display:flex;gap:20px;margin-left:auto;flex-wrap:wrap}
+.nav a{text-decoration:none;color:#4b5a53;font-size:15px;padding:5px 0;
+  border-bottom:2px solid transparent}
+.nav a:hover{color:#16211d}
+.nav a[aria-current="page"]{color:#16211d;border-bottom-color:#e08a5b}
+.langue{display:flex;border:1px solid #d9cfbc;border-radius:999px;
+  overflow:hidden;flex:none}
+.langue button{border:0;background:transparent;color:#6b7a72;font:inherit;
+  font-size:13px;font-weight:600;padding:5px 12px;cursor:pointer}
+.langue button[aria-pressed="true"]{background:#2f6b52;color:#fff}
+
+/* ---------------------------------------------------------------- hero --- */
+.hero{padding:74px 0 58px;background:
+  radial-gradient(120% 90% at 88% 0%,#efe6d6 0%,rgba(239,230,214,0) 62%)}
+.hero-in{display:grid;grid-template-columns:1.25fr .75fr;gap:46px;
+  align-items:center}
+.surtitre{font-size:13px;letter-spacing:.16em;text-transform:uppercase;
+  color:#2f6b52;font-weight:700;margin-bottom:16px}
+.hero h1{max-width:15ch}
+.chapo{margin-top:20px;font-size:19px;color:#41504a;max-width:52ch}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.bouton{display:inline-block;text-decoration:none;font-weight:650;
+  font-size:16px;padding:13px 24px;border-radius:999px;border:1px solid
+  transparent}
+.bouton.plein{background:#e08a5b;color:#231007}
+.bouton.plein:hover{background:#d67d4c}
+.bouton.vide{border-color:#c9bda6;color:#16211d}
+.bouton.vide:hover{border-color:#2f6b52}
+
+/* l'etat du reseau : un encart, pas un compteur. Il n'y a rien a compter. */
+.etat{background:#fff;border:1px solid #e6ddcd;border-radius:18px;
+  padding:24px}
+.etat h3{font-size:15px;letter-spacing:.1em;text-transform:uppercase;
+  color:#6b7a72}
+.etat ul{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:11px}
+.etat li{display:flex;gap:10px;align-items:flex-start;font-size:15px;
+  color:#41504a}
+.etat li::before{content:"";width:7px;height:7px;border-radius:50%;
+  background:#e08a5b;margin-top:8px;flex:none}
+
+/* -------------------------------------------------------------- blocs --- */
+section{padding:66px 0}
+section.pale{background:#f5eee2}
+.titre-bloc{max-width:60ch;margin-bottom:38px}
+.titre-bloc p{margin-top:14px;color:#4b5a53;font-size:18px}
+.grille{display:grid;gap:22px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.carte{background:#fff;border:1px solid #e6ddcd;border-radius:18px;
+  padding:26px}
+.carte h3{margin-bottom:10px}
+.carte p{color:#4b5a53;font-size:16px}
+.pale .carte{background:#fbf7f0}
+
+/* la pastille « a definir » — elle doit se voir, c'est tout son interet */
+.tbc{display:inline-flex;align-items:center;gap:6px;background:#fdf0e6;
+  border:1px dashed #e08a5b;color:#a2512a;border-radius:999px;
+  padding:2px 11px;font-size:13px;font-weight:650;letter-spacing:.01em;
+  white-space:nowrap}
+.tbc::before{content:"";width:6px;height:6px;border-radius:50%;
+  background:#e08a5b;flex:none}
+.note{margin-top:12px;font-size:15px;color:#6b7a72}
+
+/* ----------------------------------------------------------- tableaux --- */
+.tab{width:100%;border-collapse:collapse;background:#fff;
+  border:1px solid #e6ddcd;border-radius:18px;overflow:hidden}
+.enrouleur{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tab th,.tab td{text-align:left;padding:16px 18px;border-bottom:1px solid
+  #efe7d9;vertical-align:top;font-size:16px}
+.tab tr:last-child td{border-bottom:0}
+.tab th{width:32%;font-weight:650;color:#16211d}
+.tab td.val{width:20%;white-space:nowrap}
+.tab td.exp{color:#4b5a53;font-size:15px}
+
+/* ----------------------------------------------------------- parcours --- */
+.etapes{counter-reset:e;display:grid;gap:2px}
+.etape{display:grid;grid-template-columns:64px 1fr;gap:20px;
+  background:#fff;border:1px solid #e6ddcd;padding:24px}
+.etape:first-child{border-radius:18px 18px 0 0}
+.etape:last-child{border-radius:0 0 18px 18px}
+.etape .num{font-size:26px;font-weight:700;color:#c9bda6;line-height:1.1}
+.etape h3{margin-bottom:8px}
+.etape p{color:#4b5a53;font-size:16px}
+
+/* --------------------------------------------------------- deux listes --- */
+.listes{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.liste{background:#fff;border:1px solid #e6ddcd;border-radius:18px;
+  padding:26px}
+.liste.accent{background:#2f6b52;border-color:#2f6b52;color:#fff}
+.liste.accent h3{color:#fff}
+.liste.accent li{color:#dbe8e1}
+.liste.accent li::before{background:#e08a5b}
+.liste ul{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:12px}
+.liste li{display:flex;gap:11px;align-items:flex-start;font-size:16px;
+  color:#41504a}
+.liste li::before{content:"";width:7px;height:7px;border-radius:50%;
+  background:#2f6b52;margin-top:9px;flex:none}
+
+/* --------------------------------------------------------- simulateur --- */
+.simu{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+.champs{background:#fff;border:1px solid #e6ddcd;border-radius:18px;
+  padding:26px;display:grid;gap:16px}
+.champ{display:grid;gap:6px}
+.champ label{font-size:15px;font-weight:600;color:#41504a}
+.champ input,.champ select,.form select,.form input,.form textarea{
+  font:inherit;font-size:16px;padding:11px 13px;border:1px solid #d9cfbc;
+  border-radius:11px;background:#fbf7f0;color:#16211d;width:100%}
+.champ input:focus,.champ select:focus,.form input:focus,.form select:focus,
+.form textarea:focus{outline:2px solid #2f6b52;outline-offset:1px}
+.sortie{background:#16211d;color:#fff;border-radius:18px;padding:26px}
+.sortie h3{color:#fff;font-size:15px;letter-spacing:.1em;
+  text-transform:uppercase}
+.sortie dl{margin:18px 0 0;display:grid;gap:0}
+.sortie .ligne{display:flex;justify-content:space-between;gap:16px;
+  padding:12px 0;border-bottom:1px solid #2c3a34;font-size:16px}
+.sortie .ligne:last-child{border-bottom:0}
+.sortie dt{color:#a9bab2}
+.sortie dd{margin:0;font-variant-numeric:tabular-nums;font-weight:650}
+.sortie .fort{font-size:20px}
+.sortie .fort dd{color:#8fd6b0}
+.sortie .neg dd{color:#ffab8f}
+.sortie .rappel{margin-top:18px;font-size:14px;color:#a9bab2}
+
+/* ------------------------------------------------------------ methode --- */
+.pastille-titre{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+
+/* ---------------------------------------------------------------- faq --- */
+.faq{display:grid;gap:2px;max-width:860px}
+details{background:#fff;border:1px solid #e6ddcd;padding:20px 24px}
+details:first-of-type{border-radius:18px 18px 0 0}
+details:last-of-type{border-radius:0 0 18px 18px}
+summary{cursor:pointer;font-weight:650;font-size:17px;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";float:right;color:#e08a5b;font-weight:700}
+details[open] summary::after{content:"\2013"}
+details p{margin-top:12px;color:#4b5a53;font-size:16px;max-width:70ch}
+
+/* ------------------------------------------------------------ formulaire */
+.form{background:#fff;border:1px solid #e6ddcd;border-radius:18px;
+  padding:30px;display:grid;gap:18px;max-width:760px}
+.form .paire{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.form label{font-size:15px;font-weight:600;color:#41504a;display:block;
+  margin-bottom:6px}
+.form textarea{min-height:120px;resize:vertical}
+.oblig{color:#a2512a}
+.form .env{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.form button{font:inherit;font-weight:650;font-size:16px;padding:13px 26px;
+  border-radius:999px;border:0;background:#e08a5b;color:#231007;cursor:pointer}
+.form button:hover{background:#d67d4c}
+.recu{background:#eaf3ee;border:1px solid #b9d6c7;border-radius:14px;
+  padding:16px 18px;font-size:15px;color:#1f4a39}
+
+/* ------------------------------------------------------------- bandeau --- */
+.bandeau{background:#2f6b52;color:#fff;border-radius:22px;padding:44px;
+  display:flex;gap:28px;align-items:center;justify-content:space-between;
+  flex-wrap:wrap}
+.bandeau h2{color:#fff;max-width:20ch}
+.bandeau p{color:#cfe3d9;margin-top:10px;max-width:46ch}
+
+/* ---------------------------------------------------------------- pied --- */
+footer{background:#16211d;color:#a9bab2;padding:48px 0;margin-top:6px;
+  font-size:15px}
+footer .devise{color:#fff;font-size:19px;font-weight:600;
+  display:flex;align-items:center;gap:10px;margin-bottom:8px}
+footer .devise .diamant{stroke:#e08a5b;width:18px;height:18px}
+footer .fond{color:#8ea79a;margin-bottom:22px}
+footer .avert{border:1px solid #2c3a34;border-radius:14px;padding:16px 18px;
+  margin-bottom:20px;color:#c3d2ca;font-size:14px;max-width:82ch}
+footer .liens-sites{display:flex;gap:22px;flex-wrap:wrap;margin-top:16px}
+footer a{color:#8fd6b0}
+
+/* -------------------------------------------------------------- mobile --- */
+@media(max-width:900px){
+  .hero-in{grid-template-columns:1fr;gap:32px}
+  .g3,.g4{grid-template-columns:repeat(2,1fr)}
+  .simu,.listes,.form .paire{grid-template-columns:1fr}
+  /* La navigation ne DISPARAIT pas en mobile : elle passe a la ligne. Un
+     menu cache derriere un bouton qu'on n'a pas construit, c'est un site a
+     deux pages dont la seconde n'est atteignable que par le logo.
+     En revanche l'en-tete cesse d'etre COLLE : sur deux lignes il ferait
+     160 px, et il mangerait un cinquieme de l'ecran pendant toute la
+     lecture. Il coute sa hauteur une fois, en haut de page. */
+  .haut{position:static}
+  .haut-in{gap:12px;flex-wrap:wrap}
+  .marque{order:1}
+  .langue{order:2;margin-left:auto}
+  .nav{order:3;width:100%;margin-left:0;gap:16px;font-size:14px;
+    border-top:1px solid #e6ddcd;padding-top:9px}
+  .nav a{font-size:14px}
+  section{padding:48px 0}
+  .hero{padding:48px 0 40px}
+  .bandeau{padding:30px}
+}
+@media(max-width:620px){
+  .g2,.g3,.g4{grid-template-columns:1fr}
+  .etape{grid-template-columns:44px 1fr;gap:14px;padding:20px}
+  .tab th{width:auto}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+<header class="haut"><div class="haut-in">
+  <a class="marque" href="index.html"><svg class="diamant" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 3h12l4 6-10 12L2 9z"/><path d="M2 9h20M6 3l3 6M18 3l-3 6M12 3l-3 6M12 3l3 6M9 9l3 12M15 9l-3 12"/></svg><span class="mot">KIMO</span></a>
+  <nav class="nav"><a href="index.html" aria-current="page" data-fr="Le reseau" data-en="The network">Le reseau</a><a href="index.html#methode" data-fr="La methode" data-en="The method">La methode</a><a href="franchise.html" data-fr="Devenir franchise" data-en="Become a franchisee">Devenir franchise</a><a href="franchise.html#candidature" data-fr="Candidater" data-en="Apply">Candidater</a></nav>
+  <div class="langue">
+    <button type="button" data-l="fr" aria-pressed="true">FR</button>
+    <button type="button" data-l="en" aria-pressed="false">EN</button>
+  </div>
+</div></header>
+<div class="hero"><div class="enveloppe"><div class="hero-in">
+<div>
+<p class="surtitre" data-fr="Reseau de micro-creches decentralisees" data-en="A decentralised network of micro-nurseries">Reseau de micro-creches decentralisees</p>
+<h1 data-fr="Une creche a taille humaine, la ou les familles habitent." data-en="A nursery on a human scale, where families actually live.">Une creche a taille humaine, la ou les familles habitent.</h1>
+<p class="chapo" data-fr="KIMO ouvre de petites unites de quartier, tenues par des responsables independants, avec une methode commune et les memes outils partout. Une creche courte se place ou une grande structure ne rentre pas — et l&#x27;enfant y retrouve chaque matin le meme adulte." data-en="KIMO opens small neighbourhood units, run by independent managers, with a shared method and the same tools everywhere. A small nursery fits where a large facility cannot — and the child meets the same adult every morning.">KIMO ouvre de petites unites de quartier, tenues par des responsables independants, avec une methode commune et les memes outils partout. Une creche courte se place ou une grande structure ne rentre pas — et l'enfant y retrouve chaque matin le meme adulte.</p>
+<div class="actions"><a class="bouton plein" href="franchise.html" data-fr="Ouvrir une KIMO" data-en="Open a KIMO">Ouvrir une KIMO</a><a class="bouton vide" href="#modele" data-fr="Comprendre le modele" data-en="Understand the model">Comprendre le modele</a></div>
+</div>
+<div class="etat">
+<h3 data-fr="Etat du reseau" data-en="Network status">Etat du reseau</h3>
+<ul>
+<li><span data-fr="Reseau en cours de constitution : la premiere creche n&#x27;est pas encore ouverte." data-en="Network being set up: the first nursery has not opened yet.">Reseau en cours de constitution : la premiere creche n'est pas encore ouverte.</span></li>
+<li><span><span data-fr="Pays et ville de la premiere ouverture" data-en="Country and city of the first opening">Pays et ville de la premiere ouverture</span> — <span class="tbc" data-fr="a definir" data-en="to be set">a definir</span></span></li>
+<li><span><span data-fr="Cadre reglementaire applicable" data-en="Applicable regulatory framework">Cadre reglementaire applicable</span> — <span class="tbc" data-fr="a definir" data-en="to be set">a definir</span></span></li>
+<li><span data-fr="Les candidatures de franchises sont ouvertes des maintenant." data-en="Franchise applications are open now.">Les candidatures de franchises sont ouvertes des maintenant.</span></li>
+</ul></div>
+</div></div></div>
+<section id="modele"><div class="enveloppe">
+<div class="titre-bloc">
+<h2 data-fr="Pourquoi decentralise" data-en="Why decentralised">Pourquoi decentralise</h2>
+<p data-fr="Le modele n&#x27;est pas une creche plus petite par manque de moyens. C&#x27;est un choix : beaucoup de petites unites valent mieux qu&#x27;une grande, a condition que le reseau porte tout ce qu&#x27;une petite unite ne sait pas porter seule." data-en="The model is not a smaller nursery for lack of means. It is a choice: many small units beat one large one — provided the network carries everything a small unit cannot carry alone.">Le modele n'est pas une creche plus petite par manque de moyens. C'est un choix : beaucoup de petites unites valent mieux qu'une grande, a condition que le reseau porte tout ce qu'une petite unite ne sait pas porter seule.</p>
+</div><div class="grille g2">
+<div class="carte"><h3 data-fr="Une creche par quartier" data-en="One nursery per neighbourhood">Une creche par quartier</h3><p data-fr="Le trajet domicile-creche est le premier critere des parents, avant le prix. Une unite petite s&#x27;implante dans un quartier ou une grande structure ne rentre pas : un rez-de-chaussee, une maison, un local commercial reconverti." data-en="The home-to-nursery trip is the first thing parents look at, before price. A small unit fits into a neighbourhood where a large facility cannot: a ground floor, a house, a converted shop.">Le trajet domicile-creche est le premier critere des parents, avant le prix. Une unite petite s'implante dans un quartier ou une grande structure ne rentre pas : un rez-de-chaussee, une maison, un local commercial reconverti.</p></div>
+<div class="carte"><h3 data-fr="Petite unite, adulte connu" data-en="Small unit, a familiar adult">Petite unite, adulte connu</h3><p data-fr="Un enfant de deux ans ne retient pas quinze visages. Une unite courte garde le meme adulte devant le meme groupe toute la journee, et les parents parlent au responsable, pas a un standard." data-en="A two-year-old does not retain fifteen faces. A small unit keeps the same adult with the same group all day, and parents talk to the manager, not to a switchboard.">Un enfant de deux ans ne retient pas quinze visages. Une unite courte garde le meme adulte devant le meme groupe toute la journee, et les parents parlent au responsable, pas a un standard.</p></div>
+<div class="carte"><h3 data-fr="Une methode commune, pas une improvisation" data-en="A shared method, not improvisation">Une methode commune, pas une improvisation</h3><p data-fr="Ce que le reseau apporte n&#x27;est pas un logo : c&#x27;est une progression ecrite, des supports, un cahier d&#x27;observation, et la formation qui va avec. Deux creches KIMO a deux bouts du pays travaillent de la meme facon." data-en="What the network brings is not a logo: it is a written progression, materials, an observation record, and the training that goes with it. Two KIMO nurseries at opposite ends of the country work the same way.">Ce que le reseau apporte n'est pas un logo : c'est une progression ecrite, des supports, un cahier d'observation, et la formation qui va avec. Deux creches KIMO a deux bouts du pays travaillent de la meme facon.</p></div>
+<div class="carte"><h3 data-fr="Les couts lourds sont mutualises" data-en="The heavy costs are shared">Les couts lourds sont mutualises</h3><p data-fr="Inscription en ligne, facturation, planning, achats, conformite, site et referencement : une creche seule les paie en entier et les fait mal. Le reseau les porte une fois pour toutes." data-en="Enrolment, billing, scheduling, purchasing, compliance, website and local search: a standalone nursery pays for all of it and does it badly. The network carries it once, for everyone.">Inscription en ligne, facturation, planning, achats, conformite, site et referencement : une creche seule les paie en entier et les fait mal. Le reseau les porte une fois pour toutes.</p></div>
+</div></div></section>
+<section id="methode" class="pale"><div class="enveloppe">
+<div class="titre-bloc"><div class="pastille-titre">
+<h2 data-fr="La methode" data-en="The method">La methode</h2>
+<span class="tbc" data-fr="texte a valider" data-en="draft, to be approved">texte a valider</span>
+</div>
+<p data-fr="Ce qui suit est une proposition de redaction, a corriger. La pedagogie d&#x27;un reseau se decide par son fondateur ; ce texte sert a montrer ou elle se place sur le site et combien de place elle prend." data-en="What follows is a draft, to be corrected. A network&#x27;s pedagogy is its founder&#x27;s decision; this text shows where it sits on the site and how much room it takes.">Ce qui suit est une proposition de redaction, a corriger. La pedagogie d'un reseau se decide par son fondateur ; ce texte sert a montrer ou elle se place sur le site et combien de place elle prend.</p>
+</div><div class="grille g4">
+<div class="carte"><h3 data-fr="Observer avant de proposer" data-en="Observe before proposing">Observer avant de proposer</h3><p data-fr="Chaque enfant a un cahier d&#x27;observation tenu par l&#x27;adulte qui s&#x27;occupe de lui. On y note ce qu&#x27;il fait seul, ce qu&#x27;il fait avec aide, ce qu&#x27;il evite. C&#x27;est ce cahier qui decide de la suite, pas le calendrier." data-en="Every child has an observation record kept by the adult who looks after them: what they do alone, what they do with help, what they avoid. That record decides what comes next, not the calendar.">Chaque enfant a un cahier d'observation tenu par l'adulte qui s'occupe de lui. On y note ce qu'il fait seul, ce qu'il fait avec aide, ce qu'il evite. C'est ce cahier qui decide de la suite, pas le calendrier.</p></div>
+<div class="carte"><h3 data-fr="Une progression en petites etapes" data-en="A progression in small steps">Une progression en petites etapes</h3><p data-fr="Les activites sont classees par etapes courtes et ordonnees. Un enfant avance a son rythme dans une suite connue, au lieu de suivre le groupe ou de l&#x27;attendre." data-en="Activities are ordered in short, sequenced steps. A child moves at their own pace through a known sequence, instead of following the group or waiting for it.">Les activites sont classees par etapes courtes et ordonnees. Un enfant avance a son rythme dans une suite connue, au lieu de suivre le groupe ou de l'attendre.</p></div>
+<div class="carte"><h3 data-fr="Faire seul, des que c&#x27;est possible" data-en="Doing it alone, as soon as possible">Faire seul, des que c'est possible</h3><p data-fr="Le materiel est a hauteur d&#x27;enfant et range toujours au meme endroit. L&#x27;adulte montre une fois, puis se retire. Ce qu&#x27;un enfant peut faire seul, on ne le fait pas a sa place." data-en="Material is at child height and always stored in the same place. The adult demonstrates once, then steps back. Whatever a child can do alone is not done for them.">Le materiel est a hauteur d'enfant et range toujours au meme endroit. L'adulte montre une fois, puis se retire. Ce qu'un enfant peut faire seul, on ne le fait pas a sa place.</p></div>
+<div class="carte"><h3 data-fr="Les parents recoivent la meme trace" data-en="Parents get the same record">Les parents recoivent la meme trace</h3><p data-fr="Ce qui est note dans le cahier est ce qui est envoye a la famille le soir. Pas un resume different, pas un compte rendu ecrit pour rassurer." data-en="What goes into the record is what is sent to the family in the evening. Not a different summary, not a report written to reassure.">Ce qui est note dans le cahier est ce qui est envoye a la famille le soir. Pas un resume different, pas un compte rendu ecrit pour rassurer.</p></div>
+</div></div></section>
+<section id="cadre"><div class="enveloppe">
+<div class="titre-bloc">
+<h2 data-fr="Le cadre reglementaire" data-en="The regulatory framework">Le cadre reglementaire</h2>
+<p data-fr="Une micro-creche est un etablissement autorise. Le nombre de places, le taux d&#x27;encadrement, la qualification du responsable et la surface par enfant sont fixes par le droit du pays, et parfois de la region. Rien n&#x27;est ecrit ici tant que ce n&#x27;est pas verifie dans le pays retenu : un candidat construit son local et son financement sur ces lignes." data-en="A micro-nursery is a licensed facility. The number of places, the staff ratio, the manager&#x27;s qualification and the floor area per child are set by national — sometimes regional — law. Nothing is written here until it has been checked in the chosen country: a candidate builds their premises and their financing on these lines.">Une micro-creche est un etablissement autorise. Le nombre de places, le taux d'encadrement, la qualification du responsable et la surface par enfant sont fixes par le droit du pays, et parfois de la region. Rien n'est ecrit ici tant que ce n'est pas verifie dans le pays retenu : un candidat construit son local et son financement sur ces lignes.</p>
+</div><div class="enrouleur"><table class="tab"><tbody>
+<tr><th data-fr="Capacite maximale de l&#x27;unite" data-en="Maximum capacity of a unit">Capacite maximale de l'unite</th><td class="val"><span class="tbc" data-fr="a definir" data-en="to be set">a definir</span></td><td class="exp"><span data-fr="Le nombre de places qui definit une « micro-creche » est fixe par la reglementation du pays. Au-dela, l&#x27;etablissement change de categorie et de regles." data-en="The number of places that defines a &quot;micro-nursery&quot; is set by national regulation. Above it, the facility changes category and rules.">Le nombre de places qui definit une « micro-creche » est fixe par la reglementation du pays. Au-dela, l'etablissement change de categorie et de regles.</span></td></tr>
+<tr><th data-fr="Taux d&#x27;encadrement" data-en="Staff-to-child ratio">Taux d'encadrement</th><td class="val"><span class="tbc" data-fr="a definir" data-en="to be set">a definir</span></td><td class="exp"><span data-fr="Nombre d&#x27;adultes diplomes par enfant, et il differe souvent selon que l&#x27;enfant marche ou non." data-en="Number of qualified adults per child, often different for children who walk and those who do not.">Nombre d'adultes diplomes par enfant, et il differe souvent selon que l'enfant marche ou non.</span></td></tr>
+<tr><th data-fr="Qualification du responsable" data-en="Qualification of the manager">Qualification du responsable</th><td class="val"><span class="tbc" data-fr="a definir" data-en="to be set">a definir</span></td><td class="exp"><span data-fr="Diplome exige, annees d&#x27;experience, et parfois une reference sanitaire distincte." data-en="Required diploma, years of experience, and sometimes a separate health referent.">Diplome exige, annees d'experience, et parfois une reference sanitaire distincte.</span></td></tr>
+<tr><th data-fr="Surface par enfant" data-en="Floor area per child">Surface par enfant</th><td class="val"><span class="tbc" data-fr="a definir" data-en="to be set">a definir</span></td><td class="exp"><span data-fr="Surface interieure utile, et acces a un espace exterieur selon les pays." data-en="Usable indoor area, plus access to outdoor space depending on the country.">Surface interieure utile, et acces a un espace exterieur selon les pays.</span></td></tr>
+<tr><th data-fr="Autorite qui delivre l&#x27;agrement" data-en="Authority granting the licence">Autorite qui delivre l'agrement</th><td class="val"><span class="tbc" data-fr="a definir" data-en="to be set">a definir</span></td><td class="exp"><span data-fr="C&#x27;est elle qui visite le local avant l&#x27;ouverture et qui peut la refuser. Le calendrier d&#x27;ouverture depend de son delai." data-en="It inspects the premises before opening and can refuse. The opening schedule depends on its lead time.">C'est elle qui visite le local avant l'ouverture et qui peut la refuser. Le calendrier d'ouverture depend de son delai.</span></td></tr>
+<tr><th data-fr="Aides et financement des familles" data-en="Family funding and subsidies">Aides et financement des familles</th><td class="val"><span class="tbc" data-fr="a definir" data-en="to be set">a definir</span></td><td class="exp"><span data-fr="Dans plusieurs pays, une partie du prix paye par la famille est prise en charge. Cela change le tarif affichable, donc tout le modele." data-en="In several countries part of the fee paid by the family is subsidised. That changes the price you can charge, and so the whole model.">Dans plusieurs pays, une partie du prix paye par la famille est prise en charge. Cela change le tarif affichable, donc tout le modele.</span></td></tr>
+</tbody></table></div>
+</div></section>
+<section class="pale"><div class="enveloppe"><div class="bandeau"><div>
+<h2 data-fr="Ouvrir une KIMO dans votre ville" data-en="Open a KIMO in your city">Ouvrir une KIMO dans votre ville</h2>
+<p data-fr="Le parcours, ce que le reseau apporte, un simulateur de compte d&#x27;exploitation et le formulaire de candidature." data-en="The journey, what the network provides, a P&amp;L simulator and the application form.">Le parcours, ce que le reseau apporte, un simulateur de compte d'exploitation et le formulaire de candidature.</p>
+</div><a class="bouton plein" href="franchise.html" data-fr="Voir la page franchise" data-en="See the franchise page">Voir la page franchise</a>
+</div></div></section>
+<footer><div class="enveloppe">
+<p class="devise" data-fr="Mes sites impactent le monde." data-en="My sites impact the world.">Mes sites impactent le monde.</p>
+<p class="fond" data-fr="Hakim Adjaoudi, fondateur — JNCORP INC." data-en="Hakim Adjaoudi, founder — JNCORP INC.">Hakim Adjaoudi, fondateur — JNCORP INC.</p>
+<div class="avert" data-fr="DEMONSTRATION. KIMO est un reseau en cours de constitution : aucune creche n&#x27;est ouverte a ce jour. Les valeurs marquees « a definir » ne sont pas des oublis, ce sont des decisions qui n&#x27;ont pas encore ete prises, ou des regles qui dependent du pays retenu. Aucun chiffre reglementaire n&#x27;est avance ici tant qu&#x27;il n&#x27;a pas ete verifie dans le pays concerne." data-en="DEMONSTRATION. KIMO is a network being set up: no nursery is open to date. Values marked &quot;to be set&quot; are not omissions, they are decisions not yet taken, or rules that depend on the country chosen. No regulatory figure is stated here until it has been checked in the country concerned.">DEMONSTRATION. KIMO est un reseau en cours de constitution : aucune creche n&#x27;est ouverte a ce jour. Les valeurs marquees « a definir » ne sont pas des oublis, ce sont des decisions qui n&#x27;ont pas encore ete prises, ou des regles qui dependent du pays retenu. Aucun chiffre reglementaire n&#x27;est avance ici tant qu&#x27;il n&#x27;a pas ete verifie dans le pays concerne.</div>
+<div class="liens-sites"><a href="https://anirudhatalmale6-alt.github.io/annuaire-franchises-demo/" data-fr="Annuaire des franchises" data-en="Franchise directory">Annuaire des franchises</a><a href="https://anirudhatalmale6-alt.github.io/maisons-de-prestige/" data-fr="Maisons de Prestige" data-en="Maisons de Prestige">Maisons de Prestige</a></div>
+</div></footer>
+<script>
+(function(){
+  var L='fr';
+  function pose(l){
+    L=l;
+    document.documentElement.lang=l;
+    var n=document.querySelectorAll('[data-fr][data-en]');
+    for(var i=0;i<n.length;i++) n[i].innerHTML=n[i].getAttribute('data-'+l);
+    var b=document.querySelectorAll('.langue button');
+    for(var j=0;j<b.length;j++)
+      b[j].setAttribute('aria-pressed',
+        b[j].getAttribute('data-l')===l?'true':'false');
+    try{localStorage.setItem('kimo-langue',l);}catch(e){}
+    if(window.surLangue) window.surLangue(l);
+  }
+  window.langue=function(){return L;};
+  window.poseLangue=pose;
+  document.addEventListener('click',function(ev){
+    var b=ev.target.closest&&ev.target.closest('.langue button');
+    if(b) pose(b.getAttribute('data-l'));
+  });
+  var m=null; try{m=localStorage.getItem('kimo-langue');}catch(e){}
+  pose(m==='en'?'en':'fr');
+})();
+</script>
+</body>
+</html>

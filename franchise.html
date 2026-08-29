@@ -1,0 +1,605 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KIMO — devenir franchise</title>
+<meta name="description" content="Ouvrir une micro-creche KIMO : le parcours, ce que le reseau apporte, un simulateur et le formulaire de candidature.">
+<meta name="robots" content="noindex">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:#fbf7f0;color:#16211d;
+  font:400 17px/1.65 ui-sans-serif,system-ui,"Segoe UI",Roboto,Helvetica,Arial,
+  sans-serif;-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto;display:block}
+a{color:#2f6b52}
+h1,h2,h3{line-height:1.15;margin:0;font-weight:650;letter-spacing:-.015em}
+h1{font-size:clamp(32px,5.2vw,58px)}
+h2{font-size:clamp(25px,3.4vw,38px)}
+h3{font-size:19px}
+p{margin:0}
+.enveloppe{max-width:1120px;margin:0 auto;padding:0 22px}
+
+/* ------------------------------------------------------------- en-tete --- */
+.haut{position:sticky;top:0;z-index:40;background:rgba(251,247,240,.94);
+  backdrop-filter:blur(9px);border-bottom:1px solid #e6ddcd}
+.haut-in{max-width:1120px;margin:0 auto;padding:12px 22px;display:flex;
+  align-items:center;gap:20px}
+.marque{display:flex;align-items:center;gap:9px;text-decoration:none;
+  color:#16211d;font-weight:700;font-size:21px;letter-spacing:.02em}
+.marque .mot{white-space:nowrap}
+.diamant{width:20px;height:20px;flex:none;fill:none;stroke:#2f6b52;
+  stroke-width:1.35;stroke-linejoin:round}
+.nav{display:flex;gap:20px;margin-left:auto;flex-wrap:wrap}
+.nav a{text-decoration:none;color:#4b5a53;font-size:15px;padding:5px 0;
+  border-bottom:2px solid transparent}
+.nav a:hover{color:#16211d}
+.nav a[aria-current="page"]{color:#16211d;border-bottom-color:#e08a5b}
+.langue{display:flex;border:1px solid #d9cfbc;border-radius:999px;
+  overflow:hidden;flex:none}
+.langue button{border:0;background:transparent;color:#6b7a72;font:inherit;
+  font-size:13px;font-weight:600;padding:5px 12px;cursor:pointer}
+.langue button[aria-pressed="true"]{background:#2f6b52;color:#fff}
+
+/* ---------------------------------------------------------------- hero --- */
+.hero{padding:74px 0 58px;background:
+  radial-gradient(120% 90% at 88% 0%,#efe6d6 0%,rgba(239,230,214,0) 62%)}
+.hero-in{display:grid;grid-template-columns:1.25fr .75fr;gap:46px;
+  align-items:center}
+.surtitre{font-size:13px;letter-spacing:.16em;text-transform:uppercase;
+  color:#2f6b52;font-weight:700;margin-bottom:16px}
+.hero h1{max-width:15ch}
+.chapo{margin-top:20px;font-size:19px;color:#41504a;max-width:52ch}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.bouton{display:inline-block;text-decoration:none;font-weight:650;
+  font-size:16px;padding:13px 24px;border-radius:999px;border:1px solid
+  transparent}
+.bouton.plein{background:#e08a5b;color:#231007}
+.bouton.plein:hover{background:#d67d4c}
+.bouton.vide{border-color:#c9bda6;color:#16211d}
+.bouton.vide:hover{border-color:#2f6b52}
+
+/* l'etat du reseau : un encart, pas un compteur. Il n'y a rien a compter. */
+.etat{background:#fff;border:1px solid #e6ddcd;border-radius:18px;
+  padding:24px}
+.etat h3{font-size:15px;letter-spacing:.1em;text-transform:uppercase;
+  color:#6b7a72}
+.etat ul{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:11px}
+.etat li{display:flex;gap:10px;align-items:flex-start;font-size:15px;
+  color:#41504a}
+.etat li::before{content:"";width:7px;height:7px;border-radius:50%;
+  background:#e08a5b;margin-top:8px;flex:none}
+
+/* -------------------------------------------------------------- blocs --- */
+section{padding:66px 0}
+section.pale{background:#f5eee2}
+.titre-bloc{max-width:60ch;margin-bottom:38px}
+.titre-bloc p{margin-top:14px;color:#4b5a53;font-size:18px}
+.grille{display:grid;gap:22px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.carte{background:#fff;border:1px solid #e6ddcd;border-radius:18px;
+  padding:26px}
+.carte h3{margin-bottom:10px}
+.carte p{color:#4b5a53;font-size:16px}
+.pale .carte{background:#fbf7f0}
+
+/* la pastille « a definir » — elle doit se voir, c'est tout son interet */
+.tbc{display:inline-flex;align-items:center;gap:6px;background:#fdf0e6;
+  border:1px dashed #e08a5b;color:#a2512a;border-radius:999px;
+  padding:2px 11px;font-size:13px;font-weight:650;letter-spacing:.01em;
+  white-space:nowrap}
+.tbc::before{content:"";width:6px;height:6px;border-radius:50%;
+  background:#e08a5b;flex:none}
+.note{margin-top:12px;font-size:15px;color:#6b7a72}
+
+/* ----------------------------------------------------------- tableaux --- */
+.tab{width:100%;border-collapse:collapse;background:#fff;
+  border:1px solid #e6ddcd;border-radius:18px;overflow:hidden}
+.enrouleur{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tab th,.tab td{text-align:left;padding:16px 18px;border-bottom:1px solid
+  #efe7d9;vertical-align:top;font-size:16px}
+.tab tr:last-child td{border-bottom:0}
+.tab th{width:32%;font-weight:650;color:#16211d}
+.tab td.val{width:20%;white-space:nowrap}
+.tab td.exp{color:#4b5a53;font-size:15px}
+
+/* ----------------------------------------------------------- parcours --- */
+.etapes{counter-reset:e;display:grid;gap:2px}
+.etape{display:grid;grid-template-columns:64px 1fr;gap:20px;
+  background:#fff;border:1px solid #e6ddcd;padding:24px}
+.etape:first-child{border-radius:18px 18px 0 0}
+.etape:last-child{border-radius:0 0 18px 18px}
+.etape .num{font-size:26px;font-weight:700;color:#c9bda6;line-height:1.1}
+.etape h3{margin-bottom:8px}
+.etape p{color:#4b5a53;font-size:16px}
+
+/* --------------------------------------------------------- deux listes --- */
+.listes{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.liste{background:#fff;border:1px solid #e6ddcd;border-radius:18px;
+  padding:26px}
+.liste.accent{background:#2f6b52;border-color:#2f6b52;color:#fff}
+.liste.accent h3{color:#fff}
+.liste.accent li{color:#dbe8e1}
+.liste.accent li::before{background:#e08a5b}
+.liste ul{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:12px}
+.liste li{display:flex;gap:11px;align-items:flex-start;font-size:16px;
+  color:#41504a}
+.liste li::before{content:"";width:7px;height:7px;border-radius:50%;
+  background:#2f6b52;margin-top:9px;flex:none}
+
+/* --------------------------------------------------------- simulateur --- */
+.simu{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+.champs{background:#fff;border:1px solid #e6ddcd;border-radius:18px;
+  padding:26px;display:grid;gap:16px}
+.champ{display:grid;gap:6px}
+.champ label{font-size:15px;font-weight:600;color:#41504a}
+.champ input,.champ select,.form select,.form input,.form textarea{
+  font:inherit;font-size:16px;padding:11px 13px;border:1px solid #d9cfbc;
+  border-radius:11px;background:#fbf7f0;color:#16211d;width:100%}
+.champ input:focus,.champ select:focus,.form input:focus,.form select:focus,
+.form textarea:focus{outline:2px solid #2f6b52;outline-offset:1px}
+.sortie{background:#16211d;color:#fff;border-radius:18px;padding:26px}
+.sortie h3{color:#fff;font-size:15px;letter-spacing:.1em;
+  text-transform:uppercase}
+.sortie dl{margin:18px 0 0;display:grid;gap:0}
+.sortie .ligne{display:flex;justify-content:space-between;gap:16px;
+  padding:12px 0;border-bottom:1px solid #2c3a34;font-size:16px}
+.sortie .ligne:last-child{border-bottom:0}
+.sortie dt{color:#a9bab2}
+.sortie dd{margin:0;font-variant-numeric:tabular-nums;font-weight:650}
+.sortie .fort{font-size:20px}
+.sortie .fort dd{color:#8fd6b0}
+.sortie .neg dd{color:#ffab8f}
+.sortie .rappel{margin-top:18px;font-size:14px;color:#a9bab2}
+
+/* ------------------------------------------------------------ methode --- */
+.pastille-titre{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+
+/* ---------------------------------------------------------------- faq --- */
+.faq{display:grid;gap:2px;max-width:860px}
+details{background:#fff;border:1px solid #e6ddcd;padding:20px 24px}
+details:first-of-type{border-radius:18px 18px 0 0}
+details:last-of-type{border-radius:0 0 18px 18px}
+summary{cursor:pointer;font-weight:650;font-size:17px;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";float:right;color:#e08a5b;font-weight:700}
+details[open] summary::after{content:"\2013"}
+details p{margin-top:12px;color:#4b5a53;font-size:16px;max-width:70ch}
+
+/* ------------------------------------------------------------ formulaire */
+.form{background:#fff;border:1px solid #e6ddcd;border-radius:18px;
+  padding:30px;display:grid;gap:18px;max-width:760px}
+.form .paire{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.form label{font-size:15px;font-weight:600;color:#41504a;display:block;
+  margin-bottom:6px}
+.form textarea{min-height:120px;resize:vertical}
+.oblig{color:#a2512a}
+.form .env{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.form button{font:inherit;font-weight:650;font-size:16px;padding:13px 26px;
+  border-radius:999px;border:0;background:#e08a5b;color:#231007;cursor:pointer}
+.form button:hover{background:#d67d4c}
+.recu{background:#eaf3ee;border:1px solid #b9d6c7;border-radius:14px;
+  padding:16px 18px;font-size:15px;color:#1f4a39}
+
+/* ------------------------------------------------------------- bandeau --- */
+.bandeau{background:#2f6b52;color:#fff;border-radius:22px;padding:44px;
+  display:flex;gap:28px;align-items:center;justify-content:space-between;
+  flex-wrap:wrap}
+.bandeau h2{color:#fff;max-width:20ch}
+.bandeau p{color:#cfe3d9;margin-top:10px;max-width:46ch}
+
+/* ---------------------------------------------------------------- pied --- */
+footer{background:#16211d;color:#a9bab2;padding:48px 0;margin-top:6px;
+  font-size:15px}
+footer .devise{color:#fff;font-size:19px;font-weight:600;
+  display:flex;align-items:center;gap:10px;margin-bottom:8px}
+footer .devise .diamant{stroke:#e08a5b;width:18px;height:18px}
+footer .fond{color:#8ea79a;margin-bottom:22px}
+footer .avert{border:1px solid #2c3a34;border-radius:14px;padding:16px 18px;
+  margin-bottom:20px;color:#c3d2ca;font-size:14px;max-width:82ch}
+footer .liens-sites{display:flex;gap:22px;flex-wrap:wrap;margin-top:16px}
+footer a{color:#8fd6b0}
+
+/* -------------------------------------------------------------- mobile --- */
+@media(max-width:900px){
+  .hero-in{grid-template-columns:1fr;gap:32px}
+  .g3,.g4{grid-template-columns:repeat(2,1fr)}
+  .simu,.listes,.form .paire{grid-template-columns:1fr}
+  /* La navigation ne DISPARAIT pas en mobile : elle passe a la ligne. Un
+     menu cache derriere un bouton qu'on n'a pas construit, c'est un site a
+     deux pages dont la seconde n'est atteignable que par le logo.
+     En revanche l'en-tete cesse d'etre COLLE : sur deux lignes il ferait
+     160 px, et il mangerait un cinquieme de l'ecran pendant toute la
+     lecture. Il coute sa hauteur une fois, en haut de page. */
+  .haut{position:static}
+  .haut-in{gap:12px;flex-wrap:wrap}
+  .marque{order:1}
+  .langue{order:2;margin-left:auto}
+  .nav{order:3;width:100%;margin-left:0;gap:16px;font-size:14px;
+    border-top:1px solid #e6ddcd;padding-top:9px}
+  .nav a{font-size:14px}
+  section{padding:48px 0}
+  .hero{padding:48px 0 40px}
+  .bandeau{padding:30px}
+}
+@media(max-width:620px){
+  .g2,.g3,.g4{grid-template-columns:1fr}
+  .etape{grid-template-columns:44px 1fr;gap:14px;padding:20px}
+  .tab th{width:auto}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+<header class="haut"><div class="haut-in">
+  <a class="marque" href="index.html"><svg class="diamant" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 3h12l4 6-10 12L2 9z"/><path d="M2 9h20M6 3l3 6M18 3l-3 6M12 3l-3 6M12 3l3 6M9 9l3 12M15 9l-3 12"/></svg><span class="mot">KIMO</span></a>
+  <nav class="nav"><a href="index.html" data-fr="Le reseau" data-en="The network">Le reseau</a><a href="index.html#methode" data-fr="La methode" data-en="The method">La methode</a><a href="franchise.html" aria-current="page" data-fr="Devenir franchise" data-en="Become a franchisee">Devenir franchise</a><a href="franchise.html#candidature" data-fr="Candidater" data-en="Apply">Candidater</a></nav>
+  <div class="langue">
+    <button type="button" data-l="fr" aria-pressed="true">FR</button>
+    <button type="button" data-l="en" aria-pressed="false">EN</button>
+  </div>
+</div></header>
+<div class="hero"><div class="enveloppe"><div class="hero-in">
+<div>
+<p class="surtitre" data-fr="Franchise" data-en="Franchise">Franchise</p>
+<h1 data-fr="Tenir une creche de quartier, avec un reseau derriere." data-en="Run a neighbourhood nursery, with a network behind you.">Tenir une creche de quartier, avec un reseau derriere.</h1>
+<p class="chapo" data-fr="Le franchise possede son entreprise, son bail et son fonds. Le reseau lui apporte la marque, la methode ecrite, la formation, le logiciel et l&#x27;etude de sa zone — et il l&#x27;accompagne jusqu&#x27;a l&#x27;ouverture." data-en="The franchisee owns their company, their lease and their business. The network brings the brand, the written method, the training, the software and the territory study — and stays alongside until opening day.">Le franchise possede son entreprise, son bail et son fonds. Le reseau lui apporte la marque, la methode ecrite, la formation, le logiciel et l'etude de sa zone — et il l'accompagne jusqu'a l'ouverture.</p>
+<div class="actions"><a class="bouton plein" href="#candidature" data-fr="Deposer une candidature" data-en="Apply now">Deposer une candidature</a><a class="bouton vide" href="#simulateur" data-fr="Simuler un compte d'exploitation" data-en="Run a P&amp;L simulation">Simuler un compte d'exploitation</a></div>
+</div>
+<div class="etat">
+<h3 data-fr="Ce qui n&#x27;est pas encore arrete" data-en="What has not been settled yet">Ce qui n'est pas encore arrete</h3>
+<ul>
+<li><span>Le PAYS de la premiere creche</span></li>
+<li><span>La VILLE de la premiere creche</span></li>
+<li><span>Le NOM DE DOMAINE</span></li>
+<li><span>Le DROIT D&#x27;ENTREE au reseau</span></li>
+<li><span>La REDEVANCE du reseau</span></li>
+<li><span>L&#x27;APPORT PERSONNEL demande au candidat</span></li>
+<li><span>L&#x27;ADRESSE qui recoit les candidatures</span></li>
+</ul>
+<p class="note" data-fr="Ces points sont affiches « a definir » partout ou ils apparaissent, plutot que remplis par un ordre de grandeur." data-en="These are shown as &quot;to be set&quot; wherever they appear, rather than filled in with a ballpark.">Ces points sont affiches « a definir » partout ou ils apparaissent, plutot que remplis par un ordre de grandeur.</p>
+</div>
+</div></div></div>
+<section id="parcours"><div class="enveloppe">
+<div class="titre-bloc">
+<h2 data-fr="Le parcours, en six etapes" data-en="The journey, in six steps">Le parcours, en six etapes</h2>
+<p data-fr="L&#x27;ordre compte : le local et l&#x27;agrement viennent avant la formation. Une autorite qui refuse un local apres la formation a fait perdre les deux." data-en="The order matters: premises and licence come before training. An authority refusing premises after training has wasted both.">L'ordre compte : le local et l'agrement viennent avant la formation. Une autorite qui refuse un local apres la formation a fait perdre les deux.</p>
+</div><div class="etapes">
+<div class="etape"><div class="num">1</div><div>
+<div class="pastille-titre"><h3 data-fr="Candidature" data-en="Application">Candidature</h3></div>
+<p data-fr="Le formulaire en bas de cette page. Ville visee, situation, apport, calendrier souhaite." data-en="The form at the bottom of this page. Target city, situation, personal contribution, target date.">Le formulaire en bas de cette page. Ville visee, situation, apport, calendrier souhaite.</p>
+</div></div>
+<div class="etape"><div class="num">2</div><div>
+<div class="pastille-titre"><h3 data-fr="Entretien et dossier" data-en="Interview and file">Entretien et dossier</h3></div>
+<p data-fr="Un entretien, puis le document d&#x27;information precontractuelle : ce que le reseau apporte, ce qu&#x27;il facture, ce qu&#x27;il exige." data-en="An interview, then the pre-contractual disclosure document: what the network provides, what it charges, what it requires.">Un entretien, puis le document d'information precontractuelle : ce que le reseau apporte, ce qu'il facture, ce qu'il exige.</p>
+</div></div>
+<div class="etape"><div class="num">3</div><div>
+<div class="pastille-titre"><h3 data-fr="Etude de la zone" data-en="Territory study">Etude de la zone</h3></div>
+<p data-fr="Nombre de jeunes enfants, offre existante, trajets. Une zone qui ne porte pas une creche, on le voit avant le bail, pas apres." data-en="Number of young children, existing supply, commutes. A territory that cannot carry a nursery shows up before the lease, not after.">Nombre de jeunes enfants, offre existante, trajets. Une zone qui ne porte pas une creche, on le voit avant le bail, pas apres.</p>
+</div></div>
+<div class="etape"><div class="num">4</div><div>
+<div class="pastille-titre"><h3 data-fr="Local et agrement" data-en="Premises and licence">Local et agrement</h3></div>
+<p data-fr="Recherche du local, mise en conformite, depot du dossier aupres de l&#x27;autorite. C&#x27;est l&#x27;etape la plus longue, et sa duree ne depend pas de nous." data-en="Finding the premises, bringing them up to standard, filing with the authority. This is the longest step, and its length is not ours to set.">Recherche du local, mise en conformite, depot du dossier aupres de l'autorite. C'est l'etape la plus longue, et sa duree ne depend pas de nous.</p>
+</div></div>
+<div class="etape"><div class="num">5</div><div>
+<div class="pastille-titre"><h3 data-fr="Formation" data-en="Training">Formation</h3></div>
+<p data-fr="La methode, les outils, la gestion, la relation aux familles. Le responsable et le premier encadrant la suivent ensemble." data-en="The method, the tools, day-to-day management, working with families. The manager and the first practitioner attend together.">La methode, les outils, la gestion, la relation aux familles. Le responsable et le premier encadrant la suivent ensemble.</p>
+</div></div>
+<div class="etape"><div class="num">6</div><div>
+<div class="pastille-titre"><h3 data-fr="Ouverture accompagnee" data-en="Assisted opening">Ouverture accompagnee</h3></div>
+<p data-fr="Quelqu&#x27;un du reseau est sur place les premiers jours. Les premieres inscriptions se font a deux." data-en="Someone from the network is on site for the first days. The first enrolments are handled together.">Quelqu'un du reseau est sur place les premiers jours. Les premieres inscriptions se font a deux.</p>
+</div></div>
+</div>
+<p class="note" data-fr="Les durees ne sont pas indiquees : celle de l&#x27;etape 4 depend du delai de l&#x27;autorite qui delivre l&#x27;agrement, donc du pays. Elle sera ecrite ici quand le pays sera arrete." data-en="No durations are given: step 4 depends on the lead time of the licensing authority, and therefore on the country. It will appear here once the country is settled.">Les durees ne sont pas indiquees : celle de l'etape 4 depend du delai de l'autorite qui delivre l'agrement, donc du pays. Elle sera ecrite ici quand le pays sera arrete.</p>
+</div></section>
+<section class="pale"><div class="enveloppe">
+<div class="titre-bloc">
+<h2 data-fr="Qui apporte quoi" data-en="Who brings what">Qui apporte quoi</h2>
+<p data-fr="Une franchise se juge sur cette page, pas sur une brochure." data-en="A franchise is judged on this page, not on a brochure.">Une franchise se juge sur cette page, pas sur une brochure.</p>
+</div><div class="listes">
+<div class="liste accent"><h3 data-fr="Le reseau apporte" data-en="The network brings">Le reseau apporte</h3><ul>
+<li><span data-fr="La marque et la charte" data-en="The brand and its guidelines">La marque et la charte</span></li>
+<li><span data-fr="La methode ecrite et ses supports" data-en="The written method and materials">La methode ecrite et ses supports</span></li>
+<li><span data-fr="La formation initiale et le recyclage annuel" data-en="Initial training and annual refresher">La formation initiale et le recyclage annuel</span></li>
+<li><span data-fr="Le logiciel : inscriptions, presences, facturation, planning" data-en="The software: enrolment, attendance, billing, scheduling">Le logiciel : inscriptions, presences, facturation, planning</span></li>
+<li><span data-fr="L&#x27;etude de zone avant la signature du bail" data-en="The territory study before the lease is signed">L'etude de zone avant la signature du bail</span></li>
+<li><span data-fr="Les achats groupes : mobilier, materiel, consommables" data-en="Group purchasing: furniture, equipment, consumables">Les achats groupes : mobilier, materiel, consommables</span></li>
+<li><span data-fr="Le site du reseau et la fiche locale de la creche" data-en="The network site and the nursery&#x27;s local page">Le site du reseau et la fiche locale de la creche</span></li>
+<li><span data-fr="Le controle qualite et les visites" data-en="Quality control and site visits">Le controle qualite et les visites</span></li>
+<li><span data-fr="L&#x27;exclusivite sur une zone definie au contrat" data-en="Exclusivity over a territory defined in the contract">L'exclusivite sur une zone definie au contrat</span></li>
+</ul></div>
+<div class="liste"><h3 data-fr="Le franchise apporte" data-en="The franchisee brings">Le franchise apporte</h3><ul>
+<li><span data-fr="Le local, et sa mise en conformite" data-en="The premises, and bringing them up to standard">Le local, et sa mise en conformite</span></li>
+<li><span data-fr="L&#x27;apport personnel et le financement" data-en="The personal contribution and the financing">L'apport personnel et le financement</span></li>
+<li><span data-fr="Le recrutement de l&#x27;equipe, avec l&#x27;aide du reseau" data-en="Recruiting the team, with the network&#x27;s help">Le recrutement de l'equipe, avec l'aide du reseau</span></li>
+<li><span data-fr="Sa presence : ce n&#x27;est pas un placement, c&#x27;est un metier" data-en="Their presence: this is not an investment, it is a job">Sa presence : ce n'est pas un placement, c'est un metier</span></li>
+<li><span data-fr="Le respect de la methode et des standards" data-en="Applying the method and the standards">Le respect de la methode et des standards</span></li>
+<li><span data-fr="La relation avec les familles et l&#x27;autorite locale" data-en="The relationship with families and the local authority">La relation avec les familles et l'autorite locale</span></li>
+</ul></div>
+</div></div></section>
+<section id="modele-eco"><div class="enveloppe">
+<div class="titre-bloc">
+<h2 data-fr="Le modele economique" data-en="The economics">Le modele economique</h2>
+<p data-fr="Les montants ne sont pas encore arretes. Ils apparaissent donc en clair comme non fixes : un candidat batit son plan de financement sur ces lignes, et un ordre de grandeur invente lui couterait cher." data-en="The amounts have not been set. They therefore appear plainly as unset: a candidate builds their financing plan on these lines, and an invented ballpark would cost them dearly.">Les montants ne sont pas encore arretes. Ils apparaissent donc en clair comme non fixes : un candidat batit son plan de financement sur ces lignes, et un ordre de grandeur invente lui couterait cher.</p>
+</div><div class="enrouleur"><table class="tab"><tbody>
+<tr><th data-fr="Droit d&#x27;entree" data-en="Entry fee">Droit d'entree</th><td class="val"><span class="tbc" data-fr="a definir" data-en="to be set">a definir</span></td><td class="exp"><span data-fr="Verse une fois a la signature. Il paie la formation initiale, l&#x27;ouverture accompagnee et la mise en place de la methode." data-en="Paid once at signature. It covers the initial training, the assisted opening and the setup of the method.">Verse une fois a la signature. Il paie la formation initiale, l'ouverture accompagnee et la mise en place de la methode.</span></td></tr>
+<tr><th data-fr="Duree du contrat" data-en="Contract term">Duree du contrat</th><td class="val"><span class="tbc" data-fr="a definir" data-en="to be set">a definir</span></td><td class="exp"><span data-fr="La duree d&#x27;un contrat de franchise se cale sur celle du bail : un contrat plus court que le bail laisse le franchise avec un local et sans marque." data-en="A franchise term is set against the lease: a term shorter than the lease leaves the franchisee with premises and no brand.">La duree d'un contrat de franchise se cale sur celle du bail : un contrat plus court que le bail laisse le franchise avec un local et sans marque.</span></td></tr>
+<tr><th data-fr="Redevance d&#x27;exploitation" data-en="Ongoing royalty">Redevance d'exploitation</th><td class="val"><span class="tbc" data-fr="a definir" data-en="to be set">a definir</span></td><td class="exp"><span data-fr="Prelevee sur le chiffre d&#x27;affaires encaisse. Elle finance la methode, les outils, le support et le controle qualite." data-en="Charged on collected revenue. It funds the method, the tools, the support and the quality control.">Prelevee sur le chiffre d'affaires encaisse. Elle finance la methode, les outils, le support et le controle qualite.</span></td></tr>
+<tr><th data-fr="Contribution communication" data-en="Marketing contribution">Contribution communication</th><td class="val"><span class="tbc" data-fr="a definir" data-en="to be set">a definir</span></td><td class="exp"><span data-fr="Fonds commun : campagnes nationales, site, referencement local des creches du reseau." data-en="Common fund: national campaigns, website, local search presence for the network&#x27;s centres.">Fonds commun : campagnes nationales, site, referencement local des creches du reseau.</span></td></tr>
+<tr><th data-fr="Apport personnel demande" data-en="Personal contribution required">Apport personnel demande</th><td class="val"><span class="tbc" data-fr="a definir" data-en="to be set">a definir</span></td><td class="exp"><span data-fr="La part que le candidat finance lui-meme, hors emprunt." data-en="The share the candidate finances themselves, outside of borrowing.">La part que le candidat finance lui-meme, hors emprunt.</span></td></tr>
+<tr><th data-fr="Investissement total" data-en="Total investment">Investissement total</th><td class="val"><span class="tbc" data-fr="a definir" data-en="to be set">a definir</span></td><td class="exp"><span data-fr="Travaux, mobilier, materiel pedagogique, tresorerie de demarrage. Il depend du local et du pays : il se chiffre par ville, pas en general." data-en="Fit-out, furniture, teaching material, opening cash. It depends on the premises and the country: it is costed city by city, not in general.">Travaux, mobilier, materiel pedagogique, tresorerie de demarrage. Il depend du local et du pays : il se chiffre par ville, pas en general.</span></td></tr>
+</tbody></table></div></div></section>
+<section id="simulateur" class="pale"><div class="enveloppe">
+<div class="titre-bloc">
+<h2 data-fr="Simulateur de compte d&#x27;exploitation" data-en="P&amp;L simulator">Simulateur de compte d'exploitation</h2>
+<p class="note" data-fr="Aucun chiffre de ce simulateur n&#x27;est un chiffre KIMO, et les valeurs de depart ne decrivent aucun marche : elles sont rondes et arbitraires, elles servent a montrer le calcul. Remplacez-les par les votres. La redevance reseau est a zero parce qu&#x27;elle n&#x27;est pas encore fixee — posez-la des qu&#x27;elle l&#x27;est." data-en="None of the figures in this simulator are KIMO figures, and the starting values describe no particular market: they are round and arbitrary, they exist to show the calculation. Replace them with your own. The network royalty sits at zero because it has not been set yet — enter it as soon as it is.">Aucun chiffre de ce simulateur n&#x27;est un chiffre KIMO, et les valeurs de depart ne decrivent aucun marche : elles sont rondes et arbitraires, elles servent a montrer le calcul. Remplacez-les par les votres. La redevance reseau est a zero parce qu&#x27;elle n&#x27;est pas encore fixee — posez-la des qu&#x27;elle l&#x27;est.</p>
+</div><div class="simu">
+<div class="champs">
+<div class="champ"><label for="s-devise" data-fr="Monnaie" data-en="Currency">Monnaie</label><select id="s-devise">
+<option value="EUR">EUR</option>
+<option value="CAD">CAD</option>
+<option value="CHF">CHF</option>
+<option value="DZD">DZD</option>
+<option value="MAD">MAD</option>
+<option value="GBP">GBP</option>
+</select></div>
+<div class="champ">
+<label for="s-places" data-fr="Places agreees" data-en="Licensed places">Places agreees</label>
+<input type="number" id="s-places" data-cle="places" value="12" step="1" min="0" inputmode="numeric">
+</div>
+<div class="champ">
+<label for="s-occupation" data-fr="Taux d&#x27;occupation (%)" data-en="Occupancy rate (%)">Taux d&#x27;occupation (%)</label>
+<input type="number" id="s-occupation" data-cle="occupation" value="90" step="1" min="0" inputmode="numeric">
+</div>
+<div class="champ">
+<label for="s-tarif" data-fr="Recette mensuelle par place" data-en="Monthly revenue per place">Recette mensuelle par place</label>
+<input type="number" id="s-tarif" data-cle="tarif" value="1300" step="10" min="0" inputmode="numeric">
+</div>
+<div class="champ">
+<label for="s-loyer" data-fr="Loyer mensuel" data-en="Monthly rent">Loyer mensuel</label>
+<input type="number" id="s-loyer" data-cle="loyer" value="1600" step="50" min="0" inputmode="numeric">
+</div>
+<div class="champ">
+<label for="s-etp" data-fr="Encadrants (equivalent temps plein)" data-en="Practitioners (full-time equivalent)">Encadrants (equivalent temps plein)</label>
+<input type="number" id="s-etp" data-cle="etp" value="4" step="1" min="0" inputmode="numeric">
+</div>
+<div class="champ">
+<label for="s-salaire" data-fr="Cout mensuel charge par encadrant" data-en="Monthly loaded cost per practitioner">Cout mensuel charge par encadrant</label>
+<input type="number" id="s-salaire" data-cle="salaire" value="2500" step="50" min="0" inputmode="numeric">
+</div>
+<div class="champ">
+<label for="s-autres" data-fr="Autres charges mensuelles" data-en="Other monthly costs">Autres charges mensuelles</label>
+<input type="number" id="s-autres" data-cle="autres" value="1100" step="50" min="0" inputmode="numeric">
+</div>
+<div class="champ">
+<label for="s-redevance" data-fr="Redevance reseau (%)" data-en="Network royalty (%)">Redevance reseau (%)</label>
+<input type="number" id="s-redevance" data-cle="redevance" value="0" step="1" min="0" inputmode="numeric">
+</div>
+</div>
+<div class="sortie">
+<h3 data-fr="Par mois, hors impots et amortissements" data-en="Per month, before tax and depreciation">Par mois, hors impots et amortissements</h3>
+<dl>
+<div class="ligne" data-sortie="produits"><dt data-fr="Produits mensuels" data-en="Monthly revenue">Produits mensuels</dt><dd id="r-produits">14 040 <span class="dev">EUR</span></dd></div>
+<div class="ligne" data-sortie="masse"><dt data-fr="Dont masse salariale" data-en="Of which payroll">Dont masse salariale</dt><dd id="r-masse">10 000 <span class="dev">EUR</span></dd></div>
+<div class="ligne" data-sortie="redevance"><dt data-fr="Dont redevance reseau" data-en="Of which network royalty">Dont redevance reseau</dt><dd id="r-redevance">0 <span class="dev">EUR</span></dd></div>
+<div class="ligne" data-sortie="charges"><dt data-fr="Total des charges" data-en="Total costs">Total des charges</dt><dd id="r-charges">12 700 <span class="dev">EUR</span></dd></div>
+<div class="ligne fort" data-sortie="resultat"><dt data-fr="Resultat mensuel" data-en="Monthly result">Resultat mensuel</dt><dd id="r-resultat">1 340 <span class="dev">EUR</span></dd></div>
+<div class="ligne fort" data-sortie="annuel"><dt data-fr="Resultat annuel" data-en="Annual result">Resultat annuel</dt><dd id="r-annuel">16 080 <span class="dev">EUR</span></dd></div>
+<div class="ligne" data-sortie="seuil"><dt data-fr="Occupation au point mort" data-en="Break-even occupancy">Occupation au point mort</dt><dd id="r-seuil">81 %</dd></div>
+</dl>
+<p class="rappel" data-fr="Le point mort est le taux d&#x27;occupation a partir duquel le resultat devient positif, aux memes charges." data-en="Break-even is the occupancy rate at which the result turns positive, at the same cost base.">Le point mort est le taux d&#x27;occupation a partir duquel le resultat devient positif, aux memes charges.</p>
+</div>
+</div></div></section>
+<section><div class="enveloppe">
+<div class="titre-bloc">
+<h2 data-fr="Le profil recherche" data-en="The profile we look for">Le profil recherche</h2>
+</div><div class="grille g4">
+<div class="carte"><p data-fr="Un metier de la petite enfance, de la sante ou de l&#x27;education — ou un associe qui l&#x27;exerce." data-en="A background in early years, health or education — or a partner who has one.">Un metier de la petite enfance, de la sante ou de l'education — ou un associe qui l'exerce.</p></div>
+<div class="carte"><p data-fr="L&#x27;envie de tenir un lieu, pas d&#x27;y placer de l&#x27;argent." data-en="Wanting to run a place, not to park money in one.">L'envie de tenir un lieu, pas d'y placer de l'argent.</p></div>
+<div class="carte"><p data-fr="Un ancrage local reel dans la ville visee." data-en="Real local roots in the target city.">Un ancrage local reel dans la ville visee.</p></div>
+<div class="carte"><p data-fr="La capacite a financer l&#x27;apport demande." data-en="The ability to fund the required contribution.">La capacite a financer l'apport demande.</p></div>
+</div></div></section>
+<section id="candidature"><div class="enveloppe">
+<div class="titre-bloc">
+<h2 data-fr="Deposer une candidature" data-en="Apply">Deposer une candidature</h2>
+<p data-fr="Les champs marques d&#x27;une etoile sont obligatoires. Une candidature ne vous engage a rien : elle ouvre un entretien." data-en="Fields marked with a star are required. Applying commits you to nothing: it opens a conversation.">Les champs marques d'une etoile sont obligatoires. Une candidature ne vous engage a rien : elle ouvre un entretien.</p>
+</div>
+<form class="form" id="demande" novalidate>
+<div>
+<label for="f-nom"><span data-fr="Nom et prenom" data-en="Full name">Nom et prenom</span> <span class="oblig">*</span></label>
+<input type="text" id="f-nom" name="nom" required>
+</div>
+<div>
+<label for="f-tel"><span data-fr="Telephone" data-en="Phone">Telephone</span> <span class="oblig">*</span></label>
+<input type="tel" id="f-tel" name="tel" required>
+</div>
+<div>
+<label for="f-courriel"><span data-fr="Adresse de courriel" data-en="Email address">Adresse de courriel</span> <span class="oblig">*</span></label>
+<input type="email" id="f-courriel" name="courriel" required>
+</div>
+<div>
+<label for="f-pays"><span data-fr="Pays vise" data-en="Target country">Pays vise</span> <span class="oblig">*</span></label>
+<input type="text" id="f-pays" name="pays" required>
+</div>
+<div>
+<label for="f-ville"><span data-fr="Ville visee" data-en="Target city">Ville visee</span> <span class="oblig">*</span></label>
+<input type="text" id="f-ville" name="ville" required>
+</div>
+<div>
+<label for="f-profil"><span data-fr="Votre situation" data-en="Your background">Votre situation</span> <span class="oblig">*</span></label>
+<select id="f-profil" name="profil" required>
+<option value="" data-fr="Choisir" data-en="Choose">Choisir</option>
+<option value="Professionnel de la petite enfance" data-fr="Professionnel de la petite enfance" data-en="Early-years professional">Professionnel de la petite enfance</option>
+<option value="Sante ou education" data-fr="Sante ou education" data-en="Health or education">Sante ou education</option>
+<option value="Entrepreneur, avec un associe du metier" data-fr="Entrepreneur, avec un associe du metier" data-en="Entrepreneur, with a partner from the field">Entrepreneur, avec un associe du metier</option>
+<option value="Autre" data-fr="Autre" data-en="Other">Autre</option>
+</select>
+</div>
+<div>
+<label for="f-apport"><span data-fr="Apport personnel disponible" data-en="Personal contribution available">Apport personnel disponible</span></label>
+<input type="text" id="f-apport" name="apport">
+</div>
+<div>
+<label for="f-local"><span data-fr="Avez-vous deja un local ?" data-en="Do you already have premises?">Avez-vous deja un local ?</span> <span class="oblig">*</span></label>
+<select id="f-local" name="local" required>
+<option value="" data-fr="Choisir" data-en="Choose">Choisir</option>
+<option value="Oui, un local identifie" data-fr="Oui, un local identifie" data-en="Yes, premises identified">Oui, un local identifie</option>
+<option value="Une recherche en cours" data-fr="Une recherche en cours" data-en="A search under way">Une recherche en cours</option>
+<option value="Pas encore" data-fr="Pas encore" data-en="Not yet">Pas encore</option>
+</select>
+</div>
+<div>
+<label for="f-echeance"><span data-fr="Ouverture souhaitee" data-en="Target opening">Ouverture souhaitee</span> <span class="oblig">*</span></label>
+<select id="f-echeance" name="echeance" required>
+<option value="" data-fr="Choisir" data-en="Choose">Choisir</option>
+<option value="Dans les 6 mois" data-fr="Dans les 6 mois" data-en="Within 6 months">Dans les 6 mois</option>
+<option value="6 a 12 mois" data-fr="6 a 12 mois" data-en="6 to 12 months">6 a 12 mois</option>
+<option value="Plus de 12 mois" data-fr="Plus de 12 mois" data-en="More than 12 months">Plus de 12 mois</option>
+</select>
+</div>
+<div>
+<label for="f-message"><span data-fr="Votre projet en quelques lignes" data-en="Your project, in a few lines">Votre projet en quelques lignes</span></label>
+<textarea id="f-message" name="message"></textarea>
+</div>
+<div class="env"><button type="submit" data-fr="Envoyer ma candidature" data-en="Send my application">Envoyer ma candidature</button><span class="tbc" data-fr="destination a definir" data-en="destination to be set">destination a definir</span></div>
+<div class="recu" id="recu" hidden></div>
+</form>
+</div></section>
+<section id="faq"><div class="enveloppe">
+<div class="titre-bloc"><h2 data-fr="Questions" data-en="Questions">Questions</h2></div><div class="faq">
+<details><summary data-fr="Faut-il un diplome de la petite enfance pour ouvrir une KIMO ?" data-en="Do I need an early-years qualification to open a KIMO?">Faut-il un diplome de la petite enfance pour ouvrir une KIMO ?</summary><p data-fr="Pour DIRIGER l&#x27;etablissement, la loi du pays l&#x27;exige presque toujours, et c&#x27;est elle qui tranche, pas le reseau. Un candidat sans ce diplome ouvre avec un responsable qui l&#x27;a. La qualification exacte fait partie des points a preciser des que le pays est arrete." data-en="To RUN the facility, national law almost always requires one, and that is what decides, not the network. A candidate without it opens with a manager who has it. The exact qualification is one of the points to be settled once the country is chosen.">Pour DIRIGER l'etablissement, la loi du pays l'exige presque toujours, et c'est elle qui tranche, pas le reseau. Un candidat sans ce diplome ouvre avec un responsable qui l'a. La qualification exacte fait partie des points a preciser des que le pays est arrete.</p></details>
+<details><summary data-fr="Combien de places par creche ?" data-en="How many places per nursery?">Combien de places par creche ?</summary><p data-fr="C&#x27;est un plafond reglementaire, pas un choix commercial : le nombre qui definit une micro-creche est fixe par le pays. Il sera ecrit ici des que le pays de la premiere ouverture sera arrete." data-en="That is a regulatory ceiling, not a commercial choice: the number that defines a micro-nursery is set nationally. It will appear here as soon as the country of the first opening is settled.">C'est un plafond reglementaire, pas un choix commercial : le nombre qui definit une micro-creche est fixe par le pays. Il sera ecrit ici des que le pays de la premiere ouverture sera arrete.</p></details>
+<details><summary data-fr="Quel est le droit d&#x27;entree ?" data-en="What is the entry fee?">Quel est le droit d'entree ?</summary><p data-fr="Il n&#x27;est pas encore fixe. Tant qu&#x27;il ne l&#x27;est pas, cette page affiche « a definir » plutot qu&#x27;un ordre de grandeur : un candidat construit son financement sur ce chiffre." data-en="It has not been set yet. Until it is, this page shows &quot;to be set&quot; rather than a ballpark: a candidate builds their financing on that number.">Il n'est pas encore fixe. Tant qu'il ne l'est pas, cette page affiche « a definir » plutot qu'un ordre de grandeur : un candidat construit son financement sur ce chiffre.</p></details>
+<details><summary data-fr="Le reseau prend-il une part du capital de ma societe ?" data-en="Does the network take equity in my company?">Le reseau prend-il une part du capital de ma societe ?</summary><p data-fr="Non. Une franchise n&#x27;est pas une filiale : le franchise possede son entreprise, son bail et son fonds. Le reseau vend l&#x27;usage d&#x27;une marque et d&#x27;une methode." data-en="No. A franchise is not a subsidiary: the franchisee owns their company, their lease and their business. The network licenses the use of a brand and a method.">Non. Une franchise n'est pas une filiale : le franchise possede son entreprise, son bail et son fonds. Le reseau vend l'usage d'une marque et d'une methode.</p></details>
+<details><summary data-fr="Puis-je ouvrir plusieurs creches ?" data-en="Can I open several nurseries?">Puis-je ouvrir plusieurs creches ?</summary><p data-fr="C&#x27;est le sens du modele : de petites unites, donc plusieurs. En pratique, la deuxieme se signe apres une premiere annee complete, agrement obtenu et equipe stable." data-en="That is the point of the model: small units, therefore several. In practice the second is signed after a full first year, with the licence obtained and a stable team.">C'est le sens du modele : de petites unites, donc plusieurs. En pratique, la deuxieme se signe apres une premiere annee complete, agrement obtenu et equipe stable.</p></details>
+<details><summary data-fr="Qu&#x27;est-ce qui est exclusif ?" data-en="What exactly is exclusive?">Qu'est-ce qui est exclusif ?</summary><p data-fr="Une zone definie au contrat, pas une ville entiere par principe. La taille de la zone se decide sur le nombre de jeunes enfants qui y vivent, ce que mesure l&#x27;etude de zone." data-en="A territory defined in the contract, not a whole city as a matter of course. Its size is set from the number of young children living there, which the territory study measures.">Une zone definie au contrat, pas une ville entiere par principe. La taille de la zone se decide sur le nombre de jeunes enfants qui y vivent, ce que mesure l'etude de zone.</p></details>
+<details><summary data-fr="Le reseau aide-t-il a trouver le financement ?" data-en="Does the network help with financing?">Le reseau aide-t-il a trouver le financement ?</summary><p data-fr="Il fournit le dossier : etude de zone, previsionnel, description du concept. Il ne prete pas et ne se porte pas caution." data-en="It provides the file: territory study, forecast, description of the concept. It does not lend and does not act as guarantor.">Il fournit le dossier : etude de zone, previsionnel, description du concept. Il ne prete pas et ne se porte pas caution.</p></details>
+<details><summary data-fr="Que se passe-t-il si l&#x27;agrement est refuse ?" data-en="What happens if the licence is refused?">Que se passe-t-il si l'agrement est refuse ?</summary><p data-fr="C&#x27;est pour cela que le local et l&#x27;agrement viennent AVANT la formation dans le parcours, et que le contrat doit prevoir ce cas explicitement. La redaction exacte fait partie du dossier juridique a faire etablir dans le pays retenu." data-en="That is why premises and licence come BEFORE training in the journey, and why the contract must address the case explicitly. The exact wording belongs to the legal file to be drawn up in the chosen country.">C'est pour cela que le local et l'agrement viennent AVANT la formation dans le parcours, et que le contrat doit prevoir ce cas explicitement. La redaction exacte fait partie du dossier juridique a faire etablir dans le pays retenu.</p></details>
+</div></div></section>
+<footer><div class="enveloppe">
+<p class="devise" data-fr="Mes sites impactent le monde." data-en="My sites impact the world.">Mes sites impactent le monde.</p>
+<p class="fond" data-fr="Hakim Adjaoudi, fondateur — JNCORP INC." data-en="Hakim Adjaoudi, founder — JNCORP INC.">Hakim Adjaoudi, fondateur — JNCORP INC.</p>
+<div class="avert" data-fr="DEMONSTRATION. KIMO est un reseau en cours de constitution : aucune creche n&#x27;est ouverte a ce jour. Les valeurs marquees « a definir » ne sont pas des oublis, ce sont des decisions qui n&#x27;ont pas encore ete prises, ou des regles qui dependent du pays retenu. Aucun chiffre reglementaire n&#x27;est avance ici tant qu&#x27;il n&#x27;a pas ete verifie dans le pays concerne." data-en="DEMONSTRATION. KIMO is a network being set up: no nursery is open to date. Values marked &quot;to be set&quot; are not omissions, they are decisions not yet taken, or rules that depend on the country chosen. No regulatory figure is stated here until it has been checked in the country concerned.">DEMONSTRATION. KIMO est un reseau en cours de constitution : aucune creche n&#x27;est ouverte a ce jour. Les valeurs marquees « a definir » ne sont pas des oublis, ce sont des decisions qui n&#x27;ont pas encore ete prises, ou des regles qui dependent du pays retenu. Aucun chiffre reglementaire n&#x27;est avance ici tant qu&#x27;il n&#x27;a pas ete verifie dans le pays concerne.</div>
+<div class="liens-sites"><a href="https://anirudhatalmale6-alt.github.io/annuaire-franchises-demo/" data-fr="Annuaire des franchises" data-en="Franchise directory">Annuaire des franchises</a><a href="https://anirudhatalmale6-alt.github.io/maisons-de-prestige/" data-fr="Maisons de Prestige" data-en="Maisons de Prestige">Maisons de Prestige</a></div>
+</div></footer>
+<script>
+(function(){
+  var L='fr';
+  function pose(l){
+    L=l;
+    document.documentElement.lang=l;
+    var n=document.querySelectorAll('[data-fr][data-en]');
+    for(var i=0;i<n.length;i++) n[i].innerHTML=n[i].getAttribute('data-'+l);
+    var b=document.querySelectorAll('.langue button');
+    for(var j=0;j<b.length;j++)
+      b[j].setAttribute('aria-pressed',
+        b[j].getAttribute('data-l')===l?'true':'false');
+    try{localStorage.setItem('kimo-langue',l);}catch(e){}
+    if(window.surLangue) window.surLangue(l);
+  }
+  window.langue=function(){return L;};
+  window.poseLangue=pose;
+  document.addEventListener('click',function(ev){
+    var b=ev.target.closest&&ev.target.closest('.langue button');
+    if(b) pose(b.getAttribute('data-l'));
+  });
+  var m=null; try{m=localStorage.getItem('kimo-langue');}catch(e){}
+  pose(m==='en'?'en':'fr');
+})();
+
+(function(){
+  var f=document.getElementById('s-places');
+  if(!f) return;
+  function val(id){
+    var n=parseFloat((document.getElementById('s-'+id)||{}).value);
+    return isFinite(n)&&n>=0?n:0;
+  }
+  function nb(x){
+    var neg=x<0; x=Math.round(Math.abs(x));
+    var s=String(x), out='';
+    while(s.length>3){ out='\u00a0'+s.slice(-3)+out; s=s.slice(0,-3); }
+    return (neg?'-':'')+s+out;
+  }
+  function calc(){
+    var v={places:val('places'),occupation:val('occupation'),
+           tarif:val('tarif'),loyer:val('loyer'),etp:val('etp'),
+           salaire:val('salaire'),autres:val('autres'),
+           redevance:val('redevance')};
+    var produits=v.places*v.occupation/100*v.tarif;
+    var redevance=produits*v.redevance/100;
+    var masse=v.etp*v.salaire;
+    var fixes=v.loyer+masse+v.autres;
+    var charges=fixes+redevance;
+    var resultat=produits-charges;
+    var denom=v.places*v.tarif*(1-v.redevance/100);
+    var seuil=denom>0?fixes/denom*100:0;
+    return {produits:produits,masse:masse,redevance:redevance,
+            charges:charges,resultat:resultat,annuel:resultat*12,
+            seuil:seuil};
+  }
+  function pose(){
+    var r=calc();
+    var d=(document.getElementById('s-devise')||{}).value||'EUR';
+    for(var k in r){
+      var n=document.getElementById('r-'+k);
+      if(!n) continue;
+      n.innerHTML = k==='seuil'
+        ? nb(r[k])+'\u00a0%'
+        : nb(r[k])+'\u00a0<span class="dev">'+d+'</span>';
+    }
+    /* Un resultat negatif doit SE VOIR negatif : le signe moins seul, dans
+       une colonne de chiffres, se rate. */
+    var lignes=document.querySelectorAll('.sortie .ligne[data-sortie]');
+    for(var i=0;i<lignes.length;i++){
+      var c=lignes[i].getAttribute('data-sortie');
+      if(c==='resultat'||c==='annuel')
+        lignes[i].classList.toggle('neg', r[c]<0);
+    }
+  }
+  var champs=document.querySelectorAll('.champs input,.champs select');
+  for(var i=0;i<champs.length;i++){
+    champs[i].addEventListener('input',pose);
+    champs[i].addEventListener('change',pose);
+  }
+  pose();
+})();
+
+(function(){
+  var f=document.getElementById('demande');
+  if(!f) return;
+  var recu=document.getElementById('recu');
+  var M={fr:{ok:'Candidature enregistree. Tant que la destination des '+
+               'candidatures n\'est pas fixee, rien n\'est envoye : '+
+               'ce formulaire est complet, il attend son adresse.',
+             manque:'Il manque : '},
+         en:{ok:'Application recorded. Until the destination for '+
+               'applications is set, nothing is sent: this form is '+
+               'complete, it is waiting for its address.',
+             manque:'Missing: '}};
+  f.addEventListener('submit',function(ev){
+    ev.preventDefault();
+    var l=(window.langue?window.langue():'fr');
+    var manque=[];
+    var n=f.querySelectorAll('[required]');
+    for(var i=0;i<n.length;i++){
+      if(!String(n[i].value||'').trim()){
+        var lab=f.querySelector('label[for="'+n[i].id+'"] span');
+        manque.push(lab?lab.getAttribute('data-'+l):n[i].id);
+      }
+    }
+    recu.hidden=false;
+    recu.textContent = manque.length
+      ? M[l].manque+manque.join(', ')
+      : M[l].ok;
+    if(!manque.length) f.reset();
+    recu.scrollIntoView({block:'nearest'});
+  });
+})();
+</script>
+</body>
+</html>
