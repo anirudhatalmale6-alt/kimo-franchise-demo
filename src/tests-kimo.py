@@ -404,17 +404,28 @@ else:
         t('franchise : aucune erreur JavaScript', not erreurs,
           ' | '.join(erreurs[:2]))
 
+        # Le chiffre affiche et le chiffre attendu passent par LA MEME
+        # normalisation : l'espace insecable des milliers devient un espace
+        # ordinaire des deux cotes. Sans cela le controle mesure la nature
+        # de l'espace, pas le calcul — et il passe ou echoue selon que la
+        # valeur vient du HTML de depart ou du script.
+        NBSP = u'\u00a0'
+
         def lu(cle):
-            return page.locator('#r-%s' % cle).inner_text().strip()
+            return (page.locator('#r-%s' % cle).inner_text()
+                    .replace(NBSP, ' ').strip())
+
+        def attendu(valeur, unite):
+            return (P.nb(valeur).replace(NBSP, ' ')
+                    + (' %' if unite == 'pourcent' else ' EUR'))
 
         # LE controle : la formule Python et la formule JavaScript doivent
         # tomber sur le meme chiffre. Elles sont ecrites deux fois, elles
         # divergeront un jour ; autant que ce soit ici.
         ecarts = []
         for cle, _fr, _en, unite, _f in P.SORTIES:
-            att = P.nb(r[cle]) + (' %' if unite == 'pourcent'
-                                  else ' EUR')
-            if lu(cle).replace('\xa0', ' ') != att:
+            att = attendu(r[cle], unite)
+            if lu(cle) != att:
                 ecarts.append('%s: %r != %r' % (cle, lu(cle), att))
         t('valeurs de depart : le script retrouve les chiffres de la '
           'construction', not ecarts, ' | '.join(ecarts[:3]))
@@ -425,8 +436,7 @@ else:
         r20 = P.calcul(dict(d, places=20))
         ecarts = []
         for cle, _fr, _en, unite, _f in P.SORTIES:
-            att = P.nb(r20[cle]) + (' %' if unite == 'pourcent'
-                                    else ' EUR')
+            att = attendu(r20[cle], unite)
             if lu(cle) != att:
                 ecarts.append('%s: %r != %r' % (cle, lu(cle), att))
         t('20 places : le script suit toujours la formule Python',
@@ -436,7 +446,7 @@ else:
         page.fill('#s-redevance', '6')
         page.dispatch_event('#s-redevance', 'input')
         t('une redevance saisie apparait dans la ligne redevance',
-          lu('redevance') != P.nb(0) + ' EUR', lu('redevance'))
+          lu('redevance') != attendu(0, 'devise'), lu('redevance'))
 
         # Un resultat negatif doit SE VOIR negatif.
         page.fill('#s-salaire', '9000')
