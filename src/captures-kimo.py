@@ -29,6 +29,16 @@ VUES = [
     ('ki-8-simulateur.png', 'franchise.html', '#simulateur', None, 'fr'),
     ('ki-9-candidature.png', 'franchise.html', '#candidature', None, 'fr'),
     ('ki-10-anglais.png', 'franchise.html', '#parcours', None, 'en'),
+    # La page du concept, celle qui porte sa note.
+    ('ki-12-concept.png', 'concept.html', None, None, 'fr'),
+    ('ki-13-couches.png', 'concept.html', '#couches', None, 'fr'),
+    ('ki-14-format.png', 'concept.html', '#format', None, 'fr'),
+    ('ki-15-piliers.png', 'concept.html', '#apprentissage', None, 'fr'),
+    ('ki-16-journee.png', 'concept.html', '#journee', None, 'fr'),
+    ('ki-17-exploitation.png', 'concept.html', '#exploitation', None, 'fr'),
+    ('ki-18-phases.png', 'concept.html', '#phases', None, 'fr'),
+    ('ki-19-concept-anglais.png', 'concept.html', '#apprentissage', None,
+     'en'),
 ]
 
 
@@ -61,6 +71,14 @@ def main():
         page.wait_for_timeout(150)
         page.screenshot(path=os.path.join(ICI, 'ki-11-mobile.png'))
         print('ki-11-mobile.png')
+        page.goto(url('concept.html'))
+        page.evaluate(
+            "() => { const n = document.querySelector('#format');"
+            " window.scrollTo(0, n.getBoundingClientRect().top"
+            " + window.scrollY - 12); }")
+        page.wait_for_timeout(150)
+        page.screenshot(path=os.path.join(ICI, 'ki-20-mobile-concept.png'))
+        print('ki-20-mobile-concept.png')
         ctx.close()
         nav.close()
 

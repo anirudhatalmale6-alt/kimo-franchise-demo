@@ -165,6 +165,60 @@ section.pale{background:#f5eee2}
 /* ------------------------------------------------------------ methode --- */
 .pastille-titre{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 
+/* ----------------------------------------------------------- signature --- */
+/* « KIMO — Learn to Think. » La mention de traduction est posee A COTE, pas
+   dessous : dessous, elle se lit comme une partie de la signature. */
+.signature{display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  margin-top:18px;font-size:19px;font-weight:650;color:#2f6b52;
+  letter-spacing:.01em}
+
+/* ------------------------------------------------- listes autonomes --- */
+/* Les listes de sa note restent des listes. Sur une pleine largeur elles
+   passent en deux colonnes, mais chaque puce reste insecable : une puce
+   coupee en deux colonnes se lit comme deux puces. */
+.liste.large{background:#fff;border:1px solid #e6ddcd;border-radius:18px;
+  padding:26px 30px;max-width:none}
+/* display:block est OBLIGATOIRE ici : la regle generale .liste ul pose
+   display:grid, et un conteneur en grille ignore purement et simplement
+   `columns`. La feuille disait deux colonnes, la page en montrait une. */
+.liste.large ul{margin:0;display:block;columns:2;column-gap:44px}
+.liste.large li{break-inside:avoid;margin-bottom:12px}
+.pale .liste.large{background:#fbf7f0}
+
+/* Une reserve du fondateur : encadree, pas en petit gris. */
+.reserve{margin-top:24px;background:#fdf0e6;border:1px solid #f0cdb2;
+  border-left:4px solid #e08a5b;border-radius:14px;padding:18px 22px;
+  color:#7d3f1e;font-size:16px;max-width:86ch}
+
+.apres{margin-top:28px}
+.apres-liste{margin-top:34px}
+.apres-liste h3{margin-bottom:16px}
+section.mince{padding:22px 0}
+.rappel-modele{display:flex;gap:18px;align-items:baseline;flex-wrap:wrap;
+  border-left:3px solid #e08a5b;padding:2px 0 2px 18px;color:#4b5a53;
+  font-size:16px}
+.rappel-modele p{max-width:74ch}
+
+/* Les sept piliers en resume sur l'accueil : des liens, pas des cartes
+   mortes — chacun mene a son paragraphe sur la page concept. */
+.grille.serree{gap:14px}
+.carte.mini{display:block;padding:18px 20px;text-decoration:none;
+  color:#16211d}
+.carte.mini h3{font-size:16px;margin:0}
+.carte.mini:hover{border-color:#2f6b52}
+
+/* ------------------------------------------------- tableaux du concept --- */
+.tab.large th{width:auto}
+.tab.large thead th{background:#f5eee2;font-size:14px;letter-spacing:.06em;
+  text-transform:uppercase;color:#4b5a53;font-weight:700}
+.pale .tab.large thead th{background:#efe6d6}
+.tab.large tbody th{width:22%;color:#16211d}
+.tab.large td{color:#41504a}
+.tab tr.mis td,.tab tr.mis th{background:#f3f8f5}
+.tab tr.mis th{box-shadow:inset 3px 0 0 #2f6b52}
+.tab.horaire tbody th.h{width:130px;white-space:nowrap;
+  font-variant-numeric:tabular-nums;color:#2f6b52}
+
 /* ---------------------------------------------------------------- faq --- */
 .faq{display:grid;gap:2px;max-width:860px}
 details{background:#fff;border:1px solid #e6ddcd;padding:20px 24px}
@@ -236,6 +290,11 @@ footer a{color:#8fd6b0}
   .g2,.g3,.g4{grid-template-columns:1fr}
   .etape{grid-template-columns:44px 1fr;gap:14px;padding:20px}
   .tab th{width:auto}
+  /* Deux colonnes de puces sur 390 px de large, ce sont deux colonnes de
+     trois mots. Une seule. */
+  .liste.large ul{columns:1}
+  .liste.large{padding:22px}
+  .signature{font-size:17px}
 }
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}

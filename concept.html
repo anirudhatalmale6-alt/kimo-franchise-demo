@@ -1,0 +1,627 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KIMO — le concept</title>
+<meta name="description" content="Le modele decentralise KIMO : format des unites, philosophie pedagogique, sept piliers d&#x27;apprentissage, journee type, plateforme, securite, deploiement.">
+<meta name="robots" content="noindex">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:#fbf7f0;color:#16211d;
+  font:400 17px/1.65 ui-sans-serif,system-ui,"Segoe UI",Roboto,Helvetica,Arial,
+  sans-serif;-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto;display:block}
+a{color:#2f6b52}
+h1,h2,h3{line-height:1.15;margin:0;font-weight:650;letter-spacing:-.015em}
+h1{font-size:clamp(32px,5.2vw,58px)}
+h2{font-size:clamp(25px,3.4vw,38px)}
+h3{font-size:19px}
+p{margin:0}
+.enveloppe{max-width:1120px;margin:0 auto;padding:0 22px}
+
+/* ------------------------------------------------------------- en-tete --- */
+.haut{position:sticky;top:0;z-index:40;background:rgba(251,247,240,.94);
+  backdrop-filter:blur(9px);border-bottom:1px solid #e6ddcd}
+.haut-in{max-width:1120px;margin:0 auto;padding:12px 22px;display:flex;
+  align-items:center;gap:20px}
+.marque{display:flex;align-items:center;gap:9px;text-decoration:none;
+  color:#16211d;font-weight:700;font-size:21px;letter-spacing:.02em}
+.marque .mot{white-space:nowrap}
+.diamant{width:20px;height:20px;flex:none;fill:none;stroke:#2f6b52;
+  stroke-width:1.35;stroke-linejoin:round}
+.nav{display:flex;gap:20px;margin-left:auto;flex-wrap:wrap}
+.nav a{text-decoration:none;color:#4b5a53;font-size:15px;padding:5px 0;
+  border-bottom:2px solid transparent}
+.nav a:hover{color:#16211d}
+.nav a[aria-current="page"]{color:#16211d;border-bottom-color:#e08a5b}
+.langue{display:flex;border:1px solid #d9cfbc;border-radius:999px;
+  overflow:hidden;flex:none}
+.langue button{border:0;background:transparent;color:#6b7a72;font:inherit;
+  font-size:13px;font-weight:600;padding:5px 12px;cursor:pointer}
+.langue button[aria-pressed="true"]{background:#2f6b52;color:#fff}
+
+/* ---------------------------------------------------------------- hero --- */
+.hero{padding:74px 0 58px;background:
+  radial-gradient(120% 90% at 88% 0%,#efe6d6 0%,rgba(239,230,214,0) 62%)}
+.hero-in{display:grid;grid-template-columns:1.25fr .75fr;gap:46px;
+  align-items:center}
+.surtitre{font-size:13px;letter-spacing:.16em;text-transform:uppercase;
+  color:#2f6b52;font-weight:700;margin-bottom:16px}
+.hero h1{max-width:15ch}
+.chapo{margin-top:20px;font-size:19px;color:#41504a;max-width:52ch}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.bouton{display:inline-block;text-decoration:none;font-weight:650;
+  font-size:16px;padding:13px 24px;border-radius:999px;border:1px solid
+  transparent}
+.bouton.plein{background:#e08a5b;color:#231007}
+.bouton.plein:hover{background:#d67d4c}
+.bouton.vide{border-color:#c9bda6;color:#16211d}
+.bouton.vide:hover{border-color:#2f6b52}
+
+/* l'etat du reseau : un encart, pas un compteur. Il n'y a rien a compter. */
+.etat{background:#fff;border:1px solid #e6ddcd;border-radius:18px;
+  padding:24px}
+.etat h3{font-size:15px;letter-spacing:.1em;text-transform:uppercase;
+  color:#6b7a72}
+.etat ul{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:11px}
+.etat li{display:flex;gap:10px;align-items:flex-start;font-size:15px;
+  color:#41504a}
+.etat li::before{content:"";width:7px;height:7px;border-radius:50%;
+  background:#e08a5b;margin-top:8px;flex:none}
+
+/* -------------------------------------------------------------- blocs --- */
+section{padding:66px 0}
+section.pale{background:#f5eee2}
+.titre-bloc{max-width:60ch;margin-bottom:38px}
+.titre-bloc p{margin-top:14px;color:#4b5a53;font-size:18px}
+.grille{display:grid;gap:22px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.carte{background:#fff;border:1px solid #e6ddcd;border-radius:18px;
+  padding:26px}
+.carte h3{margin-bottom:10px}
+.carte p{color:#4b5a53;font-size:16px}
+.pale .carte{background:#fbf7f0}
+
+/* la pastille « a definir » — elle doit se voir, c'est tout son interet */
+.tbc{display:inline-flex;align-items:center;gap:6px;background:#fdf0e6;
+  border:1px dashed #e08a5b;color:#a2512a;border-radius:999px;
+  padding:2px 11px;font-size:13px;font-weight:650;letter-spacing:.01em;
+  white-space:nowrap}
+.tbc::before{content:"";width:6px;height:6px;border-radius:50%;
+  background:#e08a5b;flex:none}
+.note{margin-top:12px;font-size:15px;color:#6b7a72}
+
+/* ----------------------------------------------------------- tableaux --- */
+.tab{width:100%;border-collapse:collapse;background:#fff;
+  border:1px solid #e6ddcd;border-radius:18px;overflow:hidden}
+.enrouleur{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tab th,.tab td{text-align:left;padding:16px 18px;border-bottom:1px solid
+  #efe7d9;vertical-align:top;font-size:16px}
+.tab tr:last-child td{border-bottom:0}
+.tab th{width:32%;font-weight:650;color:#16211d}
+.tab td.val{width:20%;white-space:nowrap}
+.tab td.exp{color:#4b5a53;font-size:15px}
+
+/* ----------------------------------------------------------- parcours --- */
+.etapes{counter-reset:e;display:grid;gap:2px}
+.etape{display:grid;grid-template-columns:64px 1fr;gap:20px;
+  background:#fff;border:1px solid #e6ddcd;padding:24px}
+.etape:first-child{border-radius:18px 18px 0 0}
+.etape:last-child{border-radius:0 0 18px 18px}
+.etape .num{font-size:26px;font-weight:700;color:#c9bda6;line-height:1.1}
+.etape h3{margin-bottom:8px}
+.etape p{color:#4b5a53;font-size:16px}
+
+/* --------------------------------------------------------- deux listes --- */
+.listes{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.liste{background:#fff;border:1px solid #e6ddcd;border-radius:18px;
+  padding:26px}
+.liste.accent{background:#2f6b52;border-color:#2f6b52;color:#fff}
+.liste.accent h3{color:#fff}
+.liste.accent li{color:#dbe8e1}
+.liste.accent li::before{background:#e08a5b}
+.liste ul{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:12px}
+.liste li{display:flex;gap:11px;align-items:flex-start;font-size:16px;
+  color:#41504a}
+.liste li::before{content:"";width:7px;height:7px;border-radius:50%;
+  background:#2f6b52;margin-top:9px;flex:none}
+
+/* --------------------------------------------------------- simulateur --- */
+.simu{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+.champs{background:#fff;border:1px solid #e6ddcd;border-radius:18px;
+  padding:26px;display:grid;gap:16px}
+.champ{display:grid;gap:6px}
+.champ label{font-size:15px;font-weight:600;color:#41504a}
+.champ input,.champ select,.form select,.form input,.form textarea{
+  font:inherit;font-size:16px;padding:11px 13px;border:1px solid #d9cfbc;
+  border-radius:11px;background:#fbf7f0;color:#16211d;width:100%}
+.champ input:focus,.champ select:focus,.form input:focus,.form select:focus,
+.form textarea:focus{outline:2px solid #2f6b52;outline-offset:1px}
+.sortie{background:#16211d;color:#fff;border-radius:18px;padding:26px}
+.sortie h3{color:#fff;font-size:15px;letter-spacing:.1em;
+  text-transform:uppercase}
+.sortie dl{margin:18px 0 0;display:grid;gap:0}
+.sortie .ligne{display:flex;justify-content:space-between;gap:16px;
+  padding:12px 0;border-bottom:1px solid #2c3a34;font-size:16px}
+.sortie .ligne:last-child{border-bottom:0}
+.sortie dt{color:#a9bab2}
+.sortie dd{margin:0;font-variant-numeric:tabular-nums;font-weight:650}
+.sortie .fort{font-size:20px}
+.sortie .fort dd{color:#8fd6b0}
+.sortie .neg dd{color:#ffab8f}
+.sortie .rappel{margin-top:18px;font-size:14px;color:#a9bab2}
+
+/* ------------------------------------------------------------ methode --- */
+.pastille-titre{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+
+/* ----------------------------------------------------------- signature --- */
+/* « KIMO — Learn to Think. » La mention de traduction est posee A COTE, pas
+   dessous : dessous, elle se lit comme une partie de la signature. */
+.signature{display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  margin-top:18px;font-size:19px;font-weight:650;color:#2f6b52;
+  letter-spacing:.01em}
+
+/* ------------------------------------------------- listes autonomes --- */
+/* Les listes de sa note restent des listes. Sur une pleine largeur elles
+   passent en deux colonnes, mais chaque puce reste insecable : une puce
+   coupee en deux colonnes se lit comme deux puces. */
+.liste.large{background:#fff;border:1px solid #e6ddcd;border-radius:18px;
+  padding:26px 30px;max-width:none}
+/* display:block est OBLIGATOIRE ici : la regle generale .liste ul pose
+   display:grid, et un conteneur en grille ignore purement et simplement
+   `columns`. La feuille disait deux colonnes, la page en montrait une. */
+.liste.large ul{margin:0;display:block;columns:2;column-gap:44px}
+.liste.large li{break-inside:avoid;margin-bottom:12px}
+.pale .liste.large{background:#fbf7f0}
+
+/* Une reserve du fondateur : encadree, pas en petit gris. */
+.reserve{margin-top:24px;background:#fdf0e6;border:1px solid #f0cdb2;
+  border-left:4px solid #e08a5b;border-radius:14px;padding:18px 22px;
+  color:#7d3f1e;font-size:16px;max-width:86ch}
+
+.apres{margin-top:28px}
+.apres-liste{margin-top:34px}
+.apres-liste h3{margin-bottom:16px}
+section.mince{padding:22px 0}
+.rappel-modele{display:flex;gap:18px;align-items:baseline;flex-wrap:wrap;
+  border-left:3px solid #e08a5b;padding:2px 0 2px 18px;color:#4b5a53;
+  font-size:16px}
+.rappel-modele p{max-width:74ch}
+
+/* Les sept piliers en resume sur l'accueil : des liens, pas des cartes
+   mortes — chacun mene a son paragraphe sur la page concept. */
+.grille.serree{gap:14px}
+.carte.mini{display:block;padding:18px 20px;text-decoration:none;
+  color:#16211d}
+.carte.mini h3{font-size:16px;margin:0}
+.carte.mini:hover{border-color:#2f6b52}
+
+/* ------------------------------------------------- tableaux du concept --- */
+.tab.large th{width:auto}
+.tab.large thead th{background:#f5eee2;font-size:14px;letter-spacing:.06em;
+  text-transform:uppercase;color:#4b5a53;font-weight:700}
+.pale .tab.large thead th{background:#efe6d6}
+.tab.large tbody th{width:22%;color:#16211d}
+.tab.large td{color:#41504a}
+.tab tr.mis td,.tab tr.mis th{background:#f3f8f5}
+.tab tr.mis th{box-shadow:inset 3px 0 0 #2f6b52}
+.tab.horaire tbody th.h{width:130px;white-space:nowrap;
+  font-variant-numeric:tabular-nums;color:#2f6b52}
+
+/* ---------------------------------------------------------------- faq --- */
+.faq{display:grid;gap:2px;max-width:860px}
+details{background:#fff;border:1px solid #e6ddcd;padding:20px 24px}
+details:first-of-type{border-radius:18px 18px 0 0}
+details:last-of-type{border-radius:0 0 18px 18px}
+summary{cursor:pointer;font-weight:650;font-size:17px;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";float:right;color:#e08a5b;font-weight:700}
+details[open] summary::after{content:"\2013"}
+details p{margin-top:12px;color:#4b5a53;font-size:16px;max-width:70ch}
+
+/* ------------------------------------------------------------ formulaire */
+.form{background:#fff;border:1px solid #e6ddcd;border-radius:18px;
+  padding:30px;display:grid;gap:18px;max-width:760px}
+.form .paire{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.form label{font-size:15px;font-weight:600;color:#41504a;display:block;
+  margin-bottom:6px}
+.form textarea{min-height:120px;resize:vertical}
+.oblig{color:#a2512a}
+.form .env{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.form button{font:inherit;font-weight:650;font-size:16px;padding:13px 26px;
+  border-radius:999px;border:0;background:#e08a5b;color:#231007;cursor:pointer}
+.form button:hover{background:#d67d4c}
+.recu{background:#eaf3ee;border:1px solid #b9d6c7;border-radius:14px;
+  padding:16px 18px;font-size:15px;color:#1f4a39}
+
+/* ------------------------------------------------------------- bandeau --- */
+.bandeau{background:#2f6b52;color:#fff;border-radius:22px;padding:44px;
+  display:flex;gap:28px;align-items:center;justify-content:space-between;
+  flex-wrap:wrap}
+.bandeau h2{color:#fff;max-width:20ch}
+.bandeau p{color:#cfe3d9;margin-top:10px;max-width:46ch}
+
+/* ---------------------------------------------------------------- pied --- */
+footer{background:#16211d;color:#a9bab2;padding:48px 0;margin-top:6px;
+  font-size:15px}
+footer .devise{color:#fff;font-size:19px;font-weight:600;
+  display:flex;align-items:center;gap:10px;margin-bottom:8px}
+footer .devise .diamant{stroke:#e08a5b;width:18px;height:18px}
+footer .fond{color:#8ea79a;margin-bottom:22px}
+footer .avert{border:1px solid #2c3a34;border-radius:14px;padding:16px 18px;
+  margin-bottom:20px;color:#c3d2ca;font-size:14px;max-width:82ch}
+footer .liens-sites{display:flex;gap:22px;flex-wrap:wrap;margin-top:16px}
+footer a{color:#8fd6b0}
+
+/* -------------------------------------------------------------- mobile --- */
+@media(max-width:900px){
+  .hero-in{grid-template-columns:1fr;gap:32px}
+  .g3,.g4{grid-template-columns:repeat(2,1fr)}
+  .simu,.listes,.form .paire{grid-template-columns:1fr}
+  /* La navigation ne DISPARAIT pas en mobile : elle passe a la ligne. Un
+     menu cache derriere un bouton qu'on n'a pas construit, c'est un site a
+     deux pages dont la seconde n'est atteignable que par le logo.
+     En revanche l'en-tete cesse d'etre COLLE : sur deux lignes il ferait
+     160 px, et il mangerait un cinquieme de l'ecran pendant toute la
+     lecture. Il coute sa hauteur une fois, en haut de page. */
+  .haut{position:static}
+  .haut-in{gap:12px;flex-wrap:wrap}
+  .marque{order:1}
+  .langue{order:2;margin-left:auto}
+  .nav{order:3;width:100%;margin-left:0;gap:16px;font-size:14px;
+    border-top:1px solid #e6ddcd;padding-top:9px}
+  .nav a{font-size:14px}
+  section{padding:48px 0}
+  .hero{padding:48px 0 40px}
+  .bandeau{padding:30px}
+}
+@media(max-width:620px){
+  .g2,.g3,.g4{grid-template-columns:1fr}
+  .etape{grid-template-columns:44px 1fr;gap:14px;padding:20px}
+  .tab th{width:auto}
+  /* Deux colonnes de puces sur 390 px de large, ce sont deux colonnes de
+     trois mots. Une seule. */
+  .liste.large ul{columns:1}
+  .liste.large{padding:22px}
+  .signature{font-size:17px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+<header class="haut"><div class="haut-in">
+  <a class="marque" href="index.html"><svg class="diamant" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 3h12l4 6-10 12L2 9z"/><path d="M2 9h20M6 3l3 6M18 3l-3 6M12 3l-3 6M12 3l3 6M9 9l3 12M15 9l-3 12"/></svg><span class="mot">KIMO</span></a>
+  <nav class="nav"><a href="index.html" data-fr="Le reseau" data-en="The network">Le reseau</a><a href="concept.html" aria-current="page" data-fr="Le concept" data-en="The concept">Le concept</a><a href="franchise.html" data-fr="Devenir franchise" data-en="Become a franchisee">Devenir franchise</a><a href="franchise.html#candidature" data-fr="Candidater" data-en="Apply">Candidater</a></nav>
+  <div class="langue">
+    <button type="button" data-l="fr" aria-pressed="true">FR</button>
+    <button type="button" data-l="en" aria-pressed="false">EN</button>
+  </div>
+</div></header>
+<div class="hero"><div class="enveloppe"><div class="hero-in">
+<div>
+<p class="surtitre" data-fr="Le concept" data-en="The concept">Le concept</p>
+<h1 data-fr="Un seul ecosysteme educatif, beaucoup de centres locaux." data-en="One educational ecosystem, many local centers.">Un seul ecosysteme educatif, beaucoup de centres locaux.</h1>
+<p class="signature">
+<span data-fr="KIMO — Apprendre a penser." data-en="KIMO — Learn to Think.">KIMO — Apprendre a penser.</span>
+<span class="tbc" data-fr="traduction francaise a valider" data-en="English wording is yours, as written">traduction francaise a valider</span>
+</p>
+<p class="chapo" data-fr="Un enfant ne devrait pas seulement retenir des reponses : il devrait apprendre peu a peu a observer, raisonner, experimenter, expliquer et chercher une solution. Les matieres sont introduites par le jeu adapte a son age, pas par l&#x27;ecole avant l&#x27;ecole." data-en="Children should not only memorize answers; they should gradually learn how to observe, reason, experiment, communicate and find solutions. Academic subjects are introduced through age-appropriate play rather than formal schooling.">Un enfant ne devrait pas seulement retenir des reponses : il devrait apprendre peu a peu a observer, raisonner, experimenter, expliquer et chercher une solution. Les matieres sont introduites par le jeu adapte a son age, pas par l'ecole avant l'ecole.</p>
+</div>
+<div class="etat">
+<h3 data-fr="D&#x27;ou vient cette page" data-en="Where this page comes from">D'ou vient cette page</h3>
+<ul>
+<li><span data-fr="Le texte est celui de la note de concept du fondateur. Il n&#x27;a pas ete resume." data-en="The text is the founder&#x27;s concept note. It has not been summarised.">Le texte est celui de la note de concept du fondateur. Il n'a pas ete resume.</span></li>
+<li><span data-fr="La version anglaise est la sienne, mot pour mot." data-en="The English version is his, word for word.">La version anglaise est la sienne, mot pour mot.</span></li>
+<li><span><span data-fr="La version francaise est une traduction" data-en="The French version is a translation">La version francaise est une traduction</span> — <span class="tbc" data-fr="a definir" data-en="to be set">a definir</span></span></li>
+<li><span data-fr="Les chiffres reglementaires et commerciaux restent vides : voir le cadre reglementaire." data-en="Regulatory and commercial figures remain blank: see the regulatory framework.">Les chiffres reglementaires et commerciaux restent vides : voir le cadre reglementaire.</span></li>
+</ul></div>
+</div></div></div>
+<section id="couches"><div class="enveloppe">
+<div class="titre-bloc">
+<h2 data-fr="Qui fait quoi" data-en="Who does what">Qui fait quoi</h2>
+<p data-fr="Le reseau ne se contente pas de preter une marque : il tient le programme, la technologie, la formation et le controle. L&#x27;unite locale tient l&#x27;enfant et la famille." data-en="The network does more than lend a brand: it holds the program, the technology, the training and the audit. The local unit holds the child and the family.">Le reseau ne se contente pas de preter une marque : il tient le programme, la technologie, la formation et le controle. L'unite locale tient l'enfant et la famille.</p>
+</div>
+<div class="enrouleur"><table class="tab large"><thead><tr><th data-fr="Niveau" data-en="Layer">Niveau</th><th data-fr="Responsabilite" data-en="Responsibility">Responsabilite</th><th data-fr="Exemples" data-en="Examples">Exemples</th></tr></thead><tbody>
+<tr><th data-fr="KIMO Central" data-en="KIMO Central">KIMO Central</th><td><span data-fr="Standards, programme, technologie, marque, formation et controle" data-en="Standards, curriculum, technology, brand, training and audit">Standards, programme, technologie, marque, formation et controle</span></td><td class="exp"><span data-fr="Conception du programme, certification des educateurs, plateforme, achats" data-en="Program design, educator certification, platform, procurement">Conception du programme, certification des educateurs, plateforme, achats</span></td></tr>
+<tr><th data-fr="L&#x27;unite KIMO locale" data-en="Local KIMO Unit">L'unite KIMO locale</th><td><span data-fr="L&#x27;accueil des enfants et la pedagogie au quotidien" data-en="Daily childcare and educational delivery">L'accueil des enfants et la pedagogie au quotidien</span></td><td class="exp"><span data-fr="Equipe, activites, relation aux parents, planning local" data-en="Staffing, activities, parent relationships, local scheduling">Equipe, activites, relation aux parents, planning local</span></td></tr>
+<tr><th data-fr="Les partenaires" data-en="Partners">Les partenaires</th><td><span data-fr="Apportent des locaux, du capital, des familles ou des services complementaires" data-en="Provide sites, capital, referrals or complementary services">Apportent des locaux, du capital, des familles ou des services complementaires</span></td><td class="exp"><span data-fr="Employeurs, municipalites, promoteurs, universites" data-en="Employers, municipalities, developers, universities">Employeurs, municipalites, promoteurs, universites</span></td></tr>
+<tr><th data-fr="Les familles" data-en="Families">Les familles</th><td><span data-fr="Choisissent leur centre et participent au developpement de l&#x27;enfant" data-en="Choose centers and participate in child development">Choisissent leur centre et participent au developpement de l'enfant</span></td><td class="exp"><span data-fr="Inscription, retours, points sur les progres, activites a la maison" data-en="Enrollment, feedback, progress discussions, home activities">Inscription, retours, points sur les progres, activites a la maison</span></td></tr>
+</tbody></table></div></div></section>
+<section id="format" class="pale"><div class="enveloppe">
+<div class="titre-bloc">
+<h2 data-fr="Le format d&#x27;une unite" data-en="Center format">Le format d'une unite</h2>
+<p data-fr="Petit, proche, et concu pour cela — pas une grande structure retrecie." data-en="Small, close by, and designed that way — not a large facility shrunk down.">Petit, proche, et concu pour cela — pas une grande structure retrecie.</p>
+</div>
+<div class="liste large"><ul>
+<li><span data-fr="Capacite visee : environ 8 a 20 enfants par micro-centre, sous reserve de la reglementation locale de la petite enfance." data-en="Target capacity: approximately 8-20 children per micro-center, subject to local childcare regulations.">Capacite visee : environ 8 a 20 enfants par micro-centre, sous reserve de la reglementation locale de la petite enfance.</span></li>
+<li><span data-fr="Implantations possibles : maisons amenagees, rez-de-chaussee residentiels, locaux commerciaux, sites d&#x27;employeurs ou batiments modulaires concus pour cela." data-en="Possible locations: adapted houses, ground-floor residential spaces, commercial units, employer campuses or purpose-built modular facilities.">Implantations possibles : maisons amenagees, rez-de-chaussee residentiels, locaux commerciaux, sites d'employeurs ou batiments modulaires concus pour cela.</span></li>
+<li><span data-fr="Groupes d&#x27;age souples, selon les regles d&#x27;agrement et les besoins de developpement de l&#x27;enfant." data-en="Flexible age grouping based on licensing requirements and child-development needs.">Groupes d'age souples, selon les regles d'agrement et les besoins de developpement de l'enfant.</span></li>
+<li><span data-fr="Des zones dediees : apprentissage calme, construction et casse-tete, mouvement, creation, repas et repos." data-en="Dedicated zones for quiet learning, construction/puzzles, movement, creative work, meals and rest.">Des zones dediees : apprentissage calme, construction et casse-tete, mouvement, creation, repas et repos.</span></li>
+<li><span data-fr="Un acces exterieur, ou des sorties programmees, partout ou c&#x27;est exige et realisable." data-en="Outdoor access or scheduled outdoor activity wherever required and feasible.">Un acces exterieur, ou des sorties programmees, partout ou c'est exige et realisable.</span></li>
+<li><span data-fr="Entree securisee, remise de l&#x27;enfant controlee, procedures d&#x27;urgence et securisation adaptee aux jeunes enfants." data-en="Secure entry, controlled child release, emergency procedures and appropriate childproofing.">Entree securisee, remise de l'enfant controlee, procedures d'urgence et securisation adaptee aux jeunes enfants.</span></li>
+</ul></div>
+<div class="reserve" data-fr="Un etablissement KIMO ne doit jamais echanger la securite ou la conformite contre de la compacite. La capacite definitive, les taux d&#x27;encadrement, les dimensions des pieces, le couchage, la preparation des repas et les exigences d&#x27;espace exterieur doivent etre adaptes a la juridiction dans laquelle chaque unite fonctionne." data-en="KIMO facilities must never trade safety or regulatory compliance for compactness. Final capacity, staff ratios, room dimensions, sleep arrangements, food preparation and outdoor-space requirements must be adapted to the jurisdiction in which each unit operates.">Un etablissement KIMO ne doit jamais echanger la securite ou la conformite contre de la compacite. La capacite definitive, les taux d&#x27;encadrement, les dimensions des pieces, le couchage, la preparation des repas et les exigences d&#x27;espace exterieur doivent etre adaptes a la juridiction dans laquelle chaque unite fonctionne.</div>
+</div></section>
+<section id="philosophie"><div class="enveloppe">
+<div class="titre-bloc">
+<h2 data-fr="La philosophie pedagogique" data-en="Educational philosophy">La philosophie pedagogique</h2>
+<p data-fr="KIMO ne cherche pas a transformer la creche en ecole primaire. Les themes intellectuels y sont des supports de jeu et de decouverte. L&#x27;objectif est de poser les bases du raisonnement et de la curiosite sans rien retirer au jeu libre, au developpement affectif, a la parole, a la vie en groupe, a la creation et au repos." data-en="KIMO is not intended to turn preschool into primary school. The curriculum uses intellectual themes as tools for play and discovery. The objective is to create foundations for reasoning and curiosity while preserving free play, emotional development, communication, social interaction, creativity and rest.">KIMO ne cherche pas a transformer la creche en ecole primaire. Les themes intellectuels y sont des supports de jeu et de decouverte. L'objectif est de poser les bases du raisonnement et de la curiosite sans rien retirer au jeu libre, au developpement affectif, a la parole, a la vie en groupe, a la creation et au repos.</p>
+</div>
+<div class="liste large"><ul>
+<li><span data-fr="Poser la question avant de donner la reponse." data-en="Ask questions before giving answers.">Poser la question avant de donner la reponse.</span></li>
+<li><span data-fr="Manipuler des objets reels avant d&#x27;introduire des symboles abstraits." data-en="Manipulate real objects before introducing abstract symbols.">Manipuler des objets reels avant d'introduire des symboles abstraits.</span></li>
+<li><span data-fr="Demander a l&#x27;enfant d&#x27;expliquer comment il est arrive a sa solution." data-en="Encourage children to explain how they reached a solution.">Demander a l'enfant d'expliquer comment il est arrive a sa solution.</span></li>
+<li><span data-fr="Se servir de l&#x27;erreur pour essayer une autre approche." data-en="Use mistakes as opportunities to test another approach.">Se servir de l'erreur pour essayer une autre approche.</span></li>
+<li><span data-fr="Equilibrer les activites dirigees et l&#x27;exploration menee par l&#x27;enfant." data-en="Balance structured activities with child-led exploration.">Equilibrer les activites dirigees et l'exploration menee par l'enfant.</span></li>
+<li><span data-fr="Regler la difficulte sur la maturite de l&#x27;enfant, pas sur son age." data-en="Adapt complexity to developmental readiness rather than age alone.">Regler la difficulte sur la maturite de l'enfant, pas sur son age.</span></li>
+</ul></div>
+</div></section>
+<section id="apprentissage" class="pale"><div class="enveloppe">
+<div class="titre-bloc">
+<h2 data-fr="Les sept piliers d&#x27;apprentissage" data-en="The seven learning pillars">Les sept piliers d'apprentissage</h2>
+<p data-fr="Chacun est un support de jeu, pas une matiere a evaluer." data-en="Each one is a support for play, not a subject to be graded.">Chacun est un support de jeu, pas une matiere a evaluer.</p>
+</div>
+<div class="grille g2">
+<div class="carte" id="p-logique"><h3 data-fr="Logique et resolution de problemes" data-en="Logic &amp; Problem Solving">Logique et resolution de problemes</h3><p data-fr="Casse-tete, tris, reconnaissance de motifs, construction, mises en ordre, labyrinthes, jeux de memoire et petits defis de strategie. L&#x27;enfant apprend a comparer, classer, anticiper et verifier une solution." data-en="Puzzles, sorting, pattern recognition, construction, sequencing, mazes, memory games and simple strategy challenges. Children learn to compare, classify, anticipate and test solutions.">Casse-tete, tris, reconnaissance de motifs, construction, mises en ordre, labyrinthes, jeux de memoire et petits defis de strategie. L'enfant apprend a comparer, classer, anticiper et verifier une solution.</p></div>
+<div class="carte" id="p-echecs"><h3 data-fr="Echecs et pensee strategique" data-en="Chess &amp; Strategic Thinking">Echecs et pensee strategique</h3><p data-fr="Chez les plus jeunes, les echecs commencent par les couleurs, l&#x27;orientation du plateau, la reconnaissance des pieces et des jeux de deplacement. Les plus grands passent a des mini-parties avec un nombre de pieces limite. Le but est l&#x27;attention, le raisonnement dans l&#x27;espace et l&#x27;anticipation — pas la performance en competition." data-en="For younger children, chess begins with colors, board orientation, piece recognition and movement games. Older preschoolers can progress to mini-games with a limited number of pieces. The purpose is attention, spatial reasoning and anticipation—not competitive performance.">Chez les plus jeunes, les echecs commencent par les couleurs, l'orientation du plateau, la reconnaissance des pieces et des jeux de deplacement. Les plus grands passent a des mini-parties avec un nombre de pieces limite. Le but est l'attention, le raisonnement dans l'espace et l'anticipation — pas la performance en competition.</p></div>
+<div class="carte" id="p-maths"><h3 data-fr="Mathematiques" data-en="Mathematics">Mathematiques</h3><p data-fr="Compter avec des objets, quantites, formes, comparaison, mesure, symetrie, motifs, reperage dans l&#x27;espace et premieres idees de calcul. Les activites restent concretes et ludiques." data-en="Counting through objects, quantities, shapes, comparison, measurement, symmetry, patterns, spatial relationships and simple arithmetic concepts. Activities remain concrete and playful.">Compter avec des objets, quantites, formes, comparaison, mesure, symetrie, motifs, reperage dans l'espace et premieres idees de calcul. Les activites restent concretes et ludiques.</p></div>
+<div class="carte" id="p-sciences"><h3 data-fr="Physique et sciences" data-en="Physics &amp; Science">Physique et sciences</h3><p data-fr="Experiences sans danger autour de l&#x27;eau, l&#x27;air, la lumiere, le son, les aimants, l&#x27;equilibre, la gravite, le mouvement, les plantes et les matieres. On demande a l&#x27;enfant de prevoir ce qui va se passer, d&#x27;observer le resultat et de le decrire." data-en="Safe experiments involving water, air, light, sound, magnets, balance, gravity, motion, plants and materials. Children are encouraged to predict what will happen, observe the result and describe what they saw.">Experiences sans danger autour de l'eau, l'air, la lumiere, le son, les aimants, l'equilibre, la gravite, le mouvement, les plantes et les matieres. On demande a l'enfant de prevoir ce qui va se passer, d'observer le resultat et de le decrire.</p></div>
+<div class="carte" id="p-histoire"><h3 data-fr="Histoire et civilisations" data-en="History &amp; Civilizations">Histoire et civilisations</h3><p data-fr="Recits illustres sur les civilisations, les inventions, les explorateurs, l&#x27;architecture, les transports, les ecritures et les grandes realisations humaines. L&#x27;accent est mis sur le recit, la chronologie et la curiosite culturelle, pas sur les dates a retenir." data-en="Illustrated stories about civilizations, inventions, explorers, architecture, transport, writing systems and major human achievements. The focus is narrative, chronology and cultural curiosity rather than memorization of dates.">Recits illustres sur les civilisations, les inventions, les explorateurs, l'architecture, les transports, les ecritures et les grandes realisations humaines. L'accent est mis sur le recit, la chronologie et la curiosite culturelle, pas sur les dates a retenir.</p></div>
+<div class="carte" id="p-corps"><h3 data-fr="Developpement physique" data-en="Physical Development">Developpement physique</h3><p data-fr="Du mouvement tous les jours : equilibre, coordination, force, motricite fine et globale, rythme et jeux cooperatifs. L&#x27;activite en exterieur est integree des que c&#x27;est possible." data-en="Daily movement supporting balance, coordination, strength, fine and gross motor skills, rhythm and cooperative play. Outdoor activity is integrated whenever possible.">Du mouvement tous les jours : equilibre, coordination, force, motricite fine et globale, rythme et jeux cooperatifs. L'activite en exterieur est integree des que c'est possible.</p></div>
+<div class="carte" id="p-creation"><h3 data-fr="Creation et expression" data-en="Creativity &amp; Communication">Creation et expression</h3><p data-fr="Dessin, musique, recit, construction, jeux de role et travaux manuels font contrepoids aux activites analytiques et aident l&#x27;enfant a dire ses idees de plusieurs facons." data-en="Drawing, music, storytelling, building, role play and crafts provide a counterbalance to analytical activities and help children communicate ideas in multiple ways.">Dessin, musique, recit, construction, jeux de role et travaux manuels font contrepoids aux activites analytiques et aident l'enfant a dire ses idees de plusieurs facons.</p></div>
+</div></div></section>
+<section id="ages"><div class="enveloppe">
+<div class="titre-bloc">
+<h2 data-fr="Un exemple de progression par age" data-en="Example learning journey by age">Un exemple de progression par age</h2>
+<p data-fr="Un exemple, pas un calendrier : la difficulte se regle sur la maturite de l&#x27;enfant, c&#x27;est le sixieme principe de la methode." data-en="An example, not a schedule: complexity follows the child&#x27;s readiness — that is the sixth principle of the method.">Un exemple, pas un calendrier : la difficulte se regle sur la maturite de l'enfant, c'est le sixieme principe de la methode.</p>
+</div>
+<div class="enrouleur"><table class="tab large"><thead><tr><th data-fr="Etape" data-en="Stage">Etape</th><th data-fr="Ce qu&#x27;on travaille" data-en="Learning focus">Ce qu'on travaille</th><th data-fr="Activites types" data-en="Typical activities">Activites types</th><th data-fr="Facon de faire" data-en="Approach">Facon de faire</th></tr></thead><tbody>
+<tr><th data-fr="Premiers pas" data-en="Early toddler">Premiers pas</th><td><span data-fr="Decouverte sensorielle, langage, mouvement" data-en="Sensory discovery, language, movement">Decouverte sensorielle, langage, mouvement</span></td><td class="exp"><span data-fr="Tris, empilements, chansons, matieres, cause et effet simples" data-en="Sorting, stacking, songs, textures, simple cause-and-effect">Tris, empilements, chansons, matieres, cause et effet simples</span></td><td class="exp"><span data-fr="Jeu court et tres surveille" data-en="Short, highly supervised play">Jeu court et tres surveille</span></td></tr>
+<tr><th data-fr="Grands petits" data-en="Older toddler">Grands petits</th><td><span data-fr="Motifs, coordination, premieres quantites" data-en="Patterns, coordination, early quantities">Motifs, coordination, premieres quantites</span></td><td class="exp"><span data-fr="Appariements, formes, parcours de motricite, construction, observation de la nature" data-en="Matching, shapes, obstacle courses, building, nature observation">Appariements, formes, parcours de motricite, construction, observation de la nature</span></td><td class="exp"><span data-fr="Repetition et exploration" data-en="Repetition and exploration">Repetition et exploration</span></td></tr>
+<tr><th data-fr="Maternelle" data-en="Preschool">Maternelle</th><td><span data-fr="Raisonnement, strategie, recit, sciences" data-en="Reasoning, strategy, storytelling, science">Raisonnement, strategie, recit, sciences</span></td><td class="exp"><span data-fr="Casse-tete, mini-parties d&#x27;echecs, mesure, experiences, recits de civilisations" data-en="Puzzles, chess mini-games, measurement, experiments, civilization stories">Casse-tete, mini-parties d'echecs, mesure, experiences, recits de civilisations</span></td><td class="exp"><span data-fr="Decouverte guidee" data-en="Guided discovery">Decouverte guidee</span></td></tr>
+<tr><th data-fr="Avant la grande section" data-en="Pre-kindergarten">Avant la grande section</th><td><span data-fr="Raisonnement en plusieurs etapes et autonomie" data-en="Multi-step thinking and independence">Raisonnement en plusieurs etapes et autonomie</span></td><td class="exp"><span data-fr="Jeux de planification, defis de nombres, experiences, cartes et frises, projets collectifs" data-en="Planning games, number challenges, experiments, maps/timelines, collaborative projects">Jeux de planification, defis de nombres, experiences, cartes et frises, projets collectifs</span></td><td class="exp"><span data-fr="Projets et discussion" data-en="Projects and discussion">Projets et discussion</span></td></tr>
+</tbody></table></div></div></section>
+<section id="journee" class="pale"><div class="enveloppe">
+<div class="titre-bloc">
+<h2 data-fr="Une journee type" data-en="Example daily schedule">Une journee type</h2>
+<p data-fr="Les activites dirigees occupent moins de deux heures. Le reste est du jeu, du mouvement, des repas et du repos." data-en="Structured activities take under two hours. The rest is play, movement, meals and rest.">Les activites dirigees occupent moins de deux heures. Le reste est du jeu, du mouvement, des repas et du repos.</p>
+</div>
+<div class="enrouleur"><table class="tab horaire"><tbody>
+<tr><th class="h">07:30-09:00</th><td><span data-fr="Arrivee, jeu libre et transmission avec la famille" data-en="Arrival, free play and family handover">Arrivee, jeu libre et transmission avec la famille</span></td></tr>
+<tr><th class="h">09:00-09:20</th><td><span data-fr="Regroupement du matin, langage, on annonce la journee" data-en="Morning circle, language and planning">Regroupement du matin, langage, on annonce la journee</span></td></tr>
+<tr><th class="h">09:20-10:00</th><td><span data-fr="Rotation logique / mathematiques / echecs" data-en="Logic / mathematics / chess rotation">Rotation logique / mathematiques / echecs</span></td></tr>
+<tr><th class="h">10:00-10:30</th><td><span data-fr="Collation et temps social" data-en="Snack and social time">Collation et temps social</span></td></tr>
+<tr><th class="h">10:30-11:30</th><td><span data-fr="Mouvement en exterieur, developpement physique" data-en="Outdoor movement / physical development">Mouvement en exterieur, developpement physique</span></td></tr>
+<tr><th class="h">11:30-12:00</th><td><span data-fr="Sciences, ou recit et activite d&#x27;histoire" data-en="Science or history story/activity">Sciences, ou recit et activite d'histoire</span></td></tr>
+<tr><th class="h">12:00-14:00</th><td><span data-fr="Repas, hygiene, repos et temps calme" data-en="Lunch, hygiene, rest/quiet time">Repas, hygiene, repos et temps calme</span></td></tr>
+<tr><th class="h">14:00-15:00</th><td><span data-fr="Atelier creatif, construction, projet" data-en="Creative workshop / construction / project">Atelier creatif, construction, projet</span></td></tr>
+<tr><th class="h">15:00-15:30</th><td><span data-fr="Collation" data-en="Snack">Collation</span></td></tr>
+<tr><th class="h">15:30-16:30</th><td><span data-fr="Jeu guide et apprentissage en petits groupes" data-en="Guided play and small-group learning">Jeu guide et apprentissage en petits groupes</span></td></tr>
+<tr><th class="h">16:30-18:00</th><td><span data-fr="Jeu libre, depart des enfants et retour aux parents" data-en="Free play, parent pickup and daily feedback">Jeu libre, depart des enfants et retour aux parents</span></td></tr>
+</tbody></table></div></div></section>
+<section id="equipe"><div class="enveloppe">
+<div class="titre-bloc">
+<h2 data-fr="Les educateurs, les parents" data-en="Educators, parents">Les educateurs, les parents</h2>
+<p data-fr="Les educateurs restent le coeur de KIMO. La technologie soutient leur travail, elle ne remplace ni leur observation, ni leur attention, ni leur jugement." data-en="Educators remain the core of KIMO. Technology supports their work but does not replace human observation, care or judgment.">Les educateurs restent le coeur de KIMO. La technologie soutient leur travail, elle ne remplace ni leur observation, ni leur attention, ni leur jugement.</p>
+</div>
+<div class="listes">
+<div class="liste accent"><h3 data-fr="Ce que le reseau demande a ses educateurs" data-en="What the network asks of its educators">Ce que le reseau demande a ses educateurs</h3><ul>
+<li><span data-fr="Un parcours d&#x27;integration obligatoire a la pedagogie KIMO et a la protection de l&#x27;enfance." data-en="Mandatory onboarding in KIMO pedagogy and safeguarding.">Un parcours d'integration obligatoire a la pedagogie KIMO et a la protection de l'enfance.</span></li>
+<li><span data-fr="Des fiches d&#x27;activite avec objectifs d&#x27;apprentissage, materiel, adaptations et consignes de securite." data-en="Activity guides with learning objectives, materials, adaptations and safety notes.">Des fiches d'activite avec objectifs d'apprentissage, materiel, adaptations et consignes de securite.</span></li>
+<li><span data-fr="Une formation continue : developpement de l&#x27;enfant, communication, premiers secours, conduite du groupe." data-en="Continuous professional development in child development, communication, first aid and classroom practice.">Une formation continue : developpement de l'enfant, communication, premiers secours, conduite du groupe.</span></li>
+<li><span data-fr="Une equipe locale libre d&#x27;adapter les activites a son groupe, dans le respect des standards du reseau." data-en="Local leadership empowered to adapt activities to the group while respecting network standards.">Une equipe locale libre d'adapter les activites a son groupe, dans le respect des standards du reseau.</span></li>
+<li><span data-fr="Un suivi fonde sur l&#x27;observation, pas sur des tests sous pression ni sur un classement des enfants." data-en="Observation-based progress records rather than high-pressure testing or child ranking.">Un suivi fonde sur l'observation, pas sur des tests sous pression ni sur un classement des enfants.</span></li>
+</ul></div>
+<div class="liste"><h3 data-fr="Ce que voit un parent" data-en="What a parent gets">Ce que voit un parent</h3><ul>
+<li><span data-fr="Un seul compte KIMO pour tout le reseau." data-en="One KIMO account across the network.">Un seul compte KIMO pour tout le reseau.</span></li>
+<li><span data-fr="Une vue claire du centre, de ses horaires et des programmes disponibles." data-en="Clear view of center information, operating hours and available programs.">Une vue claire du centre, de ses horaires et des programmes disponibles.</span></li>
+<li><span data-fr="Les memes procedures d&#x27;accueil et de securite partout." data-en="Consistent onboarding and safety procedures.">Les memes procedures d'accueil et de securite partout.</span></li>
+<li><span data-fr="Un echange quotidien, sans surveillance excessive des enfants." data-en="Daily communication without excessive surveillance of children.">Un echange quotidien, sans surveillance excessive des enfants.</span></li>
+<li><span data-fr="Des points reguliers sur le developpement avec les educateurs." data-en="Periodic development discussions with educators.">Des points reguliers sur le developpement avec les educateurs.</span></li>
+<li><span data-fr="Des activites a la maison, facultatives, qui prolongent les themes KIMO sans creer une pression de devoirs." data-en="Optional home activities that extend KIMO themes without creating homework pressure.">Des activites a la maison, facultatives, qui prolongent les themes KIMO sans creer une pression de devoirs.</span></li>
+</ul></div>
+</div></div></section>
+<section id="plateforme" class="pale"><div class="enveloppe">
+<div class="titre-bloc">
+<h2 data-fr="La plateforme" data-en="The digital platform">La plateforme</h2>
+<p data-fr="Un compte pour la famille, un outil de travail pour l&#x27;educateur, un tableau de bord pour le reseau. Ce sont trois lecteurs, pas un." data-en="One account for the family, one working tool for the educator, one dashboard for the network. Three readers, not one.">Un compte pour la famille, un outil de travail pour l'educateur, un tableau de bord pour le reseau. Ce sont trois lecteurs, pas un.</p>
+</div>
+<div class="liste large"><ul>
+<li><span data-fr="Compte parent, inscription et dossier de l&#x27;enfant securise." data-en="Parent account, enrollment and secure child profile.">Compte parent, inscription et dossier de l'enfant securise.</span></li>
+<li><span data-fr="Gestion des places, en temps reel ou programmee, entre les centres KIMO proches." data-en="Real-time or scheduled capacity management across nearby KIMO centers.">Gestion des places, en temps reel ou programmee, entre les centres KIMO proches.</span></li>
+<li><span data-fr="Presences, personnes autorisees a venir chercher l&#x27;enfant, absences." data-en="Attendance, authorized pickup and absence management.">Presences, personnes autorisees a venir chercher l'enfant, absences.</span></li>
+<li><span data-fr="Facturation, aides et suivi des paiements la ou la loi le permet." data-en="Billing, subsidies and payment records where legally permitted.">Facturation, aides et suivi des paiements la ou la loi le permet.</span></li>
+<li><span data-fr="Messagerie parents-educateurs et resume quotidien." data-en="Parent-educator messaging and daily summaries.">Messagerie parents-educateurs et resume quotidien.</span></li>
+<li><span data-fr="Bibliotheque d&#x27;activites et plans hebdomadaires pour les educateurs." data-en="Curriculum library and weekly activity plans for educators.">Bibliotheque d'activites et plans hebdomadaires pour les educateurs.</span></li>
+<li><span data-fr="Portail de formation et de certification du personnel." data-en="Training and certification portal for staff.">Portail de formation et de certification du personnel.</span></li>
+<li><span data-fr="Declaration des incidents, de la maintenance et de la conformite." data-en="Incident, maintenance and compliance reporting.">Declaration des incidents, de la maintenance et de la conformite.</span></li>
+<li><span data-fr="Tableau de bord du reseau : occupation, effectifs, indicateurs qualite et satisfaction des parents." data-en="Network dashboard covering occupancy, staffing, quality indicators and parent satisfaction.">Tableau de bord du reseau : occupation, effectifs, indicateurs qualite et satisfaction des parents.</span></li>
+</ul></div>
+<div class="reserve" data-fr="Les donnees des enfants doivent etre reduites au minimum, leur acces controle, leur conservation limitee a ce qui est exige. Protection des la conception, chiffrement, journaux d&#x27;acces et regles propres a chaque juridiction doivent etre integres des le depart." data-en="Child data should be minimized, access-controlled and retained only as required. Privacy-by-design, encryption, audit logs and jurisdiction-specific data protection requirements should be incorporated from the beginning.">Les donnees des enfants doivent etre reduites au minimum, leur acces controle, leur conservation limitee a ce qui est exige. Protection des la conception, chiffrement, journaux d&#x27;acces et regles propres a chaque juridiction doivent etre integres des le depart.</div>
+</div></section>
+<section id="securite"><div class="enveloppe">
+<div class="titre-bloc">
+<h2 data-fr="Securite, protection de l&#x27;enfance, qualite" data-en="Safety, safeguarding, quality">Securite, protection de l'enfance, qualite</h2>
+<p data-fr="L&#x27;accueil de jeunes enfants est tres encadre, et les exigences varient fortement d&#x27;un pays, d&#x27;une province ou d&#x27;une commune a l&#x27;autre. KIMO doit poser un cadre de conformite central tout en exigeant de chaque unite locale qu&#x27;elle satisfasse la regle locale la plus stricte." data-en="Childcare is highly regulated and requirements vary significantly by country, province/state and municipality. KIMO should establish a central compliance framework while requiring each local unit to satisfy the stricter applicable local rules.">L'accueil de jeunes enfants est tres encadre, et les exigences varient fortement d'un pays, d'une province ou d'une commune a l'autre. KIMO doit poser un cadre de conformite central tout en exigeant de chaque unite locale qu'elle satisfasse la regle locale la plus stricte.</p>
+</div>
+<div class="listes">
+<div class="liste"><h3 data-fr="Ce qui doit etre en place dans chaque unite" data-en="What must be in place in every unit">Ce qui doit etre en place dans chaque unite</h3><ul>
+<li><span data-fr="Verification des antecedents et des references du personnel, dans les limites de la loi." data-en="Background screening and reference checks for staff as legally required.">Verification des antecedents et des references du personnel, dans les limites de la loi.</span></li>
+<li><span data-fr="Taux d&#x27;encadrement et taille maximale des groupes." data-en="Child-to-educator ratios and group-size limits.">Taux d'encadrement et taille maximale des groupes.</span></li>
+<li><span data-fr="Couverture premiers secours et formation aux situations d&#x27;urgence." data-en="First-aid/CPR coverage and emergency-response training.">Couverture premiers secours et formation aux situations d'urgence.</span></li>
+<li><span data-fr="Securite incendie, plans d&#x27;evacuation et exercices." data-en="Fire safety, evacuation plans and drills.">Securite incendie, plans d'evacuation et exercices.</span></li>
+<li><span data-fr="Procedures allergies alimentaires et administration de medicaments." data-en="Food allergy and medication procedures.">Procedures allergies alimentaires et administration de medicaments.</span></li>
+<li><span data-fr="Protocoles de sommeil securise et d&#x27;hygiene la ou ils s&#x27;appliquent." data-en="Safe sleep and hygiene protocols where applicable.">Protocoles de sommeil securise et d'hygiene la ou ils s'appliquent.</span></li>
+<li><span data-fr="Entree controlee et remise de l&#x27;enfant verifiee." data-en="Controlled entry and verified child release.">Entree controlee et remise de l'enfant verifiee.</span></li>
+<li><span data-fr="Consignation obligatoire des incidents et remontee hierarchique." data-en="Mandatory incident documentation and escalation.">Consignation obligatoire des incidents et remontee hierarchique.</span></li>
+<li><span data-fr="Politique de protection de l&#x27;enfance, canaux de signalement et tolerance zero en cas de maltraitance ou de negligence." data-en="Safeguarding policy, reporting channels and zero-tolerance procedures for abuse or neglect.">Politique de protection de l'enfance, canaux de signalement et tolerance zero en cas de maltraitance ou de negligence.</span></li>
+<li><span data-fr="Une assurance adaptee a l&#x27;accueil de jeunes enfants." data-en="Insurance coverage appropriate to childcare operations.">Une assurance adaptee a l'accueil de jeunes enfants.</span></li>
+</ul></div>
+<div class="liste"><h3 data-fr="Ce que le reseau controle" data-en="What the network audits">Ce que le reseau controle</h3><ul>
+<li><span data-fr="Certification de chaque unite KIMO avant son ouverture." data-en="Pre-opening certification of every KIMO unit.">Certification de chaque unite KIMO avant son ouverture.</span></li>
+<li><span data-fr="Controles qualite periodiques, annonces et inopines, la ou le droit le permet." data-en="Periodic announced and unannounced quality reviews where legally appropriate.">Controles qualite periodiques, annonces et inopines, la ou le droit le permet.</span></li>
+<li><span data-fr="Des listes de controle et des standards de programme communs." data-en="Common operational checklists and curriculum standards.">Des listes de controle et des standards de programme communs.</span></li>
+<li><span data-fr="Mesure de la satisfaction des parents." data-en="Parent satisfaction measurement.">Mesure de la satisfaction des parents.</span></li>
+<li><span data-fr="Suivi de la fidelisation du personnel, des formations suivies et des incidents." data-en="Staff retention, training completion and incident metrics.">Suivi de la fidelisation du personnel, des formations suivies et des incidents.</span></li>
+<li><span data-fr="Plans de correction pour les centres qui passent sous les standards." data-en="Corrective-action plans for centers falling below standards.">Plans de correction pour les centres qui passent sous les standards.</span></li>
+<li><span data-fr="La possibilite de suspendre la licence et la marque KIMO quand des manquements graves ne sont pas corriges." data-en="Ability to suspend the KIMO license/brand when serious deficiencies are not corrected.">La possibilite de suspendre la licence et la marque KIMO quand des manquements graves ne sont pas corriges.</span></li>
+</ul></div>
+</div></div></section>
+<section id="exploitation" class="pale"><div class="enveloppe">
+<div class="titre-bloc">
+<h2 data-fr="Cinq facons d&#x27;ouvrir un centre" data-en="Five ways to open a center">Cinq facons d'ouvrir un centre</h2>
+<p data-fr="La franchise est l&#x27;une des cinq. C&#x27;est la seule qui se candidate : les quatre autres se negocient." data-en="Franchise is one of the five. It is the only one you apply for: the other four are negotiated.">La franchise est l'une des cinq. C'est la seule qui se candidate : les quatre autres se negocient.</p>
+</div>
+<div class="enrouleur"><table class="tab large"><thead><tr><th data-fr="Modele" data-en="Model">Modele</th><th data-fr="Description" data-en="Description">Description</th><th data-fr="Recettes" data-en="Revenue">Recettes</th></tr></thead><tbody>
+<tr><th data-fr="En propre" data-en="Company-owned">En propre</th><td><span data-fr="KIMO exploite le centre directement" data-en="KIMO operates the center directly">KIMO exploite le centre directement</span></td><td class="exp"><span data-fr="Frais de garde et de scolarite" data-en="Childcare/tuition fees">Frais de garde et de scolarite</span></td></tr>
+<tr class="mis"><th data-fr="Licence ou franchise" data-en="Licensed / franchise">Licence ou franchise</th><td><span data-fr="Un exploitant local qualifie utilise le systeme et la marque KIMO" data-en="Qualified local operator uses KIMO system and brand">Un exploitant local qualifie utilise le systeme et la marque KIMO</span></td><td class="exp"><span data-fr="Droit d&#x27;entree, puis redevance ou frais de service recurrents" data-en="Initial fee + recurring royalty/service fee">Droit d'entree, puis redevance ou frais de service recurrents</span></td></tr>
+<tr><th data-fr="KIMO employeur" data-en="Employer KIMO">KIMO employeur</th><td><span data-fr="Un centre reserve en partie ou en totalite aux salaries d&#x27;une entreprise" data-en="Center dedicated partly or fully to an employer&#x27;s workforce">Un centre reserve en partie ou en totalite aux salaries d'une entreprise</span></td><td class="exp"><span data-fr="Contrat avec l&#x27;employeur, plus la part des familles" data-en="Employer contract + family fees">Contrat avec l'employeur, plus la part des familles</span></td></tr>
+<tr><th data-fr="Partenariat immobilier" data-en="Real-estate partnership">Partenariat immobilier</th><td><span data-fr="Un promoteur integre une KIMO dans un projet residentiel" data-en="Developer integrates KIMO into a residential project">Un promoteur integre une KIMO dans un projet residentiel</span></td><td class="exp"><span data-fr="Bail ou accord de soutien, plus l&#x27;exploitation" data-en="Lease/support agreement + operating revenue">Bail ou accord de soutien, plus l'exploitation</span></td></tr>
+<tr><th data-fr="Partenariat public" data-en="Public partnership">Partenariat public</th><td><span data-fr="Des places creees avec des municipalites ou des institutions publiques" data-en="Capacity created with municipalities or public institutions">Des places creees avec des municipalites ou des institutions publiques</span></td><td class="exp"><span data-fr="Contrat ou subvention, plus les tarifs encadres des familles" data-en="Contract/subsidy + regulated family fees">Contrat ou subvention, plus les tarifs encadres des familles</span></td></tr>
+</tbody></table></div>
+<div class="apres"><a class="bouton plein" href="franchise.html" data-fr="La franchise en detail" data-en="The franchise in detail">La franchise en detail</a></div>
+</div></section>
+<section id="economie"><div class="enveloppe">
+<div class="titre-bloc">
+<h2 data-fr="Ce que coute un centre, ce qu&#x27;on y mesure" data-en="What a center costs, what gets measured">Ce que coute un centre, ce qu'on y mesure</h2>
+<p data-fr="Aucun montant n&#x27;est avance ici, et ce n&#x27;est pas un oubli : c&#x27;est sa propre consigne, rappelee sous le tableau." data-en="No amount is stated here, and that is not an omission: it is his own instruction, repeated below the table.">Aucun montant n'est avance ici, et ce n'est pas un oubli : c'est sa propre consigne, rappelee sous le tableau.</p>
+</div>
+<div class="listes">
+<div class="liste"><h3 data-fr="Les postes de cout" data-en="Cost structure">Les postes de cout</h3><ul>
+<li><span data-fr="Achat ou location du local, et travaux d&#x27;amenagement." data-en="Premises acquisition or lease and fit-out.">Achat ou location du local, et travaux d'amenagement.</span></li>
+<li><span data-fr="Agrement, honoraires et visites de controle." data-en="Licensing, professional services and inspections.">Agrement, honoraires et visites de controle.</span></li>
+<li><span data-fr="Salaires des educateurs et de l&#x27;encadrement." data-en="Educator and management payroll.">Salaires des educateurs et de l'encadrement.</span></li>
+<li><span data-fr="Assurance et conformite." data-en="Insurance and compliance.">Assurance et conformite.</span></li>
+<li><span data-fr="Mobilier, materiel pedagogique et equipement exterieur." data-en="Furniture, educational materials and outdoor equipment.">Mobilier, materiel pedagogique et equipement exterieur.</span></li>
+<li><span data-fr="Repas et consommables." data-en="Meals and consumables.">Repas et consommables.</span></li>
+<li><span data-fr="Plateforme technique et securite informatique." data-en="Technology platform and cybersecurity.">Plateforme technique et securite informatique.</span></li>
+<li><span data-fr="Formation, recrutement et controle qualite." data-en="Training, recruitment and quality assurance.">Formation, recrutement et controle qualite.</span></li>
+<li><span data-fr="Programme central, marketing et administration." data-en="Central curriculum, marketing and administrative functions.">Programme central, marketing et administration.</span></li>
+</ul></div>
+<div class="liste"><h3 data-fr="Les indicateurs du reseau" data-en="Network KPIs">Les indicateurs du reseau</h3><ul>
+<li><span data-fr="Places agreees et taux d&#x27;occupation." data-en="Licensed capacity and occupancy rate.">Places agreees et taux d'occupation.</span></li>
+<li><span data-fr="Recette par place disponible." data-en="Revenue per available childcare place.">Recette par place disponible.</span></li>
+<li><span data-fr="Cout du personnel en pourcentage du chiffre d&#x27;affaires." data-en="Staff cost as a percentage of revenue.">Cout du personnel en pourcentage du chiffre d'affaires.</span></li>
+<li><span data-fr="Respect du taux d&#x27;encadrement." data-en="Educator-to-child ratio compliance.">Respect du taux d'encadrement.</span></li>
+<li><span data-fr="Fidelite des parents et taux de recommandation." data-en="Parent retention and referral rate.">Fidelite des parents et taux de recommandation.</span></li>
+<li><span data-fr="Rotation du personnel et formations achevees." data-en="Staff turnover and training completion.">Rotation du personnel et formations achevees.</span></li>
+<li><span data-fr="Frequence des incidents et delai de cloture des actions correctives." data-en="Incident frequency and corrective-action closure time.">Frequence des incidents et delai de cloture des actions correctives.</span></li>
+<li><span data-fr="Distance ou temps moyen entre les familles et leur centre." data-en="Average distance/time between families and their assigned center.">Distance ou temps moyen entre les familles et leur centre.</span></li>
+<li><span data-fr="Marge de contribution par centre et frais de structure par unite." data-en="Center-level contribution margin and central overhead per unit.">Marge de contribution par centre et frais de structure par unite.</span></li>
+</ul></div>
+</div>
+<div class="reserve" data-fr="Un modele financier doit etre etabli separement pour chaque juridiction visee, parce que les taux d&#x27;encadrement, les salaires, les aides, les loyers et les regles d&#x27;agrement peuvent changer profondement l&#x27;economie d&#x27;un centre." data-en="A financial model should be produced separately for each target jurisdiction because staff ratios, wages, subsidies, rent and licensing rules can materially change center economics.">Un modele financier doit etre etabli separement pour chaque juridiction visee, parce que les taux d&#x27;encadrement, les salaires, les aides, les loyers et les regles d&#x27;agrement peuvent changer profondement l&#x27;economie d&#x27;un centre.</div>
+</div></section>
+<section id="phases" class="pale"><div class="enveloppe">
+<div class="titre-bloc">
+<h2 data-fr="Le deploiement, en cinq phases" data-en="Deployment, in five phases">Le deploiement, en cinq phases</h2>
+<p data-fr="Aucune duree n&#x27;est portee sur ces phases : la duree de la phase 1 depend de l&#x27;autorite d&#x27;agrement du pays retenu, et le pays n&#x27;est pas arrete." data-en="No durations are attached to these phases: phase 1 depends on the licensing authority of the chosen country, and the country is not settled.">Aucune duree n'est portee sur ces phases : la duree de la phase 1 depend de l'autorite d'agrement du pays retenu, et le pays n'est pas arrete.</p>
+</div>
+<div class="etapes">
+<div class="etape"><div class="num">1</div><div>
+<h3 data-fr="Conception" data-en="Design">Conception</h3>
+<p data-fr="Arreter la pedagogie, la marque, le cadre reglementaire, le prototype de centre, les besoins techniques et les hypotheses financieres." data-en="Finalize pedagogy, brand, regulatory framework, center prototype, technology requirements and financial assumptions.">Arreter la pedagogie, la marque, le cadre reglementaire, le prototype de centre, les besoins techniques et les hypotheses financieres.</p>
+</div></div>
+<div class="etape"><div class="num">2</div><div>
+<h3 data-fr="Pilote" data-en="Pilot">Pilote</h3>
+<p data-fr="Ouvrir environ 3 a 5 centres dans une meme agglomeration, sur des quartiers de profils differents. Mesurer la demande, les effectifs, l&#x27;experience des parents et la qualite pedagogique." data-en="Open approximately 3-5 centers in one metropolitan area with different neighborhood profiles. Measure demand, staffing, parent experience and educational delivery.">Ouvrir environ 3 a 5 centres dans une meme agglomeration, sur des quartiers de profils differents. Mesurer la demande, les effectifs, l'experience des parents et la qualite pedagogique.</p>
+</div></div>
+<div class="etape"><div class="num">3</div><div>
+<h3 data-fr="Reseau local" data-en="Local Network">Reseau local</h3>
+<p data-fr="Densifier jusqu&#x27;a former une grappe de centres, pour que les familles beneficient d&#x27;une vraie proximite et des services mutualises." data-en="Expand to a dense cluster of centers so that families can benefit from genuine proximity and shared network services.">Densifier jusqu'a former une grappe de centres, pour que les familles beneficient d'une vraie proximite et des services mutualises.</p>
+</div></div>
+<div class="etape"><div class="num">4</div><div>
+<h3 data-fr="Plusieurs villes" data-en="Multi-city Expansion">Plusieurs villes</h3>
+<p data-fr="Repliquer le systeme d&#x27;exploitation valide, en propre et avec des partenaires choisis avec soin." data-en="Replicate the validated operating system through company-owned centers and carefully selected partners.">Repliquer le systeme d'exploitation valide, en propre et avec des partenaires choisis avec soin.</p>
+</div></div>
+<div class="etape"><div class="num">5</div><div>
+<h3 data-fr="National, puis international" data-en="National / International Platform">National, puis international</h3>
+<p data-fr="Adapter le cadre KIMO a de nouvelles juridictions, en gardant une identite educative commune et une conformite locale." data-en="Adapt the KIMO framework to additional jurisdictions while maintaining a global educational identity and local regulatory compliance.">Adapter le cadre KIMO a de nouvelles juridictions, en gardant une identite educative commune et une conformite locale.</p>
+</div></div>
+</div>
+<div class="apres-liste">
+<h3 data-fr="Ce que le pilote doit prouver avant la phase 3" data-en="What the pilot must prove before phase 3">Ce que le pilote doit prouver avant la phase 3</h3>
+<div class="liste large"><ul>
+<li><span data-fr="Interroger parents et employeurs avant de choisir les quartiers du pilote." data-en="Interview parents and employers before selecting pilot neighborhoods.">Interroger parents et employeurs avant de choisir les quartiers du pilote.</span></li>
+<li><span data-fr="Verifier que le format micro-centre est agreable dans la juridiction visee." data-en="Validate local licensing feasibility for the micro-center format.">Verifier que le format micro-centre est agreable dans la juridiction visee.</span></li>
+<li><span data-fr="Prototyper le programme avec des professionnels qualifies de la petite enfance." data-en="Prototype the curriculum with qualified early-childhood professionals.">Prototyper le programme avec des professionnels qualifies de la petite enfance.</span></li>
+<li><span data-fr="Tester les parcours d&#x27;inscription et de communication aux parents." data-en="Test enrollment and parent communication workflows.">Tester les parcours d'inscription et de communication aux parents.</span></li>
+<li><span data-fr="Mesurer la charge des educateurs et le temps de preparation des activites." data-en="Measure educator workload and activity preparation time.">Mesurer la charge des educateurs et le temps de preparation des activites.</span></li>
+<li><span data-fr="Suivre occupation, liste d&#x27;attente, presences, satisfaction et fidelite." data-en="Track occupancy, waitlist, attendance, satisfaction and retention.">Suivre occupation, liste d'attente, presences, satisfaction et fidelite.</span></li>
+<li><span data-fr="Mener des revues formelles de securite et de protection de l&#x27;enfance avant de passer a l&#x27;echelle." data-en="Conduct formal safety and safeguarding reviews before scaling.">Mener des revues formelles de securite et de protection de l'enfance avant de passer a l'echelle.</span></li>
+<li><span data-fr="Se servir des resultats du pilote pour decider quel format de centre et quel modele de partenariat standardiser." data-en="Use pilot evidence to decide which center format and partnership model should be standardized.">Se servir des resultats du pilote pour decider quel format de centre et quel modele de partenariat standardiser.</span></li>
+</ul></div>
+</div>
+</div></section>
+<section id="risques"><div class="enveloppe">
+<div class="titre-bloc">
+<h2 data-fr="Les risques, et ce qu&#x27;on leur oppose" data-en="Risks and mitigation">Les risques, et ce qu'on leur oppose</h2>
+<p data-fr="Un reseau decentralise a des faiblesses propres, et elles sont connues. Les nommer vaut mieux que de les decouvrir au troisieme centre." data-en="A decentralised network has its own weaknesses, and they are known. Naming them beats discovering them at the third center.">Un reseau decentralise a des faiblesses propres, et elles sont connues. Les nommer vaut mieux que de les decouvrir au troisieme centre.</p>
+</div>
+<div class="enrouleur"><table class="tab large"><thead><tr><th data-fr="Risque" data-en="Risk">Risque</th><th data-fr="Ce qu&#x27;on lui oppose" data-en="Mitigation">Ce qu'on lui oppose</th></tr></thead><tbody>
+<tr><th data-fr="Une qualite inegale d&#x27;un centre a l&#x27;autre" data-en="Inconsistent quality across decentralized centers">Une qualite inegale d'un centre a l'autre</th><td><span data-fr="Certification exigeante, formation, audits et standards de marque opposables." data-en="Strong certification, training, audits and enforceable brand standards.">Certification exigeante, formation, audits et standards de marque opposables.</span></td></tr>
+<tr><th data-fr="La penurie d&#x27;educateurs" data-en="Educator shortages">La penurie d'educateurs</th><td><span data-fr="Filiere de recrutement, conditions competitives, partenariats de formation et planification des effectifs." data-en="Recruitment pipeline, competitive conditions, training partnerships and workforce planning.">Filiere de recrutement, conditions competitives, partenariats de formation et planification des effectifs.</span></td></tr>
+<tr><th data-fr="Un programme trop scolaire pour la petite enfance" data-en="Over-academic early childhood program">Un programme trop scolaire pour la petite enfance</th><td><span data-fr="Le jeu d&#x27;abord, une revue par des specialistes du developpement, et la liberte d&#x27;appreciation de l&#x27;educateur." data-en="Play-first curriculum, developmental review and educator discretion.">Le jeu d'abord, une revue par des specialistes du developpement, et la liberte d'appreciation de l'educateur.</span></td></tr>
+<tr><th data-fr="Les differences de reglementation" data-en="Regulatory differences">Les differences de reglementation</th><td><span data-fr="Un manuel d&#x27;exploitation par juridiction et une revue juridique locale." data-en="Jurisdiction-specific operating manuals and local legal/licensing review.">Un manuel d'exploitation par juridiction et une revue juridique locale.</span></td></tr>
+<tr><th data-fr="Le risque sur les donnees des enfants" data-en="Child-data privacy risk">Le risque sur les donnees des enfants</th><td><span data-fr="Minimisation des donnees, acces strictement controles, chiffrement et regles de conservation ecrites." data-en="Data minimization, strict access controls, encryption and documented retention rules.">Minimisation des donnees, acces strictement controles, chiffrement et regles de conservation ecrites.</span></td></tr>
+<tr><th data-fr="Une croissance trop rapide qui abime la culture" data-en="Rapid expansion weakens culture">Une croissance trop rapide qui abime la culture</th><td><span data-fr="Une croissance par grappes et une accreditation des partenaires par paliers." data-en="Cluster-based growth and staged partner accreditation.">Une croissance par grappes et une accreditation des partenaires par paliers.</span></td></tr>
+<tr><th data-fr="Une occupation trop faible dans un micro-centre" data-en="Low occupancy in a micro-center">Une occupation trop faible dans un micro-centre</th><td><span data-fr="Cartographie de la demande, partenariats employeurs et choix du site avant l&#x27;ouverture." data-en="Demand mapping, employer partnerships and flexible site selection before opening.">Cartographie de la demande, partenariats employeurs et choix du site avant l'ouverture.</span></td></tr>
+</tbody></table></div></div></section>
+<section id="marque" class="pale"><div class="enveloppe">
+<div class="titre-bloc">
+<h2 data-fr="L&#x27;architecture de marque, et ce qui vient apres" data-en="Brand architecture, and what comes next">L'architecture de marque, et ce qui vient apres</h2>
+</div>
+<div class="listes">
+<div class="liste"><h3 data-fr="La marque" data-en="The brand">La marque</h3><ul>
+<li><span data-fr="Marque mere : KIMO." data-en="Master brand: KIMO.">Marque mere : KIMO.</span></li>
+<li><span data-fr="Signature : KIMO — Apprendre a penser." data-en="Core signature: KIMO — Learn to Think.">Signature : KIMO — Apprendre a penser.</span></li>
+<li><span data-fr="Nommage possible des centres : KIMO [Quartier] ou KIMO [Partenaire]." data-en="Possible center naming: KIMO [Neighborhood] or KIMO [Partner].">Nommage possible des centres : KIMO [Quartier] ou KIMO [Partenaire].</span></li>
+<li><span data-fr="Familles de programmes possibles : KIMO Logic, KIMO Chess, KIMO Science, KIMO Move, KIMO Stories." data-en="Possible program families: KIMO Logic, KIMO Chess, KIMO Science, KIMO Move, KIMO Stories.">Familles de programmes possibles : KIMO Logic, KIMO Chess, KIMO Science, KIMO Move, KIMO Stories.</span></li>
+<li><span data-fr="Une identite visuelle intelligente et moderne, sans etre scolaire ni institutionnelle." data-en="Visual identity should feel intelligent and modern without appearing overly academic or institutional.">Une identite visuelle intelligente et moderne, sans etre scolaire ni institutionnelle.</span></li>
+</ul></div>
+<div class="liste"><h3 data-fr="Apres le reseau de centres" data-en="Beyond the center network">Apres le reseau de centres</h3><p data-fr="Une fois le reseau d&#x27;accueil eprouve, KIMO peut aller au-dela des centres : formation d&#x27;educateurs, licence de programme, kits d&#x27;apprentissage pour les parents, clubs de logique apres l&#x27;ecole, partenariats avec des ecoles. Ces prolongements doivent SUIVRE la validation du modele d&#x27;accueil, pas la preceder." data-en="Once the childcare network is proven, KIMO could extend beyond physical centers through educator training, curriculum licensing, parent learning kits, after-school logic clubs and partnerships with schools. These extensions should follow—not precede—the validation of the core childcare model.">Une fois le reseau d'accueil eprouve, KIMO peut aller au-dela des centres : formation d'educateurs, licence de programme, kits d'apprentissage pour les parents, clubs de logique apres l'ecole, partenariats avec des ecoles. Ces prolongements doivent SUIVRE la validation du modele d'accueil, pas la preceder.</p></div>
+</div></div></section>
+<section><div class="enveloppe"><div class="bandeau"><div>
+<h2 data-fr="Ouvrir une KIMO dans votre ville" data-en="Open a KIMO in your city">Ouvrir une KIMO dans votre ville</h2>
+<p data-fr="Le parcours d&#x27;un candidat, ce que le reseau apporte, un simulateur de compte d&#x27;exploitation et le formulaire." data-en="The candidate journey, what the network provides, a P&amp;L simulator and the form.">Le parcours d'un candidat, ce que le reseau apporte, un simulateur de compte d'exploitation et le formulaire.</p>
+</div><a class="bouton plein" href="franchise.html" data-fr="Voir la page franchise" data-en="See the franchise page">Voir la page franchise</a>
+</div></div></section>
+<footer><div class="enveloppe">
+<p class="devise" data-fr="Mes sites impactent le monde." data-en="My sites impact the world.">Mes sites impactent le monde.</p>
+<p class="fond" data-fr="Hakim Adjaoudi, fondateur — JNCORP INC." data-en="Hakim Adjaoudi, founder — JNCORP INC.">Hakim Adjaoudi, fondateur — JNCORP INC.</p>
+<div class="avert" data-fr="DEMONSTRATION. KIMO est un reseau en cours de constitution : aucune creche n&#x27;est ouverte a ce jour. Les valeurs marquees « a definir » ne sont pas des oublis, ce sont des decisions qui n&#x27;ont pas encore ete prises, ou des regles qui dependent du pays retenu. Aucun chiffre reglementaire n&#x27;est avance ici tant qu&#x27;il n&#x27;a pas ete verifie dans le pays concerne." data-en="DEMONSTRATION. KIMO is a network being set up: no nursery is open to date. Values marked &quot;to be set&quot; are not omissions, they are decisions not yet taken, or rules that depend on the country chosen. No regulatory figure is stated here until it has been checked in the country concerned.">DEMONSTRATION. KIMO est un reseau en cours de constitution : aucune creche n&#x27;est ouverte a ce jour. Les valeurs marquees « a definir » ne sont pas des oublis, ce sont des decisions qui n&#x27;ont pas encore ete prises, ou des regles qui dependent du pays retenu. Aucun chiffre reglementaire n&#x27;est avance ici tant qu&#x27;il n&#x27;a pas ete verifie dans le pays concerne.</div>
+<div class="liens-sites"><a href="https://anirudhatalmale6-alt.github.io/annuaire-franchises-demo/" data-fr="Annuaire des franchises" data-en="Franchise directory">Annuaire des franchises</a><a href="https://anirudhatalmale6-alt.github.io/maisons-de-prestige/" data-fr="Maisons de Prestige" data-en="Maisons de Prestige">Maisons de Prestige</a></div>
+</div></footer>
+<script>
+(function(){
+  var L='fr';
+  function pose(l){
+    L=l;
+    document.documentElement.lang=l;
+    var n=document.querySelectorAll('[data-fr][data-en]');
+    for(var i=0;i<n.length;i++) n[i].innerHTML=n[i].getAttribute('data-'+l);
+    var b=document.querySelectorAll('.langue button');
+    for(var j=0;j<b.length;j++)
+      b[j].setAttribute('aria-pressed',
+        b[j].getAttribute('data-l')===l?'true':'false');
+    try{localStorage.setItem('kimo-langue',l);}catch(e){}
+    if(window.surLangue) window.surLangue(l);
+  }
+  window.langue=function(){return L;};
+  window.poseLangue=pose;
+  document.addEventListener('click',function(ev){
+    var b=ev.target.closest&&ev.target.closest('.langue button');
+    if(b) pose(b.getAttribute('data-l'));
+  });
+  var m=null; try{m=localStorage.getItem('kimo-langue');}catch(e){}
+  pose(m==='en'?'en':'fr');
+})();
+</script>
+</body>
+</html>

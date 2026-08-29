@@ -83,6 +83,60 @@ def nb(n):
     return ('-' if neg else '') + s + out
 
 
+def signature():
+    """« KIMO — Learn to Think. »
+
+    L'anglais est sa phrase, mot pour mot. Le francais est ma traduction, et
+    tant qu'il ne l'a pas confirmee elle porte une mention visible : une
+    signature de marque se traduit avec son fondateur, pas a sa place.
+    """
+    o = ['<p class="signature">']
+    o.append('<span data-fr="%s" data-en="%s">%s</span>'
+             % (e('%s — %s' % (C.MARQUE, C.SIGNATURE_FR)),
+                e('%s — %s' % (C.MARQUE, C.SIGNATURE_EN)),
+                e('%s — %s' % (C.MARQUE, C.SIGNATURE_FR))))
+    if C.SIGNATURE_TRAD_A_VALIDER:
+        o.append('<span class="tbc" data-fr="traduction francaise a valider" '
+                 'data-en="English wording is yours, as written">'
+                 'traduction francaise a valider</span>')
+    o.append('</p>')
+    return '\n'.join(o)
+
+
+def puces(paires, classe='liste'):
+    """Une liste a puces bilingue, a partir d'une table de couples (fr, en).
+
+    Les listes de sa note sont des listes : elles restent des listes. Les
+    transformer en cartes avec un paragraphe chacune obligerait a inventer le
+    paragraphe, et c'est precisement ce que ce site ne fait pas.
+    """
+    o = ['<div class="%s"><ul>' % classe]
+    for fr, en in paires:
+        o.append('<li>' + bi(fr, en, 'span') + '</li>')
+    o.append('</ul></div>')
+    return '\n'.join(o)
+
+
+def encadre(fr, en, classe='reserve'):
+    """Une reserve du fondateur, encadree au lieu d'etre noyee.
+
+    Sa note dit deux fois, noir sur blanc, que la capacite, les taux
+    d'encadrement et le modele financier dependent de la juridiction. Ces
+    deux phrases-la sont la justification de tous les blancs du site : elles
+    ne partent pas en petit gris au bas d'un bloc.
+    """
+    return ('<div class="%s" data-fr="%s" data-en="%s">%s</div>'
+            % (classe, e(fr), e(en), e(fr)))
+
+
+def titre_bloc(fr, en, dfr=None, den=None):
+    o = ['<div class="titre-bloc">', bi(fr, en, 'h2')]
+    if dfr is not None:
+        o.append(bi(dfr, den))
+    o.append('</div>')
+    return '\n'.join(o)
+
+
 # ===========================================================================
 #                          EN-TETE, PIED, SQUELETTE
 # ===========================================================================
@@ -102,8 +156,8 @@ def entete(page):
         .replace('__D__', DIAMANT).replace('__M__', e(C.MARQUE)) \
         .replace('__L1__', lien('index.html', 'accueil', 'Le reseau',
                                 'The network')) \
-        .replace('__L2__', lien('index.html#methode', '', 'La methode',
-                                'The method')) \
+        .replace('__L2__', lien('concept.html', 'concept', 'Le concept',
+                                'The concept')) \
         .replace('__L3__', lien('franchise.html', 'franchise',
                                 'Devenir franchise', 'Become a franchisee')) \
         .replace('__L4__', lien('franchise.html#candidature', '',
@@ -197,28 +251,30 @@ def page_accueil():
     # ------------------------------------------------------------------ hero
     o.append('<div class="hero"><div class="enveloppe"><div class="hero-in">')
     o.append('<div>')
-    o.append(bi('Reseau de micro-creches decentralisees',
-                'A decentralised network of micro-nurseries', 'p', 'surtitre'))
+    o.append(bi('Reseau decentralise d\'eveil et d\'apprentissage',
+                'Decentralized early-learning network', 'p', 'surtitre'))
     o.append(bi('Une creche a taille humaine, la ou les familles habitent.',
                 'A nursery on a human scale, where families actually live.',
                 'h1'))
+    o.append(signature())
     o.append(bi('KIMO ouvre de petites unites de quartier, tenues par des '
-                'responsables independants, avec une methode commune et les '
-                'memes outils partout. Une creche courte se place ou une '
-                'grande structure ne rentre pas — et l\'enfant y retrouve '
-                'chaque matin le meme adulte.',
-                'KIMO opens small neighbourhood units, run by independent '
-                'managers, with a shared method and the same tools '
-                'everywhere. A small nursery fits where a large facility '
-                'cannot — and the child meets the same adult every morning.',
+                'equipes locales, avec un meme programme, une meme plateforme '
+                'et un meme systeme qualite. On y travaille la logique, les '
+                'echecs, les mathematiques, les sciences, l\'histoire, le '
+                'mouvement et la creation — par le jeu, jamais par la lecon.',
+                'KIMO opens small neighbourhood units, run by local teams, '
+                'sharing one educational program, one platform and one '
+                'quality system. Logic, chess, mathematics, science, history, '
+                'movement and creativity — through play, never through '
+                'lessons.',
                 'p', 'chapo'))
     o.append('<div class="actions">'
-             '<a class="bouton plein" href="franchise.html" '
+             '<a class="bouton plein" href="concept.html" '
+             'data-fr="Lire le concept" data-en="Read the concept">'
+             'Lire le concept</a>'
+             '<a class="bouton vide" href="franchise.html" '
              'data-fr="Ouvrir une KIMO" data-en="Open a KIMO">'
-             'Ouvrir une KIMO</a>'
-             '<a class="bouton vide" href="#modele" '
-             'data-fr="Comprendre le modele" data-en="Understand the model">'
-             'Comprendre le modele</a></div>')
+             'Ouvrir une KIMO</a></div>')
     o.append('</div>')
 
     # L'etat du reseau. Pas de compteur : il n'y a rien a compter, et un
@@ -263,25 +319,34 @@ def page_accueil():
     o.append('</div></div></section>')
 
     # --------------------------------------------------------- la methode
+    # Le texte de ce bloc vient de sa note. Il n'y a donc plus de pastille
+    # « a valider » ici : elle disait que la redaction etait de moi, ce qui
+    # n'est plus vrai. Une pastille qu'on laisse quand elle a cesse d'etre
+    # exacte apprend au lecteur a ne plus les lire.
     o.append('<section id="methode" class="pale"><div class="enveloppe">')
-    o.append('<div class="titre-bloc"><div class="pastille-titre">')
-    o.append(bi('La methode', 'The method', 'h2'))
-    if C.METHODE_A_VALIDER:
-        # Une pastille honnete : c'est MA redaction, pas sa doctrine.
-        o.append('<span class="tbc" data-fr="texte a valider" '
-                 'data-en="draft, to be approved">texte a valider</span>')
+    o.append(titre_bloc('La methode', 'The method',
+                        C.METHODE_INTRO_FR, C.METHODE_INTRO_EN))
+    o.append(puces(C.METHODE, 'liste large'))
+    o.append('<div class="apres">')
+    o.append('<a class="bouton vide" href="concept.html#apprentissage" '
+             'data-fr="Les sept piliers d\'apprentissage" '
+             'data-en="The seven learning pillars">'
+             'Les sept piliers d\'apprentissage</a>')
     o.append('</div>')
-    o.append(bi('Ce qui suit est une proposition de redaction, a corriger. '
-                'La pedagogie d\'un reseau se decide par son fondateur ; ce '
-                'texte sert a montrer ou elle se place sur le site et '
-                'combien de place elle prend.',
-                'What follows is a draft, to be corrected. A network\'s '
-                'pedagogy is its founder\'s decision; this text shows where '
-                'it sits on the site and how much room it takes.'))
-    o.append('</div><div class="grille g4">')
-    for _cle, fr, en, dfr, den in C.METHODE:
-        o.append('<div class="carte">' + bi(fr, en, 'h3') + bi(dfr, den)
-                 + '</div>')
+    o.append('</div></section>')
+
+    # -------------------------------------------------- piliers, en resume
+    o.append('<section id="piliers"><div class="enveloppe">')
+    o.append(titre_bloc(
+        'Ce qu\'on y travaille', 'What is worked on',
+        'Sept domaines, tous abordes par le jeu. Le detail de chacun est sur '
+        'la page du concept.',
+        'Seven areas, all approached through play. Each one is detailed on '
+        'the concept page.'))
+    o.append('<div class="grille g4 serree">')
+    for cle, fr, en, _dfr, _den in C.APPRENTISSAGE:
+        o.append('<a class="carte mini" href="concept.html#p-%s">%s</a>'
+                 % (e(cle), bi(fr, en, 'h3')))
     o.append('</div></div></section>')
 
     # ---------------------------------------------------- reglementaire
@@ -308,6 +373,11 @@ def page_accueil():
                  + '</td><td class="exp">'
                  + bi(dfr, den, 'span') + '</td></tr>')
     o.append('</tbody></table></div>')
+    # Sa propre reserve, citee ici : c'est lui qui ecrit que la capacite
+    # definitive et les taux d'encadrement doivent etre adaptes a la
+    # juridiction. Les blancs de ce tableau ne sont pas une prudence de
+    # developpeur, ils appliquent ce qu'il a ecrit.
+    o.append(encadre(C.FORMAT_AVERT_FR, C.FORMAT_AVERT_EN))
     o.append('</div></section>')
 
     # ------------------------------------------------------------ bandeau
@@ -330,6 +400,336 @@ def page_accueil():
                      'des responsables independants, avec une methode '
                      'commune.',
                      '\n'.join(o), JS_LANGUE)
+
+
+# ===========================================================================
+#                               LE CONCEPT
+#
+# Cette page est sa note mise en page. Elle ne resume pas et n'arrondit pas :
+# un candidat, un partenaire immobilier ou une mairie qui demande « c'est
+# quoi KIMO » doit trouver le document, pas une plaquette qui en donne
+# l'impression.
+#
+# Deux choses y sont dites une bonne fois, en haut, et pas au detour d'une
+# ligne : d'ou vient le texte, et que le francais est une traduction.
+# ===========================================================================
+def page_concept():
+    o = [entete('concept')]
+
+    # ------------------------------------------------------------------ hero
+    o.append('<div class="hero"><div class="enveloppe"><div class="hero-in">')
+    o.append('<div>')
+    o.append(bi('Le concept', 'The concept', 'p', 'surtitre'))
+    o.append(bi('Un seul ecosysteme educatif, beaucoup de centres locaux.',
+                'One educational ecosystem, many local centers.', 'h1'))
+    o.append(signature())
+    o.append(bi('Un enfant ne devrait pas seulement retenir des reponses : il '
+                'devrait apprendre peu a peu a observer, raisonner, '
+                'experimenter, expliquer et chercher une solution. Les '
+                'matieres sont introduites par le jeu adapte a son age, pas '
+                'par l\'ecole avant l\'ecole.',
+                'Children should not only memorize answers; they should '
+                'gradually learn how to observe, reason, experiment, '
+                'communicate and find solutions. Academic subjects are '
+                'introduced through age-appropriate play rather than formal '
+                'schooling.', 'p', 'chapo'))
+    o.append('</div>')
+
+    # D'ou vient ce texte. Une page de concept sans provenance se lit comme
+    # une redaction d'agence ; celle-ci n'en est pas une.
+    o.append('<div class="etat">')
+    o.append(bi('D\'ou vient cette page', 'Where this page comes from', 'h3'))
+    o.append('<ul>')
+    o.append('<li>' + bi('Le texte est celui de la note de concept du '
+                         'fondateur. Il n\'a pas ete resume.',
+                         'The text is the founder\'s concept note. It has not '
+                         'been summarised.', 'span') + '</li>')
+    o.append('<li>' + bi('La version anglaise est la sienne, mot pour mot.',
+                         'The English version is his, word for word.',
+                         'span') + '</li>')
+    o.append('<li><span>' + bi('La version francaise est une traduction',
+                               'The French version is a translation', 'span')
+             + ' — ' + tbc() + '</span></li>')
+    o.append('<li>' + bi('Les chiffres reglementaires et commerciaux restent '
+                         'vides : voir le cadre reglementaire.',
+                         'Regulatory and commercial figures remain blank: see '
+                         'the regulatory framework.', 'span') + '</li>')
+    o.append('</ul></div>')
+    o.append('</div></div></div>')
+
+    # ------------------------------------------------- 3. modele decentralise
+    o.append('<section id="couches"><div class="enveloppe">')
+    o.append(titre_bloc(
+        'Qui fait quoi', 'Who does what',
+        'Le reseau ne se contente pas de preter une marque : il tient le '
+        'programme, la technologie, la formation et le controle. L\'unite '
+        'locale tient l\'enfant et la famille.',
+        'The network does more than lend a brand: it holds the program, the '
+        'technology, the training and the audit. The local unit holds the '
+        'child and the family.'))
+    o.append('<div class="enrouleur"><table class="tab large"><thead><tr>'
+             + bi('Niveau', 'Layer', 'th')
+             + bi('Responsabilite', 'Responsibility', 'th')
+             + bi('Exemples', 'Examples', 'th')
+             + '</tr></thead><tbody>')
+    for nfr, nen, rfr, ren, efr, een in C.COUCHES:
+        o.append('<tr>' + bi(nfr, nen, 'th') + '<td>' + bi(rfr, ren, 'span')
+                 + '</td><td class="exp">' + bi(efr, een, 'span')
+                 + '</td></tr>')
+    o.append('</tbody></table></div></div></section>')
+
+    # -------------------------------------------------------- 4. le format
+    o.append('<section id="format" class="pale"><div class="enveloppe">')
+    o.append(titre_bloc(
+        'Le format d\'une unite', 'Center format',
+        'Petit, proche, et concu pour cela — pas une grande structure '
+        'retrecie.',
+        'Small, close by, and designed that way — not a large facility '
+        'shrunk down.'))
+    o.append(puces(C.FORMAT, 'liste large'))
+    o.append(encadre(C.FORMAT_AVERT_FR, C.FORMAT_AVERT_EN))
+    o.append('</div></section>')
+
+    # ------------------------------------------------------- 5. la methode
+    o.append('<section id="philosophie"><div class="enveloppe">')
+    o.append(titre_bloc('La philosophie pedagogique',
+                        'Educational philosophy',
+                        C.METHODE_INTRO_FR, C.METHODE_INTRO_EN))
+    o.append(puces(C.METHODE, 'liste large'))
+    o.append('</div></section>')
+
+    # ------------------------------------------------------- 6. les piliers
+    o.append('<section id="apprentissage" class="pale">'
+             '<div class="enveloppe">')
+    o.append(titre_bloc(
+        'Les sept piliers d\'apprentissage', 'The seven learning pillars',
+        'Chacun est un support de jeu, pas une matiere a evaluer.',
+        'Each one is a support for play, not a subject to be graded.'))
+    o.append('<div class="grille g2">')
+    for cle, fr, en, dfr, den in C.APPRENTISSAGE:
+        o.append('<div class="carte" id="p-%s">' % e(cle)
+                 + bi(fr, en, 'h3') + bi(dfr, den) + '</div>')
+    o.append('</div></div></section>')
+
+    # -------------------------------------------------- 7. le parcours d'age
+    o.append('<section id="ages"><div class="enveloppe">')
+    o.append(titre_bloc(
+        'Un exemple de progression par age',
+        'Example learning journey by age',
+        'Un exemple, pas un calendrier : la difficulte se regle sur la '
+        'maturite de l\'enfant, c\'est le sixieme principe de la methode.',
+        'An example, not a schedule: complexity follows the child\'s '
+        'readiness — that is the sixth principle of the method.'))
+    o.append('<div class="enrouleur"><table class="tab large"><thead><tr>'
+             + bi('Etape', 'Stage', 'th')
+             + bi('Ce qu\'on travaille', 'Learning focus', 'th')
+             + bi('Activites types', 'Typical activities', 'th')
+             + bi('Facon de faire', 'Approach', 'th')
+             + '</tr></thead><tbody>')
+    for sfr, sen, ffr, fen, afr, aen, mfr, men in C.AGES:
+        o.append('<tr>' + bi(sfr, sen, 'th')
+                 + '<td>' + bi(ffr, fen, 'span') + '</td>'
+                 + '<td class="exp">' + bi(afr, aen, 'span') + '</td>'
+                 + '<td class="exp">' + bi(mfr, men, 'span') + '</td></tr>')
+    o.append('</tbody></table></div></div></section>')
+
+    # ------------------------------------------------------ 8. journee type
+    o.append('<section id="journee" class="pale"><div class="enveloppe">')
+    o.append(titre_bloc(
+        'Une journee type', 'Example daily schedule',
+        'Les activites dirigees occupent moins de deux heures. Le reste est '
+        'du jeu, du mouvement, des repas et du repos.',
+        'Structured activities take under two hours. The rest is play, '
+        'movement, meals and rest.'))
+    o.append('<div class="enrouleur"><table class="tab horaire"><tbody>')
+    for heure, afr, aen in C.JOURNEE:
+        o.append('<tr><th class="h">%s</th><td>%s</td></tr>'
+                 % (e(heure), bi(afr, aen, 'span')))
+    o.append('</tbody></table></div></div></section>')
+
+    # ------------------------------------------ 9 + 11. educateurs, parents
+    o.append('<section id="equipe"><div class="enveloppe">')
+    o.append(titre_bloc('Les educateurs, les parents',
+                        'Educators, parents',
+                        C.EDUCATEURS_INTRO_FR, C.EDUCATEURS_INTRO_EN))
+    o.append('<div class="listes">')
+    o.append('<div class="liste accent">'
+             + bi('Ce que le reseau demande a ses educateurs',
+                  'What the network asks of its educators', 'h3') + '<ul>')
+    for fr, en in C.EDUCATEURS:
+        o.append('<li>' + bi(fr, en, 'span') + '</li>')
+    o.append('</ul></div>')
+    o.append('<div class="liste">'
+             + bi('Ce que voit un parent', 'What a parent gets', 'h3')
+             + '<ul>')
+    for fr, en in C.PARENTS:
+        o.append('<li>' + bi(fr, en, 'span') + '</li>')
+    o.append('</ul></div>')
+    o.append('</div></div></section>')
+
+    # ---------------------------------------------------- 10. la plateforme
+    o.append('<section id="plateforme" class="pale"><div class="enveloppe">')
+    o.append(titre_bloc(
+        'La plateforme', 'The digital platform',
+        'Un compte pour la famille, un outil de travail pour l\'educateur, '
+        'un tableau de bord pour le reseau. Ce sont trois lecteurs, pas un.',
+        'One account for the family, one working tool for the educator, one '
+        'dashboard for the network. Three readers, not one.'))
+    o.append(puces(C.PLATEFORME, 'liste large'))
+    o.append(encadre(C.PLATEFORME_NOTE_FR, C.PLATEFORME_NOTE_EN))
+    o.append('</div></section>')
+
+    # ------------------------------------------- 12 + 13. securite, qualite
+    o.append('<section id="securite"><div class="enveloppe">')
+    o.append(titre_bloc('Securite, protection de l\'enfance, qualite',
+                        'Safety, safeguarding, quality',
+                        C.SECURITE_INTRO_FR, C.SECURITE_INTRO_EN))
+    o.append('<div class="listes">')
+    o.append('<div class="liste">'
+             + bi('Ce qui doit etre en place dans chaque unite',
+                  'What must be in place in every unit', 'h3') + '<ul>')
+    for fr, en in C.SECURITE:
+        o.append('<li>' + bi(fr, en, 'span') + '</li>')
+    o.append('</ul></div>')
+    o.append('<div class="liste">'
+             + bi('Ce que le reseau controle', 'What the network audits', 'h3')
+             + '<ul>')
+    for fr, en in C.QUALITE:
+        o.append('<li>' + bi(fr, en, 'span') + '</li>')
+    o.append('</ul></div>')
+    o.append('</div></div></section>')
+
+    # ------------------------------------------------- 14. les cinq modeles
+    o.append('<section id="exploitation" class="pale">'
+             '<div class="enveloppe">')
+    o.append(titre_bloc(
+        'Cinq facons d\'ouvrir un centre', 'Five ways to open a center',
+        'La franchise est l\'une des cinq. C\'est la seule qui se candidate : '
+        'les quatre autres se negocient.',
+        'Franchise is one of the five. It is the only one you apply for: the '
+        'other four are negotiated.'))
+    o.append('<div class="enrouleur"><table class="tab large"><thead><tr>'
+             + bi('Modele', 'Model', 'th')
+             + bi('Description', 'Description', 'th')
+             + bi('Recettes', 'Revenue', 'th')
+             + '</tr></thead><tbody>')
+    for _cle, nfr, nen, dfr, den, rfr, ren, mis in C.EXPLOITATION:
+        cl = ' class="mis"' if mis else ''
+        o.append('<tr%s>' % cl + bi(nfr, nen, 'th')
+                 + '<td>' + bi(dfr, den, 'span') + '</td>'
+                 + '<td class="exp">' + bi(rfr, ren, 'span')
+                 + '</td></tr>')
+    o.append('</tbody></table></div>')
+    o.append('<div class="apres"><a class="bouton plein" href="franchise.html"'
+             ' data-fr="La franchise en detail" '
+             'data-en="The franchise in detail">La franchise en detail</a>'
+             '</div>')
+    o.append('</div></section>')
+
+    # ----------------------------------------------- 15 + 16. couts et KPI
+    o.append('<section id="economie"><div class="enveloppe">')
+    o.append(titre_bloc(
+        'Ce que coute un centre, ce qu\'on y mesure',
+        'What a center costs, what gets measured',
+        'Aucun montant n\'est avance ici, et ce n\'est pas un oubli : c\'est '
+        'sa propre consigne, rappelee sous le tableau.',
+        'No amount is stated here, and that is not an omission: it is his own '
+        'instruction, repeated below the table.'))
+    o.append('<div class="listes">')
+    o.append('<div class="liste">'
+             + bi('Les postes de cout', 'Cost structure', 'h3') + '<ul>')
+    for fr, en in C.COUTS:
+        o.append('<li>' + bi(fr, en, 'span') + '</li>')
+    o.append('</ul></div>')
+    o.append('<div class="liste">'
+             + bi('Les indicateurs du reseau', 'Network KPIs', 'h3') + '<ul>')
+    for fr, en in C.KPI:
+        o.append('<li>' + bi(fr, en, 'span') + '</li>')
+    o.append('</ul></div>')
+    o.append('</div>')
+    o.append(encadre(C.COUTS_NOTE_FR, C.COUTS_NOTE_EN))
+    o.append('</div></section>')
+
+    # ------------------------------------------- 17 + 18. phases et pilote
+    o.append('<section id="phases" class="pale"><div class="enveloppe">')
+    o.append(titre_bloc(
+        'Le deploiement, en cinq phases', 'Deployment, in five phases',
+        'Aucune duree n\'est portee sur ces phases : la duree de la phase 1 '
+        'depend de l\'autorite d\'agrement du pays retenu, et le pays n\'est '
+        'pas arrete.',
+        'No durations are attached to these phases: phase 1 depends on the '
+        'licensing authority of the chosen country, and the country is not '
+        'settled.'))
+    o.append('<div class="etapes">')
+    for num, fr, en, dfr, den in C.PHASES:
+        o.append('<div class="etape"><div class="num">%s</div><div>'
+                 % e(num))
+        o.append(bi(fr, en, 'h3'))
+        o.append(bi(dfr, den))
+        o.append('</div></div>')
+    o.append('</div>')
+    o.append('<div class="apres-liste">')
+    o.append(bi('Ce que le pilote doit prouver avant la phase 3',
+                'What the pilot must prove before phase 3', 'h3'))
+    o.append(puces(C.PILOTE, 'liste large'))
+    o.append('</div>')
+    o.append('</div></section>')
+
+    # ---------------------------------------------------------- 19. risques
+    o.append('<section id="risques"><div class="enveloppe">')
+    o.append(titre_bloc(
+        'Les risques, et ce qu\'on leur oppose', 'Risks and mitigation',
+        'Un reseau decentralise a des faiblesses propres, et elles sont '
+        'connues. Les nommer vaut mieux que de les decouvrir au troisieme '
+        'centre.',
+        'A decentralised network has its own weaknesses, and they are known. '
+        'Naming them beats discovering them at the third center.'))
+    o.append('<div class="enrouleur"><table class="tab large"><thead><tr>'
+             + bi('Risque', 'Risk', 'th')
+             + bi('Ce qu\'on lui oppose', 'Mitigation', 'th')
+             + '</tr></thead><tbody>')
+    for rfr, ren, mfr, men in C.RISQUES:
+        o.append('<tr>' + bi(rfr, ren, 'th') + '<td>'
+                 + bi(mfr, men, 'span') + '</td></tr>')
+    o.append('</tbody></table></div></div></section>')
+
+    # -------------------------------------------------- 20 + 21. marque, suite
+    o.append('<section id="marque" class="pale"><div class="enveloppe">')
+    o.append(titre_bloc(
+        'L\'architecture de marque, et ce qui vient apres',
+        'Brand architecture, and what comes next'))
+    o.append('<div class="listes">')
+    o.append('<div class="liste">'
+             + bi('La marque', 'The brand', 'h3') + '<ul>')
+    for fr, en in C.ARCHI_MARQUE:
+        o.append('<li>' + bi(fr, en, 'span') + '</li>')
+    o.append('</ul></div>')
+    o.append('<div class="liste">'
+             + bi('Apres le reseau de centres', 'Beyond the center network',
+                  'h3')
+             + bi(C.HORIZON_FR, C.HORIZON_EN) + '</div>')
+    o.append('</div></div></section>')
+
+    # ------------------------------------------------------------ bandeau
+    o.append('<section><div class="enveloppe"><div class="bandeau"><div>')
+    o.append(bi('Ouvrir une KIMO dans votre ville',
+                'Open a KIMO in your city', 'h2'))
+    o.append(bi('Le parcours d\'un candidat, ce que le reseau apporte, un '
+                'simulateur de compte d\'exploitation et le formulaire.',
+                'The candidate journey, what the network provides, a P&L '
+                'simulator and the form.'))
+    o.append('</div><a class="bouton plein" href="franchise.html" '
+             'data-fr="Voir la page franchise" '
+             'data-en="See the franchise page">Voir la page franchise</a>')
+    o.append('</div></div></section>')
+
+    o.append(pied())
+    return squelette(
+        'KIMO — le concept',
+        'Le modele decentralise KIMO : format des unites, philosophie '
+        'pedagogique, sept piliers d\'apprentissage, journee type, '
+        'plateforme, securite, deploiement.',
+        '\n'.join(o), JS_LANGUE)
 
 
 # ===========================================================================
@@ -420,6 +820,23 @@ def page_franchise():
                 'than filled in with a ballpark.', 'p', 'note'))
     o.append('</div>')
     o.append('</div></div></div>')
+
+    # Un candidat doit savoir qu'il n'est pas le seul chemin d'ouverture :
+    # sa note en prevoit cinq, et un exploitant qui l'apprend apres coup se
+    # demande ce qu'on lui a cache. Une ligne suffit, avec le lien.
+    o.append('<section class="mince"><div class="enveloppe">')
+    o.append('<div class="rappel-modele">'
+             + bi('La franchise est l\'un des cinq modeles d\'exploitation du '
+                  'reseau — les autres sont l\'exploitation en propre, le '
+                  'centre d\'employeur, le partenariat immobilier et le '
+                  'partenariat public.',
+                  'Franchise is one of the network\'s five operating models — '
+                  'the others are company-owned, employer centers, '
+                  'real-estate partnerships and public partnerships.', 'p')
+             + '<a href="concept.html#exploitation" '
+               'data-fr="Voir les cinq" data-en="See all five">'
+               'Voir les cinq</a></div>')
+    o.append('</div></section>')
 
     # ---------------------------------------------------------- le parcours
     o.append('<section id="parcours"><div class="enveloppe">')
@@ -731,7 +1148,9 @@ JS_FORM = """
 
 def ecrire():
     os.makedirs(DEMO, exist_ok=True)
-    pages = {'index.html': page_accueil(), 'franchise.html': page_franchise()}
+    pages = {'index.html': page_accueil(),
+             'concept.html': page_concept(),
+             'franchise.html': page_franchise()}
     for nom, html in pages.items():
         chemin = os.path.join(DEMO, nom)
         with open(chemin, 'w', encoding='utf-8') as f:

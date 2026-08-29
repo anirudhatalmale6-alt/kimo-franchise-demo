@@ -48,7 +48,7 @@ def lire(nom):
         return f.read()
 
 
-PAGES = ['index.html', 'franchise.html']
+PAGES = ['index.html', 'concept.html', 'franchise.html']
 for nom in PAGES:
     if not os.path.isfile(os.path.join(DEMO, nom)):
         print('la page %s n\'existe pas — lancer page_kimo.py d\'abord' % nom)
@@ -107,6 +107,97 @@ t('ce controle sait detecter le mot (essai sur un texte fabrique)',
 
 
 # ===========================================================================
+print('\n--- FIDELITE A LA NOTE DU FONDATEUR ---')
+# ===========================================================================
+# La page « concept » n'est pas une plaquette ecrite d'apres sa note : c'est
+# sa note. Ce controle le PROUVE, en comparant chaque phrase anglaise du site
+# au texte du .docx qu'il a envoye. Sans lui, « je n'ai rien invente » est une
+# affirmation, pas un fait — et c'est exactement le genre d'affirmation qui
+# devient fausse a la troisieme retouche.
+#
+# Le francais, lui, est ma traduction : il n'est pas dans le document, il ne
+# peut pas etre compare, et le site le dit en haut de la page.
+def phrases_anglaises():
+    """Toutes les chaines ANGLAISES reprises de sa note, aplaties."""
+    out = [C.SIGNATURE_EN, C.PROMESSE_EN, C.METHODE_INTRO_EN,
+           C.FORMAT_AVERT_EN, C.EDUCATEURS_INTRO_EN, C.PLATEFORME_NOTE_EN,
+           C.SECURITE_INTRO_EN, C.COUTS_NOTE_EN, C.HORIZON_EN]
+    for fr, en in (C.METHODE + C.FORMAT + C.EDUCATEURS + C.PLATEFORME
+                   + C.PARENTS + C.SECURITE + C.QUALITE + C.COUTS + C.KPI
+                   + C.PILOTE + C.ARCHI_MARQUE):
+        out.append(en)
+    for l in C.APPRENTISSAGE:
+        out += [l[2], l[4]]
+    for l in C.COUCHES:
+        out += [l[1], l[3], l[5]]
+    for l in C.AGES:
+        out += [l[1], l[3], l[5], l[7]]
+    for l in C.JOURNEE:
+        out.append(l[2])
+    for l in C.EXPLOITATION:
+        out += [l[2], l[4], l[6]]
+    for l in C.PHASES:
+        out += [l[2], l[4]]
+    for l in C.RISQUES:
+        out += [l[1], l[3]]
+    return out
+
+
+def aplatir(s):
+    """Un texte comparable : tirets, apostrophes et espaces uniformises.
+
+    Word ecrit des tirets cadratins et des apostrophes courbes ; le fichier
+    source ecrit des tirets simples et des apostrophes droites. Comparer sans
+    aplanir cela ferait echouer le controle sur la TYPOGRAPHIE, ce qui n'a
+    aucun rapport avec la question posee.
+    """
+    s = s.replace(u'’', "'").replace(u'‘', "'")
+    s = s.replace(u'“', '"').replace(u'”', '"')
+    s = s.replace(u'—', '-').replace(u'–', '-')
+    s = s.replace(u' ', ' ')
+    return re.sub(r'\s+', ' ', s).strip().lower()
+
+
+NOTE = None
+for base in (ICI, os.path.dirname(ICI)):
+    cand = os.path.join(base, 'KIMO_Decentralized_Early_Learning_Concept.docx')
+    if os.path.isfile(cand):
+        NOTE = cand
+        break
+
+if NOTE is None:
+    # Un controle qu'on n'a pas pu executer n'est pas un controle vert.
+    t('la note de concept du fondateur est disponible pour comparaison',
+      False, 'KIMO_Decentralized_Early_Learning_Concept.docx introuvable — '
+             'CONTROLE NON EXECUTE')
+else:
+    import zipfile
+    with zipfile.ZipFile(NOTE) as z:
+        xml = z.read('word/document.xml').decode('utf-8')
+    brut = _H.unescape(re.sub(r'<[^>]+>', ' ', xml))
+    SOURCE = aplatir(brut)
+    t('la note de concept a ete lue (%d caracteres)' % len(SOURCE),
+      len(SOURCE) > 8000, len(SOURCE))
+
+    phrases = [p for p in phrases_anglaises() if p and p.strip()]
+    absentes = [p for p in phrases if aplatir(p) not in SOURCE]
+    t('les %d passages anglais du site figurent mot pour mot dans sa note'
+      % len(phrases), not absentes,
+      ' || '.join(a[:70] for a in absentes[:3]))
+
+    # Et le controle doit pouvoir echouer : une phrase que j'aurais ecrite
+    # moi-meme ne doit PAS etre trouvee dans son document.
+    t('ce controle sait reperer une phrase qui ne vient pas de lui',
+      aplatir('KIMO guarantees a 30 percent return on every center')
+      not in SOURCE)
+
+    # Le francais n'est PAS compare : c'est une traduction, elle n'est pas
+    # dans le document. Le site doit donc le dire, sur la page concernee.
+    t('la page concept annonce que le francais est une traduction',
+      'traduction' in _H.unescape(HTML['concept.html']).lower())
+
+
+# ===========================================================================
 print('\n--- AUCUN CHIFFRE INVENTE ---')
 # ===========================================================================
 # Ni reglementaire (c'est du droit, ca expose un candidat), ni commercial
@@ -139,6 +230,24 @@ if eco:
       and all('class="tbc"' in c for c in cellules))
     t('aucun montant ne figure dans la colonne des valeurs',
       not any(re.search(r'\d', c) for c in cellules))
+
+# La SEULE fourchette de capacite ecrite sur le site est la sienne (« 8 a 20
+# », section 4 de sa note), et elle ne doit jamais apparaitre sans la reserve
+# qui l'accompagne. Un chiffre de capacite lu sans sa reserve est lu comme un
+# plafond legal, et il ne l'est pas.
+capa = re.findall(r'8 a 20[^<]*', _H.unescape(HTML['concept.html']))
+t('la fourchette de capacite apparait bien sur la page concept',
+  len(capa) >= 1, capa)
+t('elle n\'apparait jamais sans sa reserve reglementaire',
+  all('sous reserve de la reglementation' in c for c in capa),
+  ' | '.join(capa))
+t('la fourchette de capacite ne remplace pas la ligne « capacite » du '
+  'tableau reglementaire',
+  all(l[5] is None for l in C.REGLEMENTAIRE if l[0] == 'capacite'))
+t('la reserve du fondateur sur la juridiction est reprise sur les deux '
+  'pages qui parlent de capacite',
+  all(_H.escape(C.FORMAT_AVERT_FR, quote=True) in HTML[n]
+      for n in ('index.html', 'concept.html')))
 
 t('les %d points ouverts sont listes en haut de la page franchise'
   % len(C.A_DEFINIR),
@@ -239,11 +348,88 @@ for nom, html in HTML.items():
     t('%s : toutes les ancres internes existent dans la page' % nom,
       ancres <= set(ids), ', '.join(sorted(ancres - set(ids))))
 
-t('les liens entre les deux pages existent dans les deux sens',
-  'href="franchise.html"' in HTML['index.html']
-  and 'href="index.html"' in HTML['franchise.html'])
+t('les trois pages se lient les unes aux autres',
+  all(('href="%s"' % autre) in HTML[nom] or ('href="%s#' % autre) in HTML[nom]
+      for nom in PAGES for autre in PAGES if autre != nom),
+  ', '.join('%s -> %s' % (nom, autre) for nom in PAGES for autre in PAGES
+            if autre != nom and ('href="%s"' % autre) not in HTML[nom]
+            and ('href="%s#' % autre) not in HTML[nom]))
+
+# Les ancres d'une page vers UNE AUTRE page. Le controle precedent ne voit
+# que « href="#x" » ; un « concept.html#p-echecs » casse en silence, et il
+# casse au clic, pas a la construction.
+IDS = dict((n, set(re.findall(r'\bid="([^"]+)"', HTML[n]))) for n in PAGES)
+croisees = []
+for nom, html in HTML.items():
+    for cible, ancre in re.findall(r'href="([a-z]+\.html)#([^"]+)"', html):
+        if cible not in IDS:
+            croisees.append('%s -> %s (page inconnue)' % (nom, cible))
+        elif ancre not in IDS[cible]:
+            croisees.append('%s -> %s#%s' % (nom, cible, ancre))
+t('les ancres d\'une page vers une autre pointent sur un element existant',
+  not croisees, ' | '.join(croisees[:4]))
 t('les liens vers les autres sites du groupe sont absolus',
   all(C.URL_ANNUAIRE in h and C.URL_PRESTIGE in h for h in HTML.values()))
+
+
+# ===========================================================================
+print('\n--- LA PAGE CONCEPT ---')
+# ===========================================================================
+c = HTML['concept.html']
+t('les %d piliers d\'apprentissage ont chacun leur ancre'
+  % len(C.APPRENTISSAGE),
+  all(('id="p-%s"' % l[0]) in c for l in C.APPRENTISSAGE),
+  ', '.join(l[0] for l in C.APPRENTISSAGE if ('id="p-%s"' % l[0]) not in c))
+t('l\'accueil renvoie vers chacun des %d piliers' % len(C.APPRENTISSAGE),
+  all(('concept.html#p-%s' % l[0]) in HTML['index.html']
+      for l in C.APPRENTISSAGE))
+
+
+def lignes(bloc_id, html=c):
+    m = re.search(r'id="%s".*?</table>' % bloc_id, html, re.S)
+    if not m:
+        return -1
+    corps = re.search(r'<tbody>(.*?)</tbody>', m.group(0), re.S)
+    return len(re.findall(r'<tr', corps.group(1))) if corps else -1
+
+
+for ident, table, quoi in (('couches', C.COUCHES, 'niveaux du modele'),
+                           ('ages', C.AGES, 'etapes par age'),
+                           ('journee', C.JOURNEE, 'moments de la journee'),
+                           ('exploitation', C.EXPLOITATION,
+                            'modeles d\'exploitation'),
+                           ('risques', C.RISQUES, 'risques')):
+    t('les %d %s sont tous dans le tableau' % (len(table), quoi),
+      lignes(ident) == len(table), lignes(ident))
+
+t('les %d phases de deploiement sont presentes' % len(C.PHASES),
+  c.count('class="etape"') == len(C.PHASES), c.count('class="etape"'))
+t('la franchise est mise en avant une seule fois dans les cinq modeles',
+  c.count('<tr class="mis">') == 1, c.count('<tr class="mis">'))
+t('la page franchise renvoie bien vers les quatre autres modeles',
+  'concept.html#exploitation' in HTML['franchise.html'])
+
+# La pastille « texte a valider » disait que la methode etait MA redaction.
+# Elle ne l'est plus : elle vient de sa note. Une pastille laissee en place
+# apres qu'elle a cesse d'etre vraie apprend a ne plus lire les pastilles.
+t('la methode ne porte plus la mention « texte a valider »',
+  C.METHODE_A_VALIDER is False
+  and 'texte a valider' not in _H.unescape(TOUT))
+t('les %d principes de la methode sont sur l\'accueil ET sur le concept'
+  % len(C.METHODE),
+  all(_H.escape(fr, quote=True) in HTML['index.html']
+      and _H.escape(fr, quote=True) in c for fr, _en in C.METHODE))
+
+# La signature. L'anglais est le sien, mot pour mot, et le francais est
+# annonce comme une traduction tant qu'il ne l'a pas confirme.
+attendue = '%s — %s' % (C.MARQUE, C.SIGNATURE_EN)
+t('la signature anglaise est exactement la sienne',
+  all(_H.escape(attendue, quote=True) in HTML[n]
+      for n in ('index.html', 'concept.html')), attendue)
+t('la traduction francaise de la signature est signalee comme a valider',
+  C.SIGNATURE_TRAD_A_VALIDER
+  and all('traduction francaise a valider' in HTML[n]
+          for n in ('index.html', 'concept.html')))
 
 
 # ===========================================================================
@@ -399,6 +585,57 @@ else:
         t('accueil : le retour au francais fonctionne',
           page.locator('.nav a').first.inner_text().strip() == 'Le reseau')
 
+        # -------------------------------------------- la page du concept
+        erreurs[:] = []
+        page.goto(url('concept.html'))
+        t('concept : aucune erreur JavaScript', not erreurs,
+          ' | '.join(erreurs[:2]))
+        invisibles = page.evaluate("""() => {
+            const out = [];
+            document.querySelectorAll('body *').forEach(n => {
+              if (n.closest('details:not([open])')) return;
+              const s = getComputedStyle(n);
+              if (s.opacity === '0' || s.visibility === 'hidden')
+                out.push(n.tagName + '.' + n.className);
+            });
+            return out.slice(0, 5);
+        }""")
+        t('concept : aucun element n\'est rendu invisible', not invisibles,
+          ' | '.join(invisibles))
+        # Lire « columns:2 » dans la feuille ne dit pas que la page a deux
+        # colonnes : une regle plus generale peut avoir gagne. On demande au
+        # navigateur ce qu'il a APPLIQUE. (Ici .liste ul posait display:grid,
+        # et une grille ignore columns : la feuille en promettait deux, la
+        # page en montrait une.)
+        cols = page.evaluate(
+            "() => getComputedStyle("
+            "document.querySelector('.liste.large ul')).columnCount")
+        t('concept : les longues listes sont bien sur deux colonnes en '
+          'grand ecran', cols == '2', cols)
+        t('concept : les %d piliers sont rendus' % len(C.APPRENTISSAGE),
+          page.locator('#apprentissage .carte').count()
+          == len(C.APPRENTISSAGE),
+          page.locator('#apprentissage .carte').count())
+        # Une ancre venue de l'accueil doit tomber sur quelque chose de
+        # visible : un id qui existe dans le fichier mais que rien ne rend
+        # n'est pas un lien qui marche.
+        page.goto(url('index.html') + '')
+        page.click('a[href="concept.html#p-echecs"]')
+        page.wait_for_load_state()
+        t('le lien « echecs » de l\'accueil mene au bon paragraphe',
+          page.locator('#p-echecs').is_visible()
+          and 'chec' in page.locator('#p-echecs h3').inner_text(),
+          page.url.split('/')[-1])
+        page.click('.langue button[data-l="en"]')
+        t('concept : la bascule anglaise n\'efface pas la page',
+          len(page.locator('#p-echecs p').inner_text().strip()) > 60,
+          page.locator('#p-echecs p').inner_text()[:50])
+        t('concept : le pilier passe bien en anglais',
+          page.locator('#p-echecs h3').inner_text().strip()
+          == 'Chess & Strategic Thinking',
+          page.locator('#p-echecs h3').inner_text())
+        page.click('.langue button[data-l="fr"]')
+
         # ------------------------------------------- le simulateur en vrai
         page.goto(url('franchise.html'))
         t('franchise : aucune erreur JavaScript', not erreurs,
@@ -498,6 +735,19 @@ else:
         t('sans JavaScript : le tableau reglementaire est visible',
           page.locator('#cadre .tbc').count() == len(C.REGLEMENTAIRE),
           page.locator('#cadre .tbc').count())
+        page.goto(url('concept.html'))
+        t('sans JavaScript : les sept piliers sont lisibles',
+          page.locator('#apprentissage .carte').count()
+          == len(C.APPRENTISSAGE))
+        t('sans JavaScript : la journee type est complete',
+          page.locator('#journee tbody tr').count() == len(C.JOURNEE),
+          page.locator('#journee tbody tr').count())
+        t('sans JavaScript : les cinq modeles d\'exploitation sont la',
+          page.locator('#exploitation tbody tr').count()
+          == len(C.EXPLOITATION))
+        t('sans JavaScript : la reserve du fondateur sur la juridiction est '
+          'visible', page.locator('#format .reserve').first.is_visible()
+          and len(page.locator('#format .reserve').first.inner_text()) > 120)
         page.goto(url('franchise.html'))
         t('sans JavaScript : le simulateur affiche deja ses chiffres',
           page.locator('#r-resultat').inner_text().strip()
@@ -520,12 +770,22 @@ else:
             ' document.body.scrollWidth)')
         t('mobile : la page ne deborde pas en largeur (%d px)' % largeur,
           largeur <= 390 + 1, largeur)
-        page.goto(url('franchise.html'))
-        largeur = page.evaluate(
-            'Math.max(document.documentElement.scrollWidth,'
-            ' document.body.scrollWidth)')
-        t('mobile : la page franchise ne deborde pas non plus (%d px)'
-          % largeur, largeur <= 390 + 1, largeur)
+        for autre in ('concept.html', 'franchise.html'):
+            page.goto(url(autre))
+            largeur = page.evaluate(
+                'Math.max(document.documentElement.scrollWidth,'
+                ' document.body.scrollWidth)')
+            t('mobile : %s ne deborde pas non plus (%d px)'
+              % (autre, largeur), largeur <= 390 + 1, largeur)
+        # Les longues listes du concept passent en deux colonnes sur grand
+        # ecran. En 390 px, deux colonnes ce sont deux colonnes de trois
+        # mots : on verifie qu'il n'en reste qu'une.
+        page.goto(url('concept.html'))
+        colonnes = page.evaluate(
+            "() => getComputedStyle("
+            "document.querySelector('.liste.large ul')).columnCount")
+        t('mobile : les listes du concept repassent sur une colonne',
+          colonnes in ('1', 'auto'), colonnes)
         ctx.close()
         nav.close()
 

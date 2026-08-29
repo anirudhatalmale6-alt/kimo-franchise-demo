@@ -158,6 +158,60 @@ section.pale{background:#f5eee2}
 /* ------------------------------------------------------------ methode --- */
 .pastille-titre{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 
+/* ----------------------------------------------------------- signature --- */
+/* « KIMO — Learn to Think. » La mention de traduction est posee A COTE, pas
+   dessous : dessous, elle se lit comme une partie de la signature. */
+.signature{display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  margin-top:18px;font-size:19px;font-weight:650;color:#2f6b52;
+  letter-spacing:.01em}
+
+/* ------------------------------------------------- listes autonomes --- */
+/* Les listes de sa note restent des listes. Sur une pleine largeur elles
+   passent en deux colonnes, mais chaque puce reste insecable : une puce
+   coupee en deux colonnes se lit comme deux puces. */
+.liste.large{background:#fff;border:1px solid #e6ddcd;border-radius:18px;
+  padding:26px 30px;max-width:none}
+/* display:block est OBLIGATOIRE ici : la regle generale .liste ul pose
+   display:grid, et un conteneur en grille ignore purement et simplement
+   `columns`. La feuille disait deux colonnes, la page en montrait une. */
+.liste.large ul{margin:0;display:block;columns:2;column-gap:44px}
+.liste.large li{break-inside:avoid;margin-bottom:12px}
+.pale .liste.large{background:#fbf7f0}
+
+/* Une reserve du fondateur : encadree, pas en petit gris. */
+.reserve{margin-top:24px;background:#fdf0e6;border:1px solid #f0cdb2;
+  border-left:4px solid #e08a5b;border-radius:14px;padding:18px 22px;
+  color:#7d3f1e;font-size:16px;max-width:86ch}
+
+.apres{margin-top:28px}
+.apres-liste{margin-top:34px}
+.apres-liste h3{margin-bottom:16px}
+section.mince{padding:22px 0}
+.rappel-modele{display:flex;gap:18px;align-items:baseline;flex-wrap:wrap;
+  border-left:3px solid #e08a5b;padding:2px 0 2px 18px;color:#4b5a53;
+  font-size:16px}
+.rappel-modele p{max-width:74ch}
+
+/* Les sept piliers en resume sur l'accueil : des liens, pas des cartes
+   mortes — chacun mene a son paragraphe sur la page concept. */
+.grille.serree{gap:14px}
+.carte.mini{display:block;padding:18px 20px;text-decoration:none;
+  color:#16211d}
+.carte.mini h3{font-size:16px;margin:0}
+.carte.mini:hover{border-color:#2f6b52}
+
+/* ------------------------------------------------- tableaux du concept --- */
+.tab.large th{width:auto}
+.tab.large thead th{background:#f5eee2;font-size:14px;letter-spacing:.06em;
+  text-transform:uppercase;color:#4b5a53;font-weight:700}
+.pale .tab.large thead th{background:#efe6d6}
+.tab.large tbody th{width:22%;color:#16211d}
+.tab.large td{color:#41504a}
+.tab tr.mis td,.tab tr.mis th{background:#f3f8f5}
+.tab tr.mis th{box-shadow:inset 3px 0 0 #2f6b52}
+.tab.horaire tbody th.h{width:130px;white-space:nowrap;
+  font-variant-numeric:tabular-nums;color:#2f6b52}
+
 /* ---------------------------------------------------------------- faq --- */
 .faq{display:grid;gap:2px;max-width:860px}
 details{background:#fff;border:1px solid #e6ddcd;padding:20px 24px}
@@ -229,6 +283,11 @@ footer a{color:#8fd6b0}
   .g2,.g3,.g4{grid-template-columns:1fr}
   .etape{grid-template-columns:44px 1fr;gap:14px;padding:20px}
   .tab th{width:auto}
+  /* Deux colonnes de puces sur 390 px de large, ce sont deux colonnes de
+     trois mots. Une seule. */
+  .liste.large ul{columns:1}
+  .liste.large{padding:22px}
+  .signature{font-size:17px}
 }
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
@@ -238,7 +297,7 @@ footer a{color:#8fd6b0}
 <body>
 <header class="haut"><div class="haut-in">
   <a class="marque" href="index.html"><svg class="diamant" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 3h12l4 6-10 12L2 9z"/><path d="M2 9h20M6 3l3 6M18 3l-3 6M12 3l-3 6M12 3l3 6M9 9l3 12M15 9l-3 12"/></svg><span class="mot">KIMO</span></a>
-  <nav class="nav"><a href="index.html" aria-current="page" data-fr="Le reseau" data-en="The network">Le reseau</a><a href="index.html#methode" data-fr="La methode" data-en="The method">La methode</a><a href="franchise.html" data-fr="Devenir franchise" data-en="Become a franchisee">Devenir franchise</a><a href="franchise.html#candidature" data-fr="Candidater" data-en="Apply">Candidater</a></nav>
+  <nav class="nav"><a href="index.html" aria-current="page" data-fr="Le reseau" data-en="The network">Le reseau</a><a href="concept.html" data-fr="Le concept" data-en="The concept">Le concept</a><a href="franchise.html" data-fr="Devenir franchise" data-en="Become a franchisee">Devenir franchise</a><a href="franchise.html#candidature" data-fr="Candidater" data-en="Apply">Candidater</a></nav>
   <div class="langue">
     <button type="button" data-l="fr" aria-pressed="true">FR</button>
     <button type="button" data-l="en" aria-pressed="false">EN</button>
@@ -246,10 +305,14 @@ footer a{color:#8fd6b0}
 </div></header>
 <div class="hero"><div class="enveloppe"><div class="hero-in">
 <div>
-<p class="surtitre" data-fr="Reseau de micro-creches decentralisees" data-en="A decentralised network of micro-nurseries">Reseau de micro-creches decentralisees</p>
+<p class="surtitre" data-fr="Reseau decentralise d&#x27;eveil et d&#x27;apprentissage" data-en="Decentralized early-learning network">Reseau decentralise d'eveil et d'apprentissage</p>
 <h1 data-fr="Une creche a taille humaine, la ou les familles habitent." data-en="A nursery on a human scale, where families actually live.">Une creche a taille humaine, la ou les familles habitent.</h1>
-<p class="chapo" data-fr="KIMO ouvre de petites unites de quartier, tenues par des responsables independants, avec une methode commune et les memes outils partout. Une creche courte se place ou une grande structure ne rentre pas — et l&#x27;enfant y retrouve chaque matin le meme adulte." data-en="KIMO opens small neighbourhood units, run by independent managers, with a shared method and the same tools everywhere. A small nursery fits where a large facility cannot — and the child meets the same adult every morning.">KIMO ouvre de petites unites de quartier, tenues par des responsables independants, avec une methode commune et les memes outils partout. Une creche courte se place ou une grande structure ne rentre pas — et l'enfant y retrouve chaque matin le meme adulte.</p>
-<div class="actions"><a class="bouton plein" href="franchise.html" data-fr="Ouvrir une KIMO" data-en="Open a KIMO">Ouvrir une KIMO</a><a class="bouton vide" href="#modele" data-fr="Comprendre le modele" data-en="Understand the model">Comprendre le modele</a></div>
+<p class="signature">
+<span data-fr="KIMO — Apprendre a penser." data-en="KIMO — Learn to Think.">KIMO — Apprendre a penser.</span>
+<span class="tbc" data-fr="traduction francaise a valider" data-en="English wording is yours, as written">traduction francaise a valider</span>
+</p>
+<p class="chapo" data-fr="KIMO ouvre de petites unites de quartier, tenues par des equipes locales, avec un meme programme, une meme plateforme et un meme systeme qualite. On y travaille la logique, les echecs, les mathematiques, les sciences, l&#x27;histoire, le mouvement et la creation — par le jeu, jamais par la lecon." data-en="KIMO opens small neighbourhood units, run by local teams, sharing one educational program, one platform and one quality system. Logic, chess, mathematics, science, history, movement and creativity — through play, never through lessons.">KIMO ouvre de petites unites de quartier, tenues par des equipes locales, avec un meme programme, une meme plateforme et un meme systeme qualite. On y travaille la logique, les echecs, les mathematiques, les sciences, l'histoire, le mouvement et la creation — par le jeu, jamais par la lecon.</p>
+<div class="actions"><a class="bouton plein" href="concept.html" data-fr="Lire le concept" data-en="Read the concept">Lire le concept</a><a class="bouton vide" href="franchise.html" data-fr="Ouvrir une KIMO" data-en="Open a KIMO">Ouvrir une KIMO</a></div>
 </div>
 <div class="etat">
 <h3 data-fr="Etat du reseau" data-en="Network status">Etat du reseau</h3>
@@ -271,16 +334,35 @@ footer a{color:#8fd6b0}
 <div class="carte"><h3 data-fr="Les couts lourds sont mutualises" data-en="The heavy costs are shared">Les couts lourds sont mutualises</h3><p data-fr="Inscription en ligne, facturation, planning, achats, conformite, site et referencement : une creche seule les paie en entier et les fait mal. Le reseau les porte une fois pour toutes." data-en="Enrolment, billing, scheduling, purchasing, compliance, website and local search: a standalone nursery pays for all of it and does it badly. The network carries it once, for everyone.">Inscription en ligne, facturation, planning, achats, conformite, site et referencement : une creche seule les paie en entier et les fait mal. Le reseau les porte une fois pour toutes.</p></div>
 </div></div></section>
 <section id="methode" class="pale"><div class="enveloppe">
-<div class="titre-bloc"><div class="pastille-titre">
+<div class="titre-bloc">
 <h2 data-fr="La methode" data-en="The method">La methode</h2>
-<span class="tbc" data-fr="texte a valider" data-en="draft, to be approved">texte a valider</span>
+<p data-fr="KIMO ne cherche pas a transformer la creche en ecole primaire. Les themes intellectuels y sont des supports de jeu et de decouverte. L&#x27;objectif est de poser les bases du raisonnement et de la curiosite sans rien retirer au jeu libre, au developpement affectif, a la parole, a la vie en groupe, a la creation et au repos." data-en="KIMO is not intended to turn preschool into primary school. The curriculum uses intellectual themes as tools for play and discovery. The objective is to create foundations for reasoning and curiosity while preserving free play, emotional development, communication, social interaction, creativity and rest.">KIMO ne cherche pas a transformer la creche en ecole primaire. Les themes intellectuels y sont des supports de jeu et de decouverte. L'objectif est de poser les bases du raisonnement et de la curiosite sans rien retirer au jeu libre, au developpement affectif, a la parole, a la vie en groupe, a la creation et au repos.</p>
 </div>
-<p data-fr="Ce qui suit est une proposition de redaction, a corriger. La pedagogie d&#x27;un reseau se decide par son fondateur ; ce texte sert a montrer ou elle se place sur le site et combien de place elle prend." data-en="What follows is a draft, to be corrected. A network&#x27;s pedagogy is its founder&#x27;s decision; this text shows where it sits on the site and how much room it takes.">Ce qui suit est une proposition de redaction, a corriger. La pedagogie d'un reseau se decide par son fondateur ; ce texte sert a montrer ou elle se place sur le site et combien de place elle prend.</p>
-</div><div class="grille g4">
-<div class="carte"><h3 data-fr="Observer avant de proposer" data-en="Observe before proposing">Observer avant de proposer</h3><p data-fr="Chaque enfant a un cahier d&#x27;observation tenu par l&#x27;adulte qui s&#x27;occupe de lui. On y note ce qu&#x27;il fait seul, ce qu&#x27;il fait avec aide, ce qu&#x27;il evite. C&#x27;est ce cahier qui decide de la suite, pas le calendrier." data-en="Every child has an observation record kept by the adult who looks after them: what they do alone, what they do with help, what they avoid. That record decides what comes next, not the calendar.">Chaque enfant a un cahier d'observation tenu par l'adulte qui s'occupe de lui. On y note ce qu'il fait seul, ce qu'il fait avec aide, ce qu'il evite. C'est ce cahier qui decide de la suite, pas le calendrier.</p></div>
-<div class="carte"><h3 data-fr="Une progression en petites etapes" data-en="A progression in small steps">Une progression en petites etapes</h3><p data-fr="Les activites sont classees par etapes courtes et ordonnees. Un enfant avance a son rythme dans une suite connue, au lieu de suivre le groupe ou de l&#x27;attendre." data-en="Activities are ordered in short, sequenced steps. A child moves at their own pace through a known sequence, instead of following the group or waiting for it.">Les activites sont classees par etapes courtes et ordonnees. Un enfant avance a son rythme dans une suite connue, au lieu de suivre le groupe ou de l'attendre.</p></div>
-<div class="carte"><h3 data-fr="Faire seul, des que c&#x27;est possible" data-en="Doing it alone, as soon as possible">Faire seul, des que c'est possible</h3><p data-fr="Le materiel est a hauteur d&#x27;enfant et range toujours au meme endroit. L&#x27;adulte montre une fois, puis se retire. Ce qu&#x27;un enfant peut faire seul, on ne le fait pas a sa place." data-en="Material is at child height and always stored in the same place. The adult demonstrates once, then steps back. Whatever a child can do alone is not done for them.">Le materiel est a hauteur d'enfant et range toujours au meme endroit. L'adulte montre une fois, puis se retire. Ce qu'un enfant peut faire seul, on ne le fait pas a sa place.</p></div>
-<div class="carte"><h3 data-fr="Les parents recoivent la meme trace" data-en="Parents get the same record">Les parents recoivent la meme trace</h3><p data-fr="Ce qui est note dans le cahier est ce qui est envoye a la famille le soir. Pas un resume different, pas un compte rendu ecrit pour rassurer." data-en="What goes into the record is what is sent to the family in the evening. Not a different summary, not a report written to reassure.">Ce qui est note dans le cahier est ce qui est envoye a la famille le soir. Pas un resume different, pas un compte rendu ecrit pour rassurer.</p></div>
+<div class="liste large"><ul>
+<li><span data-fr="Poser la question avant de donner la reponse." data-en="Ask questions before giving answers.">Poser la question avant de donner la reponse.</span></li>
+<li><span data-fr="Manipuler des objets reels avant d&#x27;introduire des symboles abstraits." data-en="Manipulate real objects before introducing abstract symbols.">Manipuler des objets reels avant d'introduire des symboles abstraits.</span></li>
+<li><span data-fr="Demander a l&#x27;enfant d&#x27;expliquer comment il est arrive a sa solution." data-en="Encourage children to explain how they reached a solution.">Demander a l'enfant d'expliquer comment il est arrive a sa solution.</span></li>
+<li><span data-fr="Se servir de l&#x27;erreur pour essayer une autre approche." data-en="Use mistakes as opportunities to test another approach.">Se servir de l'erreur pour essayer une autre approche.</span></li>
+<li><span data-fr="Equilibrer les activites dirigees et l&#x27;exploration menee par l&#x27;enfant." data-en="Balance structured activities with child-led exploration.">Equilibrer les activites dirigees et l'exploration menee par l'enfant.</span></li>
+<li><span data-fr="Regler la difficulte sur la maturite de l&#x27;enfant, pas sur son age." data-en="Adapt complexity to developmental readiness rather than age alone.">Regler la difficulte sur la maturite de l'enfant, pas sur son age.</span></li>
+</ul></div>
+<div class="apres">
+<a class="bouton vide" href="concept.html#apprentissage" data-fr="Les sept piliers d'apprentissage" data-en="The seven learning pillars">Les sept piliers d'apprentissage</a>
+</div>
+</div></section>
+<section id="piliers"><div class="enveloppe">
+<div class="titre-bloc">
+<h2 data-fr="Ce qu&#x27;on y travaille" data-en="What is worked on">Ce qu'on y travaille</h2>
+<p data-fr="Sept domaines, tous abordes par le jeu. Le detail de chacun est sur la page du concept." data-en="Seven areas, all approached through play. Each one is detailed on the concept page.">Sept domaines, tous abordes par le jeu. Le detail de chacun est sur la page du concept.</p>
+</div>
+<div class="grille g4 serree">
+<a class="carte mini" href="concept.html#p-logique"><h3 data-fr="Logique et resolution de problemes" data-en="Logic &amp; Problem Solving">Logique et resolution de problemes</h3></a>
+<a class="carte mini" href="concept.html#p-echecs"><h3 data-fr="Echecs et pensee strategique" data-en="Chess &amp; Strategic Thinking">Echecs et pensee strategique</h3></a>
+<a class="carte mini" href="concept.html#p-maths"><h3 data-fr="Mathematiques" data-en="Mathematics">Mathematiques</h3></a>
+<a class="carte mini" href="concept.html#p-sciences"><h3 data-fr="Physique et sciences" data-en="Physics &amp; Science">Physique et sciences</h3></a>
+<a class="carte mini" href="concept.html#p-histoire"><h3 data-fr="Histoire et civilisations" data-en="History &amp; Civilizations">Histoire et civilisations</h3></a>
+<a class="carte mini" href="concept.html#p-corps"><h3 data-fr="Developpement physique" data-en="Physical Development">Developpement physique</h3></a>
+<a class="carte mini" href="concept.html#p-creation"><h3 data-fr="Creation et expression" data-en="Creativity &amp; Communication">Creation et expression</h3></a>
 </div></div></section>
 <section id="cadre"><div class="enveloppe">
 <div class="titre-bloc">
@@ -294,6 +376,7 @@ footer a{color:#8fd6b0}
 <tr><th data-fr="Autorite qui delivre l&#x27;agrement" data-en="Authority granting the licence">Autorite qui delivre l'agrement</th><td class="val"><span class="tbc" data-fr="a definir" data-en="to be set">a definir</span></td><td class="exp"><span data-fr="C&#x27;est elle qui visite le local avant l&#x27;ouverture et qui peut la refuser. Le calendrier d&#x27;ouverture depend de son delai." data-en="It inspects the premises before opening and can refuse. The opening schedule depends on its lead time.">C'est elle qui visite le local avant l'ouverture et qui peut la refuser. Le calendrier d'ouverture depend de son delai.</span></td></tr>
 <tr><th data-fr="Aides et financement des familles" data-en="Family funding and subsidies">Aides et financement des familles</th><td class="val"><span class="tbc" data-fr="a definir" data-en="to be set">a definir</span></td><td class="exp"><span data-fr="Dans plusieurs pays, une partie du prix paye par la famille est prise en charge. Cela change le tarif affichable, donc tout le modele." data-en="In several countries part of the fee paid by the family is subsidised. That changes the price you can charge, and so the whole model.">Dans plusieurs pays, une partie du prix paye par la famille est prise en charge. Cela change le tarif affichable, donc tout le modele.</span></td></tr>
 </tbody></table></div>
+<div class="reserve" data-fr="Un etablissement KIMO ne doit jamais echanger la securite ou la conformite contre de la compacite. La capacite definitive, les taux d&#x27;encadrement, les dimensions des pieces, le couchage, la preparation des repas et les exigences d&#x27;espace exterieur doivent etre adaptes a la juridiction dans laquelle chaque unite fonctionne." data-en="KIMO facilities must never trade safety or regulatory compliance for compactness. Final capacity, staff ratios, room dimensions, sleep arrangements, food preparation and outdoor-space requirements must be adapted to the jurisdiction in which each unit operates.">Un etablissement KIMO ne doit jamais echanger la securite ou la conformite contre de la compacite. La capacite definitive, les taux d&#x27;encadrement, les dimensions des pieces, le couchage, la preparation des repas et les exigences d&#x27;espace exterieur doivent etre adaptes a la juridiction dans laquelle chaque unite fonctionne.</div>
 </div></section>
 <section class="pale"><div class="enveloppe"><div class="bandeau"><div>
 <h2 data-fr="Ouvrir une KIMO dans votre ville" data-en="Open a KIMO in your city">Ouvrir une KIMO dans votre ville</h2>
