@@ -1,0 +1,627 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KIMO Tutoring — soutien et enrichissement, 6 à 17 ans</title>
+<meta name="description" content="Le projet de plateforme KIMO Tutoring : matières, programmes par âge, sécurité des enfants, vérification des tuteurs, réservation, classe virtuelle, feuille de route.">
+<meta name="robots" content="noindex">
+<link rel="alternate" hreflang="fr" href="tutoring.html">
+<link rel="alternate" hreflang="en" href="en/tutoring.html">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:#fbf7f0;color:#16211d;
+  font:400 17px/1.65 ui-sans-serif,system-ui,"Segoe UI",Roboto,Helvetica,Arial,
+  sans-serif;-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto;display:block}
+a{color:#2f6b52}
+h1,h2,h3{line-height:1.15;margin:0;font-weight:650;letter-spacing:-.015em}
+h1{font-size:clamp(32px,5.2vw,58px)}
+h2{font-size:clamp(25px,3.4vw,38px)}
+h3{font-size:19px}
+p{margin:0}
+.enveloppe{max-width:1120px;margin:0 auto;padding:0 22px}
+
+/* ------------------------------------------------------------- en-tete --- */
+.haut{position:sticky;top:0;z-index:40;background:rgba(251,247,240,.94);
+  backdrop-filter:blur(9px);border-bottom:1px solid #e6ddcd}
+.haut-in{max-width:1120px;margin:0 auto;padding:12px 22px;display:flex;
+  align-items:center;gap:20px}
+.marque{display:flex;align-items:center;gap:9px;text-decoration:none;
+  color:#16211d;font-weight:700;font-size:21px;letter-spacing:.02em}
+.marque .mot{white-space:nowrap}
+.diamant{width:20px;height:20px;flex:none;fill:none;stroke:#2f6b52;
+  stroke-width:1.35;stroke-linejoin:round}
+.nav{display:flex;gap:20px;margin-left:auto;flex-wrap:wrap}
+.nav a{text-decoration:none;color:#4b5a53;font-size:15px;padding:5px 0;
+  border-bottom:2px solid transparent}
+.nav a:hover{color:#16211d}
+.nav a[aria-current="page"]{color:#16211d;border-bottom-color:#e08a5b}
+/* Le selecteur de langue est fait de deux LIENS : la langue est celle de la
+   page (/ et /en/), pas un etat que garde un script. La langue courante est
+   un <span>, pas un lien mort vers soi-meme. */
+.langue{display:flex;border:1px solid #d9cfbc;border-radius:999px;
+  overflow:hidden;flex:none}
+.langue a,.langue span{font-size:13px;font-weight:600;padding:5px 12px;
+  text-decoration:none;color:#6b7a72;line-height:1.6}
+.langue a:hover{background:#efe6d6;color:#16211d}
+.langue span[aria-current]{background:#2f6b52;color:#fff}
+
+/* ---------------------------------------------------------------- hero --- */
+.hero{padding:74px 0 58px;background:
+  radial-gradient(120% 90% at 88% 0%,#efe6d6 0%,rgba(239,230,214,0) 62%)}
+.hero-in{display:grid;grid-template-columns:1.25fr .75fr;gap:46px;
+  align-items:center}
+.surtitre{font-size:13px;letter-spacing:.16em;text-transform:uppercase;
+  color:#2f6b52;font-weight:700;margin-bottom:16px}
+.hero h1{max-width:15ch}
+.chapo{margin-top:20px;font-size:19px;color:#41504a;max-width:52ch}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.bouton{display:inline-block;text-decoration:none;font-weight:650;
+  font-size:16px;padding:13px 24px;border-radius:999px;border:1px solid
+  transparent}
+.bouton.plein{background:#e08a5b;color:#231007}
+.bouton.plein:hover{background:#d67d4c}
+.bouton.vide{border-color:#c9bda6;color:#16211d}
+.bouton.vide:hover{border-color:#2f6b52}
+
+/* l'etat du reseau : un encart, pas un compteur. Il n'y a rien a compter. */
+.etat{background:#fff;border:1px solid #e6ddcd;border-radius:18px;
+  padding:24px}
+.etat h3{font-size:15px;letter-spacing:.1em;text-transform:uppercase;
+  color:#6b7a72}
+.etat ul{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:11px}
+.etat li{display:flex;gap:10px;align-items:flex-start;font-size:15px;
+  color:#41504a}
+.etat li::before{content:"";width:7px;height:7px;border-radius:50%;
+  background:#e08a5b;margin-top:8px;flex:none}
+
+/* -------------------------------------------------------------- blocs --- */
+section{padding:66px 0}
+section.pale{background:#f5eee2}
+.titre-bloc{max-width:60ch;margin-bottom:38px}
+.titre-bloc p{margin-top:14px;color:#4b5a53;font-size:18px}
+.grille{display:grid;gap:22px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.carte{background:#fff;border:1px solid #e6ddcd;border-radius:18px;
+  padding:26px}
+.carte h3{margin-bottom:10px}
+.carte p{color:#4b5a53;font-size:16px}
+.pale .carte{background:#fbf7f0}
+
+/* la pastille « a definir » — elle doit se voir, c'est tout son interet */
+.tbc{display:inline-flex;align-items:center;gap:6px;background:#fdf0e6;
+  border:1px dashed #e08a5b;color:#a2512a;border-radius:999px;
+  padding:2px 11px;font-size:13px;font-weight:650;letter-spacing:.01em;
+  white-space:nowrap}
+.tbc::before{content:"";width:6px;height:6px;border-radius:50%;
+  background:#e08a5b;flex:none}
+.note{margin-top:12px;font-size:15px;color:#6b7a72}
+
+/* ----------------------------------------------------------- tableaux --- */
+.tab{width:100%;border-collapse:collapse;background:#fff;
+  border:1px solid #e6ddcd;border-radius:18px;overflow:hidden}
+.enrouleur{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tab th,.tab td{text-align:left;padding:16px 18px;border-bottom:1px solid
+  #efe7d9;vertical-align:top;font-size:16px}
+.tab tr:last-child td{border-bottom:0}
+.tab th{width:32%;font-weight:650;color:#16211d}
+.tab td.val{width:20%;white-space:nowrap}
+.tab td.exp{color:#4b5a53;font-size:15px}
+
+/* ----------------------------------------------------------- parcours --- */
+.etapes{counter-reset:e;display:grid;gap:2px}
+.etape{display:grid;grid-template-columns:64px 1fr;gap:20px;
+  background:#fff;border:1px solid #e6ddcd;padding:24px}
+.etape:first-child{border-radius:18px 18px 0 0}
+.etape:last-child{border-radius:0 0 18px 18px}
+.etape .num{font-size:26px;font-weight:700;color:#c9bda6;line-height:1.1}
+.etape h3{margin-bottom:8px}
+.etape p{color:#4b5a53;font-size:16px}
+
+/* --------------------------------------------------------- deux listes --- */
+.listes{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.liste{background:#fff;border:1px solid #e6ddcd;border-radius:18px;
+  padding:26px}
+.liste.accent{background:#2f6b52;border-color:#2f6b52;color:#fff}
+.liste.accent h3{color:#fff}
+.liste.accent li{color:#dbe8e1}
+.liste.accent li::before{background:#e08a5b}
+.liste ul{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:12px}
+.liste li{display:flex;gap:11px;align-items:flex-start;font-size:16px;
+  color:#41504a}
+.liste li::before{content:"";width:7px;height:7px;border-radius:50%;
+  background:#2f6b52;margin-top:9px;flex:none}
+
+/* --------------------------------------------------------- simulateur --- */
+.simu{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+.champs{background:#fff;border:1px solid #e6ddcd;border-radius:18px;
+  padding:26px;display:grid;gap:16px}
+.champ{display:grid;gap:6px}
+.champ label{font-size:15px;font-weight:600;color:#41504a}
+.champ input,.champ select,.form select,.form input,.form textarea{
+  font:inherit;font-size:16px;padding:11px 13px;border:1px solid #d9cfbc;
+  border-radius:11px;background:#fbf7f0;color:#16211d;width:100%}
+.champ input:focus,.champ select:focus,.form input:focus,.form select:focus,
+.form textarea:focus{outline:2px solid #2f6b52;outline-offset:1px}
+.sortie{background:#16211d;color:#fff;border-radius:18px;padding:26px}
+.sortie h3{color:#fff;font-size:15px;letter-spacing:.1em;
+  text-transform:uppercase}
+.sortie dl{margin:18px 0 0;display:grid;gap:0}
+.sortie .ligne{display:flex;justify-content:space-between;gap:16px;
+  padding:12px 0;border-bottom:1px solid #2c3a34;font-size:16px}
+.sortie .ligne:last-child{border-bottom:0}
+.sortie dt{color:#a9bab2}
+.sortie dd{margin:0;font-variant-numeric:tabular-nums;font-weight:650}
+.sortie .fort{font-size:20px}
+.sortie .fort dd{color:#8fd6b0}
+.sortie .neg dd{color:#ffab8f}
+.sortie .rappel{margin-top:18px;font-size:14px;color:#a9bab2}
+
+/* ------------------------------------------------------------ methode --- */
+.pastille-titre{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+
+/* ----------------------------------------------------------- signature --- */
+/* « KIMO — Learn to Think. » La mention de traduction est posee A COTE, pas
+   dessous : dessous, elle se lit comme une partie de la signature. */
+.signature{display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  margin-top:18px;font-size:19px;font-weight:650;color:#2f6b52;
+  letter-spacing:.01em}
+
+/* ------------------------------------------------- listes autonomes --- */
+/* Les listes de sa note restent des listes. Sur une pleine largeur elles
+   passent en deux colonnes, mais chaque puce reste insecable : une puce
+   coupee en deux colonnes se lit comme deux puces. */
+.liste.large{background:#fff;border:1px solid #e6ddcd;border-radius:18px;
+  padding:26px 30px;max-width:none}
+/* display:block est OBLIGATOIRE ici : la regle generale .liste ul pose
+   display:grid, et un conteneur en grille ignore purement et simplement
+   `columns`. La feuille disait deux colonnes, la page en montrait une. */
+.liste.large ul{margin:0;display:block;columns:2;column-gap:44px}
+.liste.large li{break-inside:avoid;margin-bottom:12px}
+.pale .liste.large{background:#fbf7f0}
+
+/* Une reserve du fondateur : encadree, pas en petit gris. */
+.reserve{margin-top:24px;background:#fdf0e6;border:1px solid #f0cdb2;
+  border-left:4px solid #e08a5b;border-radius:14px;padding:18px 22px;
+  color:#7d3f1e;font-size:16px;max-width:86ch}
+
+.apres{margin-top:28px}
+.apres-liste{margin-top:34px}
+.apres-liste h3{margin-bottom:16px}
+section.mince{padding:22px 0}
+.rappel-modele{display:flex;gap:18px;align-items:baseline;flex-wrap:wrap;
+  border-left:3px solid #e08a5b;padding:2px 0 2px 18px;color:#4b5a53;
+  font-size:16px}
+.rappel-modele p{max-width:74ch}
+
+/* Les sept piliers en resume sur l'accueil : des liens, pas des cartes
+   mortes — chacun mene a son paragraphe sur la page concept. */
+.grille.serree{gap:14px}
+.carte.mini{display:block;padding:18px 20px;text-decoration:none;
+  color:#16211d}
+.carte.mini h3{font-size:16px;margin:0}
+.carte.mini:hover{border-color:#2f6b52}
+
+/* ------------------------------------------------------- KIMO Tutoring --- */
+/* Les quatre programmes par age. La tranche d'age est ce qu'un parent
+   cherche en premier : elle passe AVANT le nom du programme. */
+.carte.prog .age{font-size:13px;font-weight:700;letter-spacing:.12em;
+  color:#e08a5b;margin-bottom:8px}
+.carte.prog h3{margin-bottom:10px}
+.carte.prog p{color:#4b5a53;font-size:15px}
+.liste.large code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:14px;background:#f5eee2;border:1px solid #e6ddcd;
+  border-radius:7px;padding:2px 7px;color:#2f6b52}
+.liste code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:14px;background:#f5eee2;border:1px solid #e6ddcd;
+  border-radius:7px;padding:2px 7px;color:#2f6b52}
+/* le code de monnaie, dans le bloc sombre du simulateur */
+.sortie .dev{color:#a9bab2;font-weight:600}
+
+/* ------------------------------------------------- tableaux du concept --- */
+.tab.large th{width:auto}
+.tab.large thead th{background:#f5eee2;font-size:14px;letter-spacing:.06em;
+  text-transform:uppercase;color:#4b5a53;font-weight:700}
+.pale .tab.large thead th{background:#efe6d6}
+.tab.large tbody th{width:22%;color:#16211d}
+.tab.large td{color:#41504a}
+.tab tr.mis td,.tab tr.mis th{background:#f3f8f5}
+.tab tr.mis th{box-shadow:inset 3px 0 0 #2f6b52}
+.tab.horaire tbody th.h{width:130px;white-space:nowrap;
+  font-variant-numeric:tabular-nums;color:#2f6b52}
+
+/* ---------------------------------------------------------------- faq --- */
+.faq{display:grid;gap:2px;max-width:860px}
+details{background:#fff;border:1px solid #e6ddcd;padding:20px 24px}
+details:first-of-type{border-radius:18px 18px 0 0}
+details:last-of-type{border-radius:0 0 18px 18px}
+summary{cursor:pointer;font-weight:650;font-size:17px;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";float:right;color:#e08a5b;font-weight:700}
+details[open] summary::after{content:"\2013"}
+details p{margin-top:12px;color:#4b5a53;font-size:16px;max-width:70ch}
+
+/* ------------------------------------------------------------ formulaire */
+.form{background:#fff;border:1px solid #e6ddcd;border-radius:18px;
+  padding:30px;display:grid;gap:18px;max-width:760px}
+.form .paire{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.form label{font-size:15px;font-weight:600;color:#41504a;display:block;
+  margin-bottom:6px}
+.form textarea{min-height:120px;resize:vertical}
+.oblig{color:#a2512a}
+.form .env{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.form button{font:inherit;font-weight:650;font-size:16px;padding:13px 26px;
+  border-radius:999px;border:0;background:#e08a5b;color:#231007;cursor:pointer}
+.form button:hover{background:#d67d4c}
+.recu{background:#eaf3ee;border:1px solid #b9d6c7;border-radius:14px;
+  padding:16px 18px;font-size:15px;color:#1f4a39}
+
+/* ------------------------------------------------------------- bandeau --- */
+.bandeau{background:#2f6b52;color:#fff;border-radius:22px;padding:44px;
+  display:flex;gap:28px;align-items:center;justify-content:space-between;
+  flex-wrap:wrap}
+.bandeau h2{color:#fff;max-width:20ch}
+.bandeau p{color:#cfe3d9;margin-top:10px;max-width:46ch}
+
+/* ---------------------------------------------------------------- pied --- */
+footer{background:#16211d;color:#a9bab2;padding:48px 0;margin-top:6px;
+  font-size:15px}
+footer .devise{color:#fff;font-size:19px;font-weight:600;
+  display:flex;align-items:center;gap:10px;margin-bottom:8px}
+footer .devise .diamant{stroke:#e08a5b;width:18px;height:18px}
+footer .fond{color:#8ea79a;margin-bottom:22px}
+footer .avert{border:1px solid #2c3a34;border-radius:14px;padding:16px 18px;
+  margin-bottom:20px;color:#c3d2ca;font-size:14px;max-width:82ch}
+footer .liens-sites{display:flex;gap:22px;flex-wrap:wrap;margin-top:16px}
+footer a{color:#8fd6b0}
+
+/* -------------------------------------------------------------- mobile --- */
+@media(max-width:900px){
+  .hero-in{grid-template-columns:1fr;gap:32px}
+  .g3,.g4{grid-template-columns:repeat(2,1fr)}
+  .simu,.listes,.form .paire{grid-template-columns:1fr}
+  /* La navigation ne DISPARAIT pas en mobile : elle passe a la ligne. Un
+     menu cache derriere un bouton qu'on n'a pas construit, c'est un site a
+     deux pages dont la seconde n'est atteignable que par le logo.
+     En revanche l'en-tete cesse d'etre COLLE : sur deux lignes il ferait
+     160 px, et il mangerait un cinquieme de l'ecran pendant toute la
+     lecture. Il coute sa hauteur une fois, en haut de page. */
+  .haut{position:static}
+  .haut-in{gap:12px;flex-wrap:wrap}
+  .marque{order:1}
+  .langue{order:2;margin-left:auto}
+  .nav{order:3;width:100%;margin-left:0;gap:16px;font-size:14px;
+    border-top:1px solid #e6ddcd;padding-top:9px}
+  .nav a{font-size:14px}
+  section{padding:48px 0}
+  .hero{padding:48px 0 40px}
+  .bandeau{padding:30px}
+}
+@media(max-width:620px){
+  .g2,.g3,.g4{grid-template-columns:1fr}
+  .etape{grid-template-columns:44px 1fr;gap:14px;padding:20px}
+  .tab th{width:auto}
+  /* Deux colonnes de puces sur 390 px de large, ce sont deux colonnes de
+     trois mots. Une seule. */
+  .liste.large ul{columns:1}
+  .liste.large{padding:22px}
+  .signature{font-size:17px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+<header class="haut"><div class="haut-in">
+  <a class="marque" href="index.html"><svg class="diamant" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 3h12l4 6-10 12L2 9z"/><path d="M2 9h20M6 3l3 6M18 3l-3 6M12 3l-3 6M12 3l3 6M9 9l3 12M15 9l-3 12"/></svg><span class="mot">KIMO</span></a>
+  <nav class="nav"><a href="index.html" data-fr="Le réseau" data-en="The network">Le réseau</a><a href="concept.html" data-fr="Le concept" data-en="The concept">Le concept</a><a href="franchise.html" data-fr="Devenir franchisé" data-en="Become a franchisee">Devenir franchisé</a><a href="tutoring.html" aria-current="page" data-fr="Tutorat 6-17 ans" data-en="Tutoring, ages 6-17">Tutorat 6-17 ans</a><a href="franchise.html#candidature" data-fr="Candidater" data-en="Apply">Candidater</a></nav>
+  <div class="langue"><span aria-current="true">FR</span><a href="en/tutoring.html" hreflang="en" rel="alternate">EN</a></div>
+</div></header>
+<div class="hero"><div class="enveloppe"><div class="hero-in">
+<div>
+<p class="surtitre" data-fr="KIMO Tutoring — de 6 à 17 ans" data-en="KIMO Tutoring — Ages 6-17">KIMO Tutoring — de 6 à 17 ans</p>
+<h1 data-fr="Un tuteur pour chaque matière, et une méthode derrière." data-en="A tutor for every subject, with a method behind it.">Un tuteur pour chaque matière, et une méthode derrière.</h1>
+<p class="signature">
+<span data-fr="KIMO — Apprendre à penser." data-en="KIMO — Learn to Think.">KIMO — Apprendre à penser.</span>
+<span class="tbc" data-fr="traduction française à valider" data-en="English wording is yours, as written">traduction française à valider</span>
+</p>
+<p class="chapo" data-fr="KIMO Tutoring est une plateforme numérique pour les élèves de 6 à 17 ans, qui met les familles en relation avec des tuteurs qualifies et des programmes d&#x27;enrichissement structures. Le service combine le tutorat individuel, les petits groupes, les cours en ligne et des séances en présentiel choisies. La plateforme est conçue autour du soutien scolaire, du raisonnement, de la curiosité et de progrès mesurables." data-en="KIMO Tutoring is a digital platform for students aged 6 to 17 that connects families with qualified tutors and structured enrichment programs. The service combines one-to-one tutoring, small groups, online lessons and selected in-person sessions. The platform is designed around academic support, reasoning, curiosity and measurable progress.">KIMO Tutoring est une plateforme numérique pour les élèves de 6 à 17 ans, qui met les familles en relation avec des tuteurs qualifies et des programmes d&#x27;enrichissement structures. Le service combine le tutorat individuel, les petits groupes, les cours en ligne et des séances en présentiel choisies. La plateforme est conçue autour du soutien scolaire, du raisonnement, de la curiosité et de progrès mesurables.</p>
+<div class="actions"><a class="bouton plein" href="#programmes" data-fr="Les quatre programmes" data-en="The four programs">Les quatre programmes</a><a class="bouton vide" href="#securite" data-fr="Sécurité des enfants" data-en="Child safety">Sécurité des enfants</a></div>
+</div>
+<div class="etat">
+<h3 data-fr="Où en est cette plateforme" data-en="Where this platform stands">Où en est cette plateforme</h3>
+<ul>
+<li><span data-fr="La note de spécification est écrite. La plateforme, elle, est à construire." data-en="The specification is written. The platform itself is still to be built.">La note de spécification est écrite. La plateforme, elle, est à construire.</span></li>
+<li><span data-fr="Aucun tuteur n&#x27;est inscrit, aucun cours n&#x27;est réservable, aucun paiement n&#x27;est ouvert." data-en="No tutor is registered, no lesson is bookable, no payment is open.">Aucun tuteur n&#x27;est inscrit, aucun cours n&#x27;est réservable, aucun paiement n&#x27;est ouvert.</span></li>
+<li><span><span data-fr="Juridiction de lancement" data-en="Launch jurisdiction">Juridiction de lancement</span> — <span class="tbc" data-fr="à définir" data-en="to be set">à définir</span></span></li>
+<li><span><span data-fr="Prix, commission, forfaits" data-en="Pricing, commission, packages">Prix, commission, forfaits</span> — <span class="tbc" data-fr="à définir" data-en="to be set">à définir</span></span></li>
+</ul></div>
+</div></div></div>
+<section class="mince"><div class="enveloppe">
+<div class="reserve" data-fr="Cette page présente un PROJET de plateforme. Rien n&#x27;est en service : il n&#x27;y a pas de tuteur inscrit, pas de cours réservable, pas de paiement. Aucune fiche de tuteur, aucune photo, aucune note et aucun avis de parent ne figure ici, et il n&#x27;y en aura pas tant qu&#x27;il n&#x27;y aura pas de vrais tuteurs : un parent choisit la personne à qui il confie son enfant, et une fiche inventée serait une personne inventée." data-en="This page presents a PLATFORM PROJECT. Nothing is in service: there is no registered tutor, no bookable lesson, no payment. No tutor card, no photograph, no rating and no parent review appears here, and none will until there are real tutors: a parent is choosing the person they trust with their child, and an invented profile would be an invented person.">Cette page présente un PROJET de plateforme. Rien n&#x27;est en service : il n&#x27;y a pas de tuteur inscrit, pas de cours réservable, pas de paiement. Aucune fiche de tuteur, aucune photo, aucune note et aucun avis de parent ne figure ici, et il n&#x27;y en aura pas tant qu&#x27;il n&#x27;y aura pas de vrais tuteurs : un parent choisit la personne à qui il confie son enfant, et une fiche inventée serait une personne inventée.</div>
+</div></section>
+<section id="principes"><div class="enveloppe">
+<div class="titre-bloc">
+<h2 data-fr="Ce que KIMO Tutoring doit être" data-en="What KIMO Tutoring is meant to be">Ce que KIMO Tutoring doit être</h2>
+</div>
+<div class="liste large"><ul>
+<li><span data-fr="Utilisateurs vises : élèves de 6 à 17 ans, parents et tuteurs légaux, tuteurs et administrateurs." data-en="Target users: students aged 6-17, parents/guardians, tutors and administrators.">Utilisateurs vises : élèves de 6 à 17 ans, parents et tuteurs légaux, tuteurs et administrateurs.</span></li>
+<li><span data-fr="Formats principaux : individuel en ligne, petits groupes, programmes récurrents et, là où c&#x27;est possible, tutorat local en présentiel." data-en="Core formats: online 1:1, small groups, recurring programs and, where available, local in-person tutoring.">Formats principaux : individuel en ligne, petits groupes, programmes récurrents et, là où c&#x27;est possible, tutorat local en présentiel.</span></li>
+<li><span data-fr="Positionnement : soutien scolaire ET enrichissement intellectuel, pas seulement de l&#x27;aide aux devoirs." data-en="Positioning: academic support plus intellectual enrichment rather than homework assistance alone.">Positionnement : soutien scolaire ET enrichissement intellectuel, pas seulement de l&#x27;aide aux devoirs.</span></li>
+<li><span data-fr="Principe premier : une réservation simple pour les parents, un apprentissage vivant pour les élèves, et de vrais contrôles d&#x27;exploitation pour KIMO." data-en="Primary principle: simple booking for parents, engaging learning for students and strong operational controls for KIMO.">Principe premier : une réservation simple pour les parents, un apprentissage vivant pour les élèves, et de vrais contrôles d&#x27;exploitation pour KIMO.</span></li>
+</ul></div>
+</div></section>
+<section id="matieres" class="pale"><div class="enveloppe">
+<div class="titre-bloc">
+<h2 data-fr="Les matières" data-en="Educational categories">Les matières</h2>
+<p data-fr="Les mêmes domaines que dans les centres, prolonges jusqu&#x27;a 17 ans." data-en="The same areas as in the centers, carried through to age 17.">Les mêmes domaines que dans les centres, prolonges jusqu&#x27;a 17 ans.</p>
+</div>
+<div class="grille g4 serree">
+<div class="carte mini"><h3 data-fr="Mathématiques" data-en="Mathematics">Mathématiques</h3></div>
+<div class="carte mini"><h3 data-fr="Logique et résolution de problèmes" data-en="Logic &amp; problem solving">Logique et résolution de problèmes</h3></div>
+<div class="carte mini"><h3 data-fr="Échecs et stratégie" data-en="Chess &amp; strategy">Échecs et stratégie</h3></div>
+<div class="carte mini"><h3 data-fr="Physique" data-en="Physics">Physique</h3></div>
+<div class="carte mini"><h3 data-fr="Sciences générales" data-en="General science">Sciences générales</h3></div>
+<div class="carte mini"><h3 data-fr="Histoire et civilisations" data-en="History &amp; civilizations">Histoire et civilisations</h3></div>
+<div class="carte mini"><h3 data-fr="Langues et lecture" data-en="Languages &amp; literacy">Langues et lecture</h3></div>
+<div class="carte mini"><h3 data-fr="Programmation et compétences numériques" data-en="Coding &amp; digital skills">Programmation et compétences numériques</h3></div>
+<div class="carte mini"><h3 data-fr="Aide aux devoirs" data-en="Homework support">Aide aux devoirs</h3></div>
+<div class="carte mini"><h3 data-fr="Préparation aux examens" data-en="Exam preparation">Préparation aux examens</h3></div>
+<div class="carte mini"><h3 data-fr="Méthodes de travail et organisation" data-en="Study methods &amp; organization">Méthodes de travail et organisation</h3></div>
+</div></div></section>
+<section id="programmes"><div class="enveloppe">
+<div class="titre-bloc">
+<h2 data-fr="Quatre programmes, quatre âges" data-en="Four programs, four ages">Quatre programmes, quatre âges</h2>
+<p data-fr="Les noms sont ceux du fondateur." data-en="The names are the founder&#x27;s.">Les noms sont ceux du fondateur.</p>
+</div>
+<div class="grille g4">
+<div class="carte prog">
+<p class="age">6-8</p>
+<h3>KIMO Discover</h3>
+<p data-fr="Fondations, curiosité, calcul, lecture, logique et sciences par le jeu." data-en="Foundations, curiosity, numeracy, reading, logic and playful science.">Fondations, curiosité, calcul, lecture, logique et sciences par le jeu.</p>
+</div>
+<div class="carte prog">
+<p class="age">9-11</p>
+<h3>KIMO Explore</h3>
+<p data-fr="Fondamentaux scolaires, échecs, expériences, résolution de problèmes et méthodes de travail." data-en="Core academics, chess, experiments, problem solving and study habits.">Fondamentaux scolaires, échecs, expériences, résolution de problèmes et méthodes de travail.</p>
+</div>
+<div class="carte prog">
+<p class="age">12-14</p>
+<h3>KIMO Advance</h3>
+<p data-fr="Mathématiques et sciences approfondies, histoire, langues, programmation et autonomie." data-en="Deeper mathematics/science, history, languages, coding and independent learning.">Mathématiques et sciences approfondies, histoire, langues, programmation et autonomie.</p>
+</div>
+<div class="carte prog">
+<p class="age">15-17</p>
+<h3>KIMO Master</h3>
+<p data-fr="Soutien au secondaire, examens, matières avancées, méthodologie et préparation de la suite." data-en="Secondary-school support, exams, advanced subjects, methodology and future preparation.">Soutien au secondaire, examens, matières avancées, méthodologie et préparation de la suite.</p>
+</div>
+</div></div></section>
+<section id="securite" class="pale"><div class="enveloppe">
+<div class="titre-bloc">
+<h2 data-fr="La sécurité des enfants" data-en="Child safety and safeguarding">La sécurité des enfants</h2>
+<p data-fr="Parce que KIMO s&#x27;adresse à des mineurs, le recrutement des tuteurs doit être plus rigoureux que sur une place de marché de tutorat pour adultes." data-en="Because KIMO serves minors, tutor onboarding must be more rigorous than a conventional adult tutoring marketplace.">Parce que KIMO s&#x27;adresse à des mineurs, le recrutement des tuteurs doit être plus rigoureux que sur une place de marché de tutorat pour adultes.</p>
+</div>
+<div class="listes">
+<div class="liste accent"><h3 data-fr="Comment un tuteur est vérifié" data-en="How a tutor is vetted">Comment un tuteur est vérifié</h3><ul>
+<li><span data-fr="Candidature et vérification d&#x27;identité." data-en="Application and identity verification.">Candidature et vérification d&#x27;identité.</span></li>
+<li><span data-fr="Examen des diplômes et de la formation, en rapport avec la matière annoncée." data-en="Education/credential review appropriate to the advertised subject.">Examen des diplômes et de la formation, en rapport avec la matière annoncée.</span></li>
+<li><span data-fr="Références, entretien et cours d&#x27;essai." data-en="References and interview/sample lesson.">Références, entretien et cours d&#x27;essai.</span></li>
+<li><span data-fr="Vérification des antécédents, là où la loi locale l&#x27;exige ou le permet." data-en="Background/vulnerable-sector screening where required or available under local law.">Vérification des antécédents, là où la loi locale l&#x27;exige ou le permet.</span></li>
+<li><span data-fr="Formation à la protection de l&#x27;enfance et code de conduite." data-en="Safeguarding training and code of conduct.">Formation à la protection de l&#x27;enfance et code de conduite.</span></li>
+<li><span data-fr="Prise en main de la plateforme et du programme." data-en="Platform and curriculum onboarding.">Prise en main de la plateforme et du programme.</span></li>
+<li><span data-fr="Période d&#x27;essai et revue de qualité." data-en="Probation/quality-review period.">Période d&#x27;essai et revue de qualité.</span></li>
+<li><span data-fr="Traitement continu des plaintes, des avis et des ré-vérifications." data-en="Ongoing complaint, review and re-verification process.">Traitement continu des plaintes, des avis et des ré-vérifications.</span></li>
+</ul></div>
+<div class="liste"><h3 data-fr="Ce que la plateforme doit garantir" data-en="What the platform must guarantee">Ce que la plateforme doit garantir</h3><ul>
+<li><span data-fr="Le parent ou le tuteur légal possède ou autorise le compte du mineur, selon l&#x27;âge et la juridiction." data-en="Parent/guardian owns or authorizes accounts for minors as required by age and jurisdiction.">Le parent ou le tuteur légal possède ou autorise le compte du mineur, selon l&#x27;âge et la juridiction.</span></li>
+<li><span data-fr="Des règles claires sur les échanges tuteur-élève et sur tout contact hors plateforme." data-en="Clear rules governing tutor-student communication and off-platform contact.">Des règles claires sur les échanges tuteur-élève et sur tout contact hors plateforme.</span></li>
+<li><span data-fr="Messagerie encadrée, modération, escalade et journaux d&#x27;audit." data-en="Controlled messaging, moderation/escalation capabilities and audit trails.">Messagerie encadrée, modération, escalade et journaux d&#x27;audit.</span></li>
+<li><span data-fr="Aucune collecte ni publication inutile de données personnelles d&#x27;enfants." data-en="No unnecessary collection or publication of children&#x27;s personal information.">Aucune collecte ni publication inutile de données personnelles d&#x27;enfants.</span></li>
+<li><span data-fr="Un moyen de signalement pour les élèves et pour les parents." data-en="Reporting mechanism for students and parents.">Un moyen de signalement pour les élèves et pour les parents.</span></li>
+<li><span data-fr="Une procédure d&#x27;urgence et d&#x27;escalade définie." data-en="Defined emergency and safeguarding escalation procedure.">Une procédure d&#x27;urgence et d&#x27;escalade définie.</span></li>
+<li><span data-fr="Accès du personnel aux dossiers sensibles selon son rôle." data-en="Role-based staff access to sensitive records.">Accès du personnel aux dossiers sensibles selon son rôle.</span></li>
+<li><span data-fr="Des règles pour les cours en présentiel : lieux approuvés, remise de l&#x27;enfant, surveillance." data-en="In-person lesson standards covering approved locations, pickup/guardian rules and supervision.">Des règles pour les cours en présentiel : lieux approuvés, remise de l&#x27;enfant, surveillance.</span></li>
+<li><span data-fr="Une revue juridique avant le lancement : protection de l&#x27;enfance, vie privée, droit de la consommation, règles du tutorat et du travail dans chaque juridiction." data-en="Legal review before launch for child protection, privacy, consumer protection and tutoring/employment rules in each jurisdiction.">Une revue juridique avant le lancement : protection de l&#x27;enfance, vie privée, droit de la consommation, règles du tutorat et du travail dans chaque juridiction.</span></li>
+</ul></div>
+</div></div></section>
+<section id="comptes"><div class="enveloppe">
+<div class="titre-bloc">
+<h2 data-fr="Côté parent, côté élève" data-en="For parents, for students">Côté parent, côté élève</h2>
+<p data-fr="Deux lecteurs différents, deux écrans différents." data-en="Two different readers, two different screens.">Deux lecteurs différents, deux écrans différents.</p>
+</div>
+<div class="listes">
+<div class="liste"><h3 data-fr="Le parent" data-en="The parent">Le parent</h3><ul>
+<li><span data-fr="Gérer un ou plusieurs enfants depuis un seul compte." data-en="Manage one or multiple children from one account.">Gérer un ou plusieurs enfants depuis un seul compte.</span></li>
+<li><span data-fr="Réserver et gérer les séances." data-en="Book and manage sessions.">Réserver et gérer les séances.</span></li>
+<li><span data-fr="Voir les cours à venir et la présence." data-en="View upcoming lessons and attendance.">Voir les cours à venir et la présence.</span></li>
+<li><span data-fr="Échanger avec le tuteur par la messagerie encadrée de la plateforme." data-en="Tutor messages through controlled platform communication.">Échanger avec le tuteur par la messagerie encadrée de la plateforme.</span></li>
+<li><span data-fr="Bilans de progrès et objectifs d&#x27;apprentissage." data-en="Progress summaries and learning objectives.">Bilans de progrès et objectifs d&#x27;apprentissage.</span></li>
+<li><span data-fr="Factures, paiements, forfaits et reçus." data-en="Invoices, payments, packages and receipts.">Factures, paiements, forfaits et reçus.</span></li>
+<li><span data-fr="Gérer les consentements, les contacts d&#x27;urgence et les réglages de confidentialité." data-en="Manage consent, emergency/contact and privacy settings.">Gérer les consentements, les contacts d&#x27;urgence et les réglages de confidentialité.</span></li>
+<li><span data-fr="Signaler un problème ou demander de l&#x27;aide." data-en="Report a concern or request support.">Signaler un problème ou demander de l&#x27;aide.</span></li>
+</ul></div>
+<div class="liste"><h3 data-fr="L&#x27;élève" data-en="The student">L&#x27;élève</h3><ul>
+<li><span data-fr="Une interface adaptée à son âge." data-en="Age-appropriate interface.">Une interface adaptée à son âge.</span></li>
+<li><span data-fr="Le cours du jour et le planning à venir." data-en="Today&#x27;s lesson and upcoming schedule.">Le cours du jour et le planning à venir.</span></li>
+<li><span data-fr="Objectifs d&#x27;apprentissage et progrès." data-en="Learning goals and progress.">Objectifs d&#x27;apprentissage et progrès.</span></li>
+<li><span data-fr="Exercices, ressources et travaux à faire." data-en="Exercises, resources and assignments.">Exercices, ressources et travaux à faire.</span></li>
+<li><span data-fr="Des réussites qui encouragent la régularité, sans classement malsain." data-en="Achievements that encourage consistency without unhealthy ranking.">Des réussites qui encouragent la régularité, sans classement malsain.</span></li>
+<li><span data-fr="Une messagerie sure, limitée aux échanges pédagogiques autorises." data-en="Safe messaging limited to authorized educational interactions.">Une messagerie sure, limitée aux échanges pédagogiques autorises.</span></li>
+</ul></div>
+</div></div></section>
+<section id="cours" class="pale"><div class="enveloppe">
+<div class="titre-bloc">
+<h2 data-fr="Réserver un cours, et le suivre" data-en="Booking a lesson, and taking it">Réserver un cours, et le suivre</h2>
+</div>
+<div class="listes">
+<div class="liste"><h3 data-fr="La réservation" data-en="Booking">La réservation</h3><ul>
+<li><span data-fr="Calendrier de disponibilité du tuteur en temps réel." data-en="Real-time tutor availability calendar.">Calendrier de disponibilité du tuteur en temps réel.</span></li>
+<li><span data-fr="Réservation d&#x27;une séance unique ou d&#x27;un cours récurrent." data-en="Single or recurring lesson booking.">Réservation d&#x27;une séance unique ou d&#x27;un cours récurrent.</span></li>
+<li><span data-fr="Planification en ligne qui tient compte des fuseaux horaires." data-en="Timezone-aware online scheduling.">Planification en ligne qui tient compte des fuseaux horaires.</span></li>
+<li><span data-fr="Report et annulation selon la politique de la plateforme." data-en="Reschedule/cancel workflow based on platform policy.">Report et annulation selon la politique de la plateforme.</span></li>
+<li><span data-fr="Confirmation et rappels automatiques." data-en="Automated confirmation and reminders.">Confirmation et rappels automatiques.</span></li>
+<li><span data-fr="Liste d&#x27;attente quand un tuteur ou un programme est complet." data-en="Waitlist for full tutors/programs.">Liste d&#x27;attente quand un tuteur ou un programme est complet.</span></li>
+<li><span data-fr="Forfaits et abonnements." data-en="Package and subscription support.">Forfaits et abonnements.</span></li>
+<li><span data-fr="Réservation contrôlée par le parent pour les mineurs." data-en="Parent-controlled booking for minors.">Réservation contrôlée par le parent pour les mineurs.</span></li>
+</ul></div>
+<div class="liste"><h3 data-fr="La classe virtuelle" data-en="The virtual classroom">La classe virtuelle</h3><ul>
+<li><span data-fr="Salle de cours vidéo sécurisée, ou intégration d&#x27;un fournisseur vidéo approuvé." data-en="Secure video lesson room or integration with an approved video provider.">Salle de cours vidéo sécurisée, ou intégration d&#x27;un fournisseur vidéo approuvé.</span></li>
+<li><span data-fr="Tableau blanc interactif et partage d&#x27;écran." data-en="Interactive whiteboard and screen sharing.">Tableau blanc interactif et partage d&#x27;écran.</span></li>
+<li><span data-fr="Partage de documents et d&#x27;exercices." data-en="Document and exercise sharing.">Partage de documents et d&#x27;exercices.</span></li>
+<li><span data-fr="Notes du tuteur et compte rendu après la séance." data-en="Tutor lesson notes and post-session summary.">Notes du tuteur et compte rendu après la séance.</span></li>
+<li><span data-fr="Travaux et ressources entre deux séances." data-en="Assignments/resources between sessions.">Travaux et ressources entre deux séances.</span></li>
+<li><span data-fr="Suivi de la présence aux séances." data-en="Session attendance tracking.">Suivi de la présence aux séances.</span></li>
+<li><span data-fr="Aucun enregistrement par défaut ; toute fonction d&#x27;enregistrement doit suivre un consentement explicite et les règles applicables à la vie privée des enfants." data-en="No recording by default; any recording feature must follow explicit consent and applicable child-privacy rules.">Aucun enregistrement par défaut ; toute fonction d&#x27;enregistrement doit suivre un consentement explicite et les règles applicables à la vie privée des enfants.</span></li>
+</ul></div>
+</div></div></section>
+<section id="tuteurs"><div class="enveloppe">
+<div class="titre-bloc">
+<h2 data-fr="Cote tuteur" data-en="For tutors">Cote tuteur</h2>
+<p data-fr="Le recrutement n&#x27;est pas ouvert : il ouvrira quand la juridiction de lancement sera choisie, parce que c&#x27;est elle qui dit quelle vérification d&#x27;antécédents est possible." data-en="Recruitment is not open: it opens once the launch jurisdiction is chosen, because that is what decides which background check is possible.">Le recrutement n&#x27;est pas ouvert : il ouvrira quand la juridiction de lancement sera choisie, parce que c&#x27;est elle qui dit quelle vérification d&#x27;antécédents est possible.</p>
+</div>
+<div class="liste large"><ul>
+<li><span data-fr="Gestion du profil et des diplômes." data-en="Profile and credential management.">Gestion du profil et des diplômes.</span></li>
+<li><span data-fr="Calendrier de disponibilité." data-en="Availability calendar.">Calendrier de disponibilité.</span></li>
+<li><span data-fr="Réservations et liste des élèves." data-en="Bookings and student roster.">Réservations et liste des élèves.</span></li>
+<li><span data-fr="Préparation des cours et bibliothèque de ressources KIMO." data-en="Lesson planning and KIMO resource library.">Préparation des cours et bibliothèque de ressources KIMO.</span></li>
+<li><span data-fr="Notes de séance et compte rendu de progrès." data-en="Session notes and progress reporting.">Notes de séance et compte rendu de progrès.</span></li>
+<li><span data-fr="Revenus, factures et état des versements le cas échéant." data-en="Earnings, invoices/payout status where applicable.">Revenus, factures et état des versements le cas échéant.</span></li>
+<li><span data-fr="Modules de formation et acceptation des règles." data-en="Training modules and policy acknowledgements.">Modules de formation et acceptation des règles.</span></li>
+<li><span data-fr="Outils de signalement et d&#x27;escalade en cas d&#x27;incident." data-en="Incident/safeguarding escalation tools.">Outils de signalement et d&#x27;escalade en cas d&#x27;incident.</span></li>
+</ul></div>
+</div></section>
+<section id="modele-tut" class="pale"><div class="enveloppe">
+<div class="titre-bloc">
+<h2 data-fr="Le modèle économique" data-en="Payments and business model">Le modèle économique</h2>
+<p data-fr="Les sources de revenus sont listées. Les MONTANTS ne le sont pas, et ce n&#x27;est pas un oubli : ce sont des décisions du fondateur." data-en="The revenue sources are listed. The AMOUNTS are not, and that is not an omission: they are the founder&#x27;s decisions.">Les sources de revenus sont listées. Les MONTANTS ne le sont pas, et ce n&#x27;est pas un oubli : ce sont des décisions du fondateur.</p>
+</div>
+<div class="liste large"><ul>
+<li><span data-fr="Commission sur les séances de tutorat individuelles." data-en="Commission on individual tutoring sessions.">Commission sur les séances de tutorat individuelles.</span></li>
+<li><span data-fr="Forfaits mensuels ou prépayés." data-en="Monthly or prepaid tutoring packages.">Forfaits mensuels ou prépayés.</span></li>
+<li><span data-fr="Frais des programmes de groupe." data-en="Group-program fees.">Frais des programmes de groupe.</span></li>
+<li><span data-fr="Adhésion optionnelle avec avantages inclus." data-en="Optional membership with bundled benefits.">Adhésion optionnelle avec avantages inclus.</span></li>
+<li><span data-fr="Contrats avec des écoles, des employeurs, des associations ou des municipalités." data-en="Institutional contracts with schools, employers, community organizations or municipalities.">Contrats avec des écoles, des employeurs, des associations ou des municipalités.</span></li>
+<li><span data-fr="Versements aux tuteurs, avec des frais et des relevés transparents." data-en="Tutor payout system with transparent fees and statements.">Versements aux tuteurs, avec des frais et des relevés transparents.</span></li>
+</ul></div>
+<div class="reserve" data-fr="La plateforme doit prendre en charge les taxes, les monnaies, les remboursements et les règles de paiement propres à chaque marche de lancement." data-en="The platform should support taxes, currencies, refunds and payment rules appropriate to each launch market.">La plateforme doit prendre en charge les taxes, les monnaies, les remboursements et les règles de paiement propres à chaque marche de lancement.</div>
+</div></section>
+<section id="mvp"><div class="enveloppe">
+<div class="titre-bloc">
+<h2 data-fr="La première version" data-en="The first version (MVP)">La première version</h2>
+<p data-fr="Ce qui doit exister le jour de l&#x27;ouverture — et rien de plus." data-en="What must exist on opening day — and nothing more.">Ce qui doit exister le jour de l&#x27;ouverture — et rien de plus.</p>
+</div>
+<div class="liste large"><ul>
+<li><span data-fr="Accueil et pages par matière." data-en="Home and subject pages.">Accueil et pages par matière.</span></li>
+<li><span data-fr="Inscription des parents et des élèves." data-en="Parent/student registration.">Inscription des parents et des élèves.</span></li>
+<li><span data-fr="Inscription et validation des tuteurs." data-en="Tutor registration and approval.">Inscription et validation des tuteurs.</span></li>
+<li><span data-fr="Profils de tuteurs et recherche." data-en="Tutor profiles and search.">Profils de tuteurs et recherche.</span></li>
+<li><span data-fr="Calendrier de disponibilité et réservation." data-en="Availability calendar and booking.">Calendrier de disponibilité et réservation.</span></li>
+<li><span data-fr="Paiements en ligne." data-en="Online payments.">Paiements en ligne.</span></li>
+<li><span data-fr="Intégration du cours vidéo." data-en="Video lesson integration.">Intégration du cours vidéo.</span></li>
+<li><span data-fr="Tableaux de bord parent, élève et tuteur." data-en="Parent, student and tutor dashboards.">Tableaux de bord parent, élève et tuteur.</span></li>
+<li><span data-fr="Messagerie et notifications de base." data-en="Basic messaging and notifications.">Messagerie et notifications de base.</span></li>
+<li><span data-fr="Console d&#x27;administration." data-en="Admin console.">Console d&#x27;administration.</span></li>
+<li><span data-fr="Notes de progrès." data-en="Progress notes.">Notes de progrès.</span></li>
+<li><span data-fr="Circuit de signalement et de protection de l&#x27;enfance." data-en="Safeguarding/reporting workflow.">Circuit de signalement et de protection de l&#x27;enfance.</span></li>
+</ul></div>
+<div class="reserve" data-fr="La ludification avancée, les recommandations par intelligence artificielle, les applications natives et une expansion géographique de grande ampleur doivent venir APRÈS la validation du parcours de tutorat de base." data-en="Advanced gamification, AI recommendations, native apps and large-scale geographic expansion should follow validation of the core tutoring workflow.">La ludification avancée, les recommandations par intelligence artificielle, les applications natives et une expansion géographique de grande ampleur doivent venir APRÈS la validation du parcours de tutorat de base.</div>
+</div></section>
+<section id="phases-tut" class="pale"><div class="enveloppe">
+<div class="titre-bloc">
+<h2 data-fr="La feuille de route" data-en="Launch roadmap">La feuille de route</h2>
+</div>
+<div class="etapes">
+<div class="etape"><div class="num">1</div><div>
+<h3 data-fr="Définition" data-en="Definition">Définition</h3>
+<p data-fr="Choisir la juridiction de lancement, valider la réglementation, arrêter les catégories du programme et le modèle économique." data-en="Choose launch jurisdiction, validate regulations, finalize curriculum categories and business model.">Choisir la juridiction de lancement, valider la réglementation, arrêter les catégories du programme et le modèle économique.</p>
+</div></div>
+<div class="etape"><div class="num">2</div><div>
+<h3 data-fr="MVP" data-en="MVP">MVP</h3>
+<p data-fr="Construire la place de marché, la réservation, le paiement, les tableaux de bord et l&#x27;infrastructure de sécurité." data-en="Build the marketplace, booking, payment, dashboards and safety infrastructure.">Construire la place de marché, la réservation, le paiement, les tableaux de bord et l&#x27;infrastructure de sécurité.</p>
+</div></div>
+<div class="etape"><div class="num">3</div><div>
+<h3 data-fr="Pilote tuteurs" data-en="Tutor Pilot">Pilote tuteurs</h3>
+<p data-fr="Recruter une première cohorte de tuteurs, encadrée, et tester les cours avec un nombre limite de familles." data-en="Recruit a controlled initial cohort of tutors and test lessons with a limited group of families.">Recruter une première cohorte de tuteurs, encadrée, et tester les cours avec un nombre limite de familles.</p>
+</div></div>
+<div class="etape"><div class="num">4</div><div>
+<h3 data-fr="Lancement public" data-en="Public Launch">Lancement public</h3>
+<p data-fr="Ouvrir les matières principales pour des tranches d&#x27;âge et des lieux choisis ; mesurer la conversion et la fidélité." data-en="Launch core subjects for selected age groups and locations; measure conversion and retention.">Ouvrir les matières principales pour des tranches d&#x27;âge et des lieux choisis ; mesurer la conversion et la fidélité.</p>
+</div></div>
+<div class="etape"><div class="num">5</div><div>
+<h3 data-fr="Expansion" data-en="Expansion">Expansion</h3>
+<p data-fr="Ajouter des matières, des villes, des programmes de groupe, des partenariats institutionnels et des technologies avancées." data-en="Add subjects, cities, group programs, institutional partnerships and advanced technology.">Ajouter des matières, des villes, des programmes de groupe, des partenariats institutionnels et des technologies avancées.</p>
+</div></div>
+</div></div></section>
+<section id="suite"><div class="enveloppe">
+<div class="titre-bloc">
+<h2 data-fr="Référencement, intelligence artificielle, indicateurs" data-en="SEO, artificial intelligence, KPIs">Référencement, intelligence artificielle, indicateurs</h2>
+</div>
+<div class="listes">
+<div class="liste"><h3 data-fr="Les pages à produire" data-en="The pages to generate">Les pages à produire</h3><p data-fr="KIMO doit être construit avec des pages d&#x27;entrée indexables, en nombre, plutôt qu&#x27;en s&#x27;appuyant seulement sur la recherche interne." data-en="KIMO should be built with scalable, indexable landing pages rather than relying only on marketplace search.">KIMO doit être construit avec des pages d&#x27;entrée indexables, en nombre, plutôt qu&#x27;en s&#x27;appuyant seulement sur la recherche interne.</p><ul>
+<li><code>/tutors/[subject]</code></li>
+<li><code>/tutors/[subject]/[city]</code></li>
+<li><code>/programs/[age-group]</code></li>
+<li><code>/subjects/[subject]</code></li>
+<li><code>/online-tutoring/[subject]</code></li>
+<li><code>/resources/[topic]</code></li>
+</ul></div>
+<div class="liste"><h3 data-fr="Ce que l&#x27;IA pourra faire" data-en="What AI may do later">Ce que l&#x27;IA pourra faire</h3><ul>
+<li><span data-fr="Mise en relation élève-tuteur selon la matière, les disponibilités, les besoins et les préférences des parents." data-en="Tutor matching based on subject, availability, learning needs and parent preferences.">Mise en relation élève-tuteur selon la matière, les disponibilités, les besoins et les préférences des parents.</span></li>
+<li><span data-fr="Exercices suggères à partir des objectifs définis par le tuteur." data-en="Suggested exercises based on tutor-defined learning objectives.">Exercices suggères à partir des objectifs définis par le tuteur.</span></li>
+<li><span data-fr="Bilans de progrès rédigés à partir des notes structurées de l&#x27;éducateur, sous revue humaine." data-en="Progress summaries generated from structured educator notes, subject to human review.">Bilans de progrès rédigés à partir des notes structurées de l&#x27;éducateur, sous revue humaine.</span></li>
+<li><span data-fr="Aide administrative pour la planification et le support." data-en="Administrative assistance for scheduling and support.">Aide administrative pour la planification et le support.</span></li>
+</ul></div>
+</div>
+<div class="reserve" data-fr="Chaque page engendrée doit contenir un contenu réellement utile et unique, et ne doit être indexée que lorsque KIMO à un service ou une information qui vaut la peine pour cette page-la." data-en="Every generated page should contain genuinely useful, unique content and should only be indexed when KIMO has relevant services or meaningful information for that page.">Chaque page engendrée doit contenir un contenu réellement utile et unique, et ne doit être indexée que lorsque KIMO à un service ou une information qui vaut la peine pour cette page-la.</div>
+<div class="reserve" data-fr="L&#x27;intelligence artificielle ne doit pas prendre seule de décision lourde de conséquences au sujet d&#x27;un enfant, ni remplacer le jugement d&#x27;un éducateur qualifie." data-en="AI must not autonomously make high-impact decisions about a child or replace qualified educator judgment.">L&#x27;intelligence artificielle ne doit pas prendre seule de décision lourde de conséquences au sujet d&#x27;un enfant, ni remplacer le jugement d&#x27;un éducateur qualifie.</div>
+<div class="apres-liste">
+<h3 data-fr="Les indicateurs suivis" data-en="The KPIs tracked">Les indicateurs suivis</h3>
+<div class="liste large"><ul>
+<li><span data-fr="Visiteur → inscription." data-en="Visitor → registration conversion.">Visiteur → inscription.</span></li>
+<li><span data-fr="Inscription → première réservation." data-en="Registration → first booking conversion.">Inscription → première réservation.</span></li>
+<li><span data-fr="Taux de réservation répétée." data-en="Repeat booking rate.">Taux de réservation répétée.</span></li>
+<li><span data-fr="Fidélité des élèves à 30, 90 et 180 jours." data-en="Student retention by 30/90/180 days.">Fidélité des élèves à 30, 90 et 180 jours.</span></li>
+<li><span data-fr="Taux d&#x27;occupation et fidélité des tuteurs." data-en="Tutor utilization and retention.">Taux d&#x27;occupation et fidélité des tuteurs.</span></li>
+<li><span data-fr="Nombre moyen de séances par élève actif." data-en="Average sessions per active student.">Nombre moyen de séances par élève actif.</span></li>
+<li><span data-fr="Taux d&#x27;annulation et d&#x27;absence." data-en="Cancellation/no-show rate.">Taux d&#x27;annulation et d&#x27;absence.</span></li>
+<li><span data-fr="Satisfaction des parents." data-en="Parent satisfaction.">Satisfaction des parents.</span></li>
+<li><span data-fr="Objectifs d&#x27;apprentissage atteints." data-en="Learning-goal completion.">Objectifs d&#x27;apprentissage atteints.</span></li>
+<li><span data-fr="Délais de réponse du support et de la protection de l&#x27;enfance." data-en="Safeguarding and support response times.">Délais de réponse du support et de la protection de l&#x27;enfance.</span></li>
+<li><span data-fr="Chiffre d&#x27;affaires et marge de contribution par élève actif." data-en="Revenue and contribution margin per active student.">Chiffre d&#x27;affaires et marge de contribution par élève actif.</span></li>
+</ul></div>
+</div>
+</div></section>
+<section id="manque" class="pale"><div class="enveloppe">
+<div class="titre-bloc">
+<h2 data-fr="Ce qu&#x27;il manque pour commencer" data-en="What is missing to start">Ce qu&#x27;il manque pour commencer</h2>
+<p data-fr="Cinq décisions, et la première commande les quatre autres." data-en="Five decisions, and the first one drives the other four.">Cinq décisions, et la première commande les quatre autres.</p>
+</div>
+<div class="liste large"><ul>
+<li><span data-fr="La JURIDICTION de lancement — c&#x27;est la première ligne de sa propre phase 1, et elle commande la revue juridique et la vérification des antécédents." data-en="The launch JURISDICTION - the first line of his own phase 1, and what drives the legal review and the background screening.">La JURIDICTION de lancement — c&#x27;est la première ligne de sa propre phase 1, et elle commande la revue juridique et la vérification des antécédents.</span></li>
+<li><span data-fr="Les PRIX : commission, forfaits, frais de groupe, adhésion." data-en="PRICING: commission, packages, group fees, membership.">Les PRIX : commission, forfaits, frais de groupe, adhésion.</span></li>
+<li><span data-fr="Le FOURNISSEUR VIDÉO retenu pour la classe virtuelle." data-en="The VIDEO PROVIDER chosen for the virtual classroom.">Le FOURNISSEUR VIDÉO retenu pour la classe virtuelle.</span></li>
+<li><span data-fr="Le prestataire de PAIEMENT et les monnaies acceptées." data-en="The PAYMENT provider and the accepted currencies.">Le prestataire de PAIEMENT et les monnaies acceptées.</span></li>
+<li><span data-fr="Qui conduit la REVUE JURIDIQUE avant le lancement." data-en="Who runs the LEGAL REVIEW before launch.">Qui conduit la REVUE JURIDIQUE avant le lancement.</span></li>
+</ul></div>
+</div></section>
+<section><div class="enveloppe"><div class="bandeau"><div>
+<h2 data-fr="Ou se place KIMO Tutoring" data-en="Where KIMO Tutoring sits">Ou se place KIMO Tutoring</h2>
+<p data-fr="KIMO Tutoring doit se placer entre une place de marché de tutorat et un réseau éducatif structure. Les familles gardent la liberté de choisir leur tuteur, pendant que KIMO définit la qualité, la sécurité et les standards pédagogiques de tout l&#x27;écosystème." data-en="KIMO Tutoring should sit between a tutoring marketplace and a structured educational network. Families receive the flexibility of choosing a tutor while KIMO defines quality, safety and educational standards across the ecosystem.">KIMO Tutoring doit se placer entre une place de marché de tutorat et un réseau éducatif structure. Les familles gardent la liberté de choisir leur tuteur, pendant que KIMO définit la qualité, la sécurité et les standards pédagogiques de tout l&#x27;écosystème.</p>
+</div><a class="bouton plein" href="concept.html" data-fr="Le concept du réseau" data-en="The network concept">Le concept du réseau</a>
+</div></div></section>
+<footer><div class="enveloppe">
+<p class="devise" data-fr="Mes sites impactent le monde." data-en="My sites impact the world.">Mes sites impactent le monde.</p>
+<p class="fond" data-fr="Hakim Adjaoudi, fondateur — JNCORP INC." data-en="Hakim Adjaoudi, founder — JNCORP INC.">Hakim Adjaoudi, fondateur — JNCORP INC.</p>
+<div class="avert" data-fr="DÉMONSTRATION. KIMO est un réseau en cours de constitution : aucune crèche n&#x27;est ouverte à ce jour. Les valeurs marquées « à définir » ne sont pas des oublis, ce sont des décisions qui n&#x27;ont pas encore été prises, ou des règles qui dépendent du pays retenu. Aucun chiffre réglementaire n&#x27;est avancé ici tant qu&#x27;il n&#x27;a pas été vérifié dans le pays concerné." data-en="DEMONSTRATION. KIMO is a network being set up: no nursery is open to date. Values marked &quot;to be set&quot; are not omissions, they are decisions not yet taken, or rules that depend on the country chosen. No regulatory figure is stated here until it has been checked in the country concerned.">DÉMONSTRATION. KIMO est un réseau en cours de constitution : aucune crèche n&#x27;est ouverte à ce jour. Les valeurs marquées « à définir » ne sont pas des oublis, ce sont des décisions qui n&#x27;ont pas encore été prises, ou des règles qui dépendent du pays retenu. Aucun chiffre réglementaire n&#x27;est avancé ici tant qu&#x27;il n&#x27;a pas été vérifié dans le pays concerné.</div>
+<div class="liens-sites"><a href="https://anirudhatalmale6-alt.github.io/annuaire-franchises-demo/" data-fr="Annuaire des franchises" data-en="Franchise directory">Annuaire des franchises</a><a href="https://anirudhatalmale6-alt.github.io/maisons-de-prestige/" data-fr="Maisons de Prestige" data-en="Maisons de Prestige">Maisons de Prestige</a></div>
+</div></footer>
+<script>
+(function(){ window.KLANG = document.documentElement.lang || 'fr'; })();
+</script>
+</body>
+</html>

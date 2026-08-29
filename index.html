@@ -3,9 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>KIMO — reseau de micro-creches decentralisees</title>
-<meta name="description" content="KIMO ouvre de petites creches de quartier tenues par des responsables independants, avec une methode commune.">
+<title>KIMO — réseau décentralisé d&#x27;éveil et d&#x27;apprentissage</title>
+<meta name="description" content="KIMO ouvre de petites crèches de quartier tenues par des équipes locales, avec un même programme et une même méthode.">
 <meta name="robots" content="noindex">
+<link rel="alternate" hreflang="fr" href="index.html">
+<link rel="alternate" hreflang="en" href="en/index.html">
 <style>
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
@@ -36,11 +38,15 @@ p{margin:0}
   border-bottom:2px solid transparent}
 .nav a:hover{color:#16211d}
 .nav a[aria-current="page"]{color:#16211d;border-bottom-color:#e08a5b}
+/* Le selecteur de langue est fait de deux LIENS : la langue est celle de la
+   page (/ et /en/), pas un etat que garde un script. La langue courante est
+   un <span>, pas un lien mort vers soi-meme. */
 .langue{display:flex;border:1px solid #d9cfbc;border-radius:999px;
   overflow:hidden;flex:none}
-.langue button{border:0;background:transparent;color:#6b7a72;font:inherit;
-  font-size:13px;font-weight:600;padding:5px 12px;cursor:pointer}
-.langue button[aria-pressed="true"]{background:#2f6b52;color:#fff}
+.langue a,.langue span{font-size:13px;font-weight:600;padding:5px 12px;
+  text-decoration:none;color:#6b7a72;line-height:1.6}
+.langue a:hover{background:#efe6d6;color:#16211d}
+.langue span[aria-current]{background:#2f6b52;color:#fff}
 
 /* ---------------------------------------------------------------- hero --- */
 .hero{padding:74px 0 58px;background:
@@ -200,6 +206,22 @@ section.mince{padding:22px 0}
 .carte.mini h3{font-size:16px;margin:0}
 .carte.mini:hover{border-color:#2f6b52}
 
+/* ------------------------------------------------------- KIMO Tutoring --- */
+/* Les quatre programmes par age. La tranche d'age est ce qu'un parent
+   cherche en premier : elle passe AVANT le nom du programme. */
+.carte.prog .age{font-size:13px;font-weight:700;letter-spacing:.12em;
+  color:#e08a5b;margin-bottom:8px}
+.carte.prog h3{margin-bottom:10px}
+.carte.prog p{color:#4b5a53;font-size:15px}
+.liste.large code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:14px;background:#f5eee2;border:1px solid #e6ddcd;
+  border-radius:7px;padding:2px 7px;color:#2f6b52}
+.liste code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:14px;background:#f5eee2;border:1px solid #e6ddcd;
+  border-radius:7px;padding:2px 7px;color:#2f6b52}
+/* le code de monnaie, dans le bloc sombre du simulateur */
+.sortie .dev{color:#a9bab2;font-weight:600}
+
 /* ------------------------------------------------- tableaux du concept --- */
 .tab.large th{width:auto}
 .tab.large thead th{background:#f5eee2;font-size:14px;letter-spacing:.06em;
@@ -297,54 +319,51 @@ footer a{color:#8fd6b0}
 <body>
 <header class="haut"><div class="haut-in">
   <a class="marque" href="index.html"><svg class="diamant" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 3h12l4 6-10 12L2 9z"/><path d="M2 9h20M6 3l3 6M18 3l-3 6M12 3l-3 6M12 3l3 6M9 9l3 12M15 9l-3 12"/></svg><span class="mot">KIMO</span></a>
-  <nav class="nav"><a href="index.html" aria-current="page" data-fr="Le reseau" data-en="The network">Le reseau</a><a href="concept.html" data-fr="Le concept" data-en="The concept">Le concept</a><a href="franchise.html" data-fr="Devenir franchise" data-en="Become a franchisee">Devenir franchise</a><a href="franchise.html#candidature" data-fr="Candidater" data-en="Apply">Candidater</a></nav>
-  <div class="langue">
-    <button type="button" data-l="fr" aria-pressed="true">FR</button>
-    <button type="button" data-l="en" aria-pressed="false">EN</button>
-  </div>
+  <nav class="nav"><a href="index.html" aria-current="page" data-fr="Le réseau" data-en="The network">Le réseau</a><a href="concept.html" data-fr="Le concept" data-en="The concept">Le concept</a><a href="franchise.html" data-fr="Devenir franchisé" data-en="Become a franchisee">Devenir franchisé</a><a href="tutoring.html" data-fr="Tutorat 6-17 ans" data-en="Tutoring, ages 6-17">Tutorat 6-17 ans</a><a href="franchise.html#candidature" data-fr="Candidater" data-en="Apply">Candidater</a></nav>
+  <div class="langue"><span aria-current="true">FR</span><a href="en/index.html" hreflang="en" rel="alternate">EN</a></div>
 </div></header>
 <div class="hero"><div class="enveloppe"><div class="hero-in">
 <div>
-<p class="surtitre" data-fr="Reseau decentralise d&#x27;eveil et d&#x27;apprentissage" data-en="Decentralized early-learning network">Reseau decentralise d'eveil et d'apprentissage</p>
-<h1 data-fr="Une creche a taille humaine, la ou les familles habitent." data-en="A nursery on a human scale, where families actually live.">Une creche a taille humaine, la ou les familles habitent.</h1>
+<p class="surtitre" data-fr="Réseau décentralisé d&#x27;éveil et d&#x27;apprentissage" data-en="Decentralized early-learning network">Réseau décentralisé d&#x27;éveil et d&#x27;apprentissage</p>
+<h1 data-fr="Une crèche à taille humaine, là où les familles habitent." data-en="A nursery on a human scale, where families actually live.">Une crèche à taille humaine, là où les familles habitent.</h1>
 <p class="signature">
-<span data-fr="KIMO — Apprendre a penser." data-en="KIMO — Learn to Think.">KIMO — Apprendre a penser.</span>
-<span class="tbc" data-fr="traduction francaise a valider" data-en="English wording is yours, as written">traduction francaise a valider</span>
+<span data-fr="KIMO — Apprendre à penser." data-en="KIMO — Learn to Think.">KIMO — Apprendre à penser.</span>
+<span class="tbc" data-fr="traduction française à valider" data-en="English wording is yours, as written">traduction française à valider</span>
 </p>
-<p class="chapo" data-fr="KIMO ouvre de petites unites de quartier, tenues par des equipes locales, avec un meme programme, une meme plateforme et un meme systeme qualite. On y travaille la logique, les echecs, les mathematiques, les sciences, l&#x27;histoire, le mouvement et la creation — par le jeu, jamais par la lecon." data-en="KIMO opens small neighbourhood units, run by local teams, sharing one educational program, one platform and one quality system. Logic, chess, mathematics, science, history, movement and creativity — through play, never through lessons.">KIMO ouvre de petites unites de quartier, tenues par des equipes locales, avec un meme programme, une meme plateforme et un meme systeme qualite. On y travaille la logique, les echecs, les mathematiques, les sciences, l'histoire, le mouvement et la creation — par le jeu, jamais par la lecon.</p>
+<p class="chapo" data-fr="KIMO ouvre de petites unités de quartier, tenues par des équipes locales, avec un même programme, une même plateforme et un même système qualité. On y travaille la logique, les échecs, les mathématiques, les sciences, l&#x27;histoire, le mouvement et la création — par le jeu, jamais par la leçon." data-en="KIMO opens small neighbourhood units, run by local teams, sharing one educational program, one platform and one quality system. Logic, chess, mathematics, science, history, movement and creativity — through play, never through lessons.">KIMO ouvre de petites unités de quartier, tenues par des équipes locales, avec un même programme, une même plateforme et un même système qualité. On y travaille la logique, les échecs, les mathématiques, les sciences, l&#x27;histoire, le mouvement et la création — par le jeu, jamais par la leçon.</p>
 <div class="actions"><a class="bouton plein" href="concept.html" data-fr="Lire le concept" data-en="Read the concept">Lire le concept</a><a class="bouton vide" href="franchise.html" data-fr="Ouvrir une KIMO" data-en="Open a KIMO">Ouvrir une KIMO</a></div>
 </div>
 <div class="etat">
-<h3 data-fr="Etat du reseau" data-en="Network status">Etat du reseau</h3>
+<h3 data-fr="État du réseau" data-en="Network status">État du réseau</h3>
 <ul>
-<li><span data-fr="Reseau en cours de constitution : la premiere creche n&#x27;est pas encore ouverte." data-en="Network being set up: the first nursery has not opened yet.">Reseau en cours de constitution : la premiere creche n'est pas encore ouverte.</span></li>
-<li><span><span data-fr="Pays et ville de la premiere ouverture" data-en="Country and city of the first opening">Pays et ville de la premiere ouverture</span> — <span class="tbc" data-fr="a definir" data-en="to be set">a definir</span></span></li>
-<li><span><span data-fr="Cadre reglementaire applicable" data-en="Applicable regulatory framework">Cadre reglementaire applicable</span> — <span class="tbc" data-fr="a definir" data-en="to be set">a definir</span></span></li>
-<li><span data-fr="Les candidatures de franchises sont ouvertes des maintenant." data-en="Franchise applications are open now.">Les candidatures de franchises sont ouvertes des maintenant.</span></li>
+<li><span data-fr="Réseau en cours de constitution : la première crèche n&#x27;est pas encore ouverte." data-en="Network being set up: the first nursery has not opened yet.">Réseau en cours de constitution : la première crèche n&#x27;est pas encore ouverte.</span></li>
+<li><span><span data-fr="Pays et ville de la première ouverture" data-en="Country and city of the first opening">Pays et ville de la première ouverture</span> — <span class="tbc" data-fr="à définir" data-en="to be set">à définir</span></span></li>
+<li><span><span data-fr="Cadre réglementaire applicable" data-en="Applicable regulatory framework">Cadre réglementaire applicable</span> — <span class="tbc" data-fr="à définir" data-en="to be set">à définir</span></span></li>
+<li><span data-fr="Les candidatures de franchises sont ouvertes dès maintenant." data-en="Franchise applications are open now.">Les candidatures de franchises sont ouvertes dès maintenant.</span></li>
 </ul></div>
 </div></div></div>
 <section id="modele"><div class="enveloppe">
 <div class="titre-bloc">
-<h2 data-fr="Pourquoi decentralise" data-en="Why decentralised">Pourquoi decentralise</h2>
-<p data-fr="Le modele n&#x27;est pas une creche plus petite par manque de moyens. C&#x27;est un choix : beaucoup de petites unites valent mieux qu&#x27;une grande, a condition que le reseau porte tout ce qu&#x27;une petite unite ne sait pas porter seule." data-en="The model is not a smaller nursery for lack of means. It is a choice: many small units beat one large one — provided the network carries everything a small unit cannot carry alone.">Le modele n'est pas une creche plus petite par manque de moyens. C'est un choix : beaucoup de petites unites valent mieux qu'une grande, a condition que le reseau porte tout ce qu'une petite unite ne sait pas porter seule.</p>
+<h2 data-fr="Pourquoi décentralisé" data-en="Why decentralised">Pourquoi décentralisé</h2>
+<p data-fr="Le modèle n&#x27;est pas une crèche plus petite par manque de moyens. C&#x27;est un choix : beaucoup de petites unités valent mieux qu&#x27;une grande, à condition que le réseau porte tout ce qu&#x27;une petite unité ne sait pas porter seule." data-en="The model is not a smaller nursery for lack of means. It is a choice: many small units beat one large one — provided the network carries everything a small unit cannot carry alone.">Le modèle n&#x27;est pas une crèche plus petite par manque de moyens. C&#x27;est un choix : beaucoup de petites unités valent mieux qu&#x27;une grande, à condition que le réseau porte tout ce qu&#x27;une petite unité ne sait pas porter seule.</p>
 </div><div class="grille g2">
-<div class="carte"><h3 data-fr="Une creche par quartier" data-en="One nursery per neighbourhood">Une creche par quartier</h3><p data-fr="Le trajet domicile-creche est le premier critere des parents, avant le prix. Une unite petite s&#x27;implante dans un quartier ou une grande structure ne rentre pas : un rez-de-chaussee, une maison, un local commercial reconverti." data-en="The home-to-nursery trip is the first thing parents look at, before price. A small unit fits into a neighbourhood where a large facility cannot: a ground floor, a house, a converted shop.">Le trajet domicile-creche est le premier critere des parents, avant le prix. Une unite petite s'implante dans un quartier ou une grande structure ne rentre pas : un rez-de-chaussee, une maison, un local commercial reconverti.</p></div>
-<div class="carte"><h3 data-fr="Petite unite, adulte connu" data-en="Small unit, a familiar adult">Petite unite, adulte connu</h3><p data-fr="Un enfant de deux ans ne retient pas quinze visages. Une unite courte garde le meme adulte devant le meme groupe toute la journee, et les parents parlent au responsable, pas a un standard." data-en="A two-year-old does not retain fifteen faces. A small unit keeps the same adult with the same group all day, and parents talk to the manager, not to a switchboard.">Un enfant de deux ans ne retient pas quinze visages. Une unite courte garde le meme adulte devant le meme groupe toute la journee, et les parents parlent au responsable, pas a un standard.</p></div>
-<div class="carte"><h3 data-fr="Une methode commune, pas une improvisation" data-en="A shared method, not improvisation">Une methode commune, pas une improvisation</h3><p data-fr="Ce que le reseau apporte n&#x27;est pas un logo : c&#x27;est une progression ecrite, des supports, un cahier d&#x27;observation, et la formation qui va avec. Deux creches KIMO a deux bouts du pays travaillent de la meme facon." data-en="What the network brings is not a logo: it is a written progression, materials, an observation record, and the training that goes with it. Two KIMO nurseries at opposite ends of the country work the same way.">Ce que le reseau apporte n'est pas un logo : c'est une progression ecrite, des supports, un cahier d'observation, et la formation qui va avec. Deux creches KIMO a deux bouts du pays travaillent de la meme facon.</p></div>
-<div class="carte"><h3 data-fr="Les couts lourds sont mutualises" data-en="The heavy costs are shared">Les couts lourds sont mutualises</h3><p data-fr="Inscription en ligne, facturation, planning, achats, conformite, site et referencement : une creche seule les paie en entier et les fait mal. Le reseau les porte une fois pour toutes." data-en="Enrolment, billing, scheduling, purchasing, compliance, website and local search: a standalone nursery pays for all of it and does it badly. The network carries it once, for everyone.">Inscription en ligne, facturation, planning, achats, conformite, site et referencement : une creche seule les paie en entier et les fait mal. Le reseau les porte une fois pour toutes.</p></div>
+<div class="carte"><h3 data-fr="Une crèche par quartier" data-en="One nursery per neighbourhood">Une crèche par quartier</h3><p data-fr="Le trajet domicile-crèche est le premier critère des parents, avant le prix. Une unité petite s&#x27;implante dans un quartier où une grande structure ne rentre pas : un rez-de-chaussée, une maison, un local commercial reconverti." data-en="The home-to-nursery trip is the first thing parents look at, before price. A small unit fits into a neighbourhood where a large facility cannot: a ground floor, a house, a converted shop.">Le trajet domicile-crèche est le premier critère des parents, avant le prix. Une unité petite s&#x27;implante dans un quartier où une grande structure ne rentre pas : un rez-de-chaussée, une maison, un local commercial reconverti.</p></div>
+<div class="carte"><h3 data-fr="Petite unité, adulte connu" data-en="Small unit, a familiar adult">Petite unité, adulte connu</h3><p data-fr="Un enfant de deux ans ne retient pas quinze visages. Une unité courte garde le même adulte devant le même groupe toute la journée, et les parents parlent au responsable, pas à un standard." data-en="A two-year-old does not retain fifteen faces. A small unit keeps the same adult with the same group all day, and parents talk to the manager, not to a switchboard.">Un enfant de deux ans ne retient pas quinze visages. Une unité courte garde le même adulte devant le même groupe toute la journée, et les parents parlent au responsable, pas à un standard.</p></div>
+<div class="carte"><h3 data-fr="Une méthode commune, pas une improvisation" data-en="A shared method, not improvisation">Une méthode commune, pas une improvisation</h3><p data-fr="Ce que le réseau apporte n&#x27;est pas un logo : c&#x27;est une progression écrite, des supports, un cahier d&#x27;observation, et la formation qui va avec. Deux crèches KIMO à deux bouts du pays travaillent de la même façon." data-en="What the network brings is not a logo: it is a written progression, materials, an observation record, and the training that goes with it. Two KIMO nurseries at opposite ends of the country work the same way.">Ce que le réseau apporte n&#x27;est pas un logo : c&#x27;est une progression écrite, des supports, un cahier d&#x27;observation, et la formation qui va avec. Deux crèches KIMO à deux bouts du pays travaillent de la même façon.</p></div>
+<div class="carte"><h3 data-fr="Les coûts lourds sont mutualisés" data-en="The heavy costs are shared">Les coûts lourds sont mutualisés</h3><p data-fr="Inscription en ligne, facturation, planning, achats, conformité, site et référencement : une crèche seule les paie en entier et les fait mal. Le réseau les porte une fois pour toutes." data-en="Enrolment, billing, scheduling, purchasing, compliance, website and local search: a standalone nursery pays for all of it and does it badly. The network carries it once, for everyone.">Inscription en ligne, facturation, planning, achats, conformité, site et référencement : une crèche seule les paie en entier et les fait mal. Le réseau les porte une fois pour toutes.</p></div>
 </div></div></section>
 <section id="methode" class="pale"><div class="enveloppe">
 <div class="titre-bloc">
-<h2 data-fr="La methode" data-en="The method">La methode</h2>
-<p data-fr="KIMO ne cherche pas a transformer la creche en ecole primaire. Les themes intellectuels y sont des supports de jeu et de decouverte. L&#x27;objectif est de poser les bases du raisonnement et de la curiosite sans rien retirer au jeu libre, au developpement affectif, a la parole, a la vie en groupe, a la creation et au repos." data-en="KIMO is not intended to turn preschool into primary school. The curriculum uses intellectual themes as tools for play and discovery. The objective is to create foundations for reasoning and curiosity while preserving free play, emotional development, communication, social interaction, creativity and rest.">KIMO ne cherche pas a transformer la creche en ecole primaire. Les themes intellectuels y sont des supports de jeu et de decouverte. L'objectif est de poser les bases du raisonnement et de la curiosite sans rien retirer au jeu libre, au developpement affectif, a la parole, a la vie en groupe, a la creation et au repos.</p>
+<h2 data-fr="La méthode" data-en="The method">La méthode</h2>
+<p data-fr="KIMO ne cherche pas à transformer la crèche en école primaire. Les thèmes intellectuels y sont des supports de jeu et de découverte. L&#x27;objectif est de poser les bases du raisonnement et de la curiosité sans rien retirer au jeu libre, au développement affectif, à la parole, à la vie en groupe, à la création et au repos." data-en="KIMO is not intended to turn preschool into primary school. The curriculum uses intellectual themes as tools for play and discovery. The objective is to create foundations for reasoning and curiosity while preserving free play, emotional development, communication, social interaction, creativity and rest.">KIMO ne cherche pas à transformer la crèche en école primaire. Les thèmes intellectuels y sont des supports de jeu et de découverte. L&#x27;objectif est de poser les bases du raisonnement et de la curiosité sans rien retirer au jeu libre, au développement affectif, à la parole, à la vie en groupe, à la création et au repos.</p>
 </div>
 <div class="liste large"><ul>
-<li><span data-fr="Poser la question avant de donner la reponse." data-en="Ask questions before giving answers.">Poser la question avant de donner la reponse.</span></li>
-<li><span data-fr="Manipuler des objets reels avant d&#x27;introduire des symboles abstraits." data-en="Manipulate real objects before introducing abstract symbols.">Manipuler des objets reels avant d'introduire des symboles abstraits.</span></li>
-<li><span data-fr="Demander a l&#x27;enfant d&#x27;expliquer comment il est arrive a sa solution." data-en="Encourage children to explain how they reached a solution.">Demander a l'enfant d'expliquer comment il est arrive a sa solution.</span></li>
-<li><span data-fr="Se servir de l&#x27;erreur pour essayer une autre approche." data-en="Use mistakes as opportunities to test another approach.">Se servir de l'erreur pour essayer une autre approche.</span></li>
-<li><span data-fr="Equilibrer les activites dirigees et l&#x27;exploration menee par l&#x27;enfant." data-en="Balance structured activities with child-led exploration.">Equilibrer les activites dirigees et l'exploration menee par l'enfant.</span></li>
-<li><span data-fr="Regler la difficulte sur la maturite de l&#x27;enfant, pas sur son age." data-en="Adapt complexity to developmental readiness rather than age alone.">Regler la difficulte sur la maturite de l'enfant, pas sur son age.</span></li>
+<li><span data-fr="Poser la question avant de donner la réponse." data-en="Ask questions before giving answers.">Poser la question avant de donner la réponse.</span></li>
+<li><span data-fr="Manipuler des objets réels avant d&#x27;introduire des symboles abstraits." data-en="Manipulate real objects before introducing abstract symbols.">Manipuler des objets réels avant d&#x27;introduire des symboles abstraits.</span></li>
+<li><span data-fr="Demander à l&#x27;enfant d&#x27;expliquer comment il est arrivé à sa solution." data-en="Encourage children to explain how they reached a solution.">Demander à l&#x27;enfant d&#x27;expliquer comment il est arrivé à sa solution.</span></li>
+<li><span data-fr="Se servir de l&#x27;erreur pour essayer une autre approche." data-en="Use mistakes as opportunities to test another approach.">Se servir de l&#x27;erreur pour essayer une autre approche.</span></li>
+<li><span data-fr="Équilibrer les activités dirigées et l&#x27;exploration menée par l&#x27;enfant." data-en="Balance structured activities with child-led exploration.">Équilibrer les activités dirigées et l&#x27;exploration menée par l&#x27;enfant.</span></li>
+<li><span data-fr="Régler la difficulté sur la maturité de l&#x27;enfant, pas sur son âge." data-en="Adapt complexity to developmental readiness rather than age alone.">Régler la difficulté sur la maturité de l&#x27;enfant, pas sur son âge.</span></li>
 </ul></div>
 <div class="apres">
 <a class="bouton vide" href="concept.html#apprentissage" data-fr="Les sept piliers d'apprentissage" data-en="The seven learning pillars">Les sept piliers d'apprentissage</a>
@@ -352,67 +371,45 @@ footer a{color:#8fd6b0}
 </div></section>
 <section id="piliers"><div class="enveloppe">
 <div class="titre-bloc">
-<h2 data-fr="Ce qu&#x27;on y travaille" data-en="What is worked on">Ce qu'on y travaille</h2>
-<p data-fr="Sept domaines, tous abordes par le jeu. Le detail de chacun est sur la page du concept." data-en="Seven areas, all approached through play. Each one is detailed on the concept page.">Sept domaines, tous abordes par le jeu. Le detail de chacun est sur la page du concept.</p>
+<h2 data-fr="Ce qu&#x27;on y travaille" data-en="What is worked on">Ce qu&#x27;on y travaille</h2>
+<p data-fr="Sept domaines, tous abordés par le jeu. Le détail de chacun est sur la page du concept." data-en="Seven areas, all approached through play. Each one is detailed on the concept page.">Sept domaines, tous abordés par le jeu. Le détail de chacun est sur la page du concept.</p>
 </div>
 <div class="grille g4 serree">
-<a class="carte mini" href="concept.html#p-logique"><h3 data-fr="Logique et resolution de problemes" data-en="Logic &amp; Problem Solving">Logique et resolution de problemes</h3></a>
-<a class="carte mini" href="concept.html#p-echecs"><h3 data-fr="Echecs et pensee strategique" data-en="Chess &amp; Strategic Thinking">Echecs et pensee strategique</h3></a>
-<a class="carte mini" href="concept.html#p-maths"><h3 data-fr="Mathematiques" data-en="Mathematics">Mathematiques</h3></a>
+<a class="carte mini" href="concept.html#p-logique"><h3 data-fr="Logique et résolution de problèmes" data-en="Logic &amp; Problem Solving">Logique et résolution de problèmes</h3></a>
+<a class="carte mini" href="concept.html#p-echecs"><h3 data-fr="Échecs et pensée stratégique" data-en="Chess &amp; Strategic Thinking">Échecs et pensée stratégique</h3></a>
+<a class="carte mini" href="concept.html#p-maths"><h3 data-fr="Mathématiques" data-en="Mathematics">Mathématiques</h3></a>
 <a class="carte mini" href="concept.html#p-sciences"><h3 data-fr="Physique et sciences" data-en="Physics &amp; Science">Physique et sciences</h3></a>
 <a class="carte mini" href="concept.html#p-histoire"><h3 data-fr="Histoire et civilisations" data-en="History &amp; Civilizations">Histoire et civilisations</h3></a>
-<a class="carte mini" href="concept.html#p-corps"><h3 data-fr="Developpement physique" data-en="Physical Development">Developpement physique</h3></a>
-<a class="carte mini" href="concept.html#p-creation"><h3 data-fr="Creation et expression" data-en="Creativity &amp; Communication">Creation et expression</h3></a>
+<a class="carte mini" href="concept.html#p-corps"><h3 data-fr="Développement physique" data-en="Physical Development">Développement physique</h3></a>
+<a class="carte mini" href="concept.html#p-creation"><h3 data-fr="Création et expression" data-en="Creativity &amp; Communication">Création et expression</h3></a>
 </div></div></section>
 <section id="cadre"><div class="enveloppe">
 <div class="titre-bloc">
-<h2 data-fr="Le cadre reglementaire" data-en="The regulatory framework">Le cadre reglementaire</h2>
-<p data-fr="Une micro-creche est un etablissement autorise. Le nombre de places, le taux d&#x27;encadrement, la qualification du responsable et la surface par enfant sont fixes par le droit du pays, et parfois de la region. Rien n&#x27;est ecrit ici tant que ce n&#x27;est pas verifie dans le pays retenu : un candidat construit son local et son financement sur ces lignes." data-en="A micro-nursery is a licensed facility. The number of places, the staff ratio, the manager&#x27;s qualification and the floor area per child are set by national — sometimes regional — law. Nothing is written here until it has been checked in the chosen country: a candidate builds their premises and their financing on these lines.">Une micro-creche est un etablissement autorise. Le nombre de places, le taux d'encadrement, la qualification du responsable et la surface par enfant sont fixes par le droit du pays, et parfois de la region. Rien n'est ecrit ici tant que ce n'est pas verifie dans le pays retenu : un candidat construit son local et son financement sur ces lignes.</p>
+<h2 data-fr="Le cadre réglementaire" data-en="The regulatory framework">Le cadre réglementaire</h2>
+<p data-fr="Une micro-crèche est un établissement autorisé. Le nombre de places, le taux d&#x27;encadrement, la qualification du responsable et la surface par enfant sont fixés par le droit du pays, et parfois de la région. Rien n&#x27;est écrit ici tant que ce n&#x27;est pas vérifié dans le pays retenu : un candidat construit son local et son financement sur ces lignes." data-en="A micro-nursery is a licensed facility. The number of places, the staff ratio, the manager&#x27;s qualification and the floor area per child are set by national — sometimes regional — law. Nothing is written here until it has been checked in the chosen country: a candidate builds their premises and their financing on these lines.">Une micro-crèche est un établissement autorisé. Le nombre de places, le taux d&#x27;encadrement, la qualification du responsable et la surface par enfant sont fixés par le droit du pays, et parfois de la région. Rien n&#x27;est écrit ici tant que ce n&#x27;est pas vérifié dans le pays retenu : un candidat construit son local et son financement sur ces lignes.</p>
 </div><div class="enrouleur"><table class="tab"><tbody>
-<tr><th data-fr="Capacite maximale de l&#x27;unite" data-en="Maximum capacity of a unit">Capacite maximale de l'unite</th><td class="val"><span class="tbc" data-fr="a definir" data-en="to be set">a definir</span></td><td class="exp"><span data-fr="Le nombre de places qui definit une « micro-creche » est fixe par la reglementation du pays. Au-dela, l&#x27;etablissement change de categorie et de regles." data-en="The number of places that defines a &quot;micro-nursery&quot; is set by national regulation. Above it, the facility changes category and rules.">Le nombre de places qui definit une « micro-creche » est fixe par la reglementation du pays. Au-dela, l'etablissement change de categorie et de regles.</span></td></tr>
-<tr><th data-fr="Taux d&#x27;encadrement" data-en="Staff-to-child ratio">Taux d'encadrement</th><td class="val"><span class="tbc" data-fr="a definir" data-en="to be set">a definir</span></td><td class="exp"><span data-fr="Nombre d&#x27;adultes diplomes par enfant, et il differe souvent selon que l&#x27;enfant marche ou non." data-en="Number of qualified adults per child, often different for children who walk and those who do not.">Nombre d'adultes diplomes par enfant, et il differe souvent selon que l'enfant marche ou non.</span></td></tr>
-<tr><th data-fr="Qualification du responsable" data-en="Qualification of the manager">Qualification du responsable</th><td class="val"><span class="tbc" data-fr="a definir" data-en="to be set">a definir</span></td><td class="exp"><span data-fr="Diplome exige, annees d&#x27;experience, et parfois une reference sanitaire distincte." data-en="Required diploma, years of experience, and sometimes a separate health referent.">Diplome exige, annees d'experience, et parfois une reference sanitaire distincte.</span></td></tr>
-<tr><th data-fr="Surface par enfant" data-en="Floor area per child">Surface par enfant</th><td class="val"><span class="tbc" data-fr="a definir" data-en="to be set">a definir</span></td><td class="exp"><span data-fr="Surface interieure utile, et acces a un espace exterieur selon les pays." data-en="Usable indoor area, plus access to outdoor space depending on the country.">Surface interieure utile, et acces a un espace exterieur selon les pays.</span></td></tr>
-<tr><th data-fr="Autorite qui delivre l&#x27;agrement" data-en="Authority granting the licence">Autorite qui delivre l'agrement</th><td class="val"><span class="tbc" data-fr="a definir" data-en="to be set">a definir</span></td><td class="exp"><span data-fr="C&#x27;est elle qui visite le local avant l&#x27;ouverture et qui peut la refuser. Le calendrier d&#x27;ouverture depend de son delai." data-en="It inspects the premises before opening and can refuse. The opening schedule depends on its lead time.">C'est elle qui visite le local avant l'ouverture et qui peut la refuser. Le calendrier d'ouverture depend de son delai.</span></td></tr>
-<tr><th data-fr="Aides et financement des familles" data-en="Family funding and subsidies">Aides et financement des familles</th><td class="val"><span class="tbc" data-fr="a definir" data-en="to be set">a definir</span></td><td class="exp"><span data-fr="Dans plusieurs pays, une partie du prix paye par la famille est prise en charge. Cela change le tarif affichable, donc tout le modele." data-en="In several countries part of the fee paid by the family is subsidised. That changes the price you can charge, and so the whole model.">Dans plusieurs pays, une partie du prix paye par la famille est prise en charge. Cela change le tarif affichable, donc tout le modele.</span></td></tr>
+<tr><th data-fr="Capacité maximale de l&#x27;unité" data-en="Maximum capacity of a unit">Capacité maximale de l&#x27;unité</th><td class="val"><span class="tbc" data-fr="à définir" data-en="to be set">à définir</span></td><td class="exp"><span data-fr="Le nombre de places qui définit une « micro-crèche » est fixé par la réglementation du pays. Au-delà, l&#x27;établissement change de catégorie et de règles." data-en="The number of places that defines a &quot;micro-nursery&quot; is set by national regulation. Above it, the facility changes category and rules.">Le nombre de places qui définit une « micro-crèche » est fixé par la réglementation du pays. Au-delà, l&#x27;établissement change de catégorie et de règles.</span></td></tr>
+<tr><th data-fr="Taux d&#x27;encadrement" data-en="Staff-to-child ratio">Taux d&#x27;encadrement</th><td class="val"><span class="tbc" data-fr="à définir" data-en="to be set">à définir</span></td><td class="exp"><span data-fr="Nombre d&#x27;adultes diplômés par enfant, et il diffère souvent selon que l&#x27;enfant marche ou non." data-en="Number of qualified adults per child, often different for children who walk and those who do not.">Nombre d&#x27;adultes diplômés par enfant, et il diffère souvent selon que l&#x27;enfant marche ou non.</span></td></tr>
+<tr><th data-fr="Qualification du responsable" data-en="Qualification of the manager">Qualification du responsable</th><td class="val"><span class="tbc" data-fr="à définir" data-en="to be set">à définir</span></td><td class="exp"><span data-fr="Diplôme exigé, années d&#x27;expérience, et parfois une référence sanitaire distincte." data-en="Required diploma, years of experience, and sometimes a separate health referent.">Diplôme exigé, années d&#x27;expérience, et parfois une référence sanitaire distincte.</span></td></tr>
+<tr><th data-fr="Surface par enfant" data-en="Floor area per child">Surface par enfant</th><td class="val"><span class="tbc" data-fr="à définir" data-en="to be set">à définir</span></td><td class="exp"><span data-fr="Surface intérieure utile, et accès à un espace extérieur selon les pays." data-en="Usable indoor area, plus access to outdoor space depending on the country.">Surface intérieure utile, et accès à un espace extérieur selon les pays.</span></td></tr>
+<tr><th data-fr="Autorité qui délivre l&#x27;agrément" data-en="Authority granting the licence">Autorité qui délivre l&#x27;agrément</th><td class="val"><span class="tbc" data-fr="à définir" data-en="to be set">à définir</span></td><td class="exp"><span data-fr="C&#x27;est elle qui visite le local avant l&#x27;ouverture et qui peut la refuser. Le calendrier d&#x27;ouverture dépend de son délai." data-en="It inspects the premises before opening and can refuse. The opening schedule depends on its lead time.">C&#x27;est elle qui visite le local avant l&#x27;ouverture et qui peut la refuser. Le calendrier d&#x27;ouverture dépend de son délai.</span></td></tr>
+<tr><th data-fr="Aides et financement des familles" data-en="Family funding and subsidies">Aides et financement des familles</th><td class="val"><span class="tbc" data-fr="à définir" data-en="to be set">à définir</span></td><td class="exp"><span data-fr="Dans plusieurs pays, une partie du prix payé par la famille est prise en charge. Cela change le tarif affichable, donc tout le modèle." data-en="In several countries part of the fee paid by the family is subsidised. That changes the price you can charge, and so the whole model.">Dans plusieurs pays, une partie du prix payé par la famille est prise en charge. Cela change le tarif affichable, donc tout le modèle.</span></td></tr>
 </tbody></table></div>
-<div class="reserve" data-fr="Un etablissement KIMO ne doit jamais echanger la securite ou la conformite contre de la compacite. La capacite definitive, les taux d&#x27;encadrement, les dimensions des pieces, le couchage, la preparation des repas et les exigences d&#x27;espace exterieur doivent etre adaptes a la juridiction dans laquelle chaque unite fonctionne." data-en="KIMO facilities must never trade safety or regulatory compliance for compactness. Final capacity, staff ratios, room dimensions, sleep arrangements, food preparation and outdoor-space requirements must be adapted to the jurisdiction in which each unit operates.">Un etablissement KIMO ne doit jamais echanger la securite ou la conformite contre de la compacite. La capacite definitive, les taux d&#x27;encadrement, les dimensions des pieces, le couchage, la preparation des repas et les exigences d&#x27;espace exterieur doivent etre adaptes a la juridiction dans laquelle chaque unite fonctionne.</div>
+<div class="reserve" data-fr="Un établissement KIMO ne doit jamais échanger la sécurité ou la conformité contre de la compacité. La capacité définitive, les taux d&#x27;encadrement, les dimensions des pièces, le couchage, la préparation des repas et les exigences d&#x27;espace extérieur doivent être adaptés à la juridiction dans laquelle chaque unité fonctionne." data-en="KIMO facilities must never trade safety or regulatory compliance for compactness. Final capacity, staff ratios, room dimensions, sleep arrangements, food preparation and outdoor-space requirements must be adapted to the jurisdiction in which each unit operates.">Un établissement KIMO ne doit jamais échanger la sécurité ou la conformité contre de la compacité. La capacité définitive, les taux d&#x27;encadrement, les dimensions des pièces, le couchage, la préparation des repas et les exigences d&#x27;espace extérieur doivent être adaptés à la juridiction dans laquelle chaque unité fonctionne.</div>
 </div></section>
 <section class="pale"><div class="enveloppe"><div class="bandeau"><div>
 <h2 data-fr="Ouvrir une KIMO dans votre ville" data-en="Open a KIMO in your city">Ouvrir une KIMO dans votre ville</h2>
-<p data-fr="Le parcours, ce que le reseau apporte, un simulateur de compte d&#x27;exploitation et le formulaire de candidature." data-en="The journey, what the network provides, a P&amp;L simulator and the application form.">Le parcours, ce que le reseau apporte, un simulateur de compte d'exploitation et le formulaire de candidature.</p>
+<p data-fr="Le parcours, ce que le réseau apporte, un simulateur de compte d&#x27;exploitation et le formulaire de candidature." data-en="The journey, what the network provides, a P&amp;L simulator and the application form.">Le parcours, ce que le réseau apporte, un simulateur de compte d&#x27;exploitation et le formulaire de candidature.</p>
 </div><a class="bouton plein" href="franchise.html" data-fr="Voir la page franchise" data-en="See the franchise page">Voir la page franchise</a>
 </div></div></section>
 <footer><div class="enveloppe">
 <p class="devise" data-fr="Mes sites impactent le monde." data-en="My sites impact the world.">Mes sites impactent le monde.</p>
 <p class="fond" data-fr="Hakim Adjaoudi, fondateur — JNCORP INC." data-en="Hakim Adjaoudi, founder — JNCORP INC.">Hakim Adjaoudi, fondateur — JNCORP INC.</p>
-<div class="avert" data-fr="DEMONSTRATION. KIMO est un reseau en cours de constitution : aucune creche n&#x27;est ouverte a ce jour. Les valeurs marquees « a definir » ne sont pas des oublis, ce sont des decisions qui n&#x27;ont pas encore ete prises, ou des regles qui dependent du pays retenu. Aucun chiffre reglementaire n&#x27;est avance ici tant qu&#x27;il n&#x27;a pas ete verifie dans le pays concerne." data-en="DEMONSTRATION. KIMO is a network being set up: no nursery is open to date. Values marked &quot;to be set&quot; are not omissions, they are decisions not yet taken, or rules that depend on the country chosen. No regulatory figure is stated here until it has been checked in the country concerned.">DEMONSTRATION. KIMO est un reseau en cours de constitution : aucune creche n&#x27;est ouverte a ce jour. Les valeurs marquees « a definir » ne sont pas des oublis, ce sont des decisions qui n&#x27;ont pas encore ete prises, ou des regles qui dependent du pays retenu. Aucun chiffre reglementaire n&#x27;est avance ici tant qu&#x27;il n&#x27;a pas ete verifie dans le pays concerne.</div>
+<div class="avert" data-fr="DÉMONSTRATION. KIMO est un réseau en cours de constitution : aucune crèche n&#x27;est ouverte à ce jour. Les valeurs marquées « à définir » ne sont pas des oublis, ce sont des décisions qui n&#x27;ont pas encore été prises, ou des règles qui dépendent du pays retenu. Aucun chiffre réglementaire n&#x27;est avancé ici tant qu&#x27;il n&#x27;a pas été vérifié dans le pays concerné." data-en="DEMONSTRATION. KIMO is a network being set up: no nursery is open to date. Values marked &quot;to be set&quot; are not omissions, they are decisions not yet taken, or rules that depend on the country chosen. No regulatory figure is stated here until it has been checked in the country concerned.">DÉMONSTRATION. KIMO est un réseau en cours de constitution : aucune crèche n&#x27;est ouverte à ce jour. Les valeurs marquées « à définir » ne sont pas des oublis, ce sont des décisions qui n&#x27;ont pas encore été prises, ou des règles qui dépendent du pays retenu. Aucun chiffre réglementaire n&#x27;est avancé ici tant qu&#x27;il n&#x27;a pas été vérifié dans le pays concerné.</div>
 <div class="liens-sites"><a href="https://anirudhatalmale6-alt.github.io/annuaire-franchises-demo/" data-fr="Annuaire des franchises" data-en="Franchise directory">Annuaire des franchises</a><a href="https://anirudhatalmale6-alt.github.io/maisons-de-prestige/" data-fr="Maisons de Prestige" data-en="Maisons de Prestige">Maisons de Prestige</a></div>
 </div></footer>
 <script>
-(function(){
-  var L='fr';
-  function pose(l){
-    L=l;
-    document.documentElement.lang=l;
-    var n=document.querySelectorAll('[data-fr][data-en]');
-    for(var i=0;i<n.length;i++) n[i].innerHTML=n[i].getAttribute('data-'+l);
-    var b=document.querySelectorAll('.langue button');
-    for(var j=0;j<b.length;j++)
-      b[j].setAttribute('aria-pressed',
-        b[j].getAttribute('data-l')===l?'true':'false');
-    try{localStorage.setItem('kimo-langue',l);}catch(e){}
-    if(window.surLangue) window.surLangue(l);
-  }
-  window.langue=function(){return L;};
-  window.poseLangue=pose;
-  document.addEventListener('click',function(ev){
-    var b=ev.target.closest&&ev.target.closest('.langue button');
-    if(b) pose(b.getAttribute('data-l'));
-  });
-  var m=null; try{m=localStorage.getItem('kimo-langue');}catch(e){}
-  pose(m==='en'?'en':'fr');
-})();
+(function(){ window.KLANG = document.documentElement.lang || 'fr'; })();
 </script>
 </body>
 </html>

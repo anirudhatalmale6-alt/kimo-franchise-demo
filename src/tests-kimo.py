@@ -48,12 +48,18 @@ def lire(nom):
         return f.read()
 
 
-PAGES = ['index.html', 'concept.html', 'franchise.html']
+# Le site est maintenant DEUX arbres : le francais a la racine, l'anglais
+# dans /en/. Les controles de structure tournent sur les huit pages ; ceux
+# qui parlent du texte francais tournent sur les quatre premieres.
+FICHIERS = ['index.html', 'concept.html', 'tutoring.html', 'franchise.html']
+PAGES = FICHIERS + [os.path.join('en', f) for f in FICHIERS]
 for nom in PAGES:
     if not os.path.isfile(os.path.join(DEMO, nom)):
         print('la page %s n\'existe pas — lancer page_kimo.py d\'abord' % nom)
         raise SystemExit(1)
 HTML = dict((n, lire(n)) for n in PAGES)
+FR = dict((n, HTML[n]) for n in FICHIERS)
+EN = dict((n, HTML[os.path.join('en', n)]) for n in FICHIERS)
 TOUT = '\n'.join(HTML.values())
 
 
@@ -197,6 +203,49 @@ else:
       'traduction' in _H.unescape(HTML['concept.html']).lower())
 
 
+def phrases_tutorat():
+    """Les chaines ANGLAISES reprises de sa note « Tutoring Platform »."""
+    out = [C.TUT_INTRO_EN, C.TUT_VERIF_INTRO_EN, C.TUT_PAIEMENT_NOTE_EN,
+           C.TUT_SEO_INTRO_EN, C.TUT_SEO_NOTE_EN, C.TUT_MVP_NOTE_EN,
+           C.TUT_IA_LIMITE_EN, C.TUT_POSITION_EN, C.TUT_MARQUE_EN]
+    for t_ in (C.TUT_PRINCIPES + C.TUT_MATIERES + C.TUT_RESERVATION
+               + C.TUT_CLASSE + C.TUT_PARENTS + C.TUT_ELEVE + C.TUT_TUTEUR
+               + C.TUT_VERIF + C.TUT_SECURITE + C.TUT_PAIEMENT + C.TUT_MVP
+               + C.TUT_IA + C.TUT_KPI):
+        out.append(t_[1])
+    for l in C.TUT_PROGRAMMES:
+        out += [l[1], l[3]]
+    for l in C.TUT_PHASES:
+        out += [l[2], l[4]]
+    return out + list(C.TUT_SEO)
+
+
+NOTE2 = None
+for base in (ICI, os.path.dirname(ICI)):
+    cand = os.path.join(base, 'KIMO_Tutoring_Platform_6_17.docx')
+    if os.path.isfile(cand):
+        NOTE2 = cand
+        break
+
+if NOTE2 is None:
+    t('la note tutorat du fondateur est disponible pour comparaison',
+      False, 'KIMO_Tutoring_Platform_6_17.docx introuvable — '
+             'CONTROLE NON EXECUTE')
+else:
+    import zipfile
+    with zipfile.ZipFile(NOTE2) as z:
+        xml2 = z.read('word/document.xml').decode('utf-8')
+    SOURCE2 = aplatir(_H.unescape(re.sub(r'<[^>]+>', ' ', xml2)))
+    t('la note tutorat a ete lue (%d caracteres)' % len(SOURCE2),
+      len(SOURCE2) > 6000, len(SOURCE2))
+    ph2 = [x for x in phrases_tutorat() if x and x.strip()]
+    abs2 = [x for x in ph2 if aplatir(x) not in SOURCE2]
+    t('les %d passages anglais du tutorat figurent mot pour mot dans sa note'
+      % len(ph2), not abs2, ' || '.join(a[:70] for a in abs2[:3]))
+    t('ce controle-la aussi sait echouer',
+      aplatir('KIMO guarantees every student a top grade') not in SOURCE2)
+
+
 # ===========================================================================
 print('\n--- AUCUN CHIFFRE INVENTE ---')
 # ===========================================================================
@@ -235,11 +284,11 @@ if eco:
 # », section 4 de sa note), et elle ne doit jamais apparaitre sans la reserve
 # qui l'accompagne. Un chiffre de capacite lu sans sa reserve est lu comme un
 # plafond legal, et il ne l'est pas.
-capa = re.findall(r'8 a 20[^<]*', _H.unescape(HTML['concept.html']))
+capa = re.findall(r'8 à 20[^<]*', _H.unescape(HTML['concept.html']))
 t('la fourchette de capacite apparait bien sur la page concept',
   len(capa) >= 1, capa)
 t('elle n\'apparait jamais sans sa reserve reglementaire',
-  all('sous reserve de la reglementation' in c for c in capa),
+  all('sous réserve de la réglementation' in c for c in capa),
   ' | '.join(capa))
 t('la fourchette de capacite ne remplace pas la ligne « capacite » du '
   'tableau reglementaire',
@@ -254,7 +303,7 @@ t('les %d points ouverts sont listes en haut de la page franchise'
   all(_H.escape(fr, quote=True) in HTML['franchise.html']
       for _c, fr, _p in C.A_DEFINIR))
 t('la page franchise annonce qu\'aucune creche n\'est ouverte',
-  'aucune creche n\'est ouverte' in _H.unescape(HTML['franchise.html']))
+  'aucune crèche n\'est ouverte' in _H.unescape(HTML['franchise.html']))
 
 
 # ===========================================================================
@@ -276,23 +325,40 @@ for nom, html in HTML.items():
 # Le texte SERVI doit dire la meme chose que data-fr, sinon la faute
 # n'apparait qu'apres le passage du script — et personne ne la voit en
 # relisant la page.
+# Chaque page sert la langue de son arbre : la page francaise doit dire ce
+# que dit son data-fr, la page anglaise ce que dit son data-en. Une faute de
+# frappe dans l'attribut seul ne se verrait qu'apres la bascule.
 ecarts = []
 for nom, html in HTML.items():
+    langue = 'en' if nom.startswith('en' + os.sep) else 'fr'
     for balise, attr, contenu_ in re.findall(
             r'<(p|h1|h2|h3|span|dt|summary|th|li|a|label|option)\b'
-            r'[^>]*data-fr="([^"]*)"[^>]*>(.*?)</\1>', html, re.S):
+            r'[^>]*data-%s="([^"]*)"[^>]*>(.*?)</\1>' % langue, html, re.S):
         servi = re.sub(r'<[^>]+>', '', contenu_)
         if _H.unescape(attr).strip() != _H.unescape(servi).strip():
             ecarts.append('%s <%s> %r != %r'
                           % (nom, balise, _H.unescape(attr)[:40],
                              _H.unescape(servi)[:40]))
-t('le texte servi est identique au data-fr partout', not ecarts,
+t('le texte servi est celui de la langue de la page', not ecarts,
   ' | '.join(ecarts[:2]))
 
-t('la bascule de langue est presente sur les deux pages',
+t('le selecteur de langue est present sur les huit pages',
   all(html.count('class="langue"') == 1 for html in HTML.values()))
-t('le bouton EN existe sur les deux pages',
-  all('data-l="en"' in html for html in HTML.values()))
+# Ce n'est plus un bouton pilote par un script : c'est un LIEN. Une page
+# francaise pointe vers en/<page>, une page anglaise vers ../<page>, et cela
+# marche sans JavaScript.
+manque = []
+for nom, html in HTML.items():
+    f = os.path.basename(nom)
+    attendu = ('en/' + f) if not nom.startswith('en' + os.sep) else ('../' + f)
+    if ('href="%s" hreflang=' % attendu) not in html:
+        manque.append(nom)
+t('chaque page pointe vers sa jumelle dans l\'autre langue', not manque,
+  ', '.join(manque))
+t('chaque page declare sa langue et son alternative',
+  all(('<html lang="%s">' % ('en' if n.startswith('en' + os.sep) else 'fr'))
+      in HTML[n] and 'rel="alternate" hreflang="en"' in HTML[n]
+      for n in PAGES))
 
 
 # ===========================================================================
@@ -348,11 +414,13 @@ for nom, html in HTML.items():
     t('%s : toutes les ancres internes existent dans la page' % nom,
       ancres <= set(ids), ', '.join(sorted(ancres - set(ids))))
 
-t('les trois pages se lient les unes aux autres',
+t('les quatre pages se lient les unes aux autres, dans les deux langues',
   all(('href="%s"' % autre) in HTML[nom] or ('href="%s#' % autre) in HTML[nom]
-      for nom in PAGES for autre in PAGES if autre != nom),
-  ', '.join('%s -> %s' % (nom, autre) for nom in PAGES for autre in PAGES
-            if autre != nom and ('href="%s"' % autre) not in HTML[nom]
+      for nom in PAGES for autre in FICHIERS
+      if os.path.basename(nom) != autre),
+  ', '.join('%s -> %s' % (nom, autre) for nom in PAGES for autre in FICHIERS
+            if os.path.basename(nom) != autre
+            and ('href="%s"' % autre) not in HTML[nom]
             and ('href="%s#' % autre) not in HTML[nom]))
 
 # Les ancres d'une page vers UNE AUTRE page. Le controle precedent ne voit
@@ -361,10 +429,12 @@ t('les trois pages se lient les unes aux autres',
 IDS = dict((n, set(re.findall(r'\bid="([^"]+)"', HTML[n]))) for n in PAGES)
 croisees = []
 for nom, html in HTML.items():
+    dossier = os.path.dirname(nom)
     for cible, ancre in re.findall(r'href="([a-z]+\.html)#([^"]+)"', html):
-        if cible not in IDS:
+        ref = os.path.join(dossier, cible) if dossier else cible
+        if ref not in IDS:
             croisees.append('%s -> %s (page inconnue)' % (nom, cible))
-        elif ancre not in IDS[cible]:
+        elif ancre not in IDS[ref]:
             croisees.append('%s -> %s#%s' % (nom, cible, ancre))
 t('les ancres d\'une page vers une autre pointent sur un element existant',
   not croisees, ' | '.join(croisees[:4]))
@@ -428,8 +498,166 @@ t('la signature anglaise est exactement la sienne',
       for n in ('index.html', 'concept.html')), attendue)
 t('la traduction francaise de la signature est signalee comme a valider',
   C.SIGNATURE_TRAD_A_VALIDER
-  and all('traduction francaise a valider' in HTML[n]
-          for n in ('index.html', 'concept.html')))
+  and all('traduction française à valider' in HTML[n]
+          for n in ('index.html', 'concept.html', 'tutoring.html')))
+# Et la mention n'a rien a faire sur la page ANGLAISE : la phrase y est la
+# sienne, il n'y a pas de traduction a valider.
+# On regarde le texte SERVI, pas le fichier : les attributs data-fr portent
+# le francais sur toutes les pages, c'est leur role.
+def servi(html):
+    return re.sub(r'<[^>]+>', ' ', html)
+
+
+t('la mention n\'apparait pas sur les pages anglaises',
+  not any('traduction française' in servi(EN[f]) for f in FICHIERS),
+  ', '.join(f for f in FICHIERS if 'traduction française' in servi(EN[f])))
+# Et la preuve que la pose de langue fait quelque chose : l'anglais doit
+# etre SERVI, pas seulement present en attribut.
+t('les pages anglaises servent bien l\'anglais',
+  '>The network<' in EN['index.html']
+  and 'My sites impact the world.</p>' in EN['index.html']
+  and '>The concept<' in EN['concept.html'])
+
+
+
+# ===========================================================================
+print('\n--- LES ACCENTS, AU DICTIONNAIRE ---')
+# ===========================================================================
+# Le francais du site est passe a un vrai dictionnaire francais. Une liste de
+# mots ecrite a la main ne vaut rien ici : elle ne peut confirmer que les
+# mots qu'on y a mis, et c'est justement ceux qu'on oublie qui manquent.
+try:
+    from spellchecker import SpellChecker
+except ImportError:
+    t('un dictionnaire francais est disponible pour verifier les accents',
+      False, 'pyspellchecker absent — CONTROLE NON EXECUTE')
+else:
+    MOTS_FR = set(SpellChecker(language='fr').word_frequency.dictionary)
+    # Marque, sigles et mots que le dictionnaire ne connait pas mais qui sont
+    # justes. Cette liste est COURTE et chaque entree est un choix assume.
+    ADMIS = set("""
+    kimo jncorp adjaoudi hakim javascript aujourd jusqu quelqu rez mini
+    nommage prototyper impactent précontractuelle présences candidater
+    maltraitance encadrants inc logic chess move stories science discover
+    explore advance master tutoring ludification consentements indexables ia
+    tutorat prépayés présentiel réservable eur cad chf dzd mad gbp fr en seo
+    mvp api url dns etp kpi subject city age group topic tutors programs
+    subjects online resources
+    """.split())
+    inconnus = {}
+    total_mots = 0
+    for nom in FICHIERS:
+        for attr in re.findall(r'data-fr="([^"]*)"', HTML[nom]):
+            for mot in re.findall(r"[A-Za-zÀ-ÿ]{2,}", _H.unescape(attr)):
+                total_mots += 1
+                if mot.lower() not in MOTS_FR and mot.lower() not in ADMIS:
+                    inconnus.setdefault(mot.lower(), nom)
+    t('les %d mots francais servis sont tous connus du dictionnaire'
+      % total_mots, not inconnus,
+      ', '.join('%s (%s)' % (m, f) for m, f in list(inconnus.items())[:5]))
+    # Et le controle doit savoir echouer.
+    t('ce controle sait reperer un mot sans accent',
+      'reglementaire' not in MOTS_FR and 'réglementaire' in MOTS_FR)
+
+# Le « a » nu : le dictionnaire ne peut rien dire, « a » et « à » existent
+# tous les deux. On le lit donc a la main, en excluant le verbe avoir.
+nus = []
+for nom in FICHIERS:
+    for attr in re.findall(r'data-fr="([^"]*)"', HTML[nom]):
+        texte = _H.unescape(attr)
+        for m in re.finditer(r"(?<![\w'À-ÿ])a(?![\wÀ-ÿ])", texte):
+            avant = texte[max(0, m.start() - 14):m.start()]
+            if not re.search(r"(qui|il|elle|on|n'|y|ça|ce)\s*$", avant):
+                nus.append('%s : ...%s[a]...' % (nom, avant[-24:]))
+t('aucun « a » ne remplace un « à » dans le texte francais', not nus,
+  ' | '.join(nus[:3]))
+
+
+# ===========================================================================
+print('\n--- LES DEUX ARBRES DE LANGUE ---')
+# ===========================================================================
+t('les huit pages existent (quatre par langue)', len(HTML) == 8, len(HTML))
+t('les pages anglaises ne servent aucune pastille francaise',
+  not any('à définir' in servi(EN[f]) for f in FICHIERS),
+  ', '.join(f for f in FICHIERS if 'à définir' in servi(EN[f])))
+t('les pages anglaises servent la pastille anglaise',
+  all('to be set' in servi(EN[f]) for f in ('concept.html', 'franchise.html',
+                                            'tutoring.html')))
+t('le titre de chaque page anglaise est en anglais',
+  all(re.search(r'<title>([^<]*)</title>', EN[f]).group(1).startswith('KIMO —')
+      and 'the' in re.search(r'<title>([^<]*)</title>',
+                             EN[f]).group(1).lower()
+      or 'become' in re.search(r'<title>([^<]*)</title>',
+                               EN[f]).group(1).lower()
+      or 'decentralized' in re.search(r'<title>([^<]*)</title>',
+                                      EN[f]).group(1).lower()
+      or 'support' in re.search(r'<title>([^<]*)</title>',
+                                EN[f]).group(1).lower()
+      for f in FICHIERS),
+  ' | '.join(re.search(r'<title>([^<]*)</title>', EN[f]).group(1)
+             for f in FICHIERS))
+
+
+# ===========================================================================
+print('\n--- TOUTE CLASSE A UNE REGLE ---')
+# ===========================================================================
+# C'est ce controle qui manquait quand l'accentuation a transforme
+# class="etat" en class="état" : le selecteur .etat existait toujours, la
+# page ne le portait plus, et la mise en page tombait sans un mot.
+from style_kimo import CSS as FEUILLE_CSS      # noqa: E402
+classes_css = set(re.findall(r'\.([a-zA-Z][\w-]*)', FEUILLE_CSS))
+orphelines = {}
+for nom, html in HTML.items():
+    for bloc in re.findall(r'class="([^"]*)"', html):
+        for c in bloc.split():
+            if c not in classes_css:
+                orphelines.setdefault(c, nom)
+t('toute classe posee dans le HTML a une regle dans la feuille',
+  not orphelines,
+  ', '.join('%s (%s)' % (c, f) for c, f in list(orphelines.items())[:5]))
+t('aucun identifiant ne porte d\'accent',
+  not re.search(r'(class|id|for)="[^"]*[àâéèêîïôùûç]', TOUT),
+  (re.search(r'(class|id|for)="[^"]*[àâéèêîïôùûç][^"]*"', TOUT)
+   or [''])[0] if re.search(r'(class|id|for)="[^"]*[àâéèêîïôùûç]', TOUT)
+  else '')
+
+
+# ===========================================================================
+print('\n--- KIMO TUTORING ---')
+# ===========================================================================
+tut = HTML['tutoring.html']
+t('les %d matieres sont sur la page' % len(C.TUT_MATIERES),
+  all(_H.escape(fr, quote=True) in tut for fr, _en in C.TUT_MATIERES))
+t('les %d programmes par age sont sur la page' % len(C.TUT_PROGRAMMES),
+  all(nom in tut for _a, nom, _f, _e in C.TUT_PROGRAMMES))
+t('les tranches d\'age sont affichees',
+  all(('<p class="age">%s</p>' % a) in tut for a, _n, _f, _e in
+      C.TUT_PROGRAMMES))
+t('la securite des enfants est AVANT le modele economique dans la page',
+  tut.index('id="securite"') < tut.index('id="modele-tut"'))
+t('la page annonce qu\'aucun tuteur n\'est inscrit',
+  'aucun tuteur n\'est inscrit' in _H.unescape(servi(tut)).lower())
+
+# AUCUN TUTEUR INVENTE. Une place de marche vide qu'on remplit de profils
+# d'exemple, ce sont des personnes inventees a qui des parents confieraient
+# leur enfant. Le controle cherche ce qui trahirait une fiche fabriquee.
+SOUPCONS = [
+    (r'\b\d[,.]\d\s*/\s*5\b', 'une note sur 5'),
+    (r'\b\d+\s*(avis|reviews?)\b', 'un nombre d\'avis'),
+    (r'\b\d+\s*(€|\$|EUR|CAD)\s*/\s*(h|heure|hour)', 'un tarif horaire'),
+    (r'class="[^"]*(tutor-card|profil-tuteur|avis|review|rating|note-etoile)',
+     'une fiche ou une note'),
+    (r'★|⭐', 'des etoiles'),
+]
+trouves = [quoi for motif, quoi in SOUPCONS
+           if re.search(motif, tut, re.I)]
+t('aucune fiche de tuteur, note, avis ni tarif horaire n\'est fabrique',
+  not trouves, ', '.join(trouves))
+t('ce controle sait reperer un profil fabrique',
+  any(re.search(motif, 'Amina B. — 4,8 / 5 — 32 avis — 25 EUR / h', re.I)
+      for motif, _q in SOUPCONS))
+t('la page tutorat liste ce qui manque pour commencer',
+  all(_H.escape(fr, quote=True) in tut for fr, _en in C.TUT_A_DEFINIR))
 
 
 # ===========================================================================
@@ -520,7 +748,7 @@ t('les %d champs obligatoires sont marques required' % len(obligs),
   ', '.join(c for c in obligs
             if not re.search(r'id="f-%s"[^>]*required' % c, f)))
 t('la destination du formulaire est annoncee comme non fixee',
-  'destination a definir' in f)
+  'destination à définir' in f)
 t('le formulaire ne part pas vers une adresse inventee',
   not re.search(r'<form[^>]*action=', f))
 
@@ -572,18 +800,26 @@ else:
         t('accueil : aucun element n\'est rendu invisible', not invisibles,
           ' | '.join(invisibles))
 
-        # La bascule de langue.
-        page.click('.langue button[data-l="en"]')
-        t('accueil : la bascule passe la navigation en anglais',
+        # Le selecteur de langue est un LIEN : on le suit, comme le ferait
+        # un visiteur, et on verifie qu'on arrive sur la page anglaise.
+        page.click('.langue a')
+        page.wait_for_load_state()
+        t('accueil : le lien EN mene a la page anglaise',
+          page.url.endswith('en/index.html'), page.url[-30:])
+        t('accueil anglais : la navigation est en anglais',
           page.locator('.nav a').first.inner_text().strip() == 'The network',
           page.locator('.nav a').first.inner_text())
-        t('accueil : la langue du document suit',
+        t('accueil anglais : le document declare lang="en"',
           page.evaluate('document.documentElement.lang') == 'en')
-        t('accueil : le titre n\'a pas ete vide par la bascule',
+        t('accueil anglais : le titre est bien la',
           len(page.locator('h1').first.inner_text().strip()) > 20)
-        page.click('.langue button[data-l="fr"]')
-        t('accueil : le retour au francais fonctionne',
-          page.locator('.nav a').first.inner_text().strip() == 'Le reseau')
+        t('accueil anglais : la mention de traduction n\'y est pas',
+          page.locator('.signature .tbc').count() == 0)
+        page.click('.langue a')
+        page.wait_for_load_state()
+        t('le retour au francais fonctionne',
+          page.locator('.nav a').first.inner_text().strip() == 'Le réseau',
+          page.locator('.nav a').first.inner_text())
 
         # -------------------------------------------- la page du concept
         erreurs[:] = []
@@ -626,15 +862,17 @@ else:
           page.locator('#p-echecs').is_visible()
           and 'chec' in page.locator('#p-echecs h3').inner_text(),
           page.url.split('/')[-1])
-        page.click('.langue button[data-l="en"]')
-        t('concept : la bascule anglaise n\'efface pas la page',
-          len(page.locator('#p-echecs p').inner_text().strip()) > 60,
-          page.locator('#p-echecs p').inner_text()[:50])
-        t('concept : le pilier passe bien en anglais',
+        page.goto(url('en/concept.html'))
+        t('concept anglais : le pilier est rendu en anglais',
           page.locator('#p-echecs h3').inner_text().strip()
           == 'Chess & Strategic Thinking',
           page.locator('#p-echecs h3').inner_text())
-        page.click('.langue button[data-l="fr"]')
+        t('concept anglais : le paragraphe n\'est pas vide',
+          len(page.locator('#p-echecs p').inner_text().strip()) > 60)
+        t('concept anglais : le lien FR revient a la racine',
+          page.locator('.langue a').first.get_attribute('href')
+          == '../concept.html')
+        page.goto(url('concept.html'))
 
         # ------------------------------------------- le simulateur en vrai
         page.goto(url('franchise.html'))
@@ -748,6 +986,24 @@ else:
         t('sans JavaScript : la reserve du fondateur sur la juridiction est '
           'visible', page.locator('#format .reserve').first.is_visible()
           and len(page.locator('#format .reserve').first.inner_text()) > 120)
+        page.goto(url('tutoring.html'))
+        t('sans JavaScript : les %d matieres sont lisibles'
+          % len(C.TUT_MATIERES),
+          page.locator('#matieres .carte').count() == len(C.TUT_MATIERES))
+        t('sans JavaScript : les quatre programmes sont lisibles',
+          page.locator('#programmes .carte.prog').count()
+          == len(C.TUT_PROGRAMMES))
+        t('sans JavaScript : l\'avertissement « rien n\'est en service » est '
+          'visible',
+          page.locator('.reserve').first.is_visible()
+          and 'pas de tuteur inscrit' in
+          page.locator('.reserve').first.inner_text().lower())
+        page.goto(url('en/tutoring.html'))
+        t('sans JavaScript : la page anglaise du tutorat est en anglais',
+          page.locator('#programmes .carte.prog p:not(.age)').first
+          .inner_text().strip().startswith('Foundations'),
+          page.locator('#programmes .carte.prog p:not(.age)').first
+          .inner_text()[:40])
         page.goto(url('franchise.html'))
         t('sans JavaScript : le simulateur affiche deja ses chiffres',
           page.locator('#r-resultat').inner_text().strip()
@@ -770,8 +1026,8 @@ else:
             ' document.body.scrollWidth)')
         t('mobile : la page ne deborde pas en largeur (%d px)' % largeur,
           largeur <= 390 + 1, largeur)
-        for autre in ('concept.html', 'franchise.html'):
-            page.goto(url(autre))
+        for autre in PAGES[1:]:
+            page.goto(url(autre.replace(os.sep, '/')))
             largeur = page.evaluate(
                 'Math.max(document.documentElement.scrollWidth,'
                 ' document.body.scrollWidth)')

@@ -43,11 +43,15 @@ p{margin:0}
   border-bottom:2px solid transparent}
 .nav a:hover{color:#16211d}
 .nav a[aria-current="page"]{color:#16211d;border-bottom-color:#e08a5b}
+/* Le selecteur de langue est fait de deux LIENS : la langue est celle de la
+   page (/ et /en/), pas un etat que garde un script. La langue courante est
+   un <span>, pas un lien mort vers soi-meme. */
 .langue{display:flex;border:1px solid #d9cfbc;border-radius:999px;
   overflow:hidden;flex:none}
-.langue button{border:0;background:transparent;color:#6b7a72;font:inherit;
-  font-size:13px;font-weight:600;padding:5px 12px;cursor:pointer}
-.langue button[aria-pressed="true"]{background:#2f6b52;color:#fff}
+.langue a,.langue span{font-size:13px;font-weight:600;padding:5px 12px;
+  text-decoration:none;color:#6b7a72;line-height:1.6}
+.langue a:hover{background:#efe6d6;color:#16211d}
+.langue span[aria-current]{background:#2f6b52;color:#fff}
 
 /* ---------------------------------------------------------------- hero --- */
 .hero{padding:74px 0 58px;background:
@@ -206,6 +210,22 @@ section.mince{padding:22px 0}
   color:#16211d}
 .carte.mini h3{font-size:16px;margin:0}
 .carte.mini:hover{border-color:#2f6b52}
+
+/* ------------------------------------------------------- KIMO Tutoring --- */
+/* Les quatre programmes par age. La tranche d'age est ce qu'un parent
+   cherche en premier : elle passe AVANT le nom du programme. */
+.carte.prog .age{font-size:13px;font-weight:700;letter-spacing:.12em;
+  color:#e08a5b;margin-bottom:8px}
+.carte.prog h3{margin-bottom:10px}
+.carte.prog p{color:#4b5a53;font-size:15px}
+.liste.large code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:14px;background:#f5eee2;border:1px solid #e6ddcd;
+  border-radius:7px;padding:2px 7px;color:#2f6b52}
+.liste code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:14px;background:#f5eee2;border:1px solid #e6ddcd;
+  border-radius:7px;padding:2px 7px;color:#2f6b52}
+/* le code de monnaie, dans le bloc sombre du simulateur */
+.sortie .dev{color:#a9bab2;font-weight:600}
 
 /* ------------------------------------------------- tableaux du concept --- */
 .tab.large th{width:auto}

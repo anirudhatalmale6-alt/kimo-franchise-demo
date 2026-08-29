@@ -28,7 +28,7 @@ VUES = [
     ('ki-7-modele-eco.png', 'franchise.html', '#modele-eco', None, 'fr'),
     ('ki-8-simulateur.png', 'franchise.html', '#simulateur', None, 'fr'),
     ('ki-9-candidature.png', 'franchise.html', '#candidature', None, 'fr'),
-    ('ki-10-anglais.png', 'franchise.html', '#parcours', None, 'en'),
+    ('ki-10-anglais.png', 'en/franchise.html', '#parcours', None, 'en'),
     # La page du concept, celle qui porte sa note.
     ('ki-12-concept.png', 'concept.html', None, None, 'fr'),
     ('ki-13-couches.png', 'concept.html', '#couches', None, 'fr'),
@@ -37,8 +37,19 @@ VUES = [
     ('ki-16-journee.png', 'concept.html', '#journee', None, 'fr'),
     ('ki-17-exploitation.png', 'concept.html', '#exploitation', None, 'fr'),
     ('ki-18-phases.png', 'concept.html', '#phases', None, 'fr'),
-    ('ki-19-concept-anglais.png', 'concept.html', '#apprentissage', None,
+    ('ki-19-concept-anglais.png', 'en/concept.html', '#apprentissage',
+     None, 'en'),
+    # KIMO Tutoring, et la version anglaise qui a maintenant sa propre
+    # adresse : on la capture sur SON fichier, pas apres un clic.
+    ('ki-21-tutorat.png', 'tutoring.html', None, None, 'fr'),
+    ('ki-22-tutorat-programmes.png', 'tutoring.html', '#programmes', None,
+     'fr'),
+    ('ki-23-tutorat-securite.png', 'tutoring.html', '#securite', None, 'fr'),
+    ('ki-24-tutorat-mvp.png', 'tutoring.html', '#mvp', None, 'fr'),
+    ('ki-25-anglais-accueil.png', 'en/index.html', None, None, 'en'),
+    ('ki-26-anglais-tutorat.png', 'en/tutoring.html', '#programmes', None,
      'en'),
+    ('ki-27-anglais-concept.png', 'en/concept.html', '#journee', None, 'en'),
 ]
 
 
@@ -50,10 +61,7 @@ def main():
         page = ctx.new_page()
         for nom, fichier, ancre, _x, langue in VUES:
             page.goto(url(fichier))
-            if langue == 'en':
-                page.click('.langue button[data-l="en"]')
-            else:
-                page.click('.langue button[data-l="fr"]')
+            # Plus de clic de bascule : la langue est celle de l'ADRESSE.
             if ancre:
                 page.evaluate(
                     "s => { const n = document.querySelector(s);"
@@ -71,14 +79,14 @@ def main():
         page.wait_for_timeout(150)
         page.screenshot(path=os.path.join(ICI, 'ki-11-mobile.png'))
         print('ki-11-mobile.png')
-        page.goto(url('concept.html'))
+        page.goto(url('tutoring.html'))
         page.evaluate(
-            "() => { const n = document.querySelector('#format');"
+            "() => { const n = document.querySelector('#programmes');"
             " window.scrollTo(0, n.getBoundingClientRect().top"
             " + window.scrollY - 12); }")
         page.wait_for_timeout(150)
-        page.screenshot(path=os.path.join(ICI, 'ki-20-mobile-concept.png'))
-        print('ki-20-mobile-concept.png')
+        page.screenshot(path=os.path.join(ICI, 'ki-20-mobile-tutorat.png'))
+        print('ki-20-mobile-tutorat.png')
         ctx.close()
         nav.close()
 

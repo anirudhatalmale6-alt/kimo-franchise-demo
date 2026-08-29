@@ -52,16 +52,16 @@ MARQUE = 'KIMO'
 # site tant qu'il ne l'a pas confirmee. Une signature de marque ne se traduit
 # pas a la place de son fondateur.
 SIGNATURE_EN = 'Learn to Think.'
-SIGNATURE_FR = 'Apprendre a penser.'
+SIGNATURE_FR = 'Apprendre à penser.'
 SIGNATURE_TRAD_A_VALIDER = True
 
 # Sa promesse centrale (section 2 de la note), mot pour mot cote anglais.
 PROMESSE_EN = ('One educational ecosystem, many local centers: proximity for '
                'families, autonomy for local teams and consistent quality '
                'across the network.')
-PROMESSE_FR = ('Un seul ecosysteme educatif, beaucoup de centres locaux : la '
-               'proximite pour les familles, l\'autonomie pour les equipes '
-               'locales, et la meme qualite partout dans le reseau.')
+PROMESSE_FR = ('Un seul écosystème éducatif, beaucoup de centres locaux : la '
+               'proximité pour les familles, l\'autonomie pour les équipes '
+               'locales, et la même qualité partout dans le réseau.')
 
 # La devise du fondateur, mot pour mot comme sur les autres sites du groupe.
 # Un controle compare cette chaine avec prestige/page_prestige.py : une devise
@@ -81,19 +81,19 @@ URL_PRESTIGE = 'https://anirudhatalmale6-alt.github.io/maisons-de-prestige/'
 # combler. Chaque ligne : cle, question posee au client, ou ca se voit.
 # ---------------------------------------------------------------------------
 A_DEFINIR = [
-    ('pays', 'Le PAYS de la premiere creche',
-     'Le pays commande tout le cadre reglementaire, la monnaie et la langue.'),
-    ('ville', 'La VILLE de la premiere creche',
-     'Agrement, locaux et taux d\'encadrement se traitent au niveau local.'),
+    ('pays', 'Le PAYS de la première crèche',
+     'Le pays commande tout le cadre réglementaire, la monnaie et la langue.'),
+    ('ville', 'La VILLE de la première crèche',
+     'Agrément, locaux et taux d\'encadrement se traitent au niveau local.'),
     ('domaine', 'Le NOM DE DOMAINE',
-     'Aujourd\'hui le site tourne sur une adresse de demonstration.'),
-    ('entree', 'Le DROIT D\'ENTREE au reseau',
-     'Affiche dans le modele economique et utilise par le simulateur.'),
-    ('redevance', 'La REDEVANCE du reseau',
-     'Meme chose : en pourcentage du chiffre d\'affaires, ou forfaitaire.'),
-    ('apport', 'L\'APPORT PERSONNEL demande au candidat',
+     'Aujourd\'hui le site tourne sur une adresse de démonstration.'),
+    ('entree', 'Le DROIT D\'ENTRÉE au réseau',
+     'Affiché dans le modèle économique et utilisé par le simulateur.'),
+    ('redevance', 'La REDEVANCE du réseau',
+     'Même chose : en pourcentage du chiffre d\'affaires, ou forfaitaire.'),
+    ('apport', 'L\'APPORT PERSONNEL demandé au candidat',
      'C\'est le premier filtre d\'un dossier de franchise.'),
-    ('contact', 'L\'ADRESSE qui recoit les candidatures',
+    ('contact', 'L\'ADRESSE qui reçoit les candidatures',
      'Le formulaire est construit ; il lui manque sa destination.'),
 ]
 
@@ -103,38 +103,38 @@ A_DEFINIR = [
 #   unite   : 'devise' | 'pourcent' | 'texte'
 # ---------------------------------------------------------------------------
 MODELE = [
-    ('entree', 'Droit d\'entree', 'Entry fee', None, 'devise',
-     'Verse une fois a la signature. Il paie la formation initiale, '
-     'l\'ouverture accompagnee et la mise en place de la methode.',
+    ('entree', 'Droit d\'entrée', 'Entry fee', None, 'devise',
+     'Versé une fois à la signature. Il paie la formation initiale, '
+     'l\'ouverture accompagnée et la mise en place de la méthode.',
      'Paid once at signature. It covers the initial training, the assisted '
      'opening and the setup of the method.'),
-    ('duree', 'Duree du contrat', 'Contract term', None, 'texte',
-     'La duree d\'un contrat de franchise se cale sur celle du bail : '
-     'un contrat plus court que le bail laisse le franchise avec un local '
+    ('duree', 'Durée du contrat', 'Contract term', None, 'texte',
+     'La durée d\'un contrat de franchise se cale sur celle du bail : '
+     'un contrat plus court que le bail laisse le franchisé avec un local '
      'et sans marque.',
      'A franchise term is set against the lease: a term shorter than the '
      'lease leaves the franchisee with premises and no brand.'),
     ('redevance', 'Redevance d\'exploitation', 'Ongoing royalty', None,
      'pourcent',
-     'Prelevee sur le chiffre d\'affaires encaisse. Elle finance la methode, '
-     'les outils, le support et le controle qualite.',
+     'Prélevée sur le chiffre d\'affaires encaissé. Elle finance la méthode, '
+     'les outils, le support et le contrôle qualité.',
      'Charged on collected revenue. It funds the method, the tools, the '
      'support and the quality control.'),
     ('communication', 'Contribution communication', 'Marketing contribution',
      None, 'pourcent',
-     'Fonds commun : campagnes nationales, site, referencement local des '
-     'creches du reseau.',
+     'Fonds commun : campagnes nationales, site, référencement local des '
+     'crèches du réseau.',
      'Common fund: national campaigns, website, local search presence for '
      'the network\'s centres.'),
-    ('apport', 'Apport personnel demande', 'Personal contribution required',
+    ('apport', 'Apport personnel demandé', 'Personal contribution required',
      None, 'devise',
-     'La part que le candidat finance lui-meme, hors emprunt.',
+     'La part que le candidat finance lui-même, hors emprunt.',
      'The share the candidate finances themselves, outside of borrowing.'),
     ('investissement', 'Investissement total', 'Total investment', None,
      'devise',
-     'Travaux, mobilier, materiel pedagogique, tresorerie de demarrage. '
-     'Il depend du local et du pays : il se chiffre par ville, pas en '
-     'general.',
+     'Travaux, mobilier, matériel pédagogique, trésorerie de démarrage. '
+     'Il dépend du local et du pays : il se chiffre par ville, pas en '
+     'général.',
      'Fit-out, furniture, teaching material, opening cash. It depends on the '
      'premises and the country: it is costed city by city, not in general.'),
 ]
@@ -147,46 +147,46 @@ MODELE = [
 # droit du pays. Ecrire un chiffre au hasard ici, c'est exposer un candidat.
 # ---------------------------------------------------------------------------
 REGLEMENTAIRE = [
-    ('capacite', 'Capacite maximale de l\'unite',
+    ('capacite', 'Capacité maximale de l\'unité',
      'Maximum capacity of a unit',
-     'Le nombre de places qui definit une « micro-creche » est fixe par la '
-     'reglementation du pays. Au-dela, l\'etablissement change de categorie '
-     'et de regles.',
+     'Le nombre de places qui définit une « micro-crèche » est fixé par la '
+     'réglementation du pays. Au-delà, l\'établissement change de catégorie '
+     'et de règles.',
      'The number of places that defines a "micro-nursery" is set by national '
      'regulation. Above it, the facility changes category and rules.',
      None),
     ('encadrement', 'Taux d\'encadrement',
      'Staff-to-child ratio',
-     'Nombre d\'adultes diplomes par enfant, et il differe souvent selon que '
+     'Nombre d\'adultes diplômés par enfant, et il diffère souvent selon que '
      'l\'enfant marche ou non.',
      'Number of qualified adults per child, often different for children who '
      'walk and those who do not.',
      None),
     ('responsable', 'Qualification du responsable',
      'Qualification of the manager',
-     'Diplome exige, annees d\'experience, et parfois une reference '
+     'Diplôme exigé, années d\'expérience, et parfois une référence '
      'sanitaire distincte.',
      'Required diploma, years of experience, and sometimes a separate health '
      'referent.',
      None),
     ('surface', 'Surface par enfant',
      'Floor area per child',
-     'Surface interieure utile, et acces a un espace exterieur selon les '
+     'Surface intérieure utile, et accès à un espace extérieur selon les '
      'pays.',
      'Usable indoor area, plus access to outdoor space depending on the '
      'country.',
      None),
-    ('agrement', 'Autorite qui delivre l\'agrement',
+    ('agrement', 'Autorité qui délivre l\'agrément',
      'Authority granting the licence',
      'C\'est elle qui visite le local avant l\'ouverture et qui peut la '
-     'refuser. Le calendrier d\'ouverture depend de son delai.',
+     'refuser. Le calendrier d\'ouverture dépend de son délai.',
      'It inspects the premises before opening and can refuse. The opening '
      'schedule depends on its lead time.',
      None),
     ('financement', 'Aides et financement des familles',
      'Family funding and subsidies',
-     'Dans plusieurs pays, une partie du prix paye par la famille est prise '
-     'en charge. Cela change le tarif affichable, donc tout le modele.',
+     'Dans plusieurs pays, une partie du prix payé par la famille est prise '
+     'en charge. Cela change le tarif affichable, donc tout le modèle.',
      'In several countries part of the fee paid by the family is subsidised. '
      'That changes the price you can charge, and so the whole model.',
      None),
@@ -197,36 +197,36 @@ REGLEMENTAIRE = [
 # aucun reseau existant.
 # ---------------------------------------------------------------------------
 PILIERS = [
-    ('proximite', 'Une creche par quartier', 'One nursery per neighbourhood',
-     'Le trajet domicile-creche est le premier critere des parents, avant le '
-     'prix. Une unite petite s\'implante dans un quartier ou une grande '
-     'structure ne rentre pas : un rez-de-chaussee, une maison, un local '
+    ('proximite', 'Une crèche par quartier', 'One nursery per neighbourhood',
+     'Le trajet domicile-crèche est le premier critère des parents, avant le '
+     'prix. Une unité petite s\'implante dans un quartier où une grande '
+     'structure ne rentre pas : un rez-de-chaussée, une maison, un local '
      'commercial reconverti.',
      'The home-to-nursery trip is the first thing parents look at, before '
      'price. A small unit fits into a neighbourhood where a large facility '
      'cannot: a ground floor, a house, a converted shop.'),
-    ('taille', 'Petite unite, adulte connu',
+    ('taille', 'Petite unité, adulte connu',
      'Small unit, a familiar adult',
-     'Un enfant de deux ans ne retient pas quinze visages. Une unite courte '
-     'garde le meme adulte devant le meme groupe toute la journee, et les '
-     'parents parlent au responsable, pas a un standard.',
+     'Un enfant de deux ans ne retient pas quinze visages. Une unité courte '
+     'garde le même adulte devant le même groupe toute la journée, et les '
+     'parents parlent au responsable, pas à un standard.',
      'A two-year-old does not retain fifteen faces. A small unit keeps the '
      'same adult with the same group all day, and parents talk to the '
      'manager, not to a switchboard.'),
-    ('methode', 'Une methode commune, pas une improvisation',
+    ('methode', 'Une méthode commune, pas une improvisation',
      'A shared method, not improvisation',
-     'Ce que le reseau apporte n\'est pas un logo : c\'est une progression '
-     'ecrite, des supports, un cahier d\'observation, et la formation qui va '
-     'avec. Deux creches KIMO a deux bouts du pays travaillent de la meme '
-     'facon.',
+     'Ce que le réseau apporte n\'est pas un logo : c\'est une progression '
+     'écrite, des supports, un cahier d\'observation, et la formation qui va '
+     'avec. Deux crèches KIMO à deux bouts du pays travaillent de la même '
+     'façon.',
      'What the network brings is not a logo: it is a written progression, '
      'materials, an observation record, and the training that goes with it. '
      'Two KIMO nurseries at opposite ends of the country work the same way.'),
-    ('couts', 'Les couts lourds sont mutualises',
+    ('couts', 'Les coûts lourds sont mutualisés',
      'The heavy costs are shared',
-     'Inscription en ligne, facturation, planning, achats, conformite, site '
-     'et referencement : une creche seule les paie en entier et les fait mal. '
-     'Le reseau les porte une fois pour toutes.',
+     'Inscription en ligne, facturation, planning, achats, conformité, site '
+     'et référencement : une crèche seule les paie en entier et les fait mal. '
+     'Le réseau les porte une fois pour toutes.',
      'Enrolment, billing, scheduling, purchasing, compliance, website and '
      'local search: a standalone nursery pays for all of it and does it '
      'badly. The network carries it once, for everyone.'),
@@ -246,11 +246,11 @@ PILIERS = [
 METHODE_A_VALIDER = False
 
 METHODE_INTRO_FR = (
-    'KIMO ne cherche pas a transformer la creche en ecole primaire. Les '
-    'themes intellectuels y sont des supports de jeu et de decouverte. '
-    'L\'objectif est de poser les bases du raisonnement et de la curiosite '
-    'sans rien retirer au jeu libre, au developpement affectif, a la parole, '
-    'a la vie en groupe, a la creation et au repos.')
+    'KIMO ne cherche pas à transformer la crèche en école primaire. Les '
+    'thèmes intellectuels y sont des supports de jeu et de découverte. '
+    'L\'objectif est de poser les bases du raisonnement et de la curiosité '
+    'sans rien retirer au jeu libre, au développement affectif, à la parole, '
+    'à la vie en groupe, à la création et au repos.')
 METHODE_INTRO_EN = (
     'KIMO is not intended to turn preschool into primary school. The '
     'curriculum uses intellectual themes as tools for play and discovery. '
@@ -259,19 +259,19 @@ METHODE_INTRO_EN = (
     'social interaction, creativity and rest.')
 
 METHODE = [
-    ('Poser la question avant de donner la reponse.',
+    ('Poser la question avant de donner la réponse.',
      'Ask questions before giving answers.'),
-    ('Manipuler des objets reels avant d\'introduire des symboles '
+    ('Manipuler des objets réels avant d\'introduire des symboles '
      'abstraits.',
      'Manipulate real objects before introducing abstract symbols.'),
-    ('Demander a l\'enfant d\'expliquer comment il est arrive a sa solution.',
+    ('Demander à l\'enfant d\'expliquer comment il est arrivé à sa solution.',
      'Encourage children to explain how they reached a solution.'),
     ('Se servir de l\'erreur pour essayer une autre approche.',
      'Use mistakes as opportunities to test another approach.'),
-    ('Equilibrer les activites dirigees et l\'exploration menee par '
+    ('Équilibrer les activités dirigées et l\'exploration menée par '
      'l\'enfant.',
      'Balance structured activities with child-led exploration.'),
-    ('Regler la difficulte sur la maturite de l\'enfant, pas sur son age.',
+    ('Régler la difficulté sur la maturité de l\'enfant, pas sur son âge.',
      'Adapt complexity to developmental readiness rather than age alone.'),
 ]
 
@@ -280,63 +280,63 @@ METHODE = [
 # mot, francais traduit.
 # ---------------------------------------------------------------------------
 APPRENTISSAGE = [
-    ('logique', 'Logique et resolution de problemes',
+    ('logique', 'Logique et résolution de problèmes',
      'Logic & Problem Solving',
-     'Casse-tete, tris, reconnaissance de motifs, construction, mises en '
-     'ordre, labyrinthes, jeux de memoire et petits defis de strategie. '
-     'L\'enfant apprend a comparer, classer, anticiper et verifier une '
+     'Casse-tête, tris, reconnaissance de motifs, construction, mises en '
+     'ordre, labyrinthes, jeux de mémoire et petits défis de stratégie. '
+     'L\'enfant apprend à comparer, classer, anticiper et vérifier une '
      'solution.',
      'Puzzles, sorting, pattern recognition, construction, sequencing, '
      'mazes, memory games and simple strategy challenges. Children learn to '
      'compare, classify, anticipate and test solutions.'),
-    ('echecs', 'Echecs et pensee strategique',
+    ('echecs', 'Échecs et pensée stratégique',
      'Chess & Strategic Thinking',
-     'Chez les plus jeunes, les echecs commencent par les couleurs, '
-     'l\'orientation du plateau, la reconnaissance des pieces et des jeux de '
-     'deplacement. Les plus grands passent a des mini-parties avec un nombre '
-     'de pieces limite. Le but est l\'attention, le raisonnement dans '
-     'l\'espace et l\'anticipation — pas la performance en competition.',
+     'Chez les plus jeunes, les échecs commencent par les couleurs, '
+     'l\'orientation du plateau, la reconnaissance des pièces et des jeux de '
+     'déplacement. Les plus grands passent à des mini-parties avec un nombre '
+     'de pièces limité. Le but est l\'attention, le raisonnement dans '
+     'l\'espace et l\'anticipation — pas la performance en compétition.',
      'For younger children, chess begins with colors, board orientation, '
      'piece recognition and movement games. Older preschoolers can progress '
      'to mini-games with a limited number of pieces. The purpose is '
      'attention, spatial reasoning and anticipation' + u'\u2014' + 'not competitive '
      'performance.'),
-    ('maths', 'Mathematiques', 'Mathematics',
-     'Compter avec des objets, quantites, formes, comparaison, mesure, '
-     'symetrie, motifs, reperage dans l\'espace et premieres idees de '
-     'calcul. Les activites restent concretes et ludiques.',
+    ('maths', 'Mathématiques', 'Mathematics',
+     'Compter avec des objets, quantités, formes, comparaison, mesure, '
+     'symétrie, motifs, repérage dans l\'espace et premières idées de '
+     'calcul. Les activités restent concrètes et ludiques.',
      'Counting through objects, quantities, shapes, comparison, measurement, '
      'symmetry, patterns, spatial relationships and simple arithmetic '
      'concepts. Activities remain concrete and playful.'),
     ('sciences', 'Physique et sciences', 'Physics & Science',
-     'Experiences sans danger autour de l\'eau, l\'air, la lumiere, le son, '
-     'les aimants, l\'equilibre, la gravite, le mouvement, les plantes et '
-     'les matieres. On demande a l\'enfant de prevoir ce qui va se passer, '
-     'd\'observer le resultat et de le decrire.',
+     'Expériences sans danger autour de l\'eau, l\'air, la lumière, le son, '
+     'les aimants, l\'équilibre, la gravité, le mouvement, les plantes et '
+     'les matières. On demande à l\'enfant de prévoir ce qui va se passer, '
+     'd\'observer le résultat et de le décrire.',
      'Safe experiments involving water, air, light, sound, magnets, balance, '
      'gravity, motion, plants and materials. Children are encouraged to '
      'predict what will happen, observe the result and describe what they '
      'saw.'),
     ('histoire', 'Histoire et civilisations', 'History & Civilizations',
-     'Recits illustres sur les civilisations, les inventions, les '
-     'explorateurs, l\'architecture, les transports, les ecritures et les '
-     'grandes realisations humaines. L\'accent est mis sur le recit, la '
-     'chronologie et la curiosite culturelle, pas sur les dates a retenir.',
+     'Récits illustrés sur les civilisations, les inventions, les '
+     'explorateurs, l\'architecture, les transports, les écritures et les '
+     'grandes réalisations humaines. L\'accent est mis sur le récit, la '
+     'chronologie et la curiosité culturelle, pas sur les dates à retenir.',
      'Illustrated stories about civilizations, inventions, explorers, '
      'architecture, transport, writing systems and major human achievements. '
      'The focus is narrative, chronology and cultural curiosity rather than '
      'memorization of dates.'),
-    ('corps', 'Developpement physique', 'Physical Development',
-     'Du mouvement tous les jours : equilibre, coordination, force, '
-     'motricite fine et globale, rythme et jeux cooperatifs. L\'activite en '
-     'exterieur est integree des que c\'est possible.',
+    ('corps', 'Développement physique', 'Physical Development',
+     'Du mouvement tous les jours : équilibre, coordination, force, '
+     'motricité fine et globale, rythme et jeux coopératifs. L\'activité en '
+     'extérieur est intégrée dès que c\'est possible.',
      'Daily movement supporting balance, coordination, strength, fine and '
      'gross motor skills, rhythm and cooperative play. Outdoor activity is '
      'integrated whenever possible.'),
-    ('creation', 'Creation et expression', 'Creativity & Communication',
-     'Dessin, musique, recit, construction, jeux de role et travaux manuels '
-     'font contrepoids aux activites analytiques et aident l\'enfant a dire '
-     'ses idees de plusieurs facons.',
+    ('creation', 'Création et expression', 'Creativity & Communication',
+     'Dessin, musique, récit, construction, jeux de rôle et travaux manuels '
+     'font contrepoids aux activités analytiques et aident l\'enfant à dire '
+     'ses idées de plusieurs façons.',
      'Drawing, music, storytelling, building, role play and crafts provide a '
      'counterbalance to analytical activities and help children communicate '
      'ideas in multiple ways.'),
@@ -348,35 +348,35 @@ APPRENTISSAGE = [
 # ---------------------------------------------------------------------------
 PARCOURS = [
     ('1', 'Candidature', 'Application',
-     'Le formulaire en bas de cette page. Ville visee, situation, apport, '
+     'Le formulaire en bas de cette page. Ville visée, situation, apport, '
      'calendrier souhaite.',
      'The form at the bottom of this page. Target city, situation, personal '
      'contribution, target date.', None),
     ('2', 'Entretien et dossier', 'Interview and file',
-     'Un entretien, puis le document d\'information precontractuelle : ce '
-     'que le reseau apporte, ce qu\'il facture, ce qu\'il exige.',
+     'Un entretien, puis le document d\'information précontractuelle : ce '
+     'que le réseau apporte, ce qu\'il facture, ce qu\'il exige.',
      'An interview, then the pre-contractual disclosure document: what the '
      'network provides, what it charges, what it requires.', None),
-    ('3', 'Etude de la zone', 'Territory study',
+    ('3', 'Étude de la zone', 'Territory study',
      'Nombre de jeunes enfants, offre existante, trajets. Une zone qui ne '
-     'porte pas une creche, on le voit avant le bail, pas apres.',
+     'porte pas une crèche, on le voit avant le bail, pas après.',
      'Number of young children, existing supply, commutes. A territory that '
      'cannot carry a nursery shows up before the lease, not after.', None),
-    ('4', 'Local et agrement', 'Premises and licence',
-     'Recherche du local, mise en conformite, depot du dossier aupres de '
-     'l\'autorite. C\'est l\'etape la plus longue, et sa duree ne depend pas '
+    ('4', 'Local et agrément', 'Premises and licence',
+     'Recherche du local, mise en conformité, dépôt du dossier auprès de '
+     'l\'autorité. C\'est l\'étape la plus longue, et sa durée ne dépend pas '
      'de nous.',
      'Finding the premises, bringing them up to standard, filing with the '
      'authority. This is the longest step, and its length is not ours to '
      'set.', None),
     ('5', 'Formation', 'Training',
-     'La methode, les outils, la gestion, la relation aux familles. Le '
+     'La méthode, les outils, la gestion, la relation aux familles. Le '
      'responsable et le premier encadrant la suivent ensemble.',
      'The method, the tools, day-to-day management, working with families. '
      'The manager and the first practitioner attend together.', None),
-    ('6', 'Ouverture accompagnee', 'Assisted opening',
-     'Quelqu\'un du reseau est sur place les premiers jours. Les premieres '
-     'inscriptions se font a deux.',
+    ('6', 'Ouverture accompagnée', 'Assisted opening',
+     'Quelqu\'un du réseau est sur place les premiers jours. Les premières '
+     'inscriptions se font à deux.',
      'Someone from the network is on site for the first days. The first '
      'enrolments are handled together.', None),
 ]
@@ -386,48 +386,48 @@ PARCOURS = [
 # ---------------------------------------------------------------------------
 RESEAU_APPORTE = [
     ('La marque et la charte', 'The brand and its guidelines'),
-    ('La methode ecrite et ses supports', 'The written method and materials'),
+    ('La méthode écrite et ses supports', 'The written method and materials'),
     ('La formation initiale et le recyclage annuel',
      'Initial training and annual refresher'),
-    ('Le logiciel : inscriptions, presences, facturation, planning',
+    ('Le logiciel : inscriptions, présences, facturation, planning',
      'The software: enrolment, attendance, billing, scheduling'),
-    ('L\'etude de zone avant la signature du bail',
+    ('L\'étude de zone avant la signature du bail',
      'The territory study before the lease is signed'),
-    ('Les achats groupes : mobilier, materiel, consommables',
+    ('Les achats groupes : mobilier, matériel, consommables',
      'Group purchasing: furniture, equipment, consumables'),
-    ('Le site du reseau et la fiche locale de la creche',
+    ('Le site du réseau et la fiche locale de la crèche',
      'The network site and the nursery\'s local page'),
-    ('Le controle qualite et les visites',
+    ('Le contrôle qualité et les visites',
      'Quality control and site visits'),
-    ('L\'exclusivite sur une zone definie au contrat',
+    ('L\'exclusivité sur une zone définie au contrat',
      'Exclusivity over a territory defined in the contract'),
 ]
 
 FRANCHISE_APPORTE = [
-    ('Le local, et sa mise en conformite',
+    ('Le local, et sa mise en conformité',
      'The premises, and bringing them up to standard'),
     ('L\'apport personnel et le financement',
      'The personal contribution and the financing'),
-    ('Le recrutement de l\'equipe, avec l\'aide du reseau',
+    ('Le recrutement de l\'équipe, avec l\'aide du réseau',
      'Recruiting the team, with the network\'s help'),
-    ('Sa presence : ce n\'est pas un placement, c\'est un metier',
+    ('Sa présence : ce n\'est pas un placement, c\'est un métier',
      'Their presence: this is not an investment, it is a job'),
-    ('Le respect de la methode et des standards',
+    ('Le respect de la méthode et des standards',
      'Applying the method and the standards'),
-    ('La relation avec les familles et l\'autorite locale',
+    ('La relation avec les familles et l\'autorité locale',
      'The relationship with families and the local authority'),
 ]
 
 PROFIL = [
-    ('Un metier de la petite enfance, de la sante ou de l\'education — ou '
-     'un associe qui l\'exerce.',
+    ('Un métier de la petite enfance, de la santé ou de l\'éducation — ou '
+     'un associé qui l\'exerce.',
      'A background in early years, health or education — or a partner who '
      'has one.'),
     ('L\'envie de tenir un lieu, pas d\'y placer de l\'argent.',
      'Wanting to run a place, not to park money in one.'),
-    ('Un ancrage local reel dans la ville visee.',
+    ('Un ancrage local réel dans la ville visée.',
      'Real local roots in the target city.'),
-    ('La capacite a financer l\'apport demande.',
+    ('La capacité à financer l\'apport demandé.',
      'The ability to fund the required contribution.'),
 ]
 
@@ -439,28 +439,28 @@ PROFIL = [
 #   cle, fr, en, valeur de depart, pas, unite ('devise'|'pourcent'|'nombre')
 # ---------------------------------------------------------------------------
 SIM_CHAMPS = [
-    ('places', 'Places agreees', 'Licensed places', 12, 1, 'nombre'),
+    ('places', 'Places agréées', 'Licensed places', 12, 1, 'nombre'),
     ('occupation', 'Taux d\'occupation', 'Occupancy rate', 90, 1, 'pourcent'),
     ('tarif', 'Recette mensuelle par place', 'Monthly revenue per place',
      1300, 10, 'devise'),
     ('loyer', 'Loyer mensuel', 'Monthly rent', 1600, 50, 'devise'),
-    ('etp', 'Encadrants (equivalent temps plein)',
+    ('etp', 'Encadrants (équivalent temps plein)',
      'Practitioners (full-time equivalent)', 4, 1, 'nombre'),
-    ('salaire', 'Cout mensuel charge par encadrant',
+    ('salaire', 'Coût mensuel charge par encadrant',
      'Monthly loaded cost per practitioner', 2500, 50, 'devise'),
     ('autres', 'Autres charges mensuelles', 'Other monthly costs', 1100, 50,
      'devise'),
-    ('redevance', 'Redevance reseau', 'Network royalty', 0, 1, 'pourcent'),
+    ('redevance', 'Redevance réseau', 'Network royalty', 0, 1, 'pourcent'),
 ]
 
 DEVISES = [('EUR', '€'), ('CAD', '$'), ('CHF', 'CHF'), ('DZD', 'DA'),
            ('MAD', 'DH'), ('GBP', '£')]
 
 SIM_NOTE_FR = ('Aucun chiffre de ce simulateur n\'est un chiffre KIMO, et '
-               'les valeurs de depart ne decrivent aucun marche : elles sont '
-               'rondes et arbitraires, elles servent a montrer le calcul. '
-               'Remplacez-les par les votres. La redevance reseau est a zero '
-               'parce qu\'elle n\'est pas encore fixee — posez-la des '
+               'les valeurs de départ ne décrivent aucun marché : elles sont '
+               'rondes et arbitraires, elles servent à montrer le calcul. '
+               'Remplacez-les par les vôtres. La redevance réseau est à zéro '
+               'parce qu\'elle n\'est pas encore fixée — posez-la dès '
                'qu\'elle l\'est.')
 SIM_NOTE_EN = ('None of the figures in this simulator are KIMO figures, and '
                'the starting values describe no particular market: they are '
@@ -473,28 +473,28 @@ SIM_NOTE_EN = ('None of the figures in this simulator are KIMO figures, and '
 #   cle, fr, en, type, obligatoire, options (fr, en) pour les listes
 # ---------------------------------------------------------------------------
 FORMULAIRE = [
-    ('nom', 'Nom et prenom', 'Full name', 'text', True, None),
-    ('tel', 'Telephone', 'Phone', 'tel', True, None),
+    ('nom', 'Nom et prénom', 'Full name', 'text', True, None),
+    ('tel', 'Téléphone', 'Phone', 'tel', True, None),
     ('courriel', 'Adresse de courriel', 'Email address', 'email', True, None),
     ('pays', 'Pays vise', 'Target country', 'text', True, None),
-    ('ville', 'Ville visee', 'Target city', 'text', True, None),
+    ('ville', 'Ville visée', 'Target city', 'text', True, None),
     ('profil', 'Votre situation', 'Your background', 'select', True, [
         ('Professionnel de la petite enfance',
          'Early-years professional'),
-        ('Sante ou education', 'Health or education'),
-        ('Entrepreneur, avec un associe du metier',
+        ('Santé ou éducation', 'Health or education'),
+        ('Entrepreneur, avec un associé du métier',
          'Entrepreneur, with a partner from the field'),
         ('Autre', 'Other')]),
     ('apport', 'Apport personnel disponible', 'Personal contribution available',
      'text', False, None),
-    ('local', 'Avez-vous deja un local ?', 'Do you already have premises?',
+    ('local', 'Avez-vous déjà un local ?', 'Do you already have premises?',
      'select', True, [
-         ('Oui, un local identifie', 'Yes, premises identified'),
+         ('Oui, un local identifié', 'Yes, premises identified'),
          ('Une recherche en cours', 'A search under way'),
          ('Pas encore', 'Not yet')]),
-    ('echeance', 'Ouverture souhaitee', 'Target opening', 'select', True, [
+    ('echeance', 'Ouverture souhaitée', 'Target opening', 'select', True, [
         ('Dans les 6 mois', 'Within 6 months'),
-        ('6 a 12 mois', '6 to 12 months'),
+        ('6 à 12 mois', '6 to 12 months'),
         ('Plus de 12 mois', 'More than 12 months')]),
     ('message', 'Votre projet en quelques lignes',
      'Your project, in a few lines', 'textarea', False, None),
@@ -504,80 +504,80 @@ FORMULAIRE = [
 # LA FAQ. Les reponses qui dependent d'un chiffre non fixe le DISENT.
 # ---------------------------------------------------------------------------
 FAQ = [
-    ('Faut-il un diplome de la petite enfance pour ouvrir une KIMO ?',
+    ('Faut-il un diplôme de la petite enfance pour ouvrir une KIMO ?',
      'Do I need an early-years qualification to open a KIMO?',
-     'Pour DIRIGER l\'etablissement, la loi du pays l\'exige presque '
-     'toujours, et c\'est elle qui tranche, pas le reseau. Un candidat sans '
-     'ce diplome ouvre avec un responsable qui l\'a. La qualification exacte '
-     'fait partie des points a preciser des que le pays est arrete.',
+     'Pour DIRIGER l\'établissement, la loi du pays l\'exige presque '
+     'toujours, et c\'est elle qui tranche, pas le réseau. Un candidat sans '
+     'ce diplôme ouvre avec un responsable qui l\'a. La qualification exacte '
+     'fait partie des points à préciser dès que le pays est arrêté.',
      'To RUN the facility, national law almost always requires one, and that '
      'is what decides, not the network. A candidate without it opens with a '
      'manager who has it. The exact qualification is one of the points to be '
      'settled once the country is chosen.'),
-    ('Combien de places par creche ?',
+    ('Combien de places par crèche ?',
      'How many places per nursery?',
-     'C\'est un plafond reglementaire, pas un choix commercial : le nombre '
-     'qui definit une micro-creche est fixe par le pays. Il sera ecrit ici '
-     'des que le pays de la premiere ouverture sera arrete.',
+     'C\'est un plafond réglementaire, pas un choix commercial : le nombre '
+     'qui définit une micro-crèche est fixé par le pays. Il sera écrit ici '
+     'dès que le pays de la première ouverture sera arrêté.',
      'That is a regulatory ceiling, not a commercial choice: the number that '
      'defines a micro-nursery is set nationally. It will appear here as soon '
      'as the country of the first opening is settled.'),
-    ('Quel est le droit d\'entree ?',
+    ('Quel est le droit d\'entrée ?',
      'What is the entry fee?',
-     'Il n\'est pas encore fixe. Tant qu\'il ne l\'est pas, cette page '
-     'affiche « a definir » plutot qu\'un ordre de grandeur : un candidat '
+     'Il n\'est pas encore fixé. Tant qu\'il ne l\'est pas, cette page '
+     'affiche « à définir » plutôt qu\'un ordre de grandeur : un candidat '
      'construit son financement sur ce chiffre.',
      'It has not been set yet. Until it is, this page shows "to be set" '
      'rather than a ballpark: a candidate builds their financing on that '
      'number.'),
-    ('Le reseau prend-il une part du capital de ma societe ?',
+    ('Le réseau prend-il une part du capital de ma société ?',
      'Does the network take equity in my company?',
-     'Non. Une franchise n\'est pas une filiale : le franchise possede son '
-     'entreprise, son bail et son fonds. Le reseau vend l\'usage d\'une '
-     'marque et d\'une methode.',
+     'Non. Une franchise n\'est pas une filiale : le franchisé possède son '
+     'entreprise, son bail et son fonds. Le réseau vend l\'usage d\'une '
+     'marque et d\'une méthode.',
      'No. A franchise is not a subsidiary: the franchisee owns their '
      'company, their lease and their business. The network licenses the use '
      'of a brand and a method.'),
-    ('Puis-je ouvrir plusieurs creches ?',
+    ('Puis-je ouvrir plusieurs crèches ?',
      'Can I open several nurseries?',
-     'C\'est le sens du modele : de petites unites, donc plusieurs. En '
-     'pratique, la deuxieme se signe apres une premiere annee complete, '
-     'agrement obtenu et equipe stable.',
+     'C\'est le sens du modèle : de petites unités, donc plusieurs. En '
+     'pratique, la deuxième se signe après une première année complète, '
+     'agrément obtenu et équipe stable.',
      'That is the point of the model: small units, therefore several. In '
      'practice the second is signed after a full first year, with the licence '
      'obtained and a stable team.'),
     ('Qu\'est-ce qui est exclusif ?',
      'What exactly is exclusive?',
-     'Une zone definie au contrat, pas une ville entiere par principe. La '
-     'taille de la zone se decide sur le nombre de jeunes enfants qui y '
-     'vivent, ce que mesure l\'etude de zone.',
+     'Une zone définie au contrat, pas une ville entière par principe. La '
+     'taille de la zone se décide sur le nombre de jeunes enfants qui y '
+     'vivent, ce que mesure l\'étude de zone.',
      'A territory defined in the contract, not a whole city as a matter of '
      'course. Its size is set from the number of young children living '
      'there, which the territory study measures.'),
-    ('Le reseau aide-t-il a trouver le financement ?',
+    ('Le réseau aide-t-il à trouver le financement ?',
      'Does the network help with financing?',
-     'Il fournit le dossier : etude de zone, previsionnel, description du '
-     'concept. Il ne prete pas et ne se porte pas caution.',
+     'Il fournit le dossier : étude de zone, prévisionnel, description du '
+     'concept. Il ne prête pas et ne se porte pas caution.',
      'It provides the file: territory study, forecast, description of the '
      'concept. It does not lend and does not act as guarantor.'),
-    ('Que se passe-t-il si l\'agrement est refuse ?',
+    ('Que se passe-t-il si l\'agrément est refusé ?',
      'What happens if the licence is refused?',
-     'C\'est pour cela que le local et l\'agrement viennent AVANT la '
-     'formation dans le parcours, et que le contrat doit prevoir ce cas '
-     'explicitement. La redaction exacte fait partie du dossier juridique a '
-     'faire etablir dans le pays retenu.',
+     'C\'est pour cela que le local et l\'agrément viennent AVANT la '
+     'formation dans le parcours, et que le contrat doit prévoir ce cas '
+     'explicitement. La rédaction exacte fait partie du dossier juridique à '
+     'faire établir dans le pays retenu.',
      'That is why premises and licence come BEFORE training in the journey, '
      'and why the contract must address the case explicitly. The exact '
      'wording belongs to the legal file to be drawn up in the chosen '
      'country.'),
 ]
 
-AVERT_FR = ('DEMONSTRATION. KIMO est un reseau en cours de constitution : '
-            'aucune creche n\'est ouverte a ce jour. Les valeurs marquees '
-            '« a definir » ne sont pas des oublis, ce sont des decisions qui '
-            'n\'ont pas encore ete prises, ou des regles qui dependent du '
-            'pays retenu. Aucun chiffre reglementaire n\'est avance ici tant '
-            'qu\'il n\'a pas ete verifie dans le pays concerne.')
+AVERT_FR = ('DÉMONSTRATION. KIMO est un réseau en cours de constitution : '
+            'aucune crèche n\'est ouverte à ce jour. Les valeurs marquées '
+            '« à définir » ne sont pas des oublis, ce sont des décisions qui '
+            'n\'ont pas encore été prises, ou des règles qui dépendent du '
+            'pays retenu. Aucun chiffre réglementaire n\'est avancé ici tant '
+            'qu\'il n\'a pas été vérifié dans le pays concerné.')
 AVERT_EN = ('DEMONSTRATION. KIMO is a network being set up: no nursery is '
             'open to date. Values marked "to be set" are not omissions, they '
             'are decisions not yet taken, or rules that depend on the country '
@@ -598,26 +598,26 @@ AVERT_EN = ('DEMONSTRATION. KIMO is a network being set up: no nursery is '
 # --- 3. Le modele decentralise : qui fait quoi ------------------------------
 COUCHES = [
     ('KIMO Central', 'KIMO Central',
-     'Standards, programme, technologie, marque, formation et controle',
+     'Standards, programme, technologie, marque, formation et contrôle',
      'Standards, curriculum, technology, brand, training and audit',
-     'Conception du programme, certification des educateurs, plateforme, '
+     'Conception du programme, certification des éducateurs, plateforme, '
      'achats',
      'Program design, educator certification, platform, procurement'),
-    ('L\'unite KIMO locale', 'Local KIMO Unit',
-     'L\'accueil des enfants et la pedagogie au quotidien',
+    ('L\'unité KIMO locale', 'Local KIMO Unit',
+     'L\'accueil des enfants et la pédagogie au quotidien',
      'Daily childcare and educational delivery',
-     'Equipe, activites, relation aux parents, planning local',
+     'Équipe, activités, relation aux parents, planning local',
      'Staffing, activities, parent relationships, local scheduling'),
     ('Les partenaires', 'Partners',
      'Apportent des locaux, du capital, des familles ou des services '
-     'complementaires',
+     'complémentaires',
      'Provide sites, capital, referrals or complementary services',
-     'Employeurs, municipalites, promoteurs, universites',
+     'Employeurs, municipalités, promoteurs, universités',
      'Employers, municipalities, developers, universities'),
     ('Les familles', 'Families',
-     'Choisissent leur centre et participent au developpement de l\'enfant',
+     'Choisissent leur centre et participent au développement de l\'enfant',
      'Choose centers and participate in child development',
-     'Inscription, retours, points sur les progres, activites a la maison',
+     'Inscription, retours, points sur les progrès, activités à la maison',
      'Enrollment, feedback, progress discussions, home activities'),
 ]
 
@@ -627,39 +627,39 @@ COUCHES = [
 # elle ne remplace pas la ligne « capacite » du tableau reglementaire, qui
 # reste a definir : une cible de reseau n'est pas un plafond de droit.
 FORMAT = [
-    ('Capacite visee : environ 8 a 20 enfants par micro-centre, sous reserve '
-     'de la reglementation locale de la petite enfance.',
+    ('Capacité visée : environ 8 à 20 enfants par micro-centre, sous réserve '
+     'de la réglementation locale de la petite enfance.',
      'Target capacity: approximately 8-20 children per micro-center, subject '
      'to local childcare regulations.'),
-    ('Implantations possibles : maisons amenagees, rez-de-chaussee '
-     'residentiels, locaux commerciaux, sites d\'employeurs ou batiments '
-     'modulaires concus pour cela.',
+    ('Implantations possibles : maisons aménagées, rez-de-chaussée '
+     'résidentiels, locaux commerciaux, sites d\'employeurs ou bâtiments '
+     'modulaires conçus pour cela.',
      'Possible locations: adapted houses, ground-floor residential spaces, '
      'commercial units, employer campuses or purpose-built modular '
      'facilities.'),
-    ('Groupes d\'age souples, selon les regles d\'agrement et les besoins de '
-     'developpement de l\'enfant.',
+    ('Groupes d\'âge souples, selon les règles d\'agrément et les besoins de '
+     'développement de l\'enfant.',
      'Flexible age grouping based on licensing requirements and '
      'child-development needs.'),
-    ('Des zones dediees : apprentissage calme, construction et casse-tete, '
-     'mouvement, creation, repas et repos.',
+    ('Des zones dédiées : apprentissage calme, construction et casse-tête, '
+     'mouvement, création, repas et repos.',
      'Dedicated zones for quiet learning, construction/puzzles, movement, '
      'creative work, meals and rest.'),
-    ('Un acces exterieur, ou des sorties programmees, partout ou c\'est exige '
-     'et realisable.',
+    ('Un accès extérieur, ou des sorties programmées, partout où c\'est exigé '
+     'et réalisable.',
      'Outdoor access or scheduled outdoor activity wherever required and '
      'feasible.'),
-    ('Entree securisee, remise de l\'enfant controlee, procedures d\'urgence '
-     'et securisation adaptee aux jeunes enfants.',
+    ('Entrée sécurisée, remise de l\'enfant contrôlée, procédures d\'urgence '
+     'et sécurisation adaptée aux jeunes enfants.',
      'Secure entry, controlled child release, emergency procedures and '
      'appropriate childproofing.'),
 ]
 FORMAT_AVERT_FR = (
-    'Un etablissement KIMO ne doit jamais echanger la securite ou la '
-    'conformite contre de la compacite. La capacite definitive, les taux '
-    'd\'encadrement, les dimensions des pieces, le couchage, la preparation '
-    'des repas et les exigences d\'espace exterieur doivent etre adaptes a la '
-    'juridiction dans laquelle chaque unite fonctionne.')
+    'Un établissement KIMO ne doit jamais échanger la sécurité ou la '
+    'conformité contre de la compacité. La capacité définitive, les taux '
+    'd\'encadrement, les dimensions des pièces, le couchage, la préparation '
+    'des repas et les exigences d\'espace extérieur doivent être adaptés à la '
+    'juridiction dans laquelle chaque unité fonctionne.')
 FORMAT_AVERT_EN = (
     'KIMO facilities must never trade safety or regulatory compliance for '
     'compactness. Final capacity, staff ratios, room dimensions, sleep '
@@ -669,30 +669,30 @@ FORMAT_AVERT_EN = (
 # --- 7. Le parcours par age ------------------------------------------------
 AGES = [
     ('Premiers pas', 'Early toddler',
-     'Decouverte sensorielle, langage, mouvement',
+     'Découverte sensorielle, langage, mouvement',
      'Sensory discovery, language, movement',
-     'Tris, empilements, chansons, matieres, cause et effet simples',
+     'Tris, empilements, chansons, matières, cause et effet simples',
      'Sorting, stacking, songs, textures, simple cause-and-effect',
-     'Jeu court et tres surveille', 'Short, highly supervised play'),
+     'Jeu court et très surveillé', 'Short, highly supervised play'),
     ('Grands petits', 'Older toddler',
-     'Motifs, coordination, premieres quantites',
+     'Motifs, coordination, premières quantités',
      'Patterns, coordination, early quantities',
-     'Appariements, formes, parcours de motricite, construction, observation '
+     'Appariements, formes, parcours de motricité, construction, observation '
      'de la nature',
      'Matching, shapes, obstacle courses, building, nature observation',
-     'Repetition et exploration', 'Repetition and exploration'),
+     'Répétition et exploration', 'Repetition and exploration'),
     ('Maternelle', 'Preschool',
-     'Raisonnement, strategie, recit, sciences',
+     'Raisonnement, stratégie, récit, sciences',
      'Reasoning, strategy, storytelling, science',
-     'Casse-tete, mini-parties d\'echecs, mesure, experiences, recits de '
+     'Casse-tête, mini-parties d\'échecs, mesure, expériences, récits de '
      'civilisations',
      'Puzzles, chess mini-games, measurement, experiments, civilization '
      'stories',
-     'Decouverte guidee', 'Guided discovery'),
+     'Découverte guidée', 'Guided discovery'),
     ('Avant la grande section', 'Pre-kindergarten',
-     'Raisonnement en plusieurs etapes et autonomie',
+     'Raisonnement en plusieurs étapes et autonomie',
      'Multi-step thinking and independence',
-     'Jeux de planification, defis de nombres, experiences, cartes et frises, '
+     'Jeux de planification, défis de nombres, expériences, cartes et frises, '
      'projets collectifs',
      'Planning games, number challenges, experiments, maps/timelines, '
      'collaborative projects',
@@ -701,53 +701,53 @@ AGES = [
 
 # --- 8. La journee type ----------------------------------------------------
 JOURNEE = [
-    ('07:30-09:00', 'Arrivee, jeu libre et transmission avec la famille',
+    ('07:30-09:00', 'Arrivée, jeu libre et transmission avec la famille',
      'Arrival, free play and family handover'),
-    ('09:00-09:20', 'Regroupement du matin, langage, on annonce la journee',
+    ('09:00-09:20', 'Regroupement du matin, langage, on annonce la journée',
      'Morning circle, language and planning'),
-    ('09:20-10:00', 'Rotation logique / mathematiques / echecs',
+    ('09:20-10:00', 'Rotation logique / mathématiques / échecs',
      'Logic / mathematics / chess rotation'),
     ('10:00-10:30', 'Collation et temps social', 'Snack and social time'),
-    ('10:30-11:30', 'Mouvement en exterieur, developpement physique',
+    ('10:30-11:30', 'Mouvement en extérieur, développement physique',
      'Outdoor movement / physical development'),
-    ('11:30-12:00', 'Sciences, ou recit et activite d\'histoire',
+    ('11:30-12:00', 'Sciences, ou récit et activité d\'histoire',
      'Science or history story/activity'),
-    ('12:00-14:00', 'Repas, hygiene, repos et temps calme',
+    ('12:00-14:00', 'Repas, hygiène, repos et temps calme',
      'Lunch, hygiene, rest/quiet time'),
-    ('14:00-15:00', 'Atelier creatif, construction, projet',
+    ('14:00-15:00', 'Atelier créatif, construction, projet',
      'Creative workshop / construction / project'),
     ('15:00-15:30', 'Collation', 'Snack'),
     ('15:30-16:30', 'Jeu guide et apprentissage en petits groupes',
      'Guided play and small-group learning'),
-    ('16:30-18:00', 'Jeu libre, depart des enfants et retour aux parents',
+    ('16:30-18:00', 'Jeu libre, départ des enfants et retour aux parents',
      'Free play, parent pickup and daily feedback'),
 ]
 
 # --- 9. Les educateurs -----------------------------------------------------
 EDUCATEURS_INTRO_FR = (
-    'Les educateurs restent le coeur de KIMO. La technologie soutient leur '
+    'Les éducateurs restent le coeur de KIMO. La technologie soutient leur '
     'travail, elle ne remplace ni leur observation, ni leur attention, ni '
     'leur jugement.')
 EDUCATEURS_INTRO_EN = (
     'Educators remain the core of KIMO. Technology supports their work but '
     'does not replace human observation, care or judgment.')
 EDUCATEURS = [
-    ('Un parcours d\'integration obligatoire a la pedagogie KIMO et a la '
+    ('Un parcours d\'intégration obligatoire à la pédagogie KIMO et à la '
      'protection de l\'enfance.',
      'Mandatory onboarding in KIMO pedagogy and safeguarding.'),
-    ('Des fiches d\'activite avec objectifs d\'apprentissage, materiel, '
-     'adaptations et consignes de securite.',
+    ('Des fiches d\'activité avec objectifs d\'apprentissage, matériel, '
+     'adaptations et consignes de sécurité.',
      'Activity guides with learning objectives, materials, adaptations and '
      'safety notes.'),
-    ('Une formation continue : developpement de l\'enfant, communication, '
+    ('Une formation continue : développement de l\'enfant, communication, '
      'premiers secours, conduite du groupe.',
      'Continuous professional development in child development, '
      'communication, first aid and classroom practice.'),
-    ('Une equipe locale libre d\'adapter les activites a son groupe, dans le '
-     'respect des standards du reseau.',
+    ('Une équipe locale libre d\'adapter les activités à son groupe, dans le '
+     'respect des standards du réseau.',
      'Local leadership empowered to adapt activities to the group while '
      'respecting network standards.'),
-    ('Un suivi fonde sur l\'observation, pas sur des tests sous pression ni '
+    ('Un suivi fondé sur l\'observation, pas sur des tests sous pression ni '
      'sur un classement des enfants.',
      'Observation-based progress records rather than high-pressure testing or '
      'child ranking.'),
@@ -755,34 +755,34 @@ EDUCATEURS = [
 
 # --- 10. La plateforme -----------------------------------------------------
 PLATEFORME = [
-    ('Compte parent, inscription et dossier de l\'enfant securise.',
+    ('Compte parent, inscription et dossier de l\'enfant sécurisé.',
      'Parent account, enrollment and secure child profile.'),
-    ('Gestion des places, en temps reel ou programmee, entre les centres '
+    ('Gestion des places, en temps réel ou programmée, entre les centres '
      'KIMO proches.',
      'Real-time or scheduled capacity management across nearby KIMO '
      'centers.'),
-    ('Presences, personnes autorisees a venir chercher l\'enfant, absences.',
+    ('Présences, personnes autorisées à venir chercher l\'enfant, absences.',
      'Attendance, authorized pickup and absence management.'),
-    ('Facturation, aides et suivi des paiements la ou la loi le permet.',
+    ('Facturation, aides et suivi des paiements là où la loi le permet.',
      'Billing, subsidies and payment records where legally permitted.'),
-    ('Messagerie parents-educateurs et resume quotidien.',
+    ('Messagerie parents-éducateurs et résumé quotidien.',
      'Parent-educator messaging and daily summaries.'),
-    ('Bibliotheque d\'activites et plans hebdomadaires pour les educateurs.',
+    ('Bibliothèque d\'activités et plans hebdomadaires pour les éducateurs.',
      'Curriculum library and weekly activity plans for educators.'),
     ('Portail de formation et de certification du personnel.',
      'Training and certification portal for staff.'),
-    ('Declaration des incidents, de la maintenance et de la conformite.',
+    ('Déclaration des incidents, de la maintenance et de la conformité.',
      'Incident, maintenance and compliance reporting.'),
-    ('Tableau de bord du reseau : occupation, effectifs, indicateurs qualite '
+    ('Tableau de bord du réseau : occupation, effectifs, indicateurs qualité '
      'et satisfaction des parents.',
      'Network dashboard covering occupancy, staffing, quality indicators and '
      'parent satisfaction.'),
 ]
 PLATEFORME_NOTE_FR = (
-    'Les donnees des enfants doivent etre reduites au minimum, leur acces '
-    'controle, leur conservation limitee a ce qui est exige. Protection des '
-    'la conception, chiffrement, journaux d\'acces et regles propres a chaque '
-    'juridiction doivent etre integres des le depart.')
+    'Les données des enfants doivent être réduites au minimum, leur accès '
+    'contrôle, leur conservation limitée à ce qui est exigé. Protection des '
+    'la conception, chiffrement, journaux d\'accès et règles propres à chaque '
+    'juridiction doivent être intégrés dès le départ.')
 PLATEFORME_NOTE_EN = (
     'Child data should be minimized, access-controlled and retained only as '
     'required. Privacy-by-design, encryption, audit logs and '
@@ -791,37 +791,37 @@ PLATEFORME_NOTE_EN = (
 
 # --- 11. Cote parents ------------------------------------------------------
 PARENTS = [
-    ('Un seul compte KIMO pour tout le reseau.',
+    ('Un seul compte KIMO pour tout le réseau.',
      'One KIMO account across the network.'),
     ('Une vue claire du centre, de ses horaires et des programmes '
      'disponibles.',
      'Clear view of center information, operating hours and available '
      'programs.'),
-    ('Les memes procedures d\'accueil et de securite partout.',
+    ('Les mêmes procédures d\'accueil et de sécurité partout.',
      'Consistent onboarding and safety procedures.'),
-    ('Un echange quotidien, sans surveillance excessive des enfants.',
+    ('Un échange quotidien, sans surveillance excessive des enfants.',
      'Daily communication without excessive surveillance of children.'),
-    ('Des points reguliers sur le developpement avec les educateurs.',
+    ('Des points réguliers sur le développement avec les éducateurs.',
      'Periodic development discussions with educators.'),
-    ('Des activites a la maison, facultatives, qui prolongent les themes KIMO '
-     'sans creer une pression de devoirs.',
+    ('Des activités à la maison, facultatives, qui prolongent les thèmes KIMO '
+     'sans créer une pression de devoirs.',
      'Optional home activities that extend KIMO themes without creating '
      'homework pressure.'),
 ]
 
 # --- 12. Securite et conformite --------------------------------------------
 SECURITE_INTRO_FR = (
-    'L\'accueil de jeunes enfants est tres encadre, et les exigences varient '
-    'fortement d\'un pays, d\'une province ou d\'une commune a l\'autre. KIMO '
-    'doit poser un cadre de conformite central tout en exigeant de chaque '
-    'unite locale qu\'elle satisfasse la regle locale la plus stricte.')
+    'L\'accueil de jeunes enfants est très encadré, et les exigences varient '
+    'fortement d\'un pays, d\'une province ou d\'une commune à l\'autre. KIMO '
+    'doit poser un cadre de conformité central tout en exigeant de chaque '
+    'unité locale qu\'elle satisfasse la règle locale la plus stricte.')
 SECURITE_INTRO_EN = (
     'Childcare is highly regulated and requirements vary significantly by '
     'country, province/state and municipality. KIMO should establish a '
     'central compliance framework while requiring each local unit to satisfy '
     'the stricter applicable local rules.')
 SECURITE = [
-    ('Verification des antecedents et des references du personnel, dans les '
+    ('Vérification des antécédents et des références du personnel, dans les '
      'limites de la loi.',
      'Background screening and reference checks for staff as legally '
      'required.'),
@@ -829,43 +829,43 @@ SECURITE = [
      'Child-to-educator ratios and group-size limits.'),
     ('Couverture premiers secours et formation aux situations d\'urgence.',
      'First-aid/CPR coverage and emergency-response training.'),
-    ('Securite incendie, plans d\'evacuation et exercices.',
+    ('Sécurité incendie, plans d\'évacuation et exercices.',
      'Fire safety, evacuation plans and drills.'),
-    ('Procedures allergies alimentaires et administration de medicaments.',
+    ('Procédures allergies alimentaires et administration de médicaments.',
      'Food allergy and medication procedures.'),
-    ('Protocoles de sommeil securise et d\'hygiene la ou ils s\'appliquent.',
+    ('Protocoles de sommeil sécurisé et d\'hygiène là où ils s\'appliquent.',
      'Safe sleep and hygiene protocols where applicable.'),
-    ('Entree controlee et remise de l\'enfant verifiee.',
+    ('Entrée contrôlée et remise de l\'enfant vérifiée.',
      'Controlled entry and verified child release.'),
-    ('Consignation obligatoire des incidents et remontee hierarchique.',
+    ('Consignation obligatoire des incidents et remontée hiérarchique.',
      'Mandatory incident documentation and escalation.'),
     ('Politique de protection de l\'enfance, canaux de signalement et '
-     'tolerance zero en cas de maltraitance ou de negligence.',
+     'tolérance zéro en cas de maltraitance ou de négligence.',
      'Safeguarding policy, reporting channels and zero-tolerance procedures '
      'for abuse or neglect.'),
-    ('Une assurance adaptee a l\'accueil de jeunes enfants.',
+    ('Une assurance adaptée à l\'accueil de jeunes enfants.',
      'Insurance coverage appropriate to childcare operations.'),
 ]
 
 # --- 13. Qualite -----------------------------------------------------------
 QUALITE = [
-    ('Certification de chaque unite KIMO avant son ouverture.',
+    ('Certification de chaque unité KIMO avant son ouverture.',
      'Pre-opening certification of every KIMO unit.'),
-    ('Controles qualite periodiques, annonces et inopines, la ou le droit le '
+    ('Contrôles qualité périodiques, annoncés et inopinés, là où le droit le '
      'permet.',
      'Periodic announced and unannounced quality reviews where legally '
      'appropriate.'),
-    ('Des listes de controle et des standards de programme communs.',
+    ('Des listes de contrôle et des standards de programme communs.',
      'Common operational checklists and curriculum standards.'),
     ('Mesure de la satisfaction des parents.',
      'Parent satisfaction measurement.'),
-    ('Suivi de la fidelisation du personnel, des formations suivies et des '
+    ('Suivi de la fidélisation du personnel, des formations suivies et des '
      'incidents.',
      'Staff retention, training completion and incident metrics.'),
     ('Plans de correction pour les centres qui passent sous les standards.',
      'Corrective-action plans for centers falling below standards.'),
-    ('La possibilite de suspendre la licence et la marque KIMO quand des '
-     'manquements graves ne sont pas corriges.',
+    ('La possibilité de suspendre la licence et la marque KIMO quand des '
+     'manquements graves ne sont pas corrigés.',
      'Ability to suspend the KIMO license/brand when serious deficiencies are '
      'not corrected.'),
 ]
@@ -878,55 +878,55 @@ EXPLOITATION = [
     ('propre', 'En propre', 'Company-owned',
      'KIMO exploite le centre directement',
      'KIMO operates the center directly',
-     'Frais de garde et de scolarite', 'Childcare/tuition fees', False),
+     'Frais de garde et de scolarité', 'Childcare/tuition fees', False),
     ('franchise', 'Licence ou franchise', 'Licensed / franchise',
-     'Un exploitant local qualifie utilise le systeme et la marque KIMO',
+     'Un exploitant local qualifié utilise le système et la marque KIMO',
      'Qualified local operator uses KIMO system and brand',
-     'Droit d\'entree, puis redevance ou frais de service recurrents',
+     'Droit d\'entrée, puis redevance ou frais de service récurrents',
      'Initial fee + recurring royalty/service fee', True),
     ('employeur', 'KIMO employeur', 'Employer KIMO',
-     'Un centre reserve en partie ou en totalite aux salaries d\'une '
+     'Un centre réservé en partie ou en totalité aux salariés d\'une '
      'entreprise',
      'Center dedicated partly or fully to an employer\'s workforce',
      'Contrat avec l\'employeur, plus la part des familles',
      'Employer contract + family fees', False),
     ('immobilier', 'Partenariat immobilier', 'Real-estate partnership',
-     'Un promoteur integre une KIMO dans un projet residentiel',
+     'Un promoteur intègre une KIMO dans un projet résidentiel',
      'Developer integrates KIMO into a residential project',
      'Bail ou accord de soutien, plus l\'exploitation',
      'Lease/support agreement + operating revenue', False),
     ('public', 'Partenariat public', 'Public partnership',
-     'Des places creees avec des municipalites ou des institutions '
+     'Des places créées avec des municipalités ou des institutions '
      'publiques',
      'Capacity created with municipalities or public institutions',
-     'Contrat ou subvention, plus les tarifs encadres des familles',
+     'Contrat ou subvention, plus les tarifs encadrés des familles',
      'Contract/subsidy + regulated family fees', False),
 ]
 
 # --- 15. La structure de couts ---------------------------------------------
 COUTS = [
-    ('Achat ou location du local, et travaux d\'amenagement.',
+    ('Achat ou location du local, et travaux d\'aménagement.',
      'Premises acquisition or lease and fit-out.'),
-    ('Agrement, honoraires et visites de controle.',
+    ('Agrément, honoraires et visites de contrôle.',
      'Licensing, professional services and inspections.'),
-    ('Salaires des educateurs et de l\'encadrement.',
+    ('Salaires des éducateurs et de l\'encadrement.',
      'Educator and management payroll.'),
-    ('Assurance et conformite.', 'Insurance and compliance.'),
-    ('Mobilier, materiel pedagogique et equipement exterieur.',
+    ('Assurance et conformité.', 'Insurance and compliance.'),
+    ('Mobilier, matériel pédagogique et équipement extérieur.',
      'Furniture, educational materials and outdoor equipment.'),
     ('Repas et consommables.', 'Meals and consumables.'),
-    ('Plateforme technique et securite informatique.',
+    ('Plateforme technique et sécurité informatique.',
      'Technology platform and cybersecurity.'),
-    ('Formation, recrutement et controle qualite.',
+    ('Formation, recrutement et contrôle qualité.',
      'Training, recruitment and quality assurance.'),
     ('Programme central, marketing et administration.',
      'Central curriculum, marketing and administrative functions.'),
 ]
 COUTS_NOTE_FR = (
-    'Un modele financier doit etre etabli separement pour chaque juridiction '
-    'visee, parce que les taux d\'encadrement, les salaires, les aides, les '
-    'loyers et les regles d\'agrement peuvent changer profondement '
-    'l\'economie d\'un centre.')
+    'Un modèle financier doit être établi séparément pour chaque juridiction '
+    'visée, parce que les taux d\'encadrement, les salaires, les aides, les '
+    'loyers et les règles d\'agrément peuvent changer profondément '
+    'l\'économie d\'un centre.')
 COUTS_NOTE_EN = (
     'A financial model should be produced separately for each target '
     'jurisdiction because staff ratios, wages, subsidies, rent and licensing '
@@ -934,52 +934,52 @@ COUTS_NOTE_EN = (
 
 # --- 16. Les indicateurs du reseau -----------------------------------------
 KPI = [
-    ('Places agreees et taux d\'occupation.',
+    ('Places agréées et taux d\'occupation.',
      'Licensed capacity and occupancy rate.'),
     ('Recette par place disponible.',
      'Revenue per available childcare place.'),
-    ('Cout du personnel en pourcentage du chiffre d\'affaires.',
+    ('Coût du personnel en pourcentage du chiffre d\'affaires.',
      'Staff cost as a percentage of revenue.'),
     ('Respect du taux d\'encadrement.', 'Educator-to-child ratio compliance.'),
-    ('Fidelite des parents et taux de recommandation.',
+    ('Fidélité des parents et taux de recommandation.',
      'Parent retention and referral rate.'),
-    ('Rotation du personnel et formations achevees.',
+    ('Rotation du personnel et formations achevées.',
      'Staff turnover and training completion.'),
-    ('Frequence des incidents et delai de cloture des actions correctives.',
+    ('Fréquence des incidents et délai de clôture des actions correctives.',
      'Incident frequency and corrective-action closure time.'),
     ('Distance ou temps moyen entre les familles et leur centre.',
      'Average distance/time between families and their assigned center.'),
-    ('Marge de contribution par centre et frais de structure par unite.',
+    ('Marge de contribution par centre et frais de structure par unité.',
      'Center-level contribution margin and central overhead per unit.'),
 ]
 
 # --- 17. Les cinq phases de deploiement ------------------------------------
 PHASES = [
     ('1', 'Conception', 'Design',
-     'Arreter la pedagogie, la marque, le cadre reglementaire, le prototype '
-     'de centre, les besoins techniques et les hypotheses financieres.',
+     'Arrêter la pédagogie, la marque, le cadre réglementaire, le prototype '
+     'de centre, les besoins techniques et les hypothèses financières.',
      'Finalize pedagogy, brand, regulatory framework, center prototype, '
      'technology requirements and financial assumptions.'),
     ('2', 'Pilote', 'Pilot',
-     'Ouvrir environ 3 a 5 centres dans une meme agglomeration, sur des '
-     'quartiers de profils differents. Mesurer la demande, les effectifs, '
-     'l\'experience des parents et la qualite pedagogique.',
+     'Ouvrir environ 3 à 5 centres dans une même agglomération, sur des '
+     'quartiers de profils différents. Mesurer la demande, les effectifs, '
+     'l\'expérience des parents et la qualité pédagogique.',
      'Open approximately 3-5 centers in one metropolitan area with different '
      'neighborhood profiles. Measure demand, staffing, parent experience and '
      'educational delivery.'),
-    ('3', 'Reseau local', 'Local Network',
-     'Densifier jusqu\'a former une grappe de centres, pour que les familles '
-     'beneficient d\'une vraie proximite et des services mutualises.',
+    ('3', 'Réseau local', 'Local Network',
+     'Densifier jusqu\'à former une grappe de centres, pour que les familles '
+     'bénéficient d\'une vraie proximité et des services mutualisés.',
      'Expand to a dense cluster of centers so that families can benefit from '
      'genuine proximity and shared network services.'),
     ('4', 'Plusieurs villes', 'Multi-city Expansion',
-     'Repliquer le systeme d\'exploitation valide, en propre et avec des '
+     'Répliquer le système d\'exploitation validé, en propre et avec des '
      'partenaires choisis avec soin.',
      'Replicate the validated operating system through company-owned centers '
      'and carefully selected partners.'),
     ('5', 'National, puis international', 'National / International Platform',
-     'Adapter le cadre KIMO a de nouvelles juridictions, en gardant une '
-     'identite educative commune et une conformite locale.',
+     'Adapter le cadre KIMO à de nouvelles juridictions, en gardant une '
+     'identité éducative commune et une conformité locale.',
      'Adapt the KIMO framework to additional jurisdictions while maintaining '
      'a global educational identity and local regulatory compliance.'),
 ]
@@ -989,61 +989,61 @@ PILOTE = [
     ('Interroger parents et employeurs avant de choisir les quartiers du '
      'pilote.',
      'Interview parents and employers before selecting pilot neighborhoods.'),
-    ('Verifier que le format micro-centre est agreable dans la juridiction '
-     'visee.',
+    ('Vérifier que le format micro-centre est agréable dans la juridiction '
+     'visée.',
      'Validate local licensing feasibility for the micro-center format.'),
-    ('Prototyper le programme avec des professionnels qualifies de la petite '
+    ('Prototyper le programme avec des professionnels qualifiés de la petite '
      'enfance.',
      'Prototype the curriculum with qualified early-childhood '
      'professionals.'),
     ('Tester les parcours d\'inscription et de communication aux parents.',
      'Test enrollment and parent communication workflows.'),
-    ('Mesurer la charge des educateurs et le temps de preparation des '
-     'activites.',
+    ('Mesurer la charge des éducateurs et le temps de préparation des '
+     'activités.',
      'Measure educator workload and activity preparation time.'),
-    ('Suivre occupation, liste d\'attente, presences, satisfaction et '
-     'fidelite.',
+    ('Suivre occupation, liste d\'attente, présences, satisfaction et '
+     'fidélité.',
      'Track occupancy, waitlist, attendance, satisfaction and retention.'),
-    ('Mener des revues formelles de securite et de protection de l\'enfance '
-     'avant de passer a l\'echelle.',
+    ('Mener des revues formelles de sécurité et de protection de l\'enfance '
+     'avant de passer à l\'échelle.',
      'Conduct formal safety and safeguarding reviews before scaling.'),
-    ('Se servir des resultats du pilote pour decider quel format de centre et '
-     'quel modele de partenariat standardiser.',
+    ('Se servir des résultats du pilote pour décider quel format de centre et '
+     'quel modèle de partenariat standardiser.',
      'Use pilot evidence to decide which center format and partnership model '
      'should be standardized.'),
 ]
 
 # --- 19. Les risques et ce qu'on y oppose ----------------------------------
 RISQUES = [
-    ('Une qualite inegale d\'un centre a l\'autre',
+    ('Une qualité inégale d\'un centre à l\'autre',
      'Inconsistent quality across decentralized centers',
      'Certification exigeante, formation, audits et standards de marque '
      'opposables.',
      'Strong certification, training, audits and enforceable brand '
      'standards.'),
-    ('La penurie d\'educateurs', 'Educator shortages',
-     'Filiere de recrutement, conditions competitives, partenariats de '
+    ('La pénurie d\'éducateurs', 'Educator shortages',
+     'Filière de recrutement, conditions compétitives, partenariats de '
      'formation et planification des effectifs.',
      'Recruitment pipeline, competitive conditions, training partnerships and '
      'workforce planning.'),
     ('Un programme trop scolaire pour la petite enfance',
      'Over-academic early childhood program',
-     'Le jeu d\'abord, une revue par des specialistes du developpement, et la '
-     'liberte d\'appreciation de l\'educateur.',
+     'Le jeu d\'abord, une revue par des spécialistes du développement, et la '
+     'liberté d\'appréciation de l\'éducateur.',
      'Play-first curriculum, developmental review and educator discretion.'),
-    ('Les differences de reglementation', 'Regulatory differences',
+    ('Les différences de réglementation', 'Regulatory differences',
      'Un manuel d\'exploitation par juridiction et une revue juridique '
      'locale.',
      'Jurisdiction-specific operating manuals and local legal/licensing '
      'review.'),
-    ('Le risque sur les donnees des enfants', 'Child-data privacy risk',
-     'Minimisation des donnees, acces strictement controles, chiffrement et '
-     'regles de conservation ecrites.',
+    ('Le risque sur les données des enfants', 'Child-data privacy risk',
+     'Minimisation des données, accès strictement contrôlés, chiffrement et '
+     'règles de conservation écrites.',
      'Data minimization, strict access controls, encryption and documented '
      'retention rules.'),
-    ('Une croissance trop rapide qui abime la culture',
+    ('Une croissance trop rapide qui abîme la culture',
      'Rapid expansion weakens culture',
-     'Une croissance par grappes et une accreditation des partenaires par '
+     'Une croissance par grappes et une accréditation des partenaires par '
      'paliers.',
      'Cluster-based growth and staged partner accreditation.'),
     ('Une occupation trop faible dans un micro-centre',
@@ -1056,8 +1056,8 @@ RISQUES = [
 
 # --- 20. L'architecture de marque ------------------------------------------
 ARCHI_MARQUE = [
-    ('Marque mere : KIMO.', 'Master brand: KIMO.'),
-    ('Signature : KIMO — Apprendre a penser.',
+    ('Marque mère : KIMO.', 'Master brand: KIMO.'),
+    ('Signature : KIMO — Apprendre à penser.',
      'Core signature: KIMO — Learn to Think.'),
     ('Nommage possible des centres : KIMO [Quartier] ou KIMO [Partenaire].',
      'Possible center naming: KIMO [Neighborhood] or KIMO [Partner].'),
@@ -1065,7 +1065,7 @@ ARCHI_MARQUE = [
      'Science, KIMO Move, KIMO Stories.',
      'Possible program families: KIMO Logic, KIMO Chess, KIMO Science, KIMO '
      'Move, KIMO Stories.'),
-    ('Une identite visuelle intelligente et moderne, sans etre scolaire ni '
+    ('Une identité visuelle intelligente et moderne, sans être scolaire ni '
      'institutionnelle.',
      'Visual identity should feel intelligent and modern without appearing '
      'overly academic or institutional.'),
@@ -1073,14 +1073,438 @@ ARCHI_MARQUE = [
 
 # --- 21. Ce qui vient apres -----------------------------------------------
 HORIZON_FR = (
-    'Une fois le reseau d\'accueil eprouve, KIMO peut aller au-dela des '
-    'centres : formation d\'educateurs, licence de programme, kits '
-    'd\'apprentissage pour les parents, clubs de logique apres l\'ecole, '
-    'partenariats avec des ecoles. Ces prolongements doivent SUIVRE la '
-    'validation du modele d\'accueil, pas la preceder.')
+    'Une fois le réseau d\'accueil éprouvé, KIMO peut aller au-delà des '
+    'centres : formation d\'éducateurs, licence de programme, kits '
+    'd\'apprentissage pour les parents, clubs de logique après l\'école, '
+    'partenariats avec des écoles. Ces prolongements doivent SUIVRE la '
+    'validation du modèle d\'accueil, pas la précéder.')
 HORIZON_EN = (
     'Once the childcare network is proven, KIMO could extend beyond physical '
     'centers through educator training, curriculum licensing, parent learning '
     'kits, after-school logic clubs and partnerships with schools. These '
     'extensions should follow' + u'\u2014' + 'not precede' + u'\u2014' + 'the validation of the core '
     'childcare model.')
+
+
+# ===========================================================================
+#  KIMO TUTORING — sa note « Website & Platform Specification, Ages 6-17 ».
+#
+#  Meme regle que pour la note de concept : cote ANGLAIS c'est son texte, mot
+#  pour mot ; cote FRANCAIS c'est ma traduction. Un controle compare les deux
+#  documents.
+#
+#  ET UNE REGLE DE PLUS, propre a celui-ci. Ce document decrit une
+#  PLATEFORME A CONSTRUIRE : une place de marche de tuteurs, des reservations,
+#  des paiements, une classe virtuelle. Rien de tout cela n'existe. La page
+#  presente donc le PROJET, et elle ne montre AUCUN tuteur : pas de fiche, pas
+#  de photo, pas de note, pas d'avis de parent, pas de prix. Inventer un
+#  tuteur, ce serait inventer une personne — et un parent choisit quelqu'un a
+#  qui il confie son enfant.
+# ===========================================================================
+
+TUT_MARQUE_EN = 'KIMO Tutoring'
+TUT_AGES_TITRE_FR = 'de 6 à 17 ans'
+TUT_AGES_TITRE_EN = 'Ages 6-17'
+
+TUT_INTRO_FR = (
+    'KIMO Tutoring est une plateforme numérique pour les élèves de 6 à 17 '
+    'ans, qui met les familles en relation avec des tuteurs qualifies et des '
+    'programmes d\'enrichissement structures. Le service combine le tutorat '
+    'individuel, les petits groupes, les cours en ligne et des séances en '
+    'présentiel choisies. La plateforme est conçue autour du soutien '
+    'scolaire, du raisonnement, de la curiosité et de progrès mesurables.')
+TUT_INTRO_EN = (
+    'KIMO Tutoring is a digital platform for students aged 6 to 17 that '
+    'connects families with qualified tutors and structured enrichment '
+    'programs. The service combines one-to-one tutoring, small groups, '
+    'online lessons and selected in-person sessions. The platform is '
+    'designed around academic support, reasoning, curiosity and measurable '
+    'progress.')
+
+TUT_PRINCIPES = [
+    ('Utilisateurs vises : élèves de 6 à 17 ans, parents et tuteurs légaux, '
+     'tuteurs et administrateurs.',
+     'Target users: students aged 6-17, parents/guardians, tutors and '
+     'administrators.'),
+    ('Formats principaux : individuel en ligne, petits groupes, programmes '
+     'récurrents et, là où c\'est possible, tutorat local en présentiel.',
+     'Core formats: online 1:1, small groups, recurring programs and, where '
+     'available, local in-person tutoring.'),
+    ('Positionnement : soutien scolaire ET enrichissement intellectuel, pas '
+     'seulement de l\'aide aux devoirs.',
+     'Positioning: academic support plus intellectual enrichment rather than '
+     'homework assistance alone.'),
+    ('Principe premier : une réservation simple pour les parents, un '
+     'apprentissage vivant pour les élèves, et de vrais contrôles '
+     'd\'exploitation pour KIMO.',
+     'Primary principle: simple booking for parents, engaging learning for '
+     'students and strong operational controls for KIMO.'),
+]
+
+TUT_MATIERES = [
+    ('Mathématiques', 'Mathematics'),
+    ('Logique et résolution de problèmes', 'Logic & problem solving'),
+    ('Échecs et stratégie', 'Chess & strategy'),
+    ('Physique', 'Physics'),
+    ('Sciences générales', 'General science'),
+    ('Histoire et civilisations', 'History & civilizations'),
+    ('Langues et lecture', 'Languages & literacy'),
+    ('Programmation et compétences numériques', 'Coding & digital skills'),
+    ('Aide aux devoirs', 'Homework support'),
+    ('Préparation aux examens', 'Exam preparation'),
+    ('Méthodes de travail et organisation', 'Study methods & organization'),
+]
+
+# Les quatre programmes par age. Les NOMS sont les siens.
+TUT_PROGRAMMES = [
+    ('6-8', 'KIMO Discover',
+     'Fondations, curiosité, calcul, lecture, logique et sciences par le jeu.',
+     'Foundations, curiosity, numeracy, reading, logic and playful science.'),
+    ('9-11', 'KIMO Explore',
+     'Fondamentaux scolaires, échecs, expériences, résolution de problèmes et '
+     'méthodes de travail.',
+     'Core academics, chess, experiments, problem solving and study habits.'),
+    ('12-14', 'KIMO Advance',
+     'Mathématiques et sciences approfondies, histoire, langues, '
+     'programmation et autonomie.',
+     'Deeper mathematics/science, history, languages, coding and independent '
+     'learning.'),
+    ('15-17', 'KIMO Master',
+     'Soutien au secondaire, examens, matières avancées, méthodologie et '
+     'préparation de la suite.',
+     'Secondary-school support, exams, advanced subjects, methodology and '
+     'future preparation.'),
+]
+
+TUT_RESERVATION = [
+    ('Calendrier de disponibilité du tuteur en temps réel.',
+     'Real-time tutor availability calendar.'),
+    ('Réservation d\'une séance unique ou d\'un cours récurrent.',
+     'Single or recurring lesson booking.'),
+    ('Planification en ligne qui tient compte des fuseaux horaires.',
+     'Timezone-aware online scheduling.'),
+    ('Report et annulation selon la politique de la plateforme.',
+     'Reschedule/cancel workflow based on platform policy.'),
+    ('Confirmation et rappels automatiques.',
+     'Automated confirmation and reminders.'),
+    ('Liste d\'attente quand un tuteur ou un programme est complet.',
+     'Waitlist for full tutors/programs.'),
+    ('Forfaits et abonnements.', 'Package and subscription support.'),
+    ('Réservation contrôlée par le parent pour les mineurs.',
+     'Parent-controlled booking for minors.'),
+]
+
+TUT_CLASSE = [
+    ('Salle de cours vidéo sécurisée, ou intégration d\'un fournisseur vidéo '
+     'approuvé.',
+     'Secure video lesson room or integration with an approved video '
+     'provider.'),
+    ('Tableau blanc interactif et partage d\'écran.',
+     'Interactive whiteboard and screen sharing.'),
+    ('Partage de documents et d\'exercices.',
+     'Document and exercise sharing.'),
+    ('Notes du tuteur et compte rendu après la séance.',
+     'Tutor lesson notes and post-session summary.'),
+    ('Travaux et ressources entre deux séances.',
+     'Assignments/resources between sessions.'),
+    ('Suivi de la présence aux séances.', 'Session attendance tracking.'),
+    ('Aucun enregistrement par défaut ; toute fonction d\'enregistrement doit '
+     'suivre un consentement explicite et les règles applicables à la vie '
+     'privée des enfants.',
+     'No recording by default; any recording feature must follow explicit '
+     'consent and applicable child-privacy rules.'),
+]
+
+TUT_PARENTS = [
+    ('Gérer un ou plusieurs enfants depuis un seul compte.',
+     'Manage one or multiple children from one account.'),
+    ('Réserver et gérer les séances.', 'Book and manage sessions.'),
+    ('Voir les cours à venir et la présence.',
+     'View upcoming lessons and attendance.'),
+    ('Échanger avec le tuteur par la messagerie encadrée de la plateforme.',
+     'Tutor messages through controlled platform communication.'),
+    ('Bilans de progrès et objectifs d\'apprentissage.',
+     'Progress summaries and learning objectives.'),
+    ('Factures, paiements, forfaits et reçus.',
+     'Invoices, payments, packages and receipts.'),
+    ('Gérer les consentements, les contacts d\'urgence et les réglages de '
+     'confidentialité.',
+     'Manage consent, emergency/contact and privacy settings.'),
+    ('Signaler un problème ou demander de l\'aide.',
+     'Report a concern or request support.'),
+]
+
+TUT_ELEVE = [
+    ('Une interface adaptée à son âge.', 'Age-appropriate interface.'),
+    ('Le cours du jour et le planning à venir.',
+     'Today\'s lesson and upcoming schedule.'),
+    ('Objectifs d\'apprentissage et progrès.', 'Learning goals and progress.'),
+    ('Exercices, ressources et travaux à faire.',
+     'Exercises, resources and assignments.'),
+    ('Des réussites qui encouragent la régularité, sans classement malsain.',
+     'Achievements that encourage consistency without unhealthy ranking.'),
+    ('Une messagerie sure, limitée aux échanges pédagogiques autorises.',
+     'Safe messaging limited to authorized educational interactions.'),
+]
+
+TUT_TUTEUR = [
+    ('Gestion du profil et des diplômes.',
+     'Profile and credential management.'),
+    ('Calendrier de disponibilité.', 'Availability calendar.'),
+    ('Réservations et liste des élèves.', 'Bookings and student roster.'),
+    ('Préparation des cours et bibliothèque de ressources KIMO.',
+     'Lesson planning and KIMO resource library.'),
+    ('Notes de séance et compte rendu de progrès.',
+     'Session notes and progress reporting.'),
+    ('Revenus, factures et état des versements le cas échéant.',
+     'Earnings, invoices/payout status where applicable.'),
+    ('Modules de formation et acceptation des règles.',
+     'Training modules and policy acknowledgements.'),
+    ('Outils de signalement et d\'escalade en cas d\'incident.',
+     'Incident/safeguarding escalation tools.'),
+]
+
+TUT_VERIF_INTRO_FR = (
+    'Parce que KIMO s\'adresse à des mineurs, le recrutement des tuteurs doit '
+    'être plus rigoureux que sur une place de marché de tutorat pour '
+    'adultes.')
+TUT_VERIF_INTRO_EN = (
+    'Because KIMO serves minors, tutor onboarding must be more rigorous than '
+    'a conventional adult tutoring marketplace.')
+TUT_VERIF = [
+    ('Candidature et vérification d\'identité.',
+     'Application and identity verification.'),
+    ('Examen des diplômes et de la formation, en rapport avec la matière '
+     'annoncée.',
+     'Education/credential review appropriate to the advertised subject.'),
+    ('Références, entretien et cours d\'essai.',
+     'References and interview/sample lesson.'),
+    ('Vérification des antécédents, là où la loi locale l\'exige ou le '
+     'permet.',
+     'Background/vulnerable-sector screening where required or available '
+     'under local law.'),
+    ('Formation à la protection de l\'enfance et code de conduite.',
+     'Safeguarding training and code of conduct.'),
+    ('Prise en main de la plateforme et du programme.',
+     'Platform and curriculum onboarding.'),
+    ('Période d\'essai et revue de qualité.',
+     'Probation/quality-review period.'),
+    ('Traitement continu des plaintes, des avis et des ré-vérifications.',
+     'Ongoing complaint, review and re-verification process.'),
+]
+
+TUT_SECURITE = [
+    ('Le parent ou le tuteur légal possède ou autorise le compte du mineur, '
+     'selon l\'âge et la juridiction.',
+     'Parent/guardian owns or authorizes accounts for minors as required by '
+     'age and jurisdiction.'),
+    ('Des règles claires sur les échanges tuteur-élève et sur tout contact '
+     'hors plateforme.',
+     'Clear rules governing tutor-student communication and off-platform '
+     'contact.'),
+    ('Messagerie encadrée, modération, escalade et journaux d\'audit.',
+     'Controlled messaging, moderation/escalation capabilities and audit '
+     'trails.'),
+    ('Aucune collecte ni publication inutile de données personnelles '
+     'd\'enfants.',
+     'No unnecessary collection or publication of children\'s personal '
+     'information.'),
+    ('Un moyen de signalement pour les élèves et pour les parents.',
+     'Reporting mechanism for students and parents.'),
+    ('Une procédure d\'urgence et d\'escalade définie.',
+     'Defined emergency and safeguarding escalation procedure.'),
+    ('Accès du personnel aux dossiers sensibles selon son rôle.',
+     'Role-based staff access to sensitive records.'),
+    ('Des règles pour les cours en présentiel : lieux approuvés, remise de '
+     'l\'enfant, surveillance.',
+     'In-person lesson standards covering approved locations, pickup/guardian '
+     'rules and supervision.'),
+    ('Une revue juridique avant le lancement : protection de l\'enfance, vie '
+     'privée, droit de la consommation, règles du tutorat et du travail dans '
+     'chaque juridiction.',
+     'Legal review before launch for child protection, privacy, consumer '
+     'protection and tutoring/employment rules in each jurisdiction.'),
+]
+
+TUT_PAIEMENT = [
+    ('Commission sur les séances de tutorat individuelles.',
+     'Commission on individual tutoring sessions.'),
+    ('Forfaits mensuels ou prépayés.',
+     'Monthly or prepaid tutoring packages.'),
+    ('Frais des programmes de groupe.', 'Group-program fees.'),
+    ('Adhésion optionnelle avec avantages inclus.',
+     'Optional membership with bundled benefits.'),
+    ('Contrats avec des écoles, des employeurs, des associations ou des '
+     'municipalités.',
+     'Institutional contracts with schools, employers, community '
+     'organizations or municipalities.'),
+    ('Versements aux tuteurs, avec des frais et des relevés transparents.',
+     'Tutor payout system with transparent fees and statements.'),
+]
+TUT_PAIEMENT_NOTE_FR = (
+    'La plateforme doit prendre en charge les taxes, les monnaies, les '
+    'remboursements et les règles de paiement propres à chaque marche de '
+    'lancement.')
+TUT_PAIEMENT_NOTE_EN = (
+    'The platform should support taxes, currencies, refunds and payment '
+    'rules appropriate to each launch market.')
+
+TUT_SEO_INTRO_FR = (
+    'KIMO doit être construit avec des pages d\'entrée indexables, en nombre, '
+    'plutôt qu\'en s\'appuyant seulement sur la recherche interne.')
+TUT_SEO_INTRO_EN = (
+    'KIMO should be built with scalable, indexable landing pages rather than '
+    'relying only on marketplace search.')
+TUT_SEO = ['/tutors/[subject]', '/tutors/[subject]/[city]',
+           '/programs/[age-group]', '/subjects/[subject]',
+           '/online-tutoring/[subject]', '/resources/[topic]']
+TUT_SEO_NOTE_FR = (
+    'Chaque page engendrée doit contenir un contenu réellement utile et '
+    'unique, et ne doit être indexée que lorsque KIMO à un service ou une '
+    'information qui vaut la peine pour cette page-la.')
+TUT_SEO_NOTE_EN = (
+    'Every generated page should contain genuinely useful, unique content and '
+    'should only be indexed when KIMO has relevant services or meaningful '
+    'information for that page.')
+
+TUT_MVP = [
+    ('Accueil et pages par matière.', 'Home and subject pages.'),
+    ('Inscription des parents et des élèves.',
+     'Parent/student registration.'),
+    ('Inscription et validation des tuteurs.',
+     'Tutor registration and approval.'),
+    ('Profils de tuteurs et recherche.', 'Tutor profiles and search.'),
+    ('Calendrier de disponibilité et réservation.',
+     'Availability calendar and booking.'),
+    ('Paiements en ligne.', 'Online payments.'),
+    ('Intégration du cours vidéo.', 'Video lesson integration.'),
+    ('Tableaux de bord parent, élève et tuteur.',
+     'Parent, student and tutor dashboards.'),
+    ('Messagerie et notifications de base.',
+     'Basic messaging and notifications.'),
+    ('Console d\'administration.', 'Admin console.'),
+    ('Notes de progrès.', 'Progress notes.'),
+    ('Circuit de signalement et de protection de l\'enfance.',
+     'Safeguarding/reporting workflow.'),
+]
+TUT_MVP_NOTE_FR = (
+    'La ludification avancée, les recommandations par intelligence '
+    'artificielle, les applications natives et une expansion géographique de '
+    'grande ampleur doivent venir APRÈS la validation du parcours de tutorat '
+    'de base.')
+TUT_MVP_NOTE_EN = (
+    'Advanced gamification, AI recommendations, native apps and large-scale '
+    'geographic expansion should follow validation of the core tutoring '
+    'workflow.')
+
+TUT_IA = [
+    ('Mise en relation élève-tuteur selon la matière, les disponibilités, les '
+     'besoins et les préférences des parents.',
+     'Tutor matching based on subject, availability, learning needs and '
+     'parent preferences.'),
+    ('Exercices suggères à partir des objectifs définis par le tuteur.',
+     'Suggested exercises based on tutor-defined learning objectives.'),
+    ('Bilans de progrès rédigés à partir des notes structurées de '
+     'l\'éducateur, sous revue humaine.',
+     'Progress summaries generated from structured educator notes, subject to '
+     'human review.'),
+    ('Aide administrative pour la planification et le support.',
+     'Administrative assistance for scheduling and support.'),
+]
+TUT_IA_LIMITE_FR = (
+    'L\'intelligence artificielle ne doit pas prendre seule de décision '
+    'lourde de conséquences au sujet d\'un enfant, ni remplacer le jugement '
+    'd\'un éducateur qualifie.')
+TUT_IA_LIMITE_EN = (
+    'AI must not autonomously make high-impact decisions about a child or '
+    'replace qualified educator judgment.')
+
+TUT_KPI = [
+    ('Visiteur → inscription.', 'Visitor → registration conversion.'),
+    ('Inscription → première réservation.',
+     'Registration → first booking conversion.'),
+    ('Taux de réservation répétée.', 'Repeat booking rate.'),
+    ('Fidélité des élèves à 30, 90 et 180 jours.',
+     'Student retention by 30/90/180 days.'),
+    ('Taux d\'occupation et fidélité des tuteurs.',
+     'Tutor utilization and retention.'),
+    ('Nombre moyen de séances par élève actif.',
+     'Average sessions per active student.'),
+    ('Taux d\'annulation et d\'absence.', 'Cancellation/no-show rate.'),
+    ('Satisfaction des parents.', 'Parent satisfaction.'),
+    ('Objectifs d\'apprentissage atteints.', 'Learning-goal completion.'),
+    ('Délais de réponse du support et de la protection de l\'enfance.',
+     'Safeguarding and support response times.'),
+    ('Chiffre d\'affaires et marge de contribution par élève actif.',
+     'Revenue and contribution margin per active student.'),
+]
+
+TUT_PHASES = [
+    ('1', 'Définition', 'Definition',
+     'Choisir la juridiction de lancement, valider la réglementation, arrêter '
+     'les catégories du programme et le modèle économique.',
+     'Choose launch jurisdiction, validate regulations, finalize curriculum '
+     'categories and business model.'),
+    ('2', 'MVP', 'MVP',
+     'Construire la place de marché, la réservation, le paiement, les '
+     'tableaux de bord et l\'infrastructure de sécurité.',
+     'Build the marketplace, booking, payment, dashboards and safety '
+     'infrastructure.'),
+    ('3', 'Pilote tuteurs', 'Tutor Pilot',
+     'Recruter une première cohorte de tuteurs, encadrée, et tester les cours '
+     'avec un nombre limite de familles.',
+     'Recruit a controlled initial cohort of tutors and test lessons with a '
+     'limited group of families.'),
+    ('4', 'Lancement public', 'Public Launch',
+     'Ouvrir les matières principales pour des tranches d\'âge et des lieux '
+     'choisis ; mesurer la conversion et la fidélité.',
+     'Launch core subjects for selected age groups and locations; measure '
+     'conversion and retention.'),
+    ('5', 'Expansion', 'Expansion',
+     'Ajouter des matières, des villes, des programmes de groupe, des '
+     'partenariats institutionnels et des technologies avancées.',
+     'Add subjects, cities, group programs, institutional partnerships and '
+     'advanced technology.'),
+]
+
+TUT_POSITION_FR = (
+    'KIMO Tutoring doit se placer entre une place de marché de tutorat et un '
+    'réseau éducatif structure. Les familles gardent la liberté de choisir '
+    'leur tuteur, pendant que KIMO définit la qualité, la sécurité et les '
+    'standards pédagogiques de tout l\'écosystème.')
+TUT_POSITION_EN = (
+    'KIMO Tutoring should sit between a tutoring marketplace and a structured '
+    'educational network. Families receive the flexibility of choosing a '
+    'tutor while KIMO defines quality, safety and educational standards '
+    'across the ecosystem.')
+
+# Ce qui manque pour cette plateforme-la, en plus des points deja listes.
+TUT_A_DEFINIR = [
+    ('La JURIDICTION de lancement — c\'est la première ligne de sa propre '
+     'phase 1, et elle commande la revue juridique et la vérification des '
+     'antécédents.',
+     'The launch JURISDICTION - the first line of his own phase 1, and what '
+     'drives the legal review and the background screening.'),
+    ('Les PRIX : commission, forfaits, frais de groupe, adhésion.',
+     'PRICING: commission, packages, group fees, membership.'),
+    ('Le FOURNISSEUR VIDÉO retenu pour la classe virtuelle.',
+     'The VIDEO PROVIDER chosen for the virtual classroom.'),
+    ('Le prestataire de PAIEMENT et les monnaies acceptées.',
+     'The PAYMENT provider and the accepted currencies.'),
+    ('Qui conduit la REVUE JURIDIQUE avant le lancement.',
+     'Who runs the LEGAL REVIEW before launch.'),
+]
+
+TUT_AVERT_FR = (
+    'Cette page présente un PROJET de plateforme. Rien n\'est en service : il '
+    'n\'y a pas de tuteur inscrit, pas de cours réservable, pas de paiement. '
+    'Aucune fiche de tuteur, aucune photo, aucune note et aucun avis de '
+    'parent ne figure ici, et il n\'y en aura pas tant qu\'il n\'y aura pas '
+    'de vrais tuteurs : un parent choisit la personne à qui il confie son '
+    'enfant, et une fiche inventée serait une personne inventée.')
+TUT_AVERT_EN = (
+    'This page presents a PLATFORM PROJECT. Nothing is in service: there is '
+    'no registered tutor, no bookable lesson, no payment. No tutor card, no '
+    'photograph, no rating and no parent review appears here, and none will '
+    'until there are real tutors: a parent is choosing the person they trust '
+    'with their child, and an invented profile would be an invented person.')

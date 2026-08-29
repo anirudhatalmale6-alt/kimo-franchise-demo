@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KIMO — decentralized early-learning network</title>
+<meta name="description" content="KIMO opens small neighbourhood nurseries run by local teams, sharing one program and one method.">
+<meta name="robots" content="noindex">
+<link rel="alternate" hreflang="fr" href="../index.html">
+<link rel="alternate" hreflang="en" href="index.html">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:#fbf7f0;color:#16211d;
+  font:400 17px/1.65 ui-sans-serif,system-ui,"Segoe UI",Roboto,Helvetica,Arial,
+  sans-serif;-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto;display:block}
+a{color:#2f6b52}
+h1,h2,h3{line-height:1.15;margin:0;font-weight:650;letter-spacing:-.015em}
+h1{font-size:clamp(32px,5.2vw,58px)}
+h2{font-size:clamp(25px,3.4vw,38px)}
+h3{font-size:19px}
+p{margin:0}
+.enveloppe{max-width:1120px;margin:0 auto;padding:0 22px}
+
+/* ------------------------------------------------------------- en-tete --- */
+.haut{position:sticky;top:0;z-index:40;background:rgba(251,247,240,.94);
+  backdrop-filter:blur(9px);border-bottom:1px solid #e6ddcd}
+.haut-in{max-width:1120px;margin:0 auto;padding:12px 22px;display:flex;
+  align-items:center;gap:20px}
+.marque{display:flex;align-items:center;gap:9px;text-decoration:none;
+  color:#16211d;font-weight:700;font-size:21px;letter-spacing:.02em}
+.marque .mot{white-space:nowrap}
+.diamant{width:20px;height:20px;flex:none;fill:none;stroke:#2f6b52;
+  stroke-width:1.35;stroke-linejoin:round}
+.nav{display:flex;gap:20px;margin-left:auto;flex-wrap:wrap}
+.nav a{text-decoration:none;color:#4b5a53;font-size:15px;padding:5px 0;
+  border-bottom:2px solid transparent}
+.nav a:hover{color:#16211d}
+.nav a[aria-current="page"]{color:#16211d;border-bottom-color:#e08a5b}
+/* Le selecteur de langue est fait de deux LIENS : la langue est celle de la
+   page (/ et /en/), pas un etat que garde un script. La langue courante est
+   un <span>, pas un lien mort vers soi-meme. */
+.langue{display:flex;border:1px solid #d9cfbc;border-radius:999px;
+  overflow:hidden;flex:none}
+.langue a,.langue span{font-size:13px;font-weight:600;padding:5px 12px;
+  text-decoration:none;color:#6b7a72;line-height:1.6}
+.langue a:hover{background:#efe6d6;color:#16211d}
+.langue span[aria-current]{background:#2f6b52;color:#fff}
+
+/* ---------------------------------------------------------------- hero --- */
+.hero{padding:74px 0 58px;background:
+  radial-gradient(120% 90% at 88% 0%,#efe6d6 0%,rgba(239,230,214,0) 62%)}
+.hero-in{display:grid;grid-template-columns:1.25fr .75fr;gap:46px;
+  align-items:center}
+.surtitre{font-size:13px;letter-spacing:.16em;text-transform:uppercase;
+  color:#2f6b52;font-weight:700;margin-bottom:16px}
+.hero h1{max-width:15ch}
+.chapo{margin-top:20px;font-size:19px;color:#41504a;max-width:52ch}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.bouton{display:inline-block;text-decoration:none;font-weight:650;
+  font-size:16px;padding:13px 24px;border-radius:999px;border:1px solid
+  transparent}
+.bouton.plein{background:#e08a5b;color:#231007}
+.bouton.plein:hover{background:#d67d4c}
+.bouton.vide{border-color:#c9bda6;color:#16211d}
+.bouton.vide:hover{border-color:#2f6b52}
+
+/* l'etat du reseau : un encart, pas un compteur. Il n'y a rien a compter. */
+.etat{background:#fff;border:1px solid #e6ddcd;border-radius:18px;
+  padding:24px}
+.etat h3{font-size:15px;letter-spacing:.1em;text-transform:uppercase;
+  color:#6b7a72}
+.etat ul{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:11px}
+.etat li{display:flex;gap:10px;align-items:flex-start;font-size:15px;
+  color:#41504a}
+.etat li::before{content:"";width:7px;height:7px;border-radius:50%;
+  background:#e08a5b;margin-top:8px;flex:none}
+
+/* -------------------------------------------------------------- blocs --- */
+section{padding:66px 0}
+section.pale{background:#f5eee2}
+.titre-bloc{max-width:60ch;margin-bottom:38px}
+.titre-bloc p{margin-top:14px;color:#4b5a53;font-size:18px}
+.grille{display:grid;gap:22px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.carte{background:#fff;border:1px solid #e6ddcd;border-radius:18px;
+  padding:26px}
+.carte h3{margin-bottom:10px}
+.carte p{color:#4b5a53;font-size:16px}
+.pale .carte{background:#fbf7f0}
+
+/* la pastille « a definir » — elle doit se voir, c'est tout son interet */
+.tbc{display:inline-flex;align-items:center;gap:6px;background:#fdf0e6;
+  border:1px dashed #e08a5b;color:#a2512a;border-radius:999px;
+  padding:2px 11px;font-size:13px;font-weight:650;letter-spacing:.01em;
+  white-space:nowrap}
+.tbc::before{content:"";width:6px;height:6px;border-radius:50%;
+  background:#e08a5b;flex:none}
+.note{margin-top:12px;font-size:15px;color:#6b7a72}
+
+/* ----------------------------------------------------------- tableaux --- */
+.tab{width:100%;border-collapse:collapse;background:#fff;
+  border:1px solid #e6ddcd;border-radius:18px;overflow:hidden}
+.enrouleur{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tab th,.tab td{text-align:left;padding:16px 18px;border-bottom:1px solid
+  #efe7d9;vertical-align:top;font-size:16px}
+.tab tr:last-child td{border-bottom:0}
+.tab th{width:32%;font-weight:650;color:#16211d}
+.tab td.val{width:20%;white-space:nowrap}
+.tab td.exp{color:#4b5a53;font-size:15px}
+
+/* ----------------------------------------------------------- parcours --- */
+.etapes{counter-reset:e;display:grid;gap:2px}
+.etape{display:grid;grid-template-columns:64px 1fr;gap:20px;
+  background:#fff;border:1px solid #e6ddcd;padding:24px}
+.etape:first-child{border-radius:18px 18px 0 0}
+.etape:last-child{border-radius:0 0 18px 18px}
+.etape .num{font-size:26px;font-weight:700;color:#c9bda6;line-height:1.1}
+.etape h3{margin-bottom:8px}
+.etape p{color:#4b5a53;font-size:16px}
+
+/* --------------------------------------------------------- deux listes --- */
+.listes{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.liste{background:#fff;border:1px solid #e6ddcd;border-radius:18px;
+  padding:26px}
+.liste.accent{background:#2f6b52;border-color:#2f6b52;color:#fff}
+.liste.accent h3{color:#fff}
+.liste.accent li{color:#dbe8e1}
+.liste.accent li::before{background:#e08a5b}
+.liste ul{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:12px}
+.liste li{display:flex;gap:11px;align-items:flex-start;font-size:16px;
+  color:#41504a}
+.liste li::before{content:"";width:7px;height:7px;border-radius:50%;
+  background:#2f6b52;margin-top:9px;flex:none}
+
+/* --------------------------------------------------------- simulateur --- */
+.simu{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+.champs{background:#fff;border:1px solid #e6ddcd;border-radius:18px;
+  padding:26px;display:grid;gap:16px}
+.champ{display:grid;gap:6px}
+.champ label{font-size:15px;font-weight:600;color:#41504a}
+.champ input,.champ select,.form select,.form input,.form textarea{
+  font:inherit;font-size:16px;padding:11px 13px;border:1px solid #d9cfbc;
+  border-radius:11px;background:#fbf7f0;color:#16211d;width:100%}
+.champ input:focus,.champ select:focus,.form input:focus,.form select:focus,
+.form textarea:focus{outline:2px solid #2f6b52;outline-offset:1px}
+.sortie{background:#16211d;color:#fff;border-radius:18px;padding:26px}
+.sortie h3{color:#fff;font-size:15px;letter-spacing:.1em;
+  text-transform:uppercase}
+.sortie dl{margin:18px 0 0;display:grid;gap:0}
+.sortie .ligne{display:flex;justify-content:space-between;gap:16px;
+  padding:12px 0;border-bottom:1px solid #2c3a34;font-size:16px}
+.sortie .ligne:last-child{border-bottom:0}
+.sortie dt{color:#a9bab2}
+.sortie dd{margin:0;font-variant-numeric:tabular-nums;font-weight:650}
+.sortie .fort{font-size:20px}
+.sortie .fort dd{color:#8fd6b0}
+.sortie .neg dd{color:#ffab8f}
+.sortie .rappel{margin-top:18px;font-size:14px;color:#a9bab2}
+
+/* ------------------------------------------------------------ methode --- */
+.pastille-titre{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+
+/* ----------------------------------------------------------- signature --- */
+/* « KIMO — Learn to Think. » La mention de traduction est posee A COTE, pas
+   dessous : dessous, elle se lit comme une partie de la signature. */
+.signature{display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  margin-top:18px;font-size:19px;font-weight:650;color:#2f6b52;
+  letter-spacing:.01em}
+
+/* ------------------------------------------------- listes autonomes --- */
+/* Les listes de sa note restent des listes. Sur une pleine largeur elles
+   passent en deux colonnes, mais chaque puce reste insecable : une puce
+   coupee en deux colonnes se lit comme deux puces. */
+.liste.large{background:#fff;border:1px solid #e6ddcd;border-radius:18px;
+  padding:26px 30px;max-width:none}
+/* display:block est OBLIGATOIRE ici : la regle generale .liste ul pose
+   display:grid, et un conteneur en grille ignore purement et simplement
+   `columns`. La feuille disait deux colonnes, la page en montrait une. */
+.liste.large ul{margin:0;display:block;columns:2;column-gap:44px}
+.liste.large li{break-inside:avoid;margin-bottom:12px}
+.pale .liste.large{background:#fbf7f0}
+
+/* Une reserve du fondateur : encadree, pas en petit gris. */
+.reserve{margin-top:24px;background:#fdf0e6;border:1px solid #f0cdb2;
+  border-left:4px solid #e08a5b;border-radius:14px;padding:18px 22px;
+  color:#7d3f1e;font-size:16px;max-width:86ch}
+
+.apres{margin-top:28px}
+.apres-liste{margin-top:34px}
+.apres-liste h3{margin-bottom:16px}
+section.mince{padding:22px 0}
+.rappel-modele{display:flex;gap:18px;align-items:baseline;flex-wrap:wrap;
+  border-left:3px solid #e08a5b;padding:2px 0 2px 18px;color:#4b5a53;
+  font-size:16px}
+.rappel-modele p{max-width:74ch}
+
+/* Les sept piliers en resume sur l'accueil : des liens, pas des cartes
+   mortes — chacun mene a son paragraphe sur la page concept. */
+.grille.serree{gap:14px}
+.carte.mini{display:block;padding:18px 20px;text-decoration:none;
+  color:#16211d}
+.carte.mini h3{font-size:16px;margin:0}
+.carte.mini:hover{border-color:#2f6b52}
+
+/* ------------------------------------------------------- KIMO Tutoring --- */
+/* Les quatre programmes par age. La tranche d'age est ce qu'un parent
+   cherche en premier : elle passe AVANT le nom du programme. */
+.carte.prog .age{font-size:13px;font-weight:700;letter-spacing:.12em;
+  color:#e08a5b;margin-bottom:8px}
+.carte.prog h3{margin-bottom:10px}
+.carte.prog p{color:#4b5a53;font-size:15px}
+.liste.large code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:14px;background:#f5eee2;border:1px solid #e6ddcd;
+  border-radius:7px;padding:2px 7px;color:#2f6b52}
+.liste code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:14px;background:#f5eee2;border:1px solid #e6ddcd;
+  border-radius:7px;padding:2px 7px;color:#2f6b52}
+/* le code de monnaie, dans le bloc sombre du simulateur */
+.sortie .dev{color:#a9bab2;font-weight:600}
+
+/* ------------------------------------------------- tableaux du concept --- */
+.tab.large th{width:auto}
+.tab.large thead th{background:#f5eee2;font-size:14px;letter-spacing:.06em;
+  text-transform:uppercase;color:#4b5a53;font-weight:700}
+.pale .tab.large thead th{background:#efe6d6}
+.tab.large tbody th{width:22%;color:#16211d}
+.tab.large td{color:#41504a}
+.tab tr.mis td,.tab tr.mis th{background:#f3f8f5}
+.tab tr.mis th{box-shadow:inset 3px 0 0 #2f6b52}
+.tab.horaire tbody th.h{width:130px;white-space:nowrap;
+  font-variant-numeric:tabular-nums;color:#2f6b52}
+
+/* ---------------------------------------------------------------- faq --- */
+.faq{display:grid;gap:2px;max-width:860px}
+details{background:#fff;border:1px solid #e6ddcd;padding:20px 24px}
+details:first-of-type{border-radius:18px 18px 0 0}
+details:last-of-type{border-radius:0 0 18px 18px}
+summary{cursor:pointer;font-weight:650;font-size:17px;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";float:right;color:#e08a5b;font-weight:700}
+details[open] summary::after{content:"\2013"}
+details p{margin-top:12px;color:#4b5a53;font-size:16px;max-width:70ch}
+
+/* ------------------------------------------------------------ formulaire */
+.form{background:#fff;border:1px solid #e6ddcd;border-radius:18px;
+  padding:30px;display:grid;gap:18px;max-width:760px}
+.form .paire{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.form label{font-size:15px;font-weight:600;color:#41504a;display:block;
+  margin-bottom:6px}
+.form textarea{min-height:120px;resize:vertical}
+.oblig{color:#a2512a}
+.form .env{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.form button{font:inherit;font-weight:650;font-size:16px;padding:13px 26px;
+  border-radius:999px;border:0;background:#e08a5b;color:#231007;cursor:pointer}
+.form button:hover{background:#d67d4c}
+.recu{background:#eaf3ee;border:1px solid #b9d6c7;border-radius:14px;
+  padding:16px 18px;font-size:15px;color:#1f4a39}
+
+/* ------------------------------------------------------------- bandeau --- */
+.bandeau{background:#2f6b52;color:#fff;border-radius:22px;padding:44px;
+  display:flex;gap:28px;align-items:center;justify-content:space-between;
+  flex-wrap:wrap}
+.bandeau h2{color:#fff;max-width:20ch}
+.bandeau p{color:#cfe3d9;margin-top:10px;max-width:46ch}
+
+/* ---------------------------------------------------------------- pied --- */
+footer{background:#16211d;color:#a9bab2;padding:48px 0;margin-top:6px;
+  font-size:15px}
+footer .devise{color:#fff;font-size:19px;font-weight:600;
+  display:flex;align-items:center;gap:10px;margin-bottom:8px}
+footer .devise .diamant{stroke:#e08a5b;width:18px;height:18px}
+footer .fond{color:#8ea79a;margin-bottom:22px}
+footer .avert{border:1px solid #2c3a34;border-radius:14px;padding:16px 18px;
+  margin-bottom:20px;color:#c3d2ca;font-size:14px;max-width:82ch}
+footer .liens-sites{display:flex;gap:22px;flex-wrap:wrap;margin-top:16px}
+footer a{color:#8fd6b0}
+
+/* -------------------------------------------------------------- mobile --- */
+@media(max-width:900px){
+  .hero-in{grid-template-columns:1fr;gap:32px}
+  .g3,.g4{grid-template-columns:repeat(2,1fr)}
+  .simu,.listes,.form .paire{grid-template-columns:1fr}
+  /* La navigation ne DISPARAIT pas en mobile : elle passe a la ligne. Un
+     menu cache derriere un bouton qu'on n'a pas construit, c'est un site a
+     deux pages dont la seconde n'est atteignable que par le logo.
+     En revanche l'en-tete cesse d'etre COLLE : sur deux lignes il ferait
+     160 px, et il mangerait un cinquieme de l'ecran pendant toute la
+     lecture. Il coute sa hauteur une fois, en haut de page. */
+  .haut{position:static}
+  .haut-in{gap:12px;flex-wrap:wrap}
+  .marque{order:1}
+  .langue{order:2;margin-left:auto}
+  .nav{order:3;width:100%;margin-left:0;gap:16px;font-size:14px;
+    border-top:1px solid #e6ddcd;padding-top:9px}
+  .nav a{font-size:14px}
+  section{padding:48px 0}
+  .hero{padding:48px 0 40px}
+  .bandeau{padding:30px}
+}
+@media(max-width:620px){
+  .g2,.g3,.g4{grid-template-columns:1fr}
+  .etape{grid-template-columns:44px 1fr;gap:14px;padding:20px}
+  .tab th{width:auto}
+  /* Deux colonnes de puces sur 390 px de large, ce sont deux colonnes de
+     trois mots. Une seule. */
+  .liste.large ul{columns:1}
+  .liste.large{padding:22px}
+  .signature{font-size:17px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+<header class="haut"><div class="haut-in">
+  <a class="marque" href="index.html"><svg class="diamant" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 3h12l4 6-10 12L2 9z"/><path d="M2 9h20M6 3l3 6M18 3l-3 6M12 3l-3 6M12 3l3 6M9 9l3 12M15 9l-3 12"/></svg><span class="mot">KIMO</span></a>
+  <nav class="nav"><a href="index.html" aria-current="page" data-fr="Le réseau" data-en="The network">The network</a><a href="concept.html" data-fr="Le concept" data-en="The concept">The concept</a><a href="franchise.html" data-fr="Devenir franchisé" data-en="Become a franchisee">Become a franchisee</a><a href="tutoring.html" data-fr="Tutorat 6-17 ans" data-en="Tutoring, ages 6-17">Tutoring, ages 6-17</a><a href="franchise.html#candidature" data-fr="Candidater" data-en="Apply">Apply</a></nav>
+  <div class="langue"><a href="../index.html" hreflang="fr" rel="alternate">FR</a><span aria-current="true">EN</span></div>
+</div></header>
+<div class="hero"><div class="enveloppe"><div class="hero-in">
+<div>
+<p class="surtitre" data-fr="Réseau décentralisé d&#x27;éveil et d&#x27;apprentissage" data-en="Decentralized early-learning network">Decentralized early-learning network</p>
+<h1 data-fr="Une crèche à taille humaine, là où les familles habitent." data-en="A nursery on a human scale, where families actually live.">A nursery on a human scale, where families actually live.</h1>
+<p class="signature">
+<span data-fr="KIMO — Apprendre à penser." data-en="KIMO — Learn to Think.">KIMO — Learn to Think.</span>
+</p>
+<p class="chapo" data-fr="KIMO ouvre de petites unités de quartier, tenues par des équipes locales, avec un même programme, une même plateforme et un même système qualité. On y travaille la logique, les échecs, les mathématiques, les sciences, l&#x27;histoire, le mouvement et la création — par le jeu, jamais par la leçon." data-en="KIMO opens small neighbourhood units, run by local teams, sharing one educational program, one platform and one quality system. Logic, chess, mathematics, science, history, movement and creativity — through play, never through lessons.">KIMO opens small neighbourhood units, run by local teams, sharing one educational program, one platform and one quality system. Logic, chess, mathematics, science, history, movement and creativity — through play, never through lessons.</p>
+<div class="actions"><a class="bouton plein" href="concept.html" data-fr="Lire le concept" data-en="Read the concept">Read the concept</a><a class="bouton vide" href="franchise.html" data-fr="Ouvrir une KIMO" data-en="Open a KIMO">Open a KIMO</a></div>
+</div>
+<div class="etat">
+<h3 data-fr="État du réseau" data-en="Network status">Network status</h3>
+<ul>
+<li><span data-fr="Réseau en cours de constitution : la première crèche n&#x27;est pas encore ouverte." data-en="Network being set up: the first nursery has not opened yet.">Network being set up: the first nursery has not opened yet.</span></li>
+<li><span><span data-fr="Pays et ville de la première ouverture" data-en="Country and city of the first opening">Country and city of the first opening</span> — <span class="tbc" data-fr="à définir" data-en="to be set">to be set</span></span></li>
+<li><span><span data-fr="Cadre réglementaire applicable" data-en="Applicable regulatory framework">Applicable regulatory framework</span> — <span class="tbc" data-fr="à définir" data-en="to be set">to be set</span></span></li>
+<li><span data-fr="Les candidatures de franchises sont ouvertes dès maintenant." data-en="Franchise applications are open now.">Franchise applications are open now.</span></li>
+</ul></div>
+</div></div></div>
+<section id="modele"><div class="enveloppe">
+<div class="titre-bloc">
+<h2 data-fr="Pourquoi décentralisé" data-en="Why decentralised">Why decentralised</h2>
+<p data-fr="Le modèle n&#x27;est pas une crèche plus petite par manque de moyens. C&#x27;est un choix : beaucoup de petites unités valent mieux qu&#x27;une grande, à condition que le réseau porte tout ce qu&#x27;une petite unité ne sait pas porter seule." data-en="The model is not a smaller nursery for lack of means. It is a choice: many small units beat one large one — provided the network carries everything a small unit cannot carry alone.">The model is not a smaller nursery for lack of means. It is a choice: many small units beat one large one — provided the network carries everything a small unit cannot carry alone.</p>
+</div><div class="grille g2">
+<div class="carte"><h3 data-fr="Une crèche par quartier" data-en="One nursery per neighbourhood">One nursery per neighbourhood</h3><p data-fr="Le trajet domicile-crèche est le premier critère des parents, avant le prix. Une unité petite s&#x27;implante dans un quartier où une grande structure ne rentre pas : un rez-de-chaussée, une maison, un local commercial reconverti." data-en="The home-to-nursery trip is the first thing parents look at, before price. A small unit fits into a neighbourhood where a large facility cannot: a ground floor, a house, a converted shop.">The home-to-nursery trip is the first thing parents look at, before price. A small unit fits into a neighbourhood where a large facility cannot: a ground floor, a house, a converted shop.</p></div>
+<div class="carte"><h3 data-fr="Petite unité, adulte connu" data-en="Small unit, a familiar adult">Small unit, a familiar adult</h3><p data-fr="Un enfant de deux ans ne retient pas quinze visages. Une unité courte garde le même adulte devant le même groupe toute la journée, et les parents parlent au responsable, pas à un standard." data-en="A two-year-old does not retain fifteen faces. A small unit keeps the same adult with the same group all day, and parents talk to the manager, not to a switchboard.">A two-year-old does not retain fifteen faces. A small unit keeps the same adult with the same group all day, and parents talk to the manager, not to a switchboard.</p></div>
+<div class="carte"><h3 data-fr="Une méthode commune, pas une improvisation" data-en="A shared method, not improvisation">A shared method, not improvisation</h3><p data-fr="Ce que le réseau apporte n&#x27;est pas un logo : c&#x27;est une progression écrite, des supports, un cahier d&#x27;observation, et la formation qui va avec. Deux crèches KIMO à deux bouts du pays travaillent de la même façon." data-en="What the network brings is not a logo: it is a written progression, materials, an observation record, and the training that goes with it. Two KIMO nurseries at opposite ends of the country work the same way.">What the network brings is not a logo: it is a written progression, materials, an observation record, and the training that goes with it. Two KIMO nurseries at opposite ends of the country work the same way.</p></div>
+<div class="carte"><h3 data-fr="Les coûts lourds sont mutualisés" data-en="The heavy costs are shared">The heavy costs are shared</h3><p data-fr="Inscription en ligne, facturation, planning, achats, conformité, site et référencement : une crèche seule les paie en entier et les fait mal. Le réseau les porte une fois pour toutes." data-en="Enrolment, billing, scheduling, purchasing, compliance, website and local search: a standalone nursery pays for all of it and does it badly. The network carries it once, for everyone.">Enrolment, billing, scheduling, purchasing, compliance, website and local search: a standalone nursery pays for all of it and does it badly. The network carries it once, for everyone.</p></div>
+</div></div></section>
+<section id="methode" class="pale"><div class="enveloppe">
+<div class="titre-bloc">
+<h2 data-fr="La méthode" data-en="The method">The method</h2>
+<p data-fr="KIMO ne cherche pas à transformer la crèche en école primaire. Les thèmes intellectuels y sont des supports de jeu et de découverte. L&#x27;objectif est de poser les bases du raisonnement et de la curiosité sans rien retirer au jeu libre, au développement affectif, à la parole, à la vie en groupe, à la création et au repos." data-en="KIMO is not intended to turn preschool into primary school. The curriculum uses intellectual themes as tools for play and discovery. The objective is to create foundations for reasoning and curiosity while preserving free play, emotional development, communication, social interaction, creativity and rest.">KIMO is not intended to turn preschool into primary school. The curriculum uses intellectual themes as tools for play and discovery. The objective is to create foundations for reasoning and curiosity while preserving free play, emotional development, communication, social interaction, creativity and rest.</p>
+</div>
+<div class="liste large"><ul>
+<li><span data-fr="Poser la question avant de donner la réponse." data-en="Ask questions before giving answers.">Ask questions before giving answers.</span></li>
+<li><span data-fr="Manipuler des objets réels avant d&#x27;introduire des symboles abstraits." data-en="Manipulate real objects before introducing abstract symbols.">Manipulate real objects before introducing abstract symbols.</span></li>
+<li><span data-fr="Demander à l&#x27;enfant d&#x27;expliquer comment il est arrivé à sa solution." data-en="Encourage children to explain how they reached a solution.">Encourage children to explain how they reached a solution.</span></li>
+<li><span data-fr="Se servir de l&#x27;erreur pour essayer une autre approche." data-en="Use mistakes as opportunities to test another approach.">Use mistakes as opportunities to test another approach.</span></li>
+<li><span data-fr="Équilibrer les activités dirigées et l&#x27;exploration menée par l&#x27;enfant." data-en="Balance structured activities with child-led exploration.">Balance structured activities with child-led exploration.</span></li>
+<li><span data-fr="Régler la difficulté sur la maturité de l&#x27;enfant, pas sur son âge." data-en="Adapt complexity to developmental readiness rather than age alone.">Adapt complexity to developmental readiness rather than age alone.</span></li>
+</ul></div>
+<div class="apres">
+<a class="bouton vide" href="concept.html#apprentissage" data-fr="Les sept piliers d'apprentissage" data-en="The seven learning pillars">The seven learning pillars</a>
+</div>
+</div></section>
+<section id="piliers"><div class="enveloppe">
+<div class="titre-bloc">
+<h2 data-fr="Ce qu&#x27;on y travaille" data-en="What is worked on">What is worked on</h2>
+<p data-fr="Sept domaines, tous abordés par le jeu. Le détail de chacun est sur la page du concept." data-en="Seven areas, all approached through play. Each one is detailed on the concept page.">Seven areas, all approached through play. Each one is detailed on the concept page.</p>
+</div>
+<div class="grille g4 serree">
+<a class="carte mini" href="concept.html#p-logique"><h3 data-fr="Logique et résolution de problèmes" data-en="Logic &amp; Problem Solving">Logic &amp; Problem Solving</h3></a>
+<a class="carte mini" href="concept.html#p-echecs"><h3 data-fr="Échecs et pensée stratégique" data-en="Chess &amp; Strategic Thinking">Chess &amp; Strategic Thinking</h3></a>
+<a class="carte mini" href="concept.html#p-maths"><h3 data-fr="Mathématiques" data-en="Mathematics">Mathematics</h3></a>
+<a class="carte mini" href="concept.html#p-sciences"><h3 data-fr="Physique et sciences" data-en="Physics &amp; Science">Physics &amp; Science</h3></a>
+<a class="carte mini" href="concept.html#p-histoire"><h3 data-fr="Histoire et civilisations" data-en="History &amp; Civilizations">History &amp; Civilizations</h3></a>
+<a class="carte mini" href="concept.html#p-corps"><h3 data-fr="Développement physique" data-en="Physical Development">Physical Development</h3></a>
+<a class="carte mini" href="concept.html#p-creation"><h3 data-fr="Création et expression" data-en="Creativity &amp; Communication">Creativity &amp; Communication</h3></a>
+</div></div></section>
+<section id="cadre"><div class="enveloppe">
+<div class="titre-bloc">
+<h2 data-fr="Le cadre réglementaire" data-en="The regulatory framework">The regulatory framework</h2>
+<p data-fr="Une micro-crèche est un établissement autorisé. Le nombre de places, le taux d&#x27;encadrement, la qualification du responsable et la surface par enfant sont fixés par le droit du pays, et parfois de la région. Rien n&#x27;est écrit ici tant que ce n&#x27;est pas vérifié dans le pays retenu : un candidat construit son local et son financement sur ces lignes." data-en="A micro-nursery is a licensed facility. The number of places, the staff ratio, the manager&#x27;s qualification and the floor area per child are set by national — sometimes regional — law. Nothing is written here until it has been checked in the chosen country: a candidate builds their premises and their financing on these lines.">A micro-nursery is a licensed facility. The number of places, the staff ratio, the manager&#x27;s qualification and the floor area per child are set by national — sometimes regional — law. Nothing is written here until it has been checked in the chosen country: a candidate builds their premises and their financing on these lines.</p>
+</div><div class="enrouleur"><table class="tab"><tbody>
+<tr><th data-fr="Capacité maximale de l&#x27;unité" data-en="Maximum capacity of a unit">Maximum capacity of a unit</th><td class="val"><span class="tbc" data-fr="à définir" data-en="to be set">to be set</span></td><td class="exp"><span data-fr="Le nombre de places qui définit une « micro-crèche » est fixé par la réglementation du pays. Au-delà, l&#x27;établissement change de catégorie et de règles." data-en="The number of places that defines a &quot;micro-nursery&quot; is set by national regulation. Above it, the facility changes category and rules.">The number of places that defines a &quot;micro-nursery&quot; is set by national regulation. Above it, the facility changes category and rules.</span></td></tr>
+<tr><th data-fr="Taux d&#x27;encadrement" data-en="Staff-to-child ratio">Staff-to-child ratio</th><td class="val"><span class="tbc" data-fr="à définir" data-en="to be set">to be set</span></td><td class="exp"><span data-fr="Nombre d&#x27;adultes diplômés par enfant, et il diffère souvent selon que l&#x27;enfant marche ou non." data-en="Number of qualified adults per child, often different for children who walk and those who do not.">Number of qualified adults per child, often different for children who walk and those who do not.</span></td></tr>
+<tr><th data-fr="Qualification du responsable" data-en="Qualification of the manager">Qualification of the manager</th><td class="val"><span class="tbc" data-fr="à définir" data-en="to be set">to be set</span></td><td class="exp"><span data-fr="Diplôme exigé, années d&#x27;expérience, et parfois une référence sanitaire distincte." data-en="Required diploma, years of experience, and sometimes a separate health referent.">Required diploma, years of experience, and sometimes a separate health referent.</span></td></tr>
+<tr><th data-fr="Surface par enfant" data-en="Floor area per child">Floor area per child</th><td class="val"><span class="tbc" data-fr="à définir" data-en="to be set">to be set</span></td><td class="exp"><span data-fr="Surface intérieure utile, et accès à un espace extérieur selon les pays." data-en="Usable indoor area, plus access to outdoor space depending on the country.">Usable indoor area, plus access to outdoor space depending on the country.</span></td></tr>
+<tr><th data-fr="Autorité qui délivre l&#x27;agrément" data-en="Authority granting the licence">Authority granting the licence</th><td class="val"><span class="tbc" data-fr="à définir" data-en="to be set">to be set</span></td><td class="exp"><span data-fr="C&#x27;est elle qui visite le local avant l&#x27;ouverture et qui peut la refuser. Le calendrier d&#x27;ouverture dépend de son délai." data-en="It inspects the premises before opening and can refuse. The opening schedule depends on its lead time.">It inspects the premises before opening and can refuse. The opening schedule depends on its lead time.</span></td></tr>
+<tr><th data-fr="Aides et financement des familles" data-en="Family funding and subsidies">Family funding and subsidies</th><td class="val"><span class="tbc" data-fr="à définir" data-en="to be set">to be set</span></td><td class="exp"><span data-fr="Dans plusieurs pays, une partie du prix payé par la famille est prise en charge. Cela change le tarif affichable, donc tout le modèle." data-en="In several countries part of the fee paid by the family is subsidised. That changes the price you can charge, and so the whole model.">In several countries part of the fee paid by the family is subsidised. That changes the price you can charge, and so the whole model.</span></td></tr>
+</tbody></table></div>
+<div class="reserve" data-fr="Un établissement KIMO ne doit jamais échanger la sécurité ou la conformité contre de la compacité. La capacité définitive, les taux d&#x27;encadrement, les dimensions des pièces, le couchage, la préparation des repas et les exigences d&#x27;espace extérieur doivent être adaptés à la juridiction dans laquelle chaque unité fonctionne." data-en="KIMO facilities must never trade safety or regulatory compliance for compactness. Final capacity, staff ratios, room dimensions, sleep arrangements, food preparation and outdoor-space requirements must be adapted to the jurisdiction in which each unit operates.">KIMO facilities must never trade safety or regulatory compliance for compactness. Final capacity, staff ratios, room dimensions, sleep arrangements, food preparation and outdoor-space requirements must be adapted to the jurisdiction in which each unit operates.</div>
+</div></section>
+<section class="pale"><div class="enveloppe"><div class="bandeau"><div>
+<h2 data-fr="Ouvrir une KIMO dans votre ville" data-en="Open a KIMO in your city">Open a KIMO in your city</h2>
+<p data-fr="Le parcours, ce que le réseau apporte, un simulateur de compte d&#x27;exploitation et le formulaire de candidature." data-en="The journey, what the network provides, a P&amp;L simulator and the application form.">The journey, what the network provides, a P&amp;L simulator and the application form.</p>
+</div><a class="bouton plein" href="franchise.html" data-fr="Voir la page franchise" data-en="See the franchise page">See the franchise page</a>
+</div></div></section>
+<footer><div class="enveloppe">
+<p class="devise" data-fr="Mes sites impactent le monde." data-en="My sites impact the world.">My sites impact the world.</p>
+<p class="fond" data-fr="Hakim Adjaoudi, fondateur — JNCORP INC." data-en="Hakim Adjaoudi, founder — JNCORP INC.">Hakim Adjaoudi, founder — JNCORP INC.</p>
+<div class="avert" data-fr="DÉMONSTRATION. KIMO est un réseau en cours de constitution : aucune crèche n&#x27;est ouverte à ce jour. Les valeurs marquées « à définir » ne sont pas des oublis, ce sont des décisions qui n&#x27;ont pas encore été prises, ou des règles qui dépendent du pays retenu. Aucun chiffre réglementaire n&#x27;est avancé ici tant qu&#x27;il n&#x27;a pas été vérifié dans le pays concerné." data-en="DEMONSTRATION. KIMO is a network being set up: no nursery is open to date. Values marked &quot;to be set&quot; are not omissions, they are decisions not yet taken, or rules that depend on the country chosen. No regulatory figure is stated here until it has been checked in the country concerned.">DEMONSTRATION. KIMO is a network being set up: no nursery is open to date. Values marked &quot;to be set&quot; are not omissions, they are decisions not yet taken, or rules that depend on the country chosen. No regulatory figure is stated here until it has been checked in the country concerned.</div>
+<div class="liens-sites"><a href="https://anirudhatalmale6-alt.github.io/annuaire-franchises-demo/" data-fr="Annuaire des franchises" data-en="Franchise directory">Franchise directory</a><a href="https://anirudhatalmale6-alt.github.io/maisons-de-prestige/" data-fr="Maisons de Prestige" data-en="Maisons de Prestige">Maisons de Prestige</a></div>
+</div></footer>
+<script>
+(function(){ window.KLANG = document.documentElement.lang || 'fr'; })();
+</script>
+</body>
+</html>
